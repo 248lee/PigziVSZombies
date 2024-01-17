@@ -1,6 +1,11 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Threading.Tasks;
+using OpenAI_API;
+using OpenAI_API.Chat;
+using OpenAI_API.Models;
 
 
 [System.Serializable]
@@ -17,20 +22,44 @@ public class WaveSystem : MonoBehaviour
     PlayerController playerController;
     DragonController dragon;
     FireballSysrem fireballsystem;
+    private OpenAIAPI gpt;
+    private ChatMessage systemMessage;
+    private string result; // For gpt test
 
     // Start is called before the first frame update
     void Start()
     {
+        this.gpt = new OpenAIAPI(Environment.GetEnvironmentVariable("OPENAI_KEY", EnvironmentVariableTarget.User));
+        this.systemMessage = new ChatMessage(ChatMessageRole.System, "The user will give you a list of English vocabularies. Your job is to make 5 sentences using these vocabularies, and the sentences you make should not be related each other. Please output the sentence you make on by one. Each output sentence should come up with the vocabulary you use to make that sentence. If you use 2 or more vocabularies to make that sentence, just output exactly one of them. It is encouraged to use only 1 vocabulary for each sentence, but this is in fact up to you. When you output the sentence, output \"s:\" before the sentence; output \"v:\" before the vocabulary you used. Do not output anything else I've not mentioned. ");
         this.playerController = FindObjectOfType<PlayerController>();
         this.dragon = FindObjectOfType<DragonController>();
         this.fireballsystem = FindObjectOfType<FireballSysrem>();
+        getSentence();
         StartCoroutine(this.gameProcess());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(this.result);
+
+    }
+    private async Task<string> GenerateExampleSentence(string vocabulary)
+    {
+        ChatMessage query = new ChatMessage(ChatMessageRole.User, vocabulary);
+        List<ChatMessage> messages = new List<ChatMessage> { systemMessage, query };
+        var chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
+        {
+            Model = Model.ChatGPTTurbo,
+            Temperature = 0.5,
+            MaxTokens = 200,
+            Messages = messages
+        });
+        return chatResult.Choices[0].Message.Content;
+    }
+    public async void getSentence()
+    {
+        this.result = await GenerateExampleSentence("apple, banana, complete, ice, sister");
     }
     IEnumerator gameProcess()
     {
@@ -57,17 +86,17 @@ public class WaveSystem : MonoBehaviour
         yield return new WaitForSeconds(subwave.startDelay);
         for (int i = 0; i < subwave.numOfEmmisions; i++)
         {
-            float delayTime = Random.Range(subwave.durationMin, subwave.durationMax);
+            float delayTime = UnityEngine.Random.Range(subwave.durationMin, subwave.durationMax);
             this.fireballsystem.generateFireball();
             yield return new WaitForSeconds(delayTime);
         }
     }
     float getTimeRandPos(float duration, float td)
     {
-        float tmp = Random.Range(0, duration);
+        float tmp = UnityEngine.Random.Range(0, duration);
         if (tmp < td)
         {
-            int rePick = Random.Range(0, 2);
+            int rePick = UnityEngine.Random.Range(0, 2);
             if (rePick == 0)
                 tmp = getTimeRandPos(duration, td);
         }

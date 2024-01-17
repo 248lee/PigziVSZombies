@@ -1,0 +1,6 @@
+.johntest {
+    margin-top: 10px;
+    background-color: rgba(255, 0, 0, 0.82);
+    color: rgb(30, 255, 0);
+    height: 2px
+}

@@ -8609,6 +8609,9 @@ MonoBehaviour:
   type: 0
   speed: -0.7
   realSpeed: 0
+  question:
+    vocabulary: 
+    sentence: 
   questionText: {fileID: 485860331}
   ableShoot: 1
   graph1: {fileID: 1520565926}
@@ -15072,6 +15075,9 @@ MonoBehaviour:
   type: 0
   speed: 0.1
   realSpeed: 0
+  question:
+    vocabulary: 
+    sentence: 
   questionText: {fileID: 0}
   ableShoot: 1
   graph1: {fileID: 0}
@@ -26881,6 +26887,13 @@ MonoBehaviour:
   waves:
   - attr1: 10
     attr2: 303
+    v_candidates:
+    - falter
+    - tackle
+    - oasis
+    - perish
+    - fiddle
+    - playwright
     subwaves:
     - startDelay: 9
       numOfEmmisions: 1
@@ -26894,6 +26907,7 @@ MonoBehaviour:
       healBallDelay: 999
   - attr1: 10
     attr2: 303
+    v_candidates: []
     subwaves:
     - startDelay: 6
       numOfEmmisions: 1
@@ -26901,6 +26915,7 @@ MonoBehaviour:
       durationMax: 7
       healBallDelay: 999
   nowWave: 0
+  questions: []
 --- !u!1 &857332123
 GameObject:
   m_ObjectHideFlags: 0
@@ -94716,6 +94731,9 @@ MonoBehaviour:
   type: 0
   speed: -1.1
   realSpeed: 0
+  question:
+    vocabulary: 
+    sentence: 
   questionText: {fileID: 49248859}
   ableShoot: 1
   graph1: {fileID: 678140647}

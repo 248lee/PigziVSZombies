@@ -13,9 +13,10 @@ public class WaveEditor : PropertyDrawer
 
         root.Add(new PropertyField(property.FindPropertyRelative("attr1")));
         root.Add(new PropertyField(property.FindPropertyRelative("attr2")));
+        root.Add(new PropertyField(property.FindPropertyRelative("v_candidates")));
 
         Button test_button = new Button(() => { OpenJohnEditorWindow(property); });
-        test_button.text = "Test Button";
+        test_button.text = "Subwave Editor";
         root.Add(test_button);
 
         VisualElement testLabel = new Label();

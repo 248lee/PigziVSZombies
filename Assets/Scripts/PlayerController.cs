@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
         this.valueText.text = "";
         for (int i = 0; i < this.fireballsystem.fire_onScreen.Count; i++)
         {
-            if (this.fireballsystem.fire_onScreen[i].question.answer == this.playerValue && !this.fireballsystem.fire_onScreen[i].ableToBeDestroyed)
+            if (this.fireballsystem.fire_onScreen[i].question.vocabulary == this.playerValue && !this.fireballsystem.fire_onScreen[i].ableToBeDestroyed)
             {
                 correct = true;
                 this.fireballsystem.fire_onScreen[i].correct();

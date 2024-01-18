@@ -15,20 +15,27 @@ public class Wave
     public float attr2 = 303f;
     public List<Subwave> subwaves = new List<Subwave>();
 }
+//public class Question
+//{
+//    public string sentence;
+//    public string vocabulary;
+//}
 public class WaveSystem : MonoBehaviour
 {
     public List<Wave> waves;
     public int nowWave = 0;
+    public List<Question> questions;
     PlayerController playerController;
     DragonController dragon;
     FireballSysrem fireballsystem;
     private OpenAIAPI gpt;
     private ChatMessage systemMessage;
-    private string result; // For gpt test
+    private string result = null; // For gpt test
 
     // Start is called before the first frame update
     void Start()
     {
+        this.questions = new List<Question>();
         this.gpt = new OpenAIAPI(Environment.GetEnvironmentVariable("OPENAI_KEY", EnvironmentVariableTarget.User));
         this.systemMessage = new ChatMessage(ChatMessageRole.System, "The user will give you a list of English vocabularies. Your job is to make 5 sentences using these vocabularies, and the sentences you make should not be related each other. Please output the sentence you make on by one. Each output sentence should come up with the vocabulary you use to make that sentence. If you use 2 or more vocabularies to make that sentence, just output exactly one of them. It is encouraged to use only 1 vocabulary for each sentence, but this is in fact up to you. When you output the sentence, output \"s:\" before the sentence; output \"v:\" before the vocabulary you used. Do not output anything else I've not mentioned. ");
         this.playerController = FindObjectOfType<PlayerController>();
@@ -41,7 +48,29 @@ public class WaveSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(this.result);
+        if (this.result != null)
+        {
+            //Debug.Log(this.result);
+            string[] lines = result.Split('\n');
+            bool is_s_waiting_to_pair = false;
+            Question tmp = new Question("", "");
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].StartsWith("s:"))
+                {
+                    tmp.sentence = lines[i].Substring(2); // Pop out the prefix "s:"
+                    is_s_waiting_to_pair = true;
+                }
+                else if (lines[i].StartsWith("v:") && is_s_waiting_to_pair)
+                {
+                    tmp.vocabulary = lines[i].Substring(2); // Pop out the prefix "v:"
+                    is_s_waiting_to_pair = false;
+                    questions.Add(tmp);
+                    tmp = new Question("", "");
+                }
+            }
+            this.result = null;
+        }
 
     }
     private async Task<string> GenerateExampleSentence(string vocabulary)

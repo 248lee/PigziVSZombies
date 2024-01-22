@@ -26165,7 +26165,14 @@ MonoBehaviour:
   hp: 0
   damageRate: 20
   hpBar: {fileID: 99488394}
-  Leafs: []
+  Leafs:
+  - {fileID: 947792859}
+  - {fileID: 1214283120}
+  - {fileID: 282645419}
+  - {fileID: 1930124804}
+  - {fileID: 312495447}
+  - {fileID: 2084487814}
+  - {fileID: 754046371}
 --- !u!61 &795700802
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26736,7 +26743,14 @@ MonoBehaviour:
   hp: 0
   damageRate: 20
   hpBar: {fileID: 541416913}
-  Leafs: []
+  Leafs:
+  - {fileID: 993507036}
+  - {fileID: 765688673}
+  - {fileID: 1754512042}
+  - {fileID: 781721546}
+  - {fileID: 494254406}
+  - {fileID: 2057716055}
+  - {fileID: 1617126067}
 --- !u!61 &841247948
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27734,7 +27748,14 @@ MonoBehaviour:
   hp: 0
   damageRate: 20
   hpBar: {fileID: 393614440}
-  Leafs: []
+  Leafs:
+  - {fileID: 86372567}
+  - {fileID: 1160386218}
+  - {fileID: 515606617}
+  - {fileID: 1699980736}
+  - {fileID: 492885759}
+  - {fileID: 2081349660}
+  - {fileID: 585358877}
 --- !u!61 &957523199
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -47025,7 +47046,14 @@ MonoBehaviour:
   hp: 0
   damageRate: 20
   hpBar: {fileID: 1793395494}
-  Leafs: []
+  Leafs:
+  - {fileID: 1135077793102012}
+  - {fileID: 1855722633875706}
+  - {fileID: 1041034432627444}
+  - {fileID: 1831824918925918}
+  - {fileID: 1054272478697708}
+  - {fileID: 836202478}
+  - {fileID: 1543306345613490}
 --- !u!50 &1527108156
 Rigidbody2D:
   serializedVersion: 4

@@ -56,7 +56,7 @@ public class DragonController : MonoBehaviour
     }
     public void dropFireballs(Transform layTrans)
     {
-        this.fireballSysrem.generateFireballForDragon(layTrans.position);
+        this.fireballSysrem.generateFireballForDragon(layTrans.position, new Question("tom", "tom"));
     }
     public void partAttackForFlame(int parts, float time)  //生成個數和秒數請至state machine調整
     {

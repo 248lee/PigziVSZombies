@@ -44,28 +44,15 @@ public class FireballSysrem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            this.generateFireball();
+            //this.generateFireball();
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            this.generateHealball();
+            //this.generateHealball();
         }
     }
-    private async Task<string> GenerateExampleSentence(string vocabulary)
-    {
-        ChatMessage query = new ChatMessage(ChatMessageRole.User, vocabulary);
-        List<ChatMessage> messages = new List<ChatMessage> { systemMessage, query };
-        var chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
-        {
-            Model = Model.ChatGPTTurbo,
-            Temperature = 0.5,
-            MaxTokens = 50,
-            Messages = messages
-        });
-        return chatResult.Choices[0].Message.Content;
-    }
 
-    public async void generateFireball()
+    public void generateFireball(Question question)
     {
         int posIndex = UnityEngine.Random.Range(0, 4);
         while (posIndex == this.prePos)
@@ -73,16 +60,15 @@ public class FireballSysrem : MonoBehaviour
             posIndex = UnityEngine.Random.Range(0, 4);
         }
         this.prePos = posIndex;
-        string sentence = await GenerateExampleSentence("complete");
 
         FireballController temp = Instantiate(this.fireball.gameObject, generateTransforms[posIndex].position, Quaternion.identity).GetComponent<FireballController>();
         temp.speed = -this.fireballSpeed;
         temp.type = TypeMode.Fireball;
-        temp.question = new Question("complete", sentence);
+        temp.question = question;
 
         this.fire_onScreen.Add(temp);
     }
-    void generateHealball()
+    void generateHealball(Question question)
     {
         int posIndex = UnityEngine.Random.Range(0, 4);
         while (posIndex == this.prePos)
@@ -93,18 +79,16 @@ public class FireballSysrem : MonoBehaviour
 
         FireballController temp = Instantiate(this.fireball.gameObject, generateTransforms[posIndex].position, Quaternion.identity).GetComponent<FireballController>();
         temp.type = TypeMode.Healball;
-        Task<string> gptTask = GenerateExampleSentence("complete");
-        temp.question = new Question("complete", gptTask.Result);
+        temp.question = question;
         this.fire_onScreen.Add(temp);
     }
 
-    public async void generateFireballForDragon(Vector3 genPos)
+    public void generateFireballForDragon(Vector3 genPos, Question question)
     {
-        string sentence = await GenerateExampleSentence("complete");
         FireballController temp = Instantiate(this.fireball.gameObject, genPos, Quaternion.identity).GetComponent<FireballController>();
         temp.speed = -this.fireballSpeed;
         temp.type = TypeMode.Fireball;
-        temp.question = new Question("complete", sentence);
+        temp.question = question;
 
         this.fire_onScreen.Add(temp);
     }
@@ -114,8 +98,8 @@ public class FireballSysrem : MonoBehaviour
         temp.transform.SetParent(genPos);
         temp.type = TypeMode.EnemyPart;
         temp.setMaxTimeForPart(duration);
-        Task<string> gptTask = GenerateExampleSentence("complete");
-        temp.question = new Question("complete", gptTask.Result);
+        //Task<string> gptTask = GenerateExampleSentence("complete");
+        //temp.question = new Question("complete", gptTask.Result);
         this.fire_onScreen.Add(temp);
         this.currentParts++;
     }

@@ -8593,7 +8593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &445968833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26908,8 +26908,9 @@ MonoBehaviour:
     - perish
     - fiddle
     - playwright
+    questions: []
     subwaves:
-    - startDelay: 9
+    - startDelay: 0.1
       numOfEmmisions: 1
       durationMin: 8
       durationMax: 7
@@ -26922,6 +26923,7 @@ MonoBehaviour:
   - attr1: 10
     attr2: 303
     v_candidates: []
+    questions: []
     subwaves:
     - startDelay: 6
       numOfEmmisions: 1
@@ -26929,7 +26931,6 @@ MonoBehaviour:
       durationMax: 7
       healBallDelay: 999
   nowWave: 0
-  questions: []
 --- !u!1 &857332123
 GameObject:
   m_ObjectHideFlags: 0
@@ -77009,7 +77010,7 @@ MonoBehaviour:
   - {fileID: 1088386452}
   fire_onScreen: []
   bossDragon: {fileID: 1855131372}
-  shootAnimSpeed: 40
+  shootAnimSpeed: 53
   min_1: 0
   max_1: 20
   min_2: 0

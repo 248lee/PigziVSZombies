@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public static KeyCode[] keys = { KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.M, KeyCode.N, KeyCode.O, KeyCode.P, KeyCode.Q, KeyCode.R, KeyCode.S, KeyCode.T, KeyCode.U, KeyCode.V, KeyCode.W, KeyCode.X, KeyCode.Y, KeyCode.Z };
     //---------------------public---------------------//
     public string playerValue;
     public int waters;
@@ -97,33 +98,10 @@ public class PlayerController : MonoBehaviour
             {
                 valueInput.Push(0);
             }
-            else if (Input.GetKeyDown(KeyCode.C))
+            for (int i = 0; i < 26; i++)
             {
-                valueInput.Push('c');
-            }
-            else if (Input.GetKeyDown(KeyCode.O))
-            {
-                valueInput.Push('o');
-            }
-            else if (Input.GetKeyDown(KeyCode.M))
-            {
-                valueInput.Push('m');
-            }
-            else if (Input.GetKeyDown(KeyCode.P))
-            {
-                valueInput.Push('p');
-            }
-            else if (Input.GetKeyDown(KeyCode.L))
-            {
-                valueInput.Push('l');
-            }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                valueInput.Push('e');
-            }
-            else if (Input.GetKeyDown(KeyCode.T))
-            {
-                valueInput.Push('t');
+                if (Input.GetKeyDown(keys[i]))
+                    valueInput.Push((char)('a' + i));
             }
         }
         if (valueInput.Count != 0)
@@ -174,6 +152,8 @@ public class PlayerController : MonoBehaviour
         this.valueText.text = "";
         for (int i = 0; i < this.fireballsystem.fire_onScreen.Count; i++)
         {
+            Debug.Log(this.playerValue);
+            Debug.Log(this.fireballsystem.fire_onScreen[i].question.vocabulary);
             if (this.fireballsystem.fire_onScreen[i].question.vocabulary == this.playerValue && !this.fireballsystem.fire_onScreen[i].ableToBeDestroyed)
             {
                 correct = true;

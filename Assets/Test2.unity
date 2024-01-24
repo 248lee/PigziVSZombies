@@ -26899,8 +26899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - attr1: 10
-    attr2: 303
+  - mode: 0
     v_candidates:
     - falter
     - tackle
@@ -26920,16 +26919,24 @@ MonoBehaviour:
       durationMin: 7
       durationMax: 8
       healBallDelay: 999
-  - attr1: 10
-    attr2: 303
-    v_candidates: []
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 1
+    v_candidates:
+    - cocoon
+    - creek
+    - compassion
     questions: []
     subwaves:
-    - startDelay: 6
+    - startDelay: 0.1
       numOfEmmisions: 1
       durationMin: 8
       durationMax: 7
       healBallDelay: 999
+    dragon_paragraph:
+      vocabularies: []
+      article: 
   nowWave: 0
 --- !u!1 &857332123
 GameObject:
@@ -71017,7 +71024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballSysrem: {fileID: 2000290251}
   layPoint: {fileID: 0}
-  partsList: []
+  paragraphStartPoint: {fileID: 2013161410}
   graphAnimator: {fileID: 77886898}
   animator: {fileID: 0}
   currentEnemyParts: 0

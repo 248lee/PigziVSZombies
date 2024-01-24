@@ -55,6 +55,7 @@ public class FireballController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("->" + this.question.vocabulary);
         // Dealing with signals
         if (shootMeSignal || isShootingMe)
         {
@@ -83,7 +84,7 @@ public class FireballController : MonoBehaviour
                 Timers.SetTimer("StartShooting" + gameObject.GetInstanceID(), shootDuration);
                 this.isShootingMe = true;
             }
-            if (isShootingMe)
+            if (isShootingMe) // the variable isShootingMe will be set to True by above
             {
                 this.temp_bullet.transform.LookAt(transform);
                 float progress = Timers.GetTimerPrgress("StartShooting" + gameObject.GetInstanceID());

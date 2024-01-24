@@ -6,7 +6,7 @@ public class DragonController : MonoBehaviour
 {
     [SerializeField] FireballSysrem fireballSysrem;
     [SerializeField] Transform layPoint;
-    [SerializeField] List<Transform> partsList = new List<Transform>();
+    [SerializeField] Transform paragraphStartPoint;
     [SerializeField] Animator graphAnimator;
     [SerializeField] Animator animator;
     [SerializeField] int currentEnemyParts;
@@ -17,6 +17,7 @@ public class DragonController : MonoBehaviour
     int hp;
     bool pauseTimer;
     float graphAnimatorSpeed, animatorSpeed;
+    Paragraph paragraph;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,24 +49,20 @@ public class DragonController : MonoBehaviour
         this.updateFireballsInStateMachine();
         this.updateHPbarAndStateMachine();
     }
-    public void Born()
+    public void Born(Paragraph paragraph)
     {
         this.graphAnimator.speed = this.graphAnimatorSpeed;
         this.animator.speed = this.animatorSpeed;
         this.hpBar.gameObject.SetActive(true);
+        this.paragraph = paragraph;
     }
     public void dropFireballs(Transform layTrans)
     {
         this.fireballSysrem.generateFireballForDragon(layTrans.position, new Question("tom", "tom"));
     }
-    public void partAttackForFlame(int parts, float time)  //生成個數和秒數請至state machine調整
+    public void partAttackForFlame(float time)  //生成個數和秒數請至state machine調整
     {
-        if (parts > this.partsList.Count)
-        {
-            Debug.LogError("生成太多個enemy part啦~");
-            return;
-        }
-        StartCoroutine(this._partAttackForFlame(parts, time));
+        StartCoroutine(this._partAttackForFlame(time));
     }
     List<int> generateRandomDifferInts(int n, int min, int max)
     {
@@ -95,18 +92,11 @@ public class DragonController : MonoBehaviour
         this.currentEnemyParts = this.fireballSysrem.currentParts;
         this.animator.SetInteger("currentParts", this.currentEnemyParts);
     }
-    IEnumerator _partAttackForFlame(int parts, float duration)
+    IEnumerator _partAttackForFlame(float duration)
     {
-        List<int> chosenTransNo = this.generateRandomDifferInts(parts, 0, this.partsList.Count - 1);
-        /*Delete me later*/
-        if (parts != chosenTransNo.Count)
+        for (int i = 0; i < paragraph.vocabularies.Count; i++)
         {
-            Debug.LogError("這裡有問題");
-        }
-        /*_Delete me later_*/
-        for (int i = 0; i < parts; i++)
-        {
-            this.fireballSysrem.generateEnemyPartForDragon(this.partsList[chosenTransNo[i]], duration);
+            this.fireballSysrem.generateEnemyPartForDragon(this.paragraphStartPoint, duration, paragraph.vocabularies[i]);
             this.updateTheNumOfCurrentParts();
         }
 

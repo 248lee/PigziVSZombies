@@ -11,8 +11,7 @@ public class WaveEditor : PropertyDrawer
 
         var root = new VisualElement();
 
-        root.Add(new PropertyField(property.FindPropertyRelative("attr1")));
-        root.Add(new PropertyField(property.FindPropertyRelative("attr2")));
+        root.Add(new PropertyField(property.FindPropertyRelative("mode")));
         root.Add(new PropertyField(property.FindPropertyRelative("v_candidates")));
 
         Button test_button = new Button(() => { OpenJohnEditorWindow(property); });

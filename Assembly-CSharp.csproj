@@ -230,6 +230,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\Timeline\ScrollingText\ScrollingTextClip.cs" />
     <Compile Include="Assets\Scripts\Timers.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Audio\RandomAudioPlayer.cs" />
+    <Compile Include="Assets\Scripts\Paragraph.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\ScreenFader\ScreenFaderClip.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Localization\TranslatedText.cs" />

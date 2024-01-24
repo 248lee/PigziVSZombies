@@ -152,8 +152,6 @@ public class PlayerController : MonoBehaviour
         this.valueText.text = "";
         for (int i = 0; i < this.fireballsystem.fire_onScreen.Count; i++)
         {
-            Debug.Log(this.playerValue);
-            Debug.Log(this.fireballsystem.fire_onScreen[i].question.vocabulary);
             if (this.fireballsystem.fire_onScreen[i].question.vocabulary == this.playerValue && !this.fireballsystem.fire_onScreen[i].ableToBeDestroyed)
             {
                 correct = true;

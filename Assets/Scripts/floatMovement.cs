@@ -4,14 +4,13 @@ using System.Collections;
 
 public class floatMovement : StateMachineBehaviour
 {
-    [SerializeField] int partAmount = 2;
     [SerializeField] float partDuration = 5f;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         DragonController dragon = animator.GetComponent<DragonController>();
         dragon.Graph_SetTrigger("glideFin");
-        dragon.partAttackForFlame(this.partAmount, this.partDuration);
+        dragon.partAttackForFlame(this.partDuration);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

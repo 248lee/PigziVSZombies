@@ -92,14 +92,13 @@ public class FireballSysrem : MonoBehaviour
 
         this.fire_onScreen.Add(temp);
     }
-    public void generateEnemyPartForDragon(Transform genPos, float duration)
+    public void generateEnemyPartForDragon(Transform genPos, float duration, string vocabulary)
     {
         FireballController temp = Instantiate(this.fireball.gameObject, genPos.position, Quaternion.identity).GetComponent<FireballController>();
         temp.transform.SetParent(genPos);
         temp.type = TypeMode.EnemyPart;
         temp.setMaxTimeForPart(duration);
-        //Task<string> gptTask = GenerateExampleSentence("complete");
-        //temp.question = new Question("complete", gptTask.Result);
+        temp.question = new Question(vocabulary, "<  >");
         this.fire_onScreen.Add(temp);
         this.currentParts++;
     }

@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
 public class DragonController : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class DragonController : MonoBehaviour
     [SerializeField] HPBarController hpBar;
     [SerializeField] int maxHP = 100, minusHP = 10;
     [SerializeField] ParticleSystem flameGraphForPause;
+    [SerializeField] TextMeshProUGUI paragraphText;
     int hp;
     bool pauseTimer;
     float graphAnimatorSpeed, animatorSpeed;
@@ -21,6 +24,7 @@ public class DragonController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.paragraphText.gameObject.SetActive(false);
         this.pauseTimer = false;
         this.hp = this.maxHP;
         this.hpBar.SetMaxHP(this.maxHP);
@@ -55,6 +59,7 @@ public class DragonController : MonoBehaviour
         this.animator.speed = this.animatorSpeed;
         this.hpBar.gameObject.SetActive(true);
         this.paragraph = paragraph;
+        this.paragraphText.SetText(this.paragraph.article);
     }
     public void dropFireballs(Transform layTrans)
     {
@@ -94,6 +99,7 @@ public class DragonController : MonoBehaviour
     }
     IEnumerator _partAttackForFlame(float duration)
     {
+        this.paragraphText.gameObject.SetActive(true);
         for (int i = 0; i < paragraph.vocabularies.Count; i++)
         {
             this.fireballSysrem.generateEnemyPartForDragon(this.paragraphStartPoint, duration, paragraph.vocabularies[i]);
@@ -118,6 +124,7 @@ public class DragonController : MonoBehaviour
         }
         /*_­pºâ®É¶¡_*/
 
+        this.paragraphText.gameObject.SetActive(false);
         if (this.currentEnemyParts > 0)
             yield return StartCoroutine(this.flame());
         

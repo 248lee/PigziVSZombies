@@ -91,10 +91,10 @@ public class FireballController : MonoBehaviour
                 Vector3 original = fireballSystem.bulletStartPosition;
                 temp_bullet.transform.position = original + (transform.position - original) * progress; // Movement of the bullet
 
-                if (Timers.isTimerFinished("StartShooting" + gameObject.GetInstanceID()))
+                if (Timers.isTimerFinished("StartShooting" + gameObject.GetInstanceID())) // If the bullet hits the fire
                 {
                     this.isShootingMe = false;
-
+                    this.questionText.SetText(this.question.real_sentence);
                     Destroy(temp_bullet, 0.5f);
                     this.putOutFireball();
                     Instantiate(fireballSystem.dust, transform.position, Quaternion.identity);
@@ -104,7 +104,6 @@ public class FireballController : MonoBehaviour
                         this.fireballSystem.bossDragon.minusBlood();
                     if (this.type == TypeMode.Healball)
                         this.healPar.startFall();
-                    this.questionText.text = question.sentence;
                     this.progressBar.gameObject.SetActive(false);
                     Destroy(gameObject, 0.5f);
                 }

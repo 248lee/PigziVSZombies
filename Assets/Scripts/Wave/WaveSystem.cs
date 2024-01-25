@@ -134,20 +134,20 @@ public class WaveSystem : MonoBehaviour
         Debug.Log(gpt_result_sentence);
         string[] lines = gpt_result_sentence.Split('\n');
         bool is_s_waiting_to_pair = false;
-        Question tmp = new Question("", "");
+        string tmp_s = "", tmp_v = "";
         for (int i = 0; i < lines.Length; i++)
         {
             if (lines[i].StartsWith("s:"))
             {
-                tmp.sentence = lines[i].Substring(3); // Pop out the prefix "s: "
+                tmp_s = lines[i].Substring(3); // Pop out the prefix "s: "
                 is_s_waiting_to_pair = true;
             }
             else if (lines[i].StartsWith("v:") && is_s_waiting_to_pair)
             {
-                tmp.vocabulary = lines[i].Substring(3); // Pop out the prefix "v: "
+                tmp_v = lines[i].Substring(3); // Pop out the prefix "v: "
                 is_s_waiting_to_pair = false;
+                Question tmp = new Question(tmp_v, tmp_s);
                 wave.questions.Add(tmp);
-                tmp = new Question("", "");
             }
         }
         this.gpt_finish_generating_sentence = true;

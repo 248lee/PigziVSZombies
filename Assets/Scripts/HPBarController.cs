@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HPBarController : MonoBehaviour
 {
     [SerializeField] Gradient gradient;
-    Image fill;
+    [SerializeField] Image fill;
     Slider slider;
     
     // Start is called before the first frame update

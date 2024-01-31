@@ -17,6 +17,7 @@ public class DragonController : MonoBehaviour
     [SerializeField] int maxHP = 100, minusHP = 10;
     [SerializeField] ParticleSystem flameGraphForPause;
     [SerializeField] TextMeshProUGUI paragraphText;
+    [SerializeField] GameObject testball;
     int hp;
     bool pauseTimer;
     float graphAnimatorSpeed, animatorSpeed;
@@ -24,7 +25,6 @@ public class DragonController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.paragraphText.gameObject.SetActive(false);
         this.pauseTimer = false;
         this.hp = this.maxHP;
         this.hpBar.SetMaxHP(this.maxHP);
@@ -44,6 +44,7 @@ public class DragonController : MonoBehaviour
         this.animator.speed = 0f;
         this.graphAnimator.speed = 0f;
         this.hpBar.gameObject.SetActive(false);
+        this.paragraphText.color = Color.clear;
     }
 
     // Update is called once per frame
@@ -59,7 +60,8 @@ public class DragonController : MonoBehaviour
         this.animator.speed = this.animatorSpeed;
         this.hpBar.gameObject.SetActive(true);
         this.paragraph = paragraph;
-        this.paragraphText.SetText(this.paragraph.article);
+        this.paragraphText.SetText(paragraph.article);
+
     }
     public void dropFireballs(Transform layTrans)
     {
@@ -99,7 +101,13 @@ public class DragonController : MonoBehaviour
     }
     IEnumerator _partAttackForFlame(float duration)
     {
-        this.paragraphText.gameObject.SetActive(true);
+        this.paragraphText.color = Color.white;
+        TMP_TextInfo textInfo = this.paragraphText.textInfo;
+        TMP_CharacterInfo charInfo = textInfo.characterInfo[10];
+        Debug.Log(charInfo.character);
+        Vector3 charPosition = (charInfo.topRight + charInfo.bottomRight) * 0.5f;
+        Vector3 worldPosition = this.paragraphText.transform.TransformPoint(charPosition);
+        Instantiate(this.testball, worldPosition, Quaternion.identity, this.paragraphText.transform);
         for (int i = 0; i < paragraph.vocabularies.Count; i++)
         {
             this.fireballSysrem.generateEnemyPartForDragon(this.paragraphStartPoint, duration, paragraph.vocabularies[i]);
@@ -124,7 +132,7 @@ public class DragonController : MonoBehaviour
         }
         /*_­pºâ®É¶¡_*/
 
-        this.paragraphText.gameObject.SetActive(false);
+        this.paragraphText.color = Color.clear;
         if (this.currentEnemyParts > 0)
             yield return StartCoroutine(this.flame());
         

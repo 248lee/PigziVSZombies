@@ -5,21 +5,17 @@ using UnityEngine.UI;
 using TMPro;
 public class DeleteMe : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI paragraphText;
-    [SerializeField] GameObject testball;
+    [SerializeField] float delta = 0f;
+    private Vector3 initPos;
     // Start is called before the first frame update
     void Start()
     {
-        TMP_TextInfo textInfo = this.paragraphText.textInfo;
-        TMP_CharacterInfo charInfo = textInfo.characterInfo[10];
-        Vector3 charPosition = (charInfo.topRight + charInfo.bottomRight) * 0.5f;
-        Vector3 worldPosition = this.paragraphText.transform.TransformPoint(charPosition);
-        Instantiate(this.testball, worldPosition, Quaternion.identity);
+        initPos = transform.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.localPosition = initPos - new Vector3(0f, delta, 0f);
     }
 }

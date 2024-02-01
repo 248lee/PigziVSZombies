@@ -27218,14 +27218,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - mode: 0
+  - mode: 1
     v_candidates:
-    - falter
-    - tackle
-    - oasis
-    - perish
-    - fiddle
-    - playwright
+    - cocoon
+    - creek
+    - compassion
     questions: []
     subwaves:
     - startDelay: 0.1
@@ -27236,11 +27233,14 @@ MonoBehaviour:
     dragon_paragraph:
       vocabularies: []
       article: 
-  - mode: 1
+  - mode: 0
     v_candidates:
-    - cocoon
-    - creek
-    - compassion
+    - falter
+    - tackle
+    - oasis
+    - perish
+    - fiddle
+    - playwright
     questions: []
     subwaves:
     - startDelay: 0.1
@@ -28940,8 +28940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b4fb338c13151449cb1e335ae52b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paragraphText: {fileID: 1014116954}
-  testball: {fileID: 4654557689394644033, guid: 4aac599197226a144a158201b0d1779e, type: 3}
+  delta: 0
 --- !u!114 &1014116954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34812,8 +34811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b4fb338c13151449cb1e335ae52b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paragraphText: {fileID: 1014116954}
-  testball: {fileID: 4654557689394644033, guid: 4aac599197226a144a158201b0d1779e, type: 3}
+  delta: 0
 --- !u!4 &1117959900
 Transform:
   m_ObjectHideFlags: 0
@@ -77818,6 +77816,7 @@ MonoBehaviour:
   bullet: {fileID: 4409468344802831724, guid: eb5e6233d04fb75488b260268c44623c, type: 3}
   bulletStartPosition: {x: 3.42, y: -6.83, z: 0}
   dust: {fileID: 1025285306637258, guid: 201f1b760524f31419c17c7736c072c6, type: 3}
+  z_delta_enemy_part_position: 0.85
   fireballSpeed: 0.7
 --- !u!1 &2000825576
 GameObject:

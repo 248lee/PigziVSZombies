@@ -14654,6 +14654,10 @@ MonoBehaviour:
   type: 0
   speed: -1.1
   realSpeed: 0
+  question:
+    vocabulary: 
+    sentence: 
+    real_sentence: 
   questionText: {fileID: 5336158128362746146}
   ableShoot: 1
   graph1: {fileID: 6804638442088478519}
@@ -44115,7 +44119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -966.06, y: -533.88}
+  m_AnchoredPosition: {x: -964.4497, y: -533.88}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8030803186999363813

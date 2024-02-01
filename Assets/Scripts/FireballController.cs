@@ -105,7 +105,8 @@ public class FireballController : MonoBehaviour
                     if (this.type == TypeMode.Healball)
                         this.healPar.startFall();
                     this.progressBar.gameObject.SetActive(false);
-                    Destroy(gameObject, 0.5f);
+                    if (this.type != TypeMode.EnemyPart)
+                        Destroy(gameObject, 0.5f);
                 }
             }
         }

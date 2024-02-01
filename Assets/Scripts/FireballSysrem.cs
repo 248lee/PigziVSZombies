@@ -22,6 +22,7 @@ public class FireballSysrem : MonoBehaviour
     public GameObject bullet;
     public Vector3 bulletStartPosition;
     public GameObject dust;
+    public float z_delta_enemy_part_position = 0.7f;
     private OpenAIAPI gpt;
     private ChatMessage systemMessage;
     int prePos = -1;
@@ -92,13 +93,13 @@ public class FireballSysrem : MonoBehaviour
 
         this.fire_onScreen.Add(temp);
     }
-    public void generateEnemyPartForDragon(Transform genPos, float duration, string vocabulary)
+    public void generateEnemyPartForDragon(Transform parent, Vector3 genPos, float duration, string vocabulary)
     {
-        FireballController temp = Instantiate(this.fireball.gameObject, genPos.position, Quaternion.identity).GetComponent<FireballController>();
-        temp.transform.SetParent(genPos);
+        FireballController temp = Instantiate(this.fireball.gameObject, genPos - new Vector3(0f, z_delta_enemy_part_position, 0f), Quaternion.identity).GetComponent<FireballController>();
+        temp.transform.SetParent(parent);
         temp.type = TypeMode.EnemyPart;
         temp.setMaxTimeForPart(duration);
-        temp.question = new Question(vocabulary, "<  >");
+        temp.question = new Question(vocabulary, "<        >");
         this.fire_onScreen.Add(temp);
         this.currentParts++;
     }

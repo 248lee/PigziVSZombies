@@ -46,7 +46,7 @@ public class WaveSystem : MonoBehaviour
     {
         this.gpt = new OpenAIAPI(Environment.GetEnvironmentVariable("OPENAI_KEY", EnvironmentVariableTarget.User));
         this.systemMessage_sentence = new ChatMessage(ChatMessageRole.System, "The user will give you a list of English vocabularies. Your job is to make 5 sentences using these vocabularies, and the sentences you make should not be related each other. Please output the sentence you make on by one. Each output sentence should come up with the vocabulary you use to make that sentence. If you use 2 or more vocabularies to make that sentence, just output exactly one of them. It is encouraged to use only 1 vocabulary for each sentence, but this is in fact up to you. Also, the sentence you provided will be used as a fill-the-blank problem. Please represent the blank with the string \"<  >\". When you output the sentence, output \"s:\" before the sentence; output \"v:\" before the vocabulary you used. Do not output anything else I've not mentioned.");
-        this.systemMessage_paragraph = new ChatMessage(ChatMessageRole.System, "The user will give you a list of English vocabularies. Your job is to write a short paragraph using these vocabularies. The paragraph you provided will be used as a fill-the-blank problem. Please represent the blank with the string \"<  >\". After outputting the paragraph, please output the vocabulary in the order of them being used in the paragraph, seperated with a comma. Do not output anything else I've not mentioned.");
+        this.systemMessage_paragraph = new ChatMessage(ChatMessageRole.System, "The user will give you a list of English vocabularies. Your job is to write a short paragraph using these vocabularies. The paragraph you provided will be used as a fill-in-the-blank problem. Please put the word you use from the provided vocabularies between \'<\' and \'>\'. Do not output anything else I've not mentioned.");
         this.playerController = FindObjectOfType<PlayerController>();
         this.dragon = FindObjectOfType<DragonController>();
         this.fireballsystem = FindObjectOfType<FireballSysrem>();
@@ -115,7 +115,7 @@ public class WaveSystem : MonoBehaviour
     {
         ChatMessage query = new ChatMessage(ChatMessageRole.User, vocabulary);
         ChatMessage[] example_vs = { new ChatMessage(ChatMessageRole.User, "complete, homework, happiness") };
-        ChatMessage[] example_ps = { new ChatMessage(ChatMessageRole.Assistant, "Sarah experienced <  > <  > when she finished her <  >. The sense of accomplishment filled her with joy, making the effort worthwhile. Now, with her tasks completed, she could relax and enjoy the rest of her day.\ncomplete, happiness, homework") };
+        ChatMessage[] example_ps = { new ChatMessage(ChatMessageRole.Assistant, "Sarah experienced <complete> <happiness> when she finished her <homework>. The sense of accomplishment filled her with joy, making the effort worthwhile. This tells us always <complete> important task first, so we can relax and enjoy the rest of our day.") };
         List<ChatMessage> messages = new List<ChatMessage> { systemMessage_paragraph, example_vs[0], example_ps[0], query };
         var chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
         {
@@ -156,9 +156,27 @@ public class WaveSystem : MonoBehaviour
     {
         string input_message = String.Join(", ", wave.v_candidates); // Concatenate the vocabularies into a message like "apple, banana, complete, ice, sister"
         this.gpt_result_paragraph = await GenerateExampleParagraph(input_message);
-        string[] lines = gpt_result_paragraph.Split('\n');
-        List<string> vocabularies = new List<string>(lines[1].Split(", "));
-        wave.dragon_paragraph = new Paragraph(vocabularies, lines[0]);
+        Debug.Log(this.gpt_result_paragraph);
+        List<string> vocabularies = new List<string>();
+
+        int startIndex = 0;
+        while (true)
+        {
+            int openIndex = gpt_result_paragraph.IndexOf('<', startIndex);
+            if (openIndex == -1)
+            {
+                break;
+            }
+            int closeIndex = gpt_result_paragraph.IndexOf('>', openIndex);
+            if (closeIndex == -1)
+            {
+                break;
+            }
+            vocabularies.Add(gpt_result_paragraph.Substring(openIndex + 1, closeIndex - openIndex - 1));
+            startIndex = closeIndex + 1;
+        }
+
+        wave.dragon_paragraph = new Paragraph(vocabularies, gpt_result_paragraph);
         this.gpt_finish_generating_sentence = true;
     }
 

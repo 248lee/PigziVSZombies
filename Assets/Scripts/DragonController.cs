@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System.Text.RegularExpressions;
 using UnityEngine.UI;
 using TMPro;
-
 public class DragonController : MonoBehaviour
 {
     [SerializeField] FireballSysrem fireballSysrem;
@@ -60,8 +60,6 @@ public class DragonController : MonoBehaviour
         this.animator.speed = this.animatorSpeed;
         this.hpBar.gameObject.SetActive(true);
         this.paragraph = paragraph;
-        this.paragraphText.SetText(paragraph.article);
-
     }
     public void dropFireballs(Transform layTrans)
     {
@@ -101,16 +99,39 @@ public class DragonController : MonoBehaviour
     }
     IEnumerator _partAttackForFlame(float duration)
     {
+        List<int> blank_indexes = new List<int>();
+        int pos_of_left_bracket = 0;
+        string text_to_show = Regex.Replace(paragraph.article, "<.*?>", "<                  >"); // make the blank modifiable, convenient for me
+        bool insideSubstring = false;
+        for (int i = 0; i < text_to_show.Length; i++)
+        {
+            if (text_to_show[i] == '<' && insideSubstring == false)
+            {
+                pos_of_left_bracket = i;
+                insideSubstring = true;
+                text_to_show = text_to_show.Remove(i, 1).Insert(i, " "); // Replace the character '<' into a space
+            }
+            else if (text_to_show[i] == '>')
+            {
+                blank_indexes.Add((i + pos_of_left_bracket) / 2);
+                insideSubstring = false;
+                text_to_show = text_to_show.Remove(i, 1).Insert(i, " "); // Replace the character '>' into a space
+            }
+        }
+        this.paragraphText.SetText(text_to_show);
         this.paragraphText.color = Color.white;
-        TMP_TextInfo textInfo = this.paragraphText.textInfo;
-        TMP_CharacterInfo charInfo = textInfo.characterInfo[10];
-        Debug.Log(charInfo.character);
-        Vector3 charPosition = (charInfo.topRight + charInfo.bottomRight) * 0.5f;
-        Vector3 worldPosition = this.paragraphText.transform.TransformPoint(charPosition);
-        Instantiate(this.testball, worldPosition, Quaternion.identity, this.paragraphText.transform);
+
+        yield return null; // This delay frame is needed for the textinfo to update
+
+        
+        //Instantiate(this.testball, worldPosition, Quaternion.identity, this.paragraphText.transform);
         for (int i = 0; i < paragraph.vocabularies.Count; i++)
         {
-            this.fireballSysrem.generateEnemyPartForDragon(this.paragraphStartPoint, duration, paragraph.vocabularies[i]);
+            TMP_TextInfo textInfo = this.paragraphText.textInfo;
+            TMP_CharacterInfo charInfo = textInfo.characterInfo[blank_indexes[i]];
+            Vector3 charPosition = (charInfo.topRight + charInfo.bottomRight) * 0.5f;
+            Vector3 worldPosition = this.paragraphText.transform.TransformPoint(charPosition);
+            this.fireballSysrem.generateEnemyPartForDragon(this.transform, worldPosition, duration, paragraph.vocabularies[i]);
             this.updateTheNumOfCurrentParts();
         }
 
@@ -132,7 +153,15 @@ public class DragonController : MonoBehaviour
         }
         /*_­pºâ®É¶¡_*/
 
-        this.paragraphText.color = Color.clear;
+        this.paragraphText.color = Color.clear; // Clear the paragraph text
+        FireballController[] enemyParts = GetComponentsInChildren<FireballController>();
+        foreach (FireballController ep in enemyParts)
+        {
+            Destroy(ep.gameObject); // Clear all the enemy parts
+        }
+
+
+
         if (this.currentEnemyParts > 0)
             yield return StartCoroutine(this.flame());
         

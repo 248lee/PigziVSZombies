@@ -45,7 +45,7 @@ public class WaveSystem : MonoBehaviour
     void Start()
     {
         this.gpt = new OpenAIAPI(Environment.GetEnvironmentVariable("OPENAI_KEY", EnvironmentVariableTarget.User));
-        this.systemMessage_sentence = new ChatMessage(ChatMessageRole.System, "The user will give you a list of English vocabularies. Your job is to make 5 sentences using these vocabularies, and the sentences you make should not be related each other. Please output the sentence you make on by one. Each output sentence should come up with the vocabulary you use to make that sentence. If you use 2 or more vocabularies to make that sentence, just output exactly one of them. It is encouraged to use only 1 vocabulary for each sentence, but this is in fact up to you. Also, the sentence you provided will be used as a fill-the-blank problem. Please represent the blank with the string \"<  >\". When you output the sentence, output \"s:\" before the sentence; output \"v:\" before the vocabulary you used. Do not output anything else I've not mentioned.");
+        this.systemMessage_sentence = new ChatMessage(ChatMessageRole.System, "The user will give you a list of English vocabularies. Your job is to make fifteen sentences using these vocabularies, and the sentences you make should not be related each other. Please output the sentence you make on by one. Each output sentence should come up with the vocabulary you use to make that sentence. If you use 2 or more vocabularies to make that sentence, just output exactly one of them. It is encouraged to use only 1 vocabulary for each sentence, but this is in fact up to you. Also, the sentence you provided will be used as a fill-the-blank problem. Please represent the blank with the string \"<  >\", that is, the user should field the vocabulary inside <  >. When you output the sentence, output \"s:\" before the sentence, then output \"v:\" before the vocabulary you used in the next line. Do not output anything else I've not mentioned.");
         this.systemMessage_paragraph = new ChatMessage(ChatMessageRole.System, "The user will give you a list of English vocabularies. Your job is to write a short paragraph using these vocabularies. The paragraph you provided will be used as a fill-in-the-blank problem. Please put the word you use from the provided vocabularies between \'<\' and \'>\'. Do not output anything else I've not mentioned.");
         this.playerController = FindObjectOfType<PlayerController>();
         this.dragon = FindObjectOfType<DragonController>();
@@ -65,7 +65,7 @@ public class WaveSystem : MonoBehaviour
             if (wave.mode == WaveMode.Normal)
                 generateQuestions(wave); // when this process is finished, this.gpt_finish_generating_sentence will become true
             else if (wave.mode == WaveMode.Boss)
-                generateParagraph(wave);
+                generateParagraph(wave); // when this process is finished, this.gpt_finish_generating_sentence will become true
             while (!this.gpt_finish_generating_sentence)
                 yield return null;
             this.gpt_finish_generating_sentence = false;
@@ -98,7 +98,7 @@ public class WaveSystem : MonoBehaviour
             yield return null;
         }
     }
-    private async Task<string> GenerateExampleSentence(string vocabulary)
+    private async Task<string> RequestSentenceGPT(string vocabulary)
     {
         ChatMessage query = new ChatMessage(ChatMessageRole.User, vocabulary);
         List<ChatMessage> messages = new List<ChatMessage> { systemMessage_sentence, query };
@@ -111,7 +111,7 @@ public class WaveSystem : MonoBehaviour
         });
         return chatResult.Choices[0].Message.Content;
     }
-    private async Task<string> GenerateExampleParagraph(string vocabulary)
+    private async Task<string> RequestParagraphGPT(string vocabulary)
     {
         ChatMessage query = new ChatMessage(ChatMessageRole.User, vocabulary);
         ChatMessage[] example_vs = { new ChatMessage(ChatMessageRole.User, "complete, homework, happiness") };
@@ -130,7 +130,7 @@ public class WaveSystem : MonoBehaviour
     {
         string input_message = String.Join(", ", wave.v_candidates); // Concatenate the vocabularies into a message like "apple, banana, complete, ice, sister"
         Debug.Log("hello1");
-        string gpt_result_sentence = await GenerateExampleSentence(input_message);
+        string gpt_result_sentence = await RequestSentenceGPT(input_message);
         Debug.Log(gpt_result_sentence);
         string[] lines = gpt_result_sentence.Split('\n');
         bool is_s_waiting_to_pair = false;
@@ -155,7 +155,7 @@ public class WaveSystem : MonoBehaviour
     public async void generateParagraph(Wave wave)
     {
         string input_message = String.Join(", ", wave.v_candidates); // Concatenate the vocabularies into a message like "apple, banana, complete, ice, sister"
-        this.gpt_result_paragraph = await GenerateExampleParagraph(input_message);
+        this.gpt_result_paragraph = await RequestParagraphGPT(input_message);
         Debug.Log(this.gpt_result_paragraph);
         List<string> vocabularies = new List<string>();
 

@@ -121,7 +121,6 @@ public class PlayerController : MonoBehaviour
             }
         }
         this.valueText.text = this.playerValue;
-
         //answer
         if (Input.GetKeyDown(KeyCode.Space))
         {

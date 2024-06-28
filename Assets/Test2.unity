@@ -27218,21 +27218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - mode: 1
-    v_candidates:
-    - cocoon
-    - creek
-    - compassion
-    questions: []
-    subwaves:
-    - startDelay: 0.1
-      numOfEmmisions: 1
-      durationMin: 8
-      durationMax: 7
-      healBallDelay: 999
-    dragon_paragraph:
-      vocabularies: []
-      article: 
   - mode: 0
     v_candidates:
     - falter
@@ -27241,6 +27226,30 @@ MonoBehaviour:
     - perish
     - fiddle
     - playwright
+    - victory
+    - enterprise
+    - tuition
+    - meditate
+    - persevere
+    - incentive
+    - surgeon
+    - notorious
+    - couch
+    questions: []
+    subwaves:
+    - startDelay: 10.42
+      numOfEmmisions: 15
+      durationMin: 3.96
+      durationMax: 6.9
+      healBallDelay: 999
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 1
+    v_candidates:
+    - cocoon
+    - creek
+    - compassion
     questions: []
     subwaves:
     - startDelay: 0.1

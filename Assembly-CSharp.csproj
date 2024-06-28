@@ -267,6 +267,7 @@
     <Compile Include="Assets\OpenAI_API\Embedding\EmbeddingResult.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsBase.cs" />
+    <Compile Include="Assets\Scripts\Wave\SentenceBank.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Utility\PrewarmDirector.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Utility\StartScreenSpriteOffsetter.cs" />
     <Compile Include="Assets\Scripts\floatMovement.cs" />

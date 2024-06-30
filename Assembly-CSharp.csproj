@@ -257,6 +257,7 @@
     <Compile Include="Assets\OpenAI_API\Images\ImageResponseFormat.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Player\LocomotionSMB.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TimeDilation\TimeDilationTrack.cs" />
+    <Compile Include="Assets\Scripts\IListExtensions.cs" />
     <Compile Include="Assets\OpenAI_API\Completions\CompletionEndpoint.cs" />
     <Compile Include="Assets\OpenAI_API\Images\ImageResult.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\AI\SendSignal.cs" />
@@ -276,6 +277,7 @@
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\UnityStandardParticleShadow.cginc" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\perish.txt" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\UnityStandardParticles.cginc" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\FrostedGlass.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
@@ -283,6 +285,7 @@
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedSprite.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\oasis.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Sprites\EmojiOne_License.txt" />
     <None Include="Assets\2DGamekit\Utilities\Fonts\Rajdhani\RajdhaniFontLicense.txt" />
     <None Include="Assets\2DGamekit\2DGameKit_Third-PartyNotice.txt" />
@@ -302,10 +305,13 @@
     <None Include="Assets\2DGamekit\Utilities\Shaders\Shield.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\Particle Standard Unlit.shader" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\fiddle.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\tackle.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Shaders\FireFly.shader" />
     <None Include="Assets\SomeFires\Procedural fire\Shaders\FireSphere.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\falter.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\SomeFires\Procedural fire\Demo scene\Readme.txt" />

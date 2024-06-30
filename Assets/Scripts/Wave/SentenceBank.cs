@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-public class SentenceBank : MonoBehaviour
+public class SentenceBank
 {
     private List<string> sentences;
     private string vocabulary;
@@ -20,6 +20,7 @@ public class SentenceBank : MonoBehaviour
         {
             Directory.CreateDirectory(Application.streamingAssetsPath + "/SentenceBanks/");
             File.WriteAllText(pathname, "");  // create an empty file
+            this.sentences = new List<string>();
         }
         else
         {

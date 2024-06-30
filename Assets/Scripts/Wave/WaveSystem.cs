@@ -23,6 +23,11 @@ public class Wave
 
     // For Boss
     public Paragraph dragon_paragraph = null;
+
+    public void ShuffleQuestions()
+    {
+        IListExtensions.Shuffle<Question>(questions);
+    }
 }
 //public class Question
 //{
@@ -31,6 +36,16 @@ public class Wave
 //}
 public class WaveSystem : MonoBehaviour
 {
+    private const string exampleMessage_sentence_q_string = "vocabulary: instantaneous";
+    private const string exampleMessage_sentence_ans_string = @"The pain from the bee sting was almost <    >.";
+    private const string exampleMessage_sentence_o_string = "One more sentence with blank.";
+    private const string exampleMessage_sentence_ans2_string = @"The lightning strike caused an <    > blackout in the neighborhood.";
+    private static ChatMessage exampleMessage_sentence_q = new ChatMessage(ChatMessageRole.User, exampleMessage_sentence_q_string);
+    private static ChatMessage exampleMessage_sencence_ans = new ChatMessage(ChatMessageRole.Assistant, exampleMessage_sentence_ans_string);
+    private static ChatMessage exampleMessage_sentence_o = new ChatMessage(ChatMessageRole.User, exampleMessage_sentence_o_string);
+    private static ChatMessage exampleMessage_sencence_ans2 = new ChatMessage(ChatMessageRole.Assistant, exampleMessage_sentence_ans2_string);
+    private List<ChatMessage> default_example = new List<ChatMessage> { exampleMessage_sentence_q, exampleMessage_sencence_ans, exampleMessage_sentence_o, exampleMessage_sencence_ans2};
+
     public List<Wave> waves;
     public int nowWave = 0;
     PlayerController playerController;
@@ -45,7 +60,13 @@ public class WaveSystem : MonoBehaviour
     void Start()
     {
         this.gpt = new OpenAIAPI(Environment.GetEnvironmentVariable("OPENAI_KEY", EnvironmentVariableTarget.User));
-        this.systemMessage_sentence = new ChatMessage(ChatMessageRole.System, "The user will give you a list of English vocabularies. Your job is to make fifteen sentences using these vocabularies, and the sentences you make should not be related each other. Please output the sentence you make on by one. Each output sentence should come up with the vocabulary you use to make that sentence. If you use 2 or more vocabularies to make that sentence, just output exactly one of them. It is encouraged to use only 1 vocabulary for each sentence, but this is in fact up to you. Also, the sentence you provided will be used as a fill-the-blank problem. Please represent the blank with the string \"<  >\", that is, the user should field the vocabulary inside <  >. When you output the sentence, output \"s:\" before the sentence, then output \"v:\" before the vocabulary you used in the next line. Do not output anything else I've not mentioned.");
+        string systemMessage_sentence_string = @"Make an example using the given vocabulary. Do not change
+            the form of the vocabulary (e.g. DO NOT add -ing, -s, -ed etc.), and use a blank <    > to 
+            replace the vocabulary in the sentence. Also keep the sentence within ten words.";
+        
+
+        this.systemMessage_sentence = new ChatMessage(ChatMessageRole.System, systemMessage_sentence_string);
+        
         this.systemMessage_paragraph = new ChatMessage(ChatMessageRole.System, "The user will give you a list of English vocabularies. Your job is to write a short paragraph using these vocabularies. The paragraph you provided will be used as a fill-in-the-blank problem. Please put the word you use from the provided vocabularies between \'<\' and \'>\'. Do not output anything else I've not mentioned.");
         this.playerController = FindObjectOfType<PlayerController>();
         this.dragon = FindObjectOfType<DragonController>();
@@ -77,6 +98,7 @@ public class WaveSystem : MonoBehaviour
     {
         if (wave.mode == WaveMode.Normal)
         {
+            wave.ShuffleQuestions(); // Shuffle all the questions to generate random questions
             foreach (Subwave subwave in wave.subwaves)
             {
                 yield return new WaitForSeconds(subwave.startDelay); // Implementing Subwave process here
@@ -98,18 +120,75 @@ public class WaveSystem : MonoBehaviour
             yield return null;
         }
     }
-    private async Task<string> RequestSentenceGPT(string vocabulary)
+    private async Task<List<string>> RequestSentenceGPT(string vocabulary, int num_of_sentence)
     {
-        ChatMessage query = new ChatMessage(ChatMessageRole.User, vocabulary);
-        List<ChatMessage> messages = new List<ChatMessage> { systemMessage_sentence, query };
-        var chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
+        SentenceBank sb = new SentenceBank(vocabulary);
+        ChatMessage sentence_q = new ChatMessage(ChatMessageRole.User, "vocabulary: " + vocabulary);
+        ChatMessage sentence_o = new ChatMessage(ChatMessageRole.User, "One more sentence with blank.");
+
+        List<string> history = sb.GetAllSentences();
+        List<ChatMessage> messages = new List<ChatMessage> { systemMessage_sentence };
+        if (history.Count == 0)
         {
-            Model = Model.ChatGPTTurbo,
-            Temperature = 0.1,
-            MaxTokens = 2000,
-            Messages = messages
-        });
-        return chatResult.Choices[0].Message.Content;
+            print("Hello " + vocabulary);
+            messages.AddRange(new List<ChatMessage>(default_example));
+            messages.Add(sentence_q);
+        }
+        else
+        {
+            messages.Add(sentence_q);
+            for (int i = 0; i < history.Count; i++)
+            {
+                messages.Add(new ChatMessage(ChatMessageRole.Assistant, history[i]));
+                messages.Add(sentence_o);
+            }
+        }
+        
+        //List<ChatMessage> messages = new List<ChatMessage> { systemMessage_sentence, query };
+        List<string> results = new List<string>();
+        for (int i = 0; i < num_of_sentence; i++)
+        {
+            var chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
+            {
+                Model = Model.ChatGPTTurbo,
+                Temperature = 0.1,
+                MaxTokens = 2000,
+                Messages = messages
+            });
+
+            messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.Content));
+            int wrong_time = 0;
+            while (!chatResult.Choices[0].Message.Content.Contains("<    >") && wrong_time < 3)
+            {
+                Debug.LogError("Wrong GPT response format for vocabulary " + vocabulary);
+                messages.Add(new ChatMessage(ChatMessageRole.User, "Wrong! Please replace the vocabulary \"" + vocabulary + "\" with a blank \"<    >\". Give me the correct sentence directly."));
+                chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
+                {
+                    Model = Model.ChatGPTTurbo,
+                    Temperature = 0.1,
+                    MaxTokens = 2000,
+                    Messages = messages
+                });
+                messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.Content));
+                wrong_time++;
+            }
+            if (wrong_time != 0)
+            {
+                Debug.Log("++++++++++++++++++++++++++++");
+                foreach (ChatMessage cm in messages)
+                {
+                    Debug.Log(cm.Content);
+                }
+                Debug.Log("----------------------------");
+            }
+            else
+            {
+                results.Add(chatResult.Choices[0].Message.Content); // Push the response into the resulting sentences
+            }
+            messages.Add(sentence_o);
+        }
+        sb.SetAllSentences(results);
+        return results;
     }
     private async Task<string> RequestParagraphGPT(string vocabulary)
     {
@@ -128,25 +207,14 @@ public class WaveSystem : MonoBehaviour
     }
     private async void generateQuestions(Wave wave)
     {
-        string input_message = String.Join(", ", wave.v_candidates); // Concatenate the vocabularies into a message like "apple, banana, complete, ice, sister"
-        Debug.Log("hello1");
-        string gpt_result_sentence = await RequestSentenceGPT(input_message);
-        Debug.Log(gpt_result_sentence);
-        string[] lines = gpt_result_sentence.Split('\n');
-        bool is_s_waiting_to_pair = false;
-        string tmp_s = "", tmp_v = "";
-        for (int i = 0; i < lines.Length; i++)
+        foreach (string vocabulary in wave.v_candidates)
         {
-            if (lines[i].StartsWith("s:"))
+            List<string> gpt_result_sentences = await RequestSentenceGPT(vocabulary, 5);
+            Debug.Log(vocabulary);
+            for (int i = 0; i < gpt_result_sentences.Count; i++)
             {
-                tmp_s = lines[i].Substring(3); // Pop out the prefix "s: "
-                is_s_waiting_to_pair = true;
-            }
-            else if (lines[i].StartsWith("v:") && is_s_waiting_to_pair)
-            {
-                tmp_v = lines[i].Substring(3); // Pop out the prefix "v: "
-                is_s_waiting_to_pair = false;
-                Question tmp = new Question(tmp_v, tmp_s);
+                print(gpt_result_sentences[i]);
+                Question tmp = new Question(vocabulary, gpt_result_sentences[i]);
                 wave.questions.Add(tmp);
             }
         }

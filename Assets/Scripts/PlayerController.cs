@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PlayerController : MonoBehaviour
     DragonController dragonController;
     Stack valueInput = new Stack();
     [SerializeField] float frozenTime = 5f;
-    [SerializeField]Text valueText;
+    [SerializeField] TextMeshProUGUI valueText;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform bulletStartPoint;
     [SerializeField] Text waterAmountText;
@@ -120,6 +121,7 @@ public class PlayerController : MonoBehaviour
                 this.playerValue = item.ToString() + this.playerValue;
             }
         }
+        Debug.Log(this.playerValue);
         this.valueText.text = this.playerValue;
         //answer
         if (Input.GetKeyDown(KeyCode.Space))

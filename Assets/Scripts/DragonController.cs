@@ -6,12 +6,11 @@ using UnityEngine.UI;
 using TMPro;
 public class DragonController : MonoBehaviour
 {
-    [SerializeField] FireballSysrem fireballSysrem;
+    [SerializeField] FireballSysrem fireballSystem;
     [SerializeField] Transform layPoint;
     [SerializeField] Transform paragraphStartPoint;
     [SerializeField] Animator graphAnimator;
     [SerializeField] Animator animator;
-    [SerializeField] int currentEnemyParts;
     [SerializeField] List<ParticleSystem> flameParticles = new List<ParticleSystem>();
     [SerializeField] HPBarController hpBar;
     [SerializeField] int maxHP = 100, minusHP = 10;
@@ -21,7 +20,7 @@ public class DragonController : MonoBehaviour
     int hp;
     bool pauseTimer;
     float graphAnimatorSpeed, animatorSpeed;
-    Paragraph paragraph;
+    Wave wave;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +32,6 @@ public class DragonController : MonoBehaviour
             Debug.LogError("把flame particle拉進來阿!");
         }
         this.switchFlameParticle(false);
-        this.currentEnemyParts = 0;
         this.animator = GetComponent<Animator>();
         if (this.graphAnimator == null)
         {
@@ -54,20 +52,21 @@ public class DragonController : MonoBehaviour
         this.updateFireballsInStateMachine();
         this.updateHPbarAndStateMachine();
     }
-    public void Born(Paragraph paragraph)
+    public void Born(Wave wave)
     {
         this.graphAnimator.speed = this.graphAnimatorSpeed;
         this.animator.speed = this.animatorSpeed;
         this.hpBar.gameObject.SetActive(true);
-        this.paragraph = paragraph;
+        this.wave = wave;
     }
     public void dropFireballs(Transform layTrans)
     {
-        this.fireballSysrem.generateFireballForDragon(layTrans.position, new Question("tom", "tom"));
+        this.fireballSystem.generateFireballForDragon(layTrans.position, wave.questions[0]);
+        wave.questions.RemoveAt(0); // pop out a question
     }
-    public void partAttackForFlame(float time)  //生成個數和秒數請至state machine調整
+    public void partAttackForFlame(float countdowntime)  //倒數秒數請至state machine調整
     {
-        StartCoroutine(this._partAttackForFlame(time));
+        StartCoroutine(this._partAttackForFlame(countdowntime));
     }
     List<int> generateRandomDifferInts(int n, int min, int max)
     {
@@ -94,14 +93,13 @@ public class DragonController : MonoBehaviour
 
     void updateTheNumOfCurrentParts()
     {
-        this.currentEnemyParts = this.fireballSysrem.currentParts;
-        this.animator.SetInteger("currentParts", this.currentEnemyParts);
+        this.animator.SetInteger("currentParts", this.fireballSystem.currentParts);
     }
     IEnumerator _partAttackForFlame(float duration)
     {
         List<int> blank_indexes = new List<int>();
         int pos_of_left_bracket = 0;
-        string text_to_show = Regex.Replace(paragraph.article, "<.*?>", "<                  >"); // make the blank modifiable, convenient for me
+        string text_to_show = Regex.Replace(this.wave.dragon_paragraph.article, "<.*?>", "<                  >"); // make the blank modifiable, convenient for me
         bool insideSubstring = false;
         for (int i = 0; i < text_to_show.Length; i++)
         {
@@ -125,13 +123,13 @@ public class DragonController : MonoBehaviour
 
         
         //Instantiate(this.testball, worldPosition, Quaternion.identity, this.paragraphText.transform);
-        for (int i = 0; i < paragraph.vocabularies.Count; i++)
+        for (int i = 0; i < this.wave.dragon_paragraph.vocabularies.Count; i++)
         {
             TMP_TextInfo textInfo = this.paragraphText.textInfo;
             TMP_CharacterInfo charInfo = textInfo.characterInfo[blank_indexes[i]];
             Vector3 charPosition = (charInfo.topRight + charInfo.bottomRight) * 0.5f;
             Vector3 worldPosition = this.paragraphText.transform.TransformPoint(charPosition);
-            this.fireballSysrem.generateEnemyPartForDragon(this.transform, worldPosition, duration, paragraph.vocabularies[i]);
+            this.fireballSystem.generateEnemyPartForDragon(this.transform, worldPosition, duration, this.wave.dragon_paragraph.vocabularies[i]);
             this.updateTheNumOfCurrentParts();
         }
 
@@ -144,7 +142,7 @@ public class DragonController : MonoBehaviour
                 yield return null;
             }
             nowTime += Time.deltaTime;
-            if (this.currentEnemyParts <= 0)
+            if (this.fireballSystem.currentParts <= 0)
             {
                 yield return StartCoroutine(this.damaged());
                 break;
@@ -153,16 +151,14 @@ public class DragonController : MonoBehaviour
         }
         /*_計算時間_*/
 
-        this.paragraphText.color = Color.clear; // Clear the paragraph text
+        this.paragraphText.color = Color.clear; // Clear the this.wave.dragon_paragraph text
         FireballController[] enemyParts = GetComponentsInChildren<FireballController>();
         foreach (FireballController ep in enemyParts)
         {
             Destroy(ep.gameObject); // Clear all the enemy parts
         }
 
-
-
-        if (this.currentEnemyParts > 0)
+        if (this.fireballSystem.currentParts > 0)
             yield return StartCoroutine(this.flame());
         
         AnimatorCleaer.ResetAllTriggers(this.animator);
@@ -189,7 +185,7 @@ public class DragonController : MonoBehaviour
     }
     IEnumerator flame()
     {
-        this.fireballSysrem.clearAllParts();
+        this.fireballSystem.clearAllParts();
         AnimatorCleaer.ResetAllTriggers(this.graphAnimator);
         this.Graph_SetTrigger("flame");
         
@@ -201,7 +197,7 @@ public class DragonController : MonoBehaviour
     }
     IEnumerator damaged()
     {
-        this.fireballSysrem.clearAllParts();
+        this.fireballSystem.clearAllParts();
         AnimatorCleaer.ResetAllTriggers(this.graphAnimator);
         this.Graph_SetTrigger("damaged");
         yield return new WaitForSeconds(2f);
@@ -221,7 +217,7 @@ public class DragonController : MonoBehaviour
     }
     void updateFireballsInStateMachine()
     {
-        this.animator.SetInteger("curBalls", this.fireballSysrem.fire_onScreen.Count);
+        this.animator.SetInteger("curBalls", this.fireballSystem.fire_onScreen.Count);
     }
     public void SetPause(bool set)
     {

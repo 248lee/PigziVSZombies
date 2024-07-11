@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using OpenAI_API;
 using OpenAI_API.Chat;
 using OpenAI_API.Models;
+using System.Text.RegularExpressions;
 
 [System.Serializable]
 public enum WaveMode
@@ -37,9 +38,9 @@ public class Wave
 public class WaveSystem : MonoBehaviour
 {
     private const string exampleMessage_sentence_q_string = "vocabulary: instantaneous";
-    private const string exampleMessage_sentence_ans_string = @"The pain from the bee sting was almost <    >.";
+    private const string exampleMessage_sentence_ans_string = @"The pain from the bee sting was almost <instantaneous>.";
     private const string exampleMessage_sentence_o_string = "One more sentence with blank.";
-    private const string exampleMessage_sentence_ans2_string = @"The lightning strike caused an <    > blackout in the neighborhood.";
+    private const string exampleMessage_sentence_ans2_string = @"The lightning strike caused an <instantaneous> blackout in the neighborhood.";
     private static ChatMessage exampleMessage_sentence_q = new ChatMessage(ChatMessageRole.User, exampleMessage_sentence_q_string);
     private static ChatMessage exampleMessage_sencence_ans = new ChatMessage(ChatMessageRole.Assistant, exampleMessage_sentence_ans_string);
     private static ChatMessage exampleMessage_sentence_o = new ChatMessage(ChatMessageRole.User, exampleMessage_sentence_o_string);
@@ -54,23 +55,36 @@ public class WaveSystem : MonoBehaviour
     private OpenAIAPI gpt;
     private ChatMessage systemMessage_sentence, systemMessage_paragraph;
     private string gpt_result_paragraph = null;
-    private bool gpt_finish_generating_sentence = false;
 
     // Start is called before the first frame update
-    void Start()
+    async void Start()
     {
         this.gpt = new OpenAIAPI(Environment.GetEnvironmentVariable("OPENAI_KEY", EnvironmentVariableTarget.User));
         string systemMessage_sentence_string = @"Make an example using the given vocabulary. Do not change
-            the form of the vocabulary (e.g. DO NOT add -ing, -s, -ed etc.), and use a blank <    > to 
-            replace the vocabulary in the sentence. Also keep the sentence within ten words.";
-        
-
+            the form of the vocabulary (e.g. DO NOT add -ing, -s, -ed etc.), and surround the vocabulary 
+            with a brackey '<    >' . Also keep the sentence within ten words.";
         this.systemMessage_sentence = new ChatMessage(ChatMessageRole.System, systemMessage_sentence_string);
-        
-        this.systemMessage_paragraph = new ChatMessage(ChatMessageRole.System, "The user will give you a list of English vocabularies. Your job is to write a short paragraph using these vocabularies. The paragraph you provided will be used as a fill-in-the-blank problem. Please put the word you use from the provided vocabularies between \'<\' and \'>\'. Do not output anything else I've not mentioned.");
+
+        string systemMessage_paragraph_string = @"The user will give you a list of English vocabularies. 
+            Your job is to write a short paragraph using these vocabularies. The paragraph you provided 
+            will be used as a fill-in-the-blank problem. Please put the word you use from the provided 
+            vocabularies between < and >. Do not output anything else I've not mentioned.";
+        this.systemMessage_paragraph = new ChatMessage(ChatMessageRole.System, systemMessage_paragraph_string);
         this.playerController = FindObjectOfType<PlayerController>();
         this.dragon = FindObjectOfType<DragonController>();
         this.fireballsystem = FindObjectOfType<FireballSysrem>();
+
+        List<Task> generateGPTasks = new List<Task>();
+        foreach (Wave wave in waves)
+        {
+            generateGPTasks.Add(generateQuestions(wave));
+            if (wave.mode == WaveMode.Boss)
+                generateGPTasks.Add(generateParagraph(wave));
+        }
+        foreach (Task gpt_task in generateGPTasks)
+        {
+            await gpt_task;
+        }
         StartCoroutine(this.gameProcess());
     }
 
@@ -83,13 +97,6 @@ public class WaveSystem : MonoBehaviour
     {
         foreach (Wave wave in this.waves)
         {
-            if (wave.mode == WaveMode.Normal)
-                generateQuestions(wave); // when this process is finished, this.gpt_finish_generating_sentence will become true
-            else if (wave.mode == WaveMode.Boss)
-                generateParagraph(wave); // when this process is finished, this.gpt_finish_generating_sentence will become true
-            while (!this.gpt_finish_generating_sentence)
-                yield return null;
-            this.gpt_finish_generating_sentence = false;
             yield return StartCoroutine(this.implementWaveProcess(wave));
             this.nowWave++;
         }
@@ -98,7 +105,6 @@ public class WaveSystem : MonoBehaviour
     {
         if (wave.mode == WaveMode.Normal)
         {
-            wave.ShuffleQuestions(); // Shuffle all the questions to generate random questions
             foreach (Subwave subwave in wave.subwaves)
             {
                 yield return new WaitForSeconds(subwave.startDelay); // Implementing Subwave process here
@@ -113,7 +119,7 @@ public class WaveSystem : MonoBehaviour
         }
         else
         {
-            this.dragon.Born(wave.dragon_paragraph);
+            this.dragon.Born(wave);
         }
         while (this.fireballsystem.fire_onScreen.Count != 0) // busy waiting until the fire on screen is empty
         {
@@ -158,7 +164,7 @@ public class WaveSystem : MonoBehaviour
 
             messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.Content));
             int wrong_time = 0;
-            while (!chatResult.Choices[0].Message.Content.Contains("<    >") && wrong_time < 3)
+            while (!Regex.IsMatch(chatResult.Choices[0].Message.Content, "<.*?>") && wrong_time < 3)
             {
                 Debug.LogError("Wrong GPT response format for vocabulary " + vocabulary);
                 messages.Add(new ChatMessage(ChatMessageRole.User, "Wrong! Please replace the vocabulary \"" + vocabulary + "\" with a blank \"<    >\". Give me the correct sentence directly."));
@@ -183,7 +189,8 @@ public class WaveSystem : MonoBehaviour
             }
             else
             {
-                results.Add(chatResult.Choices[0].Message.Content); // Push the response into the resulting sentences
+                string sentence_to_be_add = Regex.Replace(chatResult.Choices[0].Message.Content, "<.*?>", "<    >"); // make the blank modifiable, convenient for me
+                results.Add(sentence_to_be_add); // Push the response into the resulting sentences
             }
             messages.Add(sentence_o);
         }
@@ -205,7 +212,7 @@ public class WaveSystem : MonoBehaviour
         });
         return chatResult.Choices[0].Message.Content;
     }
-    private async void generateQuestions(Wave wave)
+    private async Task generateQuestions(Wave wave)
     {
         foreach (string vocabulary in wave.v_candidates)
         {
@@ -218,10 +225,11 @@ public class WaveSystem : MonoBehaviour
                 wave.questions.Add(tmp);
             }
         }
-        this.gpt_finish_generating_sentence = true;
+        wave.ShuffleQuestions(); // Shuffle all the questions to generate random questions
     }
-    public async void generateParagraph(Wave wave)
+    public async Task generateParagraph(Wave wave)
     {
+
         string input_message = String.Join(", ", wave.v_candidates); // Concatenate the vocabularies into a message like "apple, banana, complete, ice, sister"
         this.gpt_result_paragraph = await RequestParagraphGPT(input_message);
         Debug.Log(this.gpt_result_paragraph);
@@ -245,7 +253,6 @@ public class WaveSystem : MonoBehaviour
         }
 
         wave.dragon_paragraph = new Paragraph(vocabularies, gpt_result_paragraph);
-        this.gpt_finish_generating_sentence = true;
     }
 
     float getTimeRandPos(float duration, float td)

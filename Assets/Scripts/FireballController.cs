@@ -156,7 +156,8 @@ public class FireballController : MonoBehaviour
     }
     public void DestroyMe()
     {
-        Destroy(gameObject, 0.5f);
+        if (gameObject != null)
+            Destroy(gameObject, 0.5f);
     }
     public void setMaxTimeForPart(float duration)
     {

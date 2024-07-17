@@ -21,6 +21,7 @@ public class DragonController : MonoBehaviour
     bool pauseTimer;
     float graphAnimatorSpeed, animatorSpeed;
     Wave wave;
+    public bool is_on_stage = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,14 +55,15 @@ public class DragonController : MonoBehaviour
     }
     public void Born(Wave wave)
     {
+        this.is_on_stage = true;  // After the dragon fly away, this variable will become false, and let the wave machine proceed on the following wave.
         this.graphAnimator.speed = this.graphAnimatorSpeed;
         this.animator.speed = this.animatorSpeed;
         this.hpBar.gameObject.SetActive(true);
         this.wave = wave;
     }
-    public void dropFireballs(Transform layTrans)
+    public void dropFireballs(Vector3 layPos)
     {
-        this.fireballSystem.generateFireballForDragon(layTrans.position, wave.questions[0]);
+        this.fireballSystem.generateFireballForDragon(layPos, wave.questions[0]);
         wave.questions.RemoveAt(0); // pop out a question
     }
     public void partAttackForFlame(float countdowntime)  //倒數秒數請至state machine調整
@@ -155,7 +157,7 @@ public class DragonController : MonoBehaviour
         FireballController[] enemyParts = GetComponentsInChildren<FireballController>();
         foreach (FireballController ep in enemyParts)
         {
-            Destroy(ep.gameObject); // Clear all the enemy parts
+            ep.DestroyMe(); // Clear all the enemy parts
         }
 
         if (this.fireballSystem.currentParts > 0)
@@ -182,6 +184,42 @@ public class DragonController : MonoBehaviour
     {
         AnimatorCleaer.ResetAllTriggers(this.graphAnimator);
         this.graphAnimator.SetTrigger(triggerName);
+    }
+    public void SwiftToLeftStarter()
+    {
+        StartCoroutine(this._swiftToLeft());
+    }
+    public void SwiftToRightStarter()
+    {
+        StartCoroutine(this._swiftToRight());
+    }
+    IEnumerator _swiftToLeft()
+    {
+        yield return null;
+        for (int i = this.fireballSystem.generateTransforms.Count - 1; i >= 0; i--)
+        {
+            while (this.layPoint.position.x > this.fireballSystem.generateTransforms[i].position.x)  // wait until the dragon swifts to the left of the
+                                                                                                     // generate transform
+            {
+                yield return null;
+            }
+            this.dropFireballs(new Vector3(layPoint.position.x, layPoint.position.y, this.fireballSystem.generateTransforms[i].position.z));  // drop a fireball on the passed point
+
+        }
+    }
+    IEnumerator _swiftToRight()
+    {
+        yield return null;
+        for (int i = 0; i < this.fireballSystem.generateTransforms.Count; i++)
+        {
+            while (this.layPoint.position.x < this.fireballSystem.generateTransforms[i].position.x)  // wait until the dragon swifts to the right of the
+                                                                                                     // generate transform
+            {
+                yield return null;
+            }
+            this.dropFireballs(new Vector3(layPoint.position.x, layPoint.position.y, this.fireballSystem.generateTransforms[i].position.z));  // drop a fireball on the passed point
+
+        }
     }
     IEnumerator flame()
     {

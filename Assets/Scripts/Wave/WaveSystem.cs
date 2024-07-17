@@ -39,7 +39,7 @@ public class WaveSystem : MonoBehaviour
 {
     private const string exampleMessage_sentence_q_string = "vocabulary: instantaneous";
     private const string exampleMessage_sentence_ans_string = @"The pain from the bee sting was almost <instantaneous>.";
-    private const string exampleMessage_sentence_o_string = "One more sentence with blank.";
+    private const string exampleMessage_sentence_o_string = "One more sentence with bracket.";
     private const string exampleMessage_sentence_ans2_string = @"The lightning strike caused an <instantaneous> blackout in the neighborhood.";
     private static ChatMessage exampleMessage_sentence_q = new ChatMessage(ChatMessageRole.User, exampleMessage_sentence_q_string);
     private static ChatMessage exampleMessage_sencence_ans = new ChatMessage(ChatMessageRole.Assistant, exampleMessage_sentence_ans_string);
@@ -47,6 +47,8 @@ public class WaveSystem : MonoBehaviour
     private static ChatMessage exampleMessage_sencence_ans2 = new ChatMessage(ChatMessageRole.Assistant, exampleMessage_sentence_ans2_string);
     private List<ChatMessage> default_example = new List<ChatMessage> { exampleMessage_sentence_q, exampleMessage_sencence_ans, exampleMessage_sentence_o, exampleMessage_sencence_ans2};
 
+    [SerializeField] VocabularyBoard vocabularyBoard;
+    
     public List<Wave> waves;
     public int nowWave = 0;
     PlayerController playerController;
@@ -97,6 +99,7 @@ public class WaveSystem : MonoBehaviour
     {
         foreach (Wave wave in this.waves)
         {
+            this.vocabularyBoard.UpdateVocabularyBoard(wave.v_candidates);
             yield return StartCoroutine(this.implementWaveProcess(wave));
             this.nowWave++;
         }
@@ -120,6 +123,10 @@ public class WaveSystem : MonoBehaviour
         else
         {
             this.dragon.Born(wave);
+            while (this.dragon.is_on_stage == true)  // wait until the dragon flies away
+            {
+                yield return null;
+            }
         }
         while (this.fireballsystem.fire_onScreen.Count != 0) // busy waiting until the fire on screen is empty
         {
@@ -130,7 +137,7 @@ public class WaveSystem : MonoBehaviour
     {
         SentenceBank sb = new SentenceBank(vocabulary);
         ChatMessage sentence_q = new ChatMessage(ChatMessageRole.User, "vocabulary: " + vocabulary);
-        ChatMessage sentence_o = new ChatMessage(ChatMessageRole.User, "One more sentence with blank.");
+        ChatMessage sentence_o = new ChatMessage(ChatMessageRole.User, "One more sentence with bracket.");
 
         List<string> history = sb.GetAllSentences();
         List<ChatMessage> messages = new List<ChatMessage> { systemMessage_sentence };
@@ -163,11 +170,11 @@ public class WaveSystem : MonoBehaviour
             });
 
             messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.Content));
-            int wrong_time = 0;
-            while (!Regex.IsMatch(chatResult.Choices[0].Message.Content, "<.*?>") && wrong_time < 3)
+            int wrong_time = 0, max_wrong_time = 3;
+            while (!Regex.IsMatch(chatResult.Choices[0].Message.Content, "<.*?>") && wrong_time < max_wrong_time)
             {
-                Debug.LogError("Wrong GPT response format for vocabulary " + vocabulary);
-                messages.Add(new ChatMessage(ChatMessageRole.User, "Wrong! Please replace the vocabulary \"" + vocabulary + "\" with a blank \"<    >\". Give me the correct sentence directly."));
+                Debug.LogError("Wrong GPT response format for sentence: " + chatResult.Choices[0].Message.Content);
+                messages.Add(new ChatMessage(ChatMessageRole.User, "Wrong! Please cover the vocabulary \"" + vocabulary + "\" with a bracket \"<    >\". Give me the correct sentence directly."));
                 chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
                 {
                     Model = Model.ChatGPTTurbo,
@@ -178,7 +185,7 @@ public class WaveSystem : MonoBehaviour
                 messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.Content));
                 wrong_time++;
             }
-            if (wrong_time != 0)
+            if (wrong_time == max_wrong_time)
             {
                 Debug.Log("++++++++++++++++++++++++++++");
                 foreach (ChatMessage cm in messages)
@@ -189,12 +196,17 @@ public class WaveSystem : MonoBehaviour
             }
             else
             {
-                string sentence_to_be_add = Regex.Replace(chatResult.Choices[0].Message.Content, "<.*?>", "<    >"); // make the blank modifiable, convenient for me
-                results.Add(sentence_to_be_add); // Push the response into the resulting sentences
+                results.Add(chatResult.Choices[0].Message.Content); // Push the response into the resulting sentences
             }
             messages.Add(sentence_o);
         }
+
         sb.SetAllSentences(results);
+        // Post process the resulting sentences
+        for (int i = 0; i < results.Count; i++)
+        {
+            results[i] = Regex.Replace(results[i], "<.*?>", "<    >"); // make the blank modifiable, convenient for me
+        }
         return results;
     }
     private async Task<string> RequestParagraphGPT(string vocabulary)
@@ -229,8 +241,25 @@ public class WaveSystem : MonoBehaviour
     }
     public async Task generateParagraph(Wave wave)
     {
+        // Randomly pick 3 vocabularies from wave.v_candidates
+        List<string> paragraph_candidates = new List<string>();
+        List<int> chosen_indices = new List<int>();
+        System.Random random = new System.Random();
+        for (int i = 0; i < 3; i++)
+        {
+            int index = random.Next(0, wave.v_candidates.Count);
+            int num_of_trials = 0, max_num_of_trials = 69;
+            while (chosen_indices.Contains(index) && num_of_trials < max_num_of_trials)
+            {
+                index = random.Next(0, wave.v_candidates.Count);
+                num_of_trials++;
+            }
+            chosen_indices.Add(index);
+            paragraph_candidates.Add(wave.v_candidates[index]);
+        }
 
-        string input_message = String.Join(", ", wave.v_candidates); // Concatenate the vocabularies into a message like "apple, banana, complete, ice, sister"
+        // Start requesting a paragraph
+        string input_message = String.Join(", ", paragraph_candidates); // Concatenate the vocabularies into a message like "apple, banana, complete, ice, sister"
         this.gpt_result_paragraph = await RequestParagraphGPT(input_message);
         Debug.Log(this.gpt_result_paragraph);
         List<string> vocabularies = new List<string>();

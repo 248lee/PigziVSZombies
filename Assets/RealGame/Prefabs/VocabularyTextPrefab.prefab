@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1025285306637258
+--- !u!1 &8245217317319133935
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4922167314947392701}
-  - component: {fileID: 7088490576130417789}
-  - component: {fileID: 7164881031122594346}
+  - component: {fileID: 67860250886233147}
+  - component: {fileID: 8188488190091855350}
+  - component: {fileID: 5847085310099004295}
   m_Layer: 5
-  m_Name: DustExplosion 1
+  m_Name: VocabularyTextPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &4922167314947392701
+--- !u!224 &67860250886233147
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025285306637258}
+  m_GameObject: {fileID: 8245217317319133935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -37,21 +37,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 366.9219, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &7088490576130417789
+--- !u!222 &8188488190091855350
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025285306637258}
+  m_GameObject: {fileID: 8245217317319133935}
   m_CullTransparentMesh: 1
---- !u!114 &7164881031122594346
+--- !u!114 &5847085310099004295
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025285306637258}
+  m_GameObject: {fileID: 8245217317319133935}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}

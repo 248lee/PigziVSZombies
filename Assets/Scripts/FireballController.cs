@@ -106,7 +106,7 @@ public class FireballController : MonoBehaviour
                         this.healPar.startFall();
                     this.progressBar.gameObject.SetActive(false);
                     if (this.type != TypeMode.EnemyPart)
-                        Destroy(gameObject, 0.5f);
+                        this.DestroyMe();
                 }
             }
         }
@@ -156,8 +156,11 @@ public class FireballController : MonoBehaviour
     }
     public void DestroyMe()
     {
-        if (gameObject != null)
+        if (ableToBeDestroyed && gameObject != null)
+        {
+            this.ableToBeDestroyed = false;
             Destroy(gameObject, 0.5f);
+        }
     }
     public void setMaxTimeForPart(float duration)
     {

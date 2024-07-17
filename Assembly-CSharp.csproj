@@ -155,6 +155,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\Objects\WeaponPickup.cs" />
     <Compile Include="Assets\Scripts\Question.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\SceneTransitionDestination.cs" />
+    <Compile Include="Assets\VocabularyBoard.cs" />
     <Compile Include="Assets\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\VFXController.cs" />
     <Compile Include="Assets\Scripts\FireballSysrem.cs" />
@@ -234,6 +235,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\Audio\RandomAudioPlayer.cs" />
     <Compile Include="Assets\Scripts\Paragraph.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\ScreenFader\ScreenFaderClip.cs" />
+    <Compile Include="Assets\FlyAwayState.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Localization\TranslatedText.cs" />
     <Compile Include="Assets\OpenAI_API\Completions\CompletionRequest.cs" />
@@ -270,6 +272,7 @@
     <Compile Include="Assets\OpenAI_API\Embedding\EmbeddingResult.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsBase.cs" />
+    <Compile Include="Assets\SwiftAnimation.cs" />
     <Compile Include="Assets\Scripts\Wave\SentenceBank.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Utility\PrewarmDirector.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Utility\StartScreenSpriteOffsetter.cs" />

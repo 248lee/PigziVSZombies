@@ -16,9 +16,9 @@ public class FlameController : MonoBehaviour
     {
         
     }
-    public void SetWildFire(Transform posTrans)
+    public void SetWildFire(int target_no)
     {
-        this.dragon.dropFireballs(posTrans.position);
+        this.dragon.SetWildFireOnTree(target_no);
     }
     public void switchFire(int st)
     {

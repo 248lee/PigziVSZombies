@@ -17,6 +17,7 @@ public class DragonController : MonoBehaviour
     [SerializeField] ParticleSystem flameGraphForPause;
     [SerializeField] TextMeshProUGUI paragraphText;
     [SerializeField] GameObject testball;
+    [SerializeField] List<Transform> flame_targets = new List<Transform>();
     int hp;
     bool pauseTimer;
     float graphAnimatorSpeed, animatorSpeed;
@@ -60,6 +61,13 @@ public class DragonController : MonoBehaviour
         this.animator.speed = this.animatorSpeed;
         this.hpBar.gameObject.SetActive(true);
         this.wave = wave;
+    }
+    public void Leave()
+    {
+        this.is_on_stage = false;
+        this.graphAnimator.speed = 0f;
+        this.animator.speed = 0f;
+        this.hpBar.gameObject.SetActive(false);
     }
     public void dropFireballs(Vector3 layPos)
     {
@@ -201,7 +209,7 @@ public class DragonController : MonoBehaviour
             {
                 yield return null;
             }
-            this.dropFireballs(new Vector3(layPoint.position.x, layPoint.position.y, this.fireballSystem.generateTransforms[i].position.z));  // drop a fireball on the passed point
+            this.dropFireballs(new Vector3(this.fireballSystem.generateTransforms[i].position.x, layPoint.position.y, this.fireballSystem.generateTransforms[i].position.z));  // drop a fireball on the passed point
 
         }
     }
@@ -215,7 +223,7 @@ public class DragonController : MonoBehaviour
             {
                 yield return null;
             }
-            this.dropFireballs(new Vector3(layPoint.position.x, layPoint.position.y, this.fireballSystem.generateTransforms[i].position.z));  // drop a fireball on the passed point
+            this.dropFireballs(new Vector3(this.fireballSystem.generateTransforms[i].position.x, layPoint.position.y, this.fireballSystem.generateTransforms[i].position.z));  // drop a fireball on the passed point
 
         }
     }
@@ -229,6 +237,10 @@ public class DragonController : MonoBehaviour
         {
             yield return new WaitForSeconds(0.1f);
         }
+    }
+    public void SetWildFireOnTree(int target)
+    {
+        this.dropFireballs(this.flame_targets[target].position);
     }
     IEnumerator damaged()
     {

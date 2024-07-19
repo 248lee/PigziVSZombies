@@ -121,7 +121,6 @@ public class PlayerController : MonoBehaviour
                 this.playerValue = item.ToString() + this.playerValue;
             }
         }
-        Debug.Log(this.playerValue);
         this.valueText.text = this.playerValue;
         //answer
         if (Input.GetKeyDown(KeyCode.Space))
@@ -132,17 +131,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //清除垃圾
-        for (int i = 0; i < this.fireballsystem.fire_onScreen.Count; i++)
-        {
-            if (this.fireballsystem.fire_onScreen[i].ableToBeDestroyed)
-            {
-                this.fireballsystem.fire_onScreen[i].DestroyMe();
-                this.fireballsystem.fire_onScreen.RemoveAt(i);
-                i--;
-            }
-
-        }
         //Water系統
         this.updateWaterAmountToText();
     }
@@ -153,11 +141,10 @@ public class PlayerController : MonoBehaviour
         this.valueText.text = "";
         for (int i = 0; i < this.fireballsystem.fire_onScreen.Count; i++)
         {
-            if (this.fireballsystem.fire_onScreen[i].question.vocabulary == this.playerValue && !this.fireballsystem.fire_onScreen[i].ableToBeDestroyed)
+            if (this.fireballsystem.fire_onScreen[i].question.vocabulary == this.playerValue && this.fireballsystem.fire_onScreen[i].ableShoot)
             {
                 correct = true;
                 this.fireballsystem.fire_onScreen[i].correct();
-                this.fireballsystem.fire_onScreen.RemoveAt(i);
                 this.shoot();
                 break;
             }

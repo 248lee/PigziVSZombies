@@ -155,14 +155,12 @@ public class DragonController : MonoBehaviour
 
         this.paragraphText.color = Color.clear; // Clear the this.wave.dragon_paragraph text
         FireballController[] enemyParts = GetComponentsInChildren<FireballController>();
-        foreach (FireballController ep in enemyParts)
-        {
-            ep.DestroyMe(); // Clear all the enemy parts
-        }
 
-        if (this.fireballSystem.currentParts > 0)
+        int remain_parts = this.fireballSystem.currentParts;
+        this.fireballSystem.clearAllParts(); // Clear all the enemy parts, and this sets this.fireballSystem.currentParts = 0
+        if (remain_parts > 0)
             yield return StartCoroutine(this.flame());
-        
+
         AnimatorCleaer.ResetAllTriggers(this.animator);
         this.animator.SetTrigger("finishAttack");
     }
@@ -223,7 +221,6 @@ public class DragonController : MonoBehaviour
     }
     IEnumerator flame()
     {
-        this.fireballSystem.clearAllParts();
         AnimatorCleaer.ResetAllTriggers(this.graphAnimator);
         this.Graph_SetTrigger("flame");
         
@@ -235,7 +232,6 @@ public class DragonController : MonoBehaviour
     }
     IEnumerator damaged()
     {
-        this.fireballSystem.clearAllParts();
         AnimatorCleaer.ResetAllTriggers(this.graphAnimator);
         this.Graph_SetTrigger("damaged");
         yield return new WaitForSeconds(2f);

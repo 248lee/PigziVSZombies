@@ -55,7 +55,6 @@ public class FireballController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("->" + this.question.vocabulary);
         // Dealing with signals
         if (shootMeSignal || isShootingMe)
         {
@@ -65,7 +64,6 @@ public class FireballController : MonoBehaviour
 
                 // This is the pre-process of answering correctly
                 this.is_answered = true;
-                this.ableToBeDestroyed = true;
                 gameObject.layer = 11;
                 if (this.burningTree != null)
                     this.burningTree.SetFireDamage(false);
@@ -106,7 +104,7 @@ public class FireballController : MonoBehaviour
                         this.healPar.startFall();
                     this.progressBar.gameObject.SetActive(false);
                     if (this.type != TypeMode.EnemyPart)
-                        this.DestroyMe();
+                        this.SetAbleToBeDestroyed();
                 }
             }
         }
@@ -126,22 +124,23 @@ public class FireballController : MonoBehaviour
     }
     public void wrong_withFire()
     {
+        Debug.Log("wrong with fire");
         this.ableShoot = false;
-        this.ableToBeDestroyed = true;
+        this.SetAbleToBeDestroyed();
         this.putOutFireball();
         this.questionText.text = "";
     }
     public void FireOnDeadTree()
     {
         this.ableShoot = false;
-        this.ableToBeDestroyed = true;
+        this.SetAbleToBeDestroyed();
         this.putOutWildFire();
         this.questionText.text = "";
     }
     public void partWrong()
     {
         this.ableShoot = false;
-        this.ableToBeDestroyed = true;
+        this.SetAbleToBeDestroyed();
         this.progressBar.gameObject.SetActive(false);
         this.questionText.text = "";
         this.fireballSystem.currentParts--;
@@ -158,9 +157,14 @@ public class FireballController : MonoBehaviour
     {
         if (ableToBeDestroyed && gameObject != null)
         {
+            Debug.Log("DESTROY ME!!");
             this.ableToBeDestroyed = false;
             Destroy(gameObject, 0.5f);
         }
+    }
+    public void SetAbleToBeDestroyed()
+    {
+        this.ableToBeDestroyed = true;
     }
     public void setMaxTimeForPart(float duration)
     {
@@ -265,7 +269,7 @@ public class FireballController : MonoBehaviour
                 {
                     this.burningTree.burningFire = null;
                     this.ableShoot = false;
-                    this.ableToBeDestroyed = true;
+                    this.SetAbleToBeDestroyed();
                     Destroy(this.graph2.gameObject);
                     this.questionText.text = "";
                 }

@@ -51,6 +51,19 @@ public class FireballSysrem : MonoBehaviour
         {
             //this.generateHealball();
         }
+        //²M°£©U§£
+        Debug.Log("Count: " + this.fire_onScreen.Count);
+        for (int i = 0; i < this.fire_onScreen.Count; i++)
+        {
+            if (this.fire_onScreen[i].ableToBeDestroyed)
+            {
+                Debug.Log("Going to be destroyed");
+                this.fire_onScreen[i].DestroyMe();
+                this.fire_onScreen.RemoveAt(i);
+                i--;
+            }
+
+        }
     }
 
     public void generateFireball(Question question)

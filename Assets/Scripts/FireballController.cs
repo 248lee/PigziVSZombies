@@ -157,7 +157,6 @@ public class FireballController : MonoBehaviour
     {
         if (ableToBeDestroyed && gameObject != null)
         {
-            Debug.Log("DESTROY ME!!");
             this.ableToBeDestroyed = false;
             Destroy(gameObject, 0.5f);
         }

@@ -18,14 +18,17 @@ public class DragonController : MonoBehaviour
     [SerializeField] TextMeshProUGUI paragraphText;
     [SerializeField] GameObject testball;
     [SerializeField] List<Transform> flame_targets = new List<Transform>();
+    [SerializeField] Color textColor;
     int hp;
     bool pauseTimer;
     float graphAnimatorSpeed, animatorSpeed;
     Wave wave;
     public bool is_on_stage = false;
+    ChildSticker textSticker;
     // Start is called before the first frame update
     void Start()
     {
+        this.textSticker = GetComponentInChildren<ChildSticker>();
         this.pauseTimer = false;
         this.hp = this.maxHP;
         this.hpBar.SetMaxHP(this.maxHP);
@@ -127,7 +130,8 @@ public class DragonController : MonoBehaviour
             }
         }
         this.paragraphText.SetText(text_to_show);
-        this.paragraphText.color = Color.white;
+        this.paragraphText.color = this.textColor;
+        this.textSticker.SetStickPosition();
 
         yield return null; // This delay frame is needed for the textinfo to update
 
@@ -139,7 +143,7 @@ public class DragonController : MonoBehaviour
             TMP_CharacterInfo charInfo = textInfo.characterInfo[blank_indexes[i]];
             Vector3 charPosition = (charInfo.topRight + charInfo.bottomRight) * 0.5f;
             Vector3 worldPosition = this.paragraphText.transform.TransformPoint(charPosition);
-            this.fireballSystem.generateEnemyPartForDragon(this.transform, worldPosition, duration, this.wave.dragon_paragraph.vocabularies[i]);
+            this.fireballSystem.generateEnemyPartForDragon(this.textSticker.transform, worldPosition, duration, this.wave.dragon_paragraph.vocabularies[i]);
             this.updateTheNumOfCurrentParts();
         }
 
@@ -162,6 +166,7 @@ public class DragonController : MonoBehaviour
         /*_­pºâ®É¶¡_*/
 
         this.paragraphText.color = Color.clear; // Clear the this.wave.dragon_paragraph text
+        this.textSticker.UnstickPosition();
         FireballController[] enemyParts = GetComponentsInChildren<FireballController>();
 
         int remain_parts = this.fireballSystem.currentParts;

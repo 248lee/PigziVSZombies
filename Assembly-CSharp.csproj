@@ -189,6 +189,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\Core\InventoryController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Timeline\DirectorTrigger.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\NavMeshAgentControl\NavMeshAgentControlClip.cs" />
+    <Compile Include="Assets\ChildSticker.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\SavedData.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\AI\GunnerBeamController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Core\Checkpoint.cs" />

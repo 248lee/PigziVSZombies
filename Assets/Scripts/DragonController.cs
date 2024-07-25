@@ -112,38 +112,49 @@ public class DragonController : MonoBehaviour
     {
         List<int> blank_indexes = new List<int>();
         int pos_of_left_bracket = 0;
-        string text_to_show = Regex.Replace(this.wave.dragon_paragraph.article, "<.*?>", "<                  >"); // make the blank modifiable, convenient for me
+
+        // Pickup surrounded vocabularies
+        List<string> vocabularies_to_show = new List<string>();
+        MatchCollection matches = Regex.Matches(this.wave.dragon_paragraph.article, "<.*?>");
+        foreach (Match match in matches)
+        {
+            vocabularies_to_show.Add(match.Value);
+        }
+
+        // Replace surrounded vocabularies with blank 
+        string text_to_show = Regex.Replace(this.wave.dragon_paragraph.article, "<.*?>", "[            ]"); // make the blank modifiable, convenient for me
         bool insideSubstring = false;
         for (int i = 0; i < text_to_show.Length; i++)
         {
-            if (text_to_show[i] == '<' && insideSubstring == false)
+            if (text_to_show[i] == '[' && insideSubstring == false)
             {
                 pos_of_left_bracket = i;
                 insideSubstring = true;
                 text_to_show = text_to_show.Remove(i, 1).Insert(i, " "); // Replace the character '<' into a space
             }
-            else if (text_to_show[i] == '>')
+            else if (text_to_show[i] == ']')
             {
                 blank_indexes.Add((i + pos_of_left_bracket) / 2);
                 insideSubstring = false;
                 text_to_show = text_to_show.Remove(i, 1).Insert(i, " "); // Replace the character '>' into a space
             }
         }
+
+        // Show the text(paragraph)
         this.paragraphText.SetText(text_to_show);
         this.paragraphText.color = this.textColor;
         this.textSticker.SetStickPosition();
 
         yield return null; // This delay frame is needed for the textinfo to update
 
-        
-        //Instantiate(this.testball, worldPosition, Quaternion.identity, this.paragraphText.transform);
-        for (int i = 0; i < this.wave.dragon_paragraph.vocabularies.Count; i++)
+        // Instantiate paragraph's to-answer-blanks(fireballs)
+        for (int i = 0; i < vocabularies_to_show.Count; i++)
         {
             TMP_TextInfo textInfo = this.paragraphText.textInfo;
             TMP_CharacterInfo charInfo = textInfo.characterInfo[blank_indexes[i]];
             Vector3 charPosition = (charInfo.topRight + charInfo.bottomRight) * 0.5f;
             Vector3 worldPosition = this.paragraphText.transform.TransformPoint(charPosition);
-            this.fireballSystem.generateEnemyPartForDragon(this.textSticker.transform, worldPosition, duration, this.wave.dragon_paragraph.vocabularies[i]);
+            this.fireballSystem.generateEnemyPartForDragon(this.textSticker.transform, worldPosition, duration, vocabularies_to_show[i], this.wave.dragon_paragraph.vocabularies[i]);
             this.updateTheNumOfCurrentParts();
         }
 

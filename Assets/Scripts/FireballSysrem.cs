@@ -104,13 +104,13 @@ public class FireballSysrem : MonoBehaviour
 
         this.fire_onScreen.Add(temp);
     }
-    public void generateEnemyPartForDragon(Transform parent, Vector3 genPos, float duration, string vocabulary)
+    public void generateEnemyPartForDragon(Transform parent, Vector3 genPos, float duration, string vocabulary_in_paragraph, string vocabulary_to_ans)
     {
         FireballController temp = Instantiate(this.fireball.gameObject, genPos - new Vector3(0f, z_delta_enemy_part_position, 0f), Quaternion.identity).GetComponent<FireballController>();
         temp.transform.SetParent(parent);
         temp.type = TypeMode.EnemyPart;
         temp.setMaxTimeForPart(duration);
-        temp.question = new Question(vocabulary, "<        >");
+        temp.question = new Question(vocabulary_to_ans, vocabulary_in_paragraph, 8);
         this.fire_onScreen.Add(temp);
         this.currentParts++;
     }

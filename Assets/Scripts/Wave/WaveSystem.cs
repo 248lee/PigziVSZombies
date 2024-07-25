@@ -39,7 +39,7 @@ public class WaveSystem : MonoBehaviour
 {
     private const string exampleMessage_sentence_q_string = "vocabulary: instantaneous";
     private const string exampleMessage_sentence_ans_string = @"The pain from the bee sting was almost <instantaneous>.";
-    private const string exampleMessage_sentence_o_string = "One more sentence for vocabulary \"instantaneous\" that is very different from the previous ones. Please also cover the used vocabulary with a bracket <    >.";
+    private const string exampleMessage_sentence_o_string = "One more new sentence for vocabulary \"instantaneous\" that is very different from the previous ones. Also please surround the used vocabulary with a bracket <    >.";
     private const string exampleMessage_sentence_ans2_string = @"The lightning strike caused an <instantaneous> blackout in the neighborhood.";
     private static ChatMessage exampleMessage_sentence_q = new ChatMessage(ChatMessageRole.User, exampleMessage_sentence_q_string);
     private static ChatMessage exampleMessage_sencence_ans = new ChatMessage(ChatMessageRole.Assistant, exampleMessage_sentence_ans_string);
@@ -137,7 +137,7 @@ public class WaveSystem : MonoBehaviour
     {
         SentenceBank sb = new SentenceBank(vocabulary);
         ChatMessage sentence_q = new ChatMessage(ChatMessageRole.User, "vocabulary: " + vocabulary);
-        ChatMessage sentence_o = new ChatMessage(ChatMessageRole.User, "One more sentence for vocabulary \"" + vocabulary + "\" that is very different from the previous ones. Please also cover the used vocabulary with a bracket <    >.");
+        ChatMessage sentence_o = new ChatMessage(ChatMessageRole.User, "One more new sentence for vocabulary \"" + vocabulary + "\" that is very different from the previous ones. Also please surround the used vocabulary with a bracket <    >.");
 
         List<string> history = sb.GetAllSentences();
         List<ChatMessage> messages = new List<ChatMessage> { systemMessage_sentence };
@@ -178,7 +178,7 @@ public class WaveSystem : MonoBehaviour
                 chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
                 {
                     Model = Model.ChatGPTTurbo,
-                    Temperature = 0.1,
+                    Temperature = 0.05,
                     MaxTokens = 2000,
                     Messages = messages
                 });
@@ -202,11 +202,7 @@ public class WaveSystem : MonoBehaviour
         }
 
         sb.SetAllSentences(results);
-        // Post process the resulting sentences
-        for (int i = 0; i < results.Count; i++)
-        {
-            results[i] = Regex.Replace(results[i], "<.*?>", "<    >"); // make the blank modifiable, convenient for me
-        }
+        
         return results;
     }
     private async Task<string> RequestParagraphGPT(string vocabulary)

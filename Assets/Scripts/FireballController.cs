@@ -27,7 +27,7 @@ public class FireballController : MonoBehaviour
     [SerializeField] private HealParController healPar;
     private float maxTime = 5f, nowTime = 0f;
     private Rigidbody2D rid;
-    private bool is_answered, is_onTree;
+    private bool is_onTree;
     private bool pauseTimer = false;
     private bool shootMeSignal = false;
     private bool isShootingMe = false;
@@ -63,7 +63,7 @@ public class FireballController : MonoBehaviour
                 this.shootMeSignal = false;
 
                 // This is the pre-process of answering correctly
-                this.is_answered = true;
+                this.ableShoot = false;
                 gameObject.layer = 11;
                 if (this.burningTree != null)
                     this.burningTree.SetFireDamage(false);
@@ -187,7 +187,6 @@ public class FireballController : MonoBehaviour
     private void fireballInit()
     {
         gameObject.layer = 12;
-        this.is_answered = false;
         this.is_onTree = false;
         this.rid = GetComponent<Rigidbody2D>();
         this.realSpeed = this.speed;
@@ -201,7 +200,6 @@ public class FireballController : MonoBehaviour
     private void healballInit()
     {
         gameObject.layer = 12;
-        this.is_answered = false;
         this.is_onTree = false;
         this.rid = GetComponent<Rigidbody2D>();
         this.realSpeed = this.speed;
@@ -215,7 +213,6 @@ public class FireballController : MonoBehaviour
     private void enemyPartInit()
     {
         gameObject.layer = 12;
-        this.is_answered = false;
         this.rid = GetComponent<Rigidbody2D>();
         this.realSpeed = 0f;
         this.questionText.text = question.sentence;

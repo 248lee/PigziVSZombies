@@ -92,7 +92,7 @@ public class FireballController : MonoBehaviour
                 if (Timers.isTimerFinished("StartShooting" + gameObject.GetInstanceID())) // If the bullet hits the fire
                 {
                     this.isShootingMe = false;
-                    this.questionText.SetText(this.question.real_sentence);
+                    this.questionText.SetText(this.question.GetRealSentenceWithColor("red")); // show out the correct answer
                     Destroy(temp_bullet, 0.5f);
                     this.putOutFireball();
                     Instantiate(fireballSystem.dust, transform.position, Quaternion.identity);
@@ -125,17 +125,21 @@ public class FireballController : MonoBehaviour
     public void wrong_withFire()
     {
         Debug.Log("wrong with fire");
+        this.questionText.SetText(this.question.GetRealSentenceWithColor("blue")); // show out the correct answer
         this.ableShoot = false;
         this.SetAbleToBeDestroyed();
         this.putOutFireball();
-        this.questionText.text = "";
+        transform.position += new Vector3(0f, 0f, -1f);
+        // this.realSpeed = 0f; // stop the fireball from falling down
     }
     public void FireOnDeadTree()
     {
+        this.questionText.SetText(this.question.GetRealSentenceWithColor("blue")); // show out the correct answer
         this.ableShoot = false;
         this.SetAbleToBeDestroyed();
         this.putOutWildFire();
-        this.questionText.text = "";
+        // transform.position += new Vector3(0f, 0f, 1f);
+        this.realSpeed = 0f; // stop the fireball from falling down
     }
     public void partWrong()
     {

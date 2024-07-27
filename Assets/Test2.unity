@@ -27285,34 +27285,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vocabularyBoard: {fileID: 647425930}
   waves:
-  - mode: 1
+  - mode: 0
     v_candidates:
-    - cocoon
-    - creek
-    - compassion
-    - fiddle
-    - perish
+    - chunk
+    - mammal
+    - environment
+    - trainer
+    - certain
     questions: []
     subwaves:
     - startDelay: 0.1
-      numOfEmmisions: 1
-      durationMin: 8
-      durationMax: 7
-      healBallDelay: 999
-    dragon_paragraph:
-      vocabularies: []
-      article: 
-  - mode: 0
-    v_candidates:
-    - falter
-    - tackle
-    - oasis
-    - perish
-    - fiddle
-    questions: []
-    subwaves:
-    - startDelay: 10.42
-      numOfEmmisions: 5
+      numOfEmmisions: 10
       durationMin: 3.96
       durationMax: 6.9
       healBallDelay: 999
@@ -27321,9 +27304,11 @@ MonoBehaviour:
       article: 
   - mode: 1
     v_candidates:
-    - cocoon
-    - creek
-    - compassion
+    - traffic
+    - mammal
+    - environment
+    - paris
+    - certain
     questions: []
     subwaves:
     - startDelay: 0.1

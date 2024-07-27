@@ -37,10 +37,10 @@ public class Wave
 //}
 public class WaveSystem : MonoBehaviour
 {
-    private const string exampleMessage_sentence_q_string = "vocabulary: instantaneous";
-    private const string exampleMessage_sentence_ans_string = @"The pain from the bee sting was almost <instantaneous>.";
-    private const string exampleMessage_sentence_o_string = "One more new sentence for vocabulary \"instantaneous\" that is very different from the previous ones. Also please surround the used vocabulary with a bracket <    >.";
-    private const string exampleMessage_sentence_ans2_string = @"The lightning strike caused an <instantaneous> blackout in the neighborhood.";
+    private const string exampleMessage_sentence_q_string = "vocabulary: traffic";
+    private const string exampleMessage_sentence_ans_string = @"The new <traffic> laws aimed to improve safety on highways.";
+    private const string exampleMessage_sentence_o_string = "One more new sentence for vocabulary \"traffic\" that is very different from the previous ones. Also please surround the used vocabulary with a bracket <    >.";
+    private const string exampleMessage_sentence_ans2_string = @"The snowstorm caused a standstill in the holiday <traffic> flow.";
     private static ChatMessage exampleMessage_sentence_q = new ChatMessage(ChatMessageRole.User, exampleMessage_sentence_q_string);
     private static ChatMessage exampleMessage_sencence_ans = new ChatMessage(ChatMessageRole.Assistant, exampleMessage_sentence_ans_string);
     private static ChatMessage exampleMessage_sentence_o = new ChatMessage(ChatMessageRole.User, exampleMessage_sentence_o_string);
@@ -55,6 +55,7 @@ public class WaveSystem : MonoBehaviour
     DragonController dragon;
     FireballSysrem fireballsystem;
     private OpenAIAPI gpt;
+    private Conversation chat;
     private ChatMessage systemMessage_sentence, systemMessage_paragraph;
     private string gpt_result_paragraph = null;
 
@@ -62,9 +63,13 @@ public class WaveSystem : MonoBehaviour
     async void Start()
     {
         this.gpt = new OpenAIAPI(Environment.GetEnvironmentVariable("OPENAI_KEY", EnvironmentVariableTarget.User));
-        string systemMessage_sentence_string = @"Make an example using the given vocabulary. Do not change
-            the form of the vocabulary (e.g. DO NOT add -ing, -s, -ed etc.), and surround the vocabulary 
-            with a brackey '<    >' . Also keep the sentence within ten words.";
+        this.chat = this.gpt.Chat.CreateConversation();
+        this.chat.Model = Model.GPT4_Turbo;
+        this.chat.RequestParameters.Temperature = 0;
+
+        string systemMessage_sentence_string = @"Make an example using the given vocabulary. Surround the vocabulary 
+            with a brackey '<    >' . Also keep the sentence within ten words. Each sentence should only have one bracket,
+            and if you use more than two times of the given vocabulary, just surround the first appearance with the bracket.";
         this.systemMessage_sentence = new ChatMessage(ChatMessageRole.System, systemMessage_sentence_string);
 
         string systemMessage_paragraph_string = @"The user will give you a list of English vocabularies. 
@@ -169,20 +174,20 @@ public class WaveSystem : MonoBehaviour
                 Messages = messages
             });
 
-            messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.Content));
+            messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.TextContent));
             int wrong_time = 0, max_wrong_time = 3;
-            while (!Regex.IsMatch(chatResult.Choices[0].Message.Content, "<.*?>") && wrong_time < max_wrong_time)
+            while (!Regex.IsMatch(chatResult.Choices[0].Message.TextContent, "<.*?>") && wrong_time < max_wrong_time)
             {
-                Debug.LogError("Wrong GPT response format for sentence: " + chatResult.Choices[0].Message.Content);
+                Debug.LogError("Wrong GPT response format for sentence: " + chatResult.Choices[0].Message.TextContent);
                 messages.Add(new ChatMessage(ChatMessageRole.User, "Wrong! Please cover the vocabulary \"" + vocabulary + "\" with a bracket \"<    >\". Give me the correct sentence directly."));
                 chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
                 {
-                    Model = Model.ChatGPTTurbo,
+                    Model = Model.GPT4,
                     Temperature = 0.05,
                     MaxTokens = 2000,
                     Messages = messages
                 });
-                messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.Content));
+                messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.TextContent));
                 wrong_time++;
             }
             if (wrong_time == max_wrong_time)
@@ -190,13 +195,13 @@ public class WaveSystem : MonoBehaviour
                 Debug.Log("++++++++++++++++++++++++++++");
                 foreach (ChatMessage cm in messages)
                 {
-                    Debug.Log(cm.Content);
+                    Debug.Log(cm.TextContent);
                 }
                 Debug.Log("----------------------------");
             }
             else
             {
-                results.Add(chatResult.Choices[0].Message.Content); // Push the response into the resulting sentences
+                results.Add(chatResult.Choices[0].Message.TextContent); // Push the response into the resulting sentences
             }
             messages.Add(sentence_o);
         }
@@ -214,11 +219,11 @@ public class WaveSystem : MonoBehaviour
         var chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
         {
             Model = Model.ChatGPTTurbo,
-            Temperature = 0.1,
+            Temperature = 0,
             MaxTokens = 500,
             Messages = messages
         });
-        return chatResult.Choices[0].Message.Content;
+        return chatResult.Choices[0].Message.TextContent;
     }
     private async Task generateQuestions(Wave wave)
     {

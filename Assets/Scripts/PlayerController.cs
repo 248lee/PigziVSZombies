@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     Stack valueInput = new Stack();
     [SerializeField] float frozenTime = 5f;
     [SerializeField] TextMeshProUGUI valueText;
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject bullet_empty_shoot;
     [SerializeField] Transform bulletStartPoint;
     [SerializeField] Text waterAmountText;
     [SerializeField] GameObject normalPP, frozenPP;
@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
     }
     void empty_shoot()
     {
-        GameObject temp_bullet = Instantiate(this.bullet, this.bulletStartPoint.position, Quaternion.identity);
+        GameObject temp_bullet = Instantiate(this.bullet_empty_shoot, this.bulletStartPoint.position, Quaternion.identity);
         temp_bullet.transform.LookAt(this.bulletStartPoint.position + new Vector3(0f, 1f, 0f));
         Destroy(temp_bullet, 0.7f);
     }

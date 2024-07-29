@@ -98,12 +98,12 @@ public class TreeController : MonoBehaviour
         }
     }
 
-    public void SetFireDamage(bool isFired, float rate)
+    public void SetPersistentDamage(bool isFired, float rate)
     {
         this.isDamagedByFire = isFired;
         this.damageRate = rate;
     }
-    public void SetFireDamage(bool isFired)
+    public void SetPersistentDamage(bool isFired)
     {
         this.isDamagedByFire = isFired;
         this.damageRate = 20f;

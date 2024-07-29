@@ -288,9 +288,9 @@ public class WaveSystem : MonoBehaviour
         string gpt_result_paragraph_and_order = await RequestParagraphGPT(input_message);
         string[] tmp = gpt_result_paragraph_and_order.Split("\n");
         string gpt_result_paragraph = tmp[0];
+        Debug.Log(gpt_result_paragraph_and_order);
         int[] orders = IListExtensions.ConvertStringToIntArray(tmp[1]);
 
-        Debug.Log(gpt_result_paragraph);
 
         // Reorder the query vocabularies into the order that GPT used.
         List<string> used_vocabularies = new List<string>();

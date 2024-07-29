@@ -23,7 +23,7 @@ public class FireballController : MonoBehaviour
     public int index = -1;
     public bool ableToBeDestroyed;
     [SerializeField] private ProgressBarController progressBar;
-    [SerializeField] private FireballSysrem fireballSystem;
+    private FireballSysrem fireballSystem;
     [SerializeField] private HealParController healPar;
     private float maxTime = 5f, nowTime = 0f;
     private Rigidbody2D rid;
@@ -65,10 +65,7 @@ public class FireballController : MonoBehaviour
                 // This is the pre-process of answering correctly
                 this.ableShoot = false;
                 gameObject.layer = 11;
-                if (this.burningTree != null)
-                    this.burningTree.SetFireDamage(false);
-                if (this.type == TypeMode.EnemyPart)
-                    this.correctForPart();
+                
 
                 // shoot initialization 
                 this.temp_bullet = Instantiate(fireballSystem.bullet, fireballSystem.bulletStartPosition, Quaternion.identity);
@@ -99,12 +96,19 @@ public class FireballController : MonoBehaviour
 
                     // This is the post-process of answering correctly
                     if (this.type == TypeMode.EnemyPart)
+                    {
                         this.fireballSystem.bossDragon.minusBlood();
+                        this.correctForPart(); // fireballsystem.currentPart minus 1
+                    }
                     if (this.type == TypeMode.Healball)
                         this.healPar.startFall();
                     this.progressBar.gameObject.SetActive(false);
                     if (this.type != TypeMode.EnemyPart)
+                    {
                         this.SetAbleToBeDestroyed();
+                        if (this.burningTree != null)
+                            this.burningTree.SetPersistentDamage(false);
+                    }
                 }
             }
         }
@@ -118,7 +122,7 @@ public class FireballController : MonoBehaviour
         this.is_onTree = true;
         this.realSpeed = 0f;
         this.putOutFireball();
-        this.burningTree.SetFireDamage(true, 20f);
+        this.burningTree.SetPersistentDamage(true, 20f);
         this.graph2.gameObject.SetActive(true);
         this.questionText.color = Color.black;
     }

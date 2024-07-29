@@ -155,29 +155,47 @@ public class WaveSystem : MonoBehaviour
         else
         {
             messages.Add(sentence_q);
-            for (int i = 0; i < history.Count; i++)
+            messages.Add(new ChatMessage(ChatMessageRole.Assistant, history[0]));
+            messages.Add(sentence_o); // The next request after the first sentence should be thorough, others can be simple.
+            for (int i = 1; i < history.Count; i++)
             {
                 messages.Add(new ChatMessage(ChatMessageRole.Assistant, history[i]));
-                messages.Add(sentence_o);
+                messages.Add(new ChatMessage(ChatMessageRole.User, "one more"));
             }
         }
         
         //List<ChatMessage> messages = new List<ChatMessage> { systemMessage_sentence, query };
         List<string> results = new List<string>();
+        bool wrong_before = false;
         for (int i = 0; i < num_of_sentence; i++)
         {
-            var chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
+            ChatResult chatResult;
+            if (!wrong_before)
             {
-                Model = Model.ChatGPTTurbo,
-                Temperature = 0.1,
-                MaxTokens = 2000,
-                Messages = messages
-            });
+                chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
+                {
+                    Model = Model.ChatGPTTurbo,
+                    Temperature = 0.1,
+                    MaxTokens = 2000,
+                    Messages = messages
+                });
+            }
+            else
+            {
+                chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
+                {
+                    Model = Model.GPT4,
+                    Temperature = 0.1,
+                    MaxTokens = 2000,
+                    Messages = messages
+                });
+            }
 
             messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.TextContent));
             int wrong_time = 0, max_wrong_time = 3;
             while (!Regex.IsMatch(chatResult.Choices[0].Message.TextContent, "<.*?>") && wrong_time < max_wrong_time)
             {
+                wrong_before = true;
                 Debug.LogError("Wrong GPT response format for sentence: " + chatResult.Choices[0].Message.TextContent);
                 messages.Add(new ChatMessage(ChatMessageRole.User, "Wrong! Please cover the vocabulary \"" + vocabulary + "\" with a bracket \"<    >\". Give me the correct sentence directly."));
                 chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
@@ -185,13 +203,11 @@ public class WaveSystem : MonoBehaviour
                     Model = Model.GPT4,
                     Temperature = 0.05,
                     MaxTokens = 2000,
+                    TopP = 0.5,
                     Messages = messages
                 });
                 messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.TextContent));
                 wrong_time++;
-            }
-            if (wrong_time == max_wrong_time)
-            {
                 Debug.Log("++++++++++++++++++++++++++++");
                 foreach (ChatMessage cm in messages)
                 {
@@ -199,11 +215,18 @@ public class WaveSystem : MonoBehaviour
                 }
                 Debug.Log("----------------------------");
             }
+            if (wrong_time == max_wrong_time)
+            {
+                
+            }
             else
             {
                 results.Add(chatResult.Choices[0].Message.TextContent); // Push the response into the resulting sentences
             }
-            messages.Add(sentence_o);
+            if (history.Count == 0 && i == 0)
+                messages.Add(sentence_o); // The next request after the first sentence should be thorough, others can be simple.
+            else
+                messages.Add(new ChatMessage(ChatMessageRole.User, "one more"));
         }
 
         sb.SetAllSentences(results);

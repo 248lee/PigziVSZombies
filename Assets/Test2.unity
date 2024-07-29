@@ -27305,10 +27305,10 @@ MonoBehaviour:
   - mode: 1
     v_candidates:
     - traffic
-    - mammal
-    - environment
+    - final
+    - strong
     - paris
-    - certain
+    - fight
     questions: []
     subwaves:
     - startDelay: 0.1

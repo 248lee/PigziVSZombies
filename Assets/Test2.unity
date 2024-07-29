@@ -27318,9 +27318,7 @@ MonoBehaviour:
     v_candidates:
     - traffic
     - final
-    - strong
     - paris
-    - fight
     questions: []
     subwaves:
     - startDelay: 0.1

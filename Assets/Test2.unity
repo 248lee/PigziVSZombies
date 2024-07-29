@@ -255,6 +255,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d2745d2a8668e644a921a4848c9bc90, type: 3}
+--- !u!1 &11605876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1279191050118028, guid: f949db0cfd21cb34796d46f92ac4fb1a, type: 3}
+  m_PrefabInstance: {fileID: 171782613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &15049313
 GameObject:
   m_ObjectHideFlags: 0
@@ -6711,8 +6716,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114808708404685106, guid: f949db0cfd21cb34796d46f92ac4fb1a, type: 3}
+      propertyPath: destinationTag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114808708404685106, guid: f949db0cfd21cb34796d46f92ac4fb1a, type: 3}
       propertyPath: transitioningGameObject
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114808708404685106, guid: f949db0cfd21cb34796d46f92ac4fb1a, type: 3}
+      propertyPath: OnReachDestination.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114808708404685106, guid: f949db0cfd21cb34796d46f92ac4fb1a, type: 3}
+      propertyPath: OnReachDestination.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11605876}
+    - target: {fileID: 114808708404685106, guid: f949db0cfd21cb34796d46f92ac4fb1a, type: 3}
+      propertyPath: OnReachDestination.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114808708404685106, guid: f949db0cfd21cb34796d46f92ac4fb1a, type: 3}
+      propertyPath: OnReachDestination.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_layer
+      objectReference: {fileID: 0}
+    - target: {fileID: 114808708404685106, guid: f949db0cfd21cb34796d46f92ac4fb1a, type: 3}
+      propertyPath: OnReachDestination.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6724,7 +6753,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114808708404685106, guid: f949db0cfd21cb34796d46f92ac4fb1a, type: 3}
   m_PrefabInstance: {fileID: 171782613}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 11605876}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 458c3f6aef15a8b4ba8e7a951284d29c, type: 3}
@@ -27285,23 +27314,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vocabularyBoard: {fileID: 647425930}
   waves:
-  - mode: 0
-    v_candidates:
-    - chunk
-    - mammal
-    - environment
-    - trainer
-    - certain
-    questions: []
-    subwaves:
-    - startDelay: 0.1
-      numOfEmmisions: 10
-      durationMin: 3.96
-      durationMax: 6.9
-      healBallDelay: 999
-    dragon_paragraph:
-      vocabularies: []
-      article: 
   - mode: 1
     v_candidates:
     - traffic
@@ -27315,6 +27327,23 @@ MonoBehaviour:
       numOfEmmisions: 1
       durationMin: 8
       durationMax: 7
+      healBallDelay: 999
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 0
+    v_candidates:
+    - chunk
+    - mammal
+    - environment
+    - trainer
+    - certain
+    questions: []
+    subwaves:
+    - startDelay: 0.1
+      numOfEmmisions: 10
+      durationMin: 3.96
+      durationMax: 6.9
       healBallDelay: 999
     dragon_paragraph:
       vocabularies: []

@@ -144,8 +144,8 @@ public class PlayerController : MonoBehaviour
             if (this.fireballsystem.fire_onScreen[i].question.vocabulary == this.playerValue && this.fireballsystem.fire_onScreen[i].ableShoot)
             {
                 correct = true;
-                this.fireballsystem.fire_onScreen[i].correct();
-                this.shoot();
+                this.fireballsystem.fire_onScreen[i].correct(); // this completes the shoot animation
+                this.shoot(); // this is fake
                 break;
             }
         }

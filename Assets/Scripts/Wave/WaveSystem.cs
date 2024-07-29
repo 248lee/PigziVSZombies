@@ -57,7 +57,6 @@ public class WaveSystem : MonoBehaviour
     private OpenAIAPI gpt;
     private Conversation chat;
     private ChatMessage systemMessage_sentence, systemMessage_paragraph;
-    private string gpt_result_paragraph = null;
 
     // Start is called before the first frame update
     async void Start()
@@ -75,7 +74,9 @@ public class WaveSystem : MonoBehaviour
         string systemMessage_paragraph_string = @"The user will give you a list of English vocabularies. 
             Your job is to write a short paragraph using these vocabularies. The paragraph you provided 
             will be used as a fill-in-the-blank problem. Please put the word you use from the provided 
-            vocabularies between < and >. Do not output anything else I've not mentioned.";
+            vocabularies between < and >. Each vocabulary should be used exactly one time.
+            In the next line, print out the order of the vocabularies you used in terms of the original order in the list of the given vocabularies, seperated with commas.
+            Do not output anything else I've not mentioned.";
         this.systemMessage_paragraph = new ChatMessage(ChatMessageRole.System, systemMessage_paragraph_string);
         this.playerController = FindObjectOfType<PlayerController>();
         this.dragon = FindObjectOfType<DragonController>();
@@ -237,11 +238,11 @@ public class WaveSystem : MonoBehaviour
     {
         ChatMessage query = new ChatMessage(ChatMessageRole.User, vocabulary);
         ChatMessage[] example_vs = { new ChatMessage(ChatMessageRole.User, "complete, homework, happiness") };
-        ChatMessage[] example_ps = { new ChatMessage(ChatMessageRole.Assistant, "Sarah experienced <complete> <happiness> when she finished her <homework>. The sense of accomplishment filled her with joy, making the effort worthwhile. This tells us always <complete> important task first, so we can relax and enjoy the rest of our day.") };
+        ChatMessage[] example_ps = { new ChatMessage(ChatMessageRole.Assistant, "Sarah experienced <happiness> when she finished her <homework>. The sense of accomplishment filled her with joy, making the effort worthwhile. This tells us always <complete> important task first, so we can relax and enjoy the rest of our day.\n3, 2, 1") };
         List<ChatMessage> messages = new List<ChatMessage> { systemMessage_paragraph, example_vs[0], example_ps[0], query };
         var chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
         {
-            Model = Model.ChatGPTTurbo,
+            Model = Model.GPT4,
             Temperature = 0,
             MaxTokens = 500,
             Messages = messages
@@ -284,28 +285,22 @@ public class WaveSystem : MonoBehaviour
 
         // Start requesting a paragraph
         string input_message = String.Join(", ", paragraph_candidates); // Concatenate the vocabularies into a message like "apple, banana, complete, ice, sister"
-        this.gpt_result_paragraph = await RequestParagraphGPT(input_message);
-        Debug.Log(this.gpt_result_paragraph);
-        List<string> vocabularies = new List<string>();
+        string gpt_result_paragraph_and_order = await RequestParagraphGPT(input_message);
+        string[] tmp = gpt_result_paragraph_and_order.Split("\n");
+        string gpt_result_paragraph = tmp[0];
+        int[] orders = IListExtensions.ConvertStringToIntArray(tmp[1]);
 
-        int startIndex = 0;
-        while (true)
+        Debug.Log(gpt_result_paragraph);
+
+        // Reorder the query vocabularies into the order that GPT used.
+        List<string> used_vocabularies = new List<string>();
+        foreach (int o in orders)
         {
-            int openIndex = gpt_result_paragraph.IndexOf('<', startIndex);
-            if (openIndex == -1)
-            {
-                break;
-            }
-            int closeIndex = gpt_result_paragraph.IndexOf('>', openIndex);
-            if (closeIndex == -1)
-            {
-                break;
-            }
-            vocabularies.Add(gpt_result_paragraph.Substring(openIndex + 1, closeIndex - openIndex - 1));
-            startIndex = closeIndex + 1;
+            used_vocabularies.Add(paragraph_candidates[o - 1]); // the first index given by gpt is 0
         }
 
-        wave.dragon_paragraph = new Paragraph(vocabularies, gpt_result_paragraph);
+        // Send the resulting paragraph and vocabularies(answers) to the DuLagooooon!!!!
+        wave.dragon_paragraph = new Paragraph(used_vocabularies, gpt_result_paragraph);
     }
 
     float getTimeRandPos(float duration, float td)

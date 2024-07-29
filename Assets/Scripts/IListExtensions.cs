@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class IListExtensions
@@ -18,5 +19,15 @@ public static class IListExtensions
             ts[i] = ts[r];
             ts[r] = tmp;
         }
+    }
+    public static int[] ConvertStringToIntArray(string input)
+    {
+        // Split the string by commas and remove any surrounding whitespace
+        string[] stringArray = input.Split(',').Select(s => s.Trim()).ToArray();
+
+        // Convert the string array to an int array
+        int[] intArray = stringArray.Select(int.Parse).ToArray();
+
+        return intArray;
     }
 }

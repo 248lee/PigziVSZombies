@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: DragonFlyAwayShake
   m_EditorClassIdentifier: 
   shakeType: 0
-  strength: 10
-  roughness: 1.11
-  fadeIn: 0
-  fadeOut: 0.62
-  positionInfluence: {x: 0, y: 0, z: 0}
-  rotationInfluence: {x: 0, y: 0, z: 0}
+  strength: 0.43
+  roughness: 6.23
+  fadeIn: 0.1
+  fadeOut: 1.15
+  positionInfluence: {x: 1, y: 1, z: 1}
+  rotationInfluence: {x: 1, y: 1, z: 1}

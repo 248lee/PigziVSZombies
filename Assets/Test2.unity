@@ -71917,6 +71917,7 @@ MonoBehaviour:
   - {fileID: 2074478317}
   textColor: {r: 0, g: 0, b: 0, a: 1}
   damagePopup: {fileID: 772610535133546210, guid: 2fc65745daa59f14c82523fd7ff31a01, type: 3}
+  DragonFlyAwayShake_preset: {fileID: 11400000, guid: 91dc7f73104ac1c40a55abc4ccfd5e4f, type: 2}
   is_on_stage: 0
 --- !u!95 &1855131373
 Animator:
@@ -95893,7 +95894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchorMin.x
@@ -95901,7 +95902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -95941,11 +95942,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 183.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

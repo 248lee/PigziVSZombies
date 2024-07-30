@@ -137,7 +137,6 @@
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Enemies\ChomperAttackSMB.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Audio\BackgroundMusicPlayer.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\UI\InputDisplayUI.cs" />
-    <Compile Include="Assets\float_introMovement.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Player\AirborneMeleeAttackSMB.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\UI\HealthUI.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Timeline\ScrollingText\ScrollingTextTrack.cs" />
@@ -263,6 +262,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\Objects\Platforms\MovingPlatform.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\ScreenFader\ScreenFaderMixerBehaviour.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\BulletPool.cs" />
+    <Compile Include="Assets\DragonBeforeFloatIntroState.cs" />
     <Compile Include="Assets\DeleteMe.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\Video\VideoScriptPlayableTrack.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Core\InventoryItem.cs" />

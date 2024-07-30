@@ -119,12 +119,15 @@ public class FireballController : MonoBehaviour
     }
     public void wrong()
     {
-        this.is_onTree = true;
-        this.realSpeed = 0f;
-        this.putOutFireball();
-        this.burningTree.SetPersistentDamage(true, 20f);
-        this.graph2.gameObject.SetActive(true);
-        this.questionText.color = Color.black;
+        if (this.ableShoot)
+        {
+            this.is_onTree = true;
+            this.realSpeed = 0f;
+            this.putOutFireball();
+            this.burningTree.SetPersistentDamage(true, 20f);
+            this.graph2.gameObject.SetActive(true);
+            this.questionText.color = Color.black;
+        }
     }
     public void wrong_withFire()
     {

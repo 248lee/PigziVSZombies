@@ -725,7 +725,7 @@ MonoBehaviour:
   fireballsystem: {fileID: 0}
   frozenTime: 5
   valueText: {fileID: 289189446}
-  bullet: {fileID: 1820680284854294, guid: 12be11ae2dec14c4eb2a0d6dfca053a5, type: 3}
+  bullet_empty_shoot: {fileID: 1820680284854294, guid: 12be11ae2dec14c4eb2a0d6dfca053a5, type: 3}
   bulletStartPoint: {fileID: 1856999459}
   waterAmountText: {fileID: 952577852}
   normalPP: {fileID: 1856894021}
@@ -27682,15 +27682,15 @@ MonoBehaviour:
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 0.88955367, g: 1, b: 0, a: 1}
-    key2: {r: 0.09825277, g: 1, b: 0, a: 0}
+    key1: {r: 1, g: 0.74288446, b: 0, a: 1}
+    key2: {r: 0.023668766, g: 1, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 33924
+    ctime1: 32305
     ctime2: 65535
     ctime3: 0
     ctime4: 0
@@ -27709,7 +27709,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  fill: {fileID: 848772391}
+  fill: {fileID: 0}
 --- !u!114 &909504884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48402,8 +48402,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 0, b: 0, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -53288,15 +53288,15 @@ MonoBehaviour:
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 0.88955367, g: 1, b: 0, a: 1}
-    key2: {r: 0.09825277, g: 1, b: 0, a: 0}
+    key1: {r: 1, g: 0.74288446, b: 0, a: 1}
+    key2: {r: 0.023668766, g: 1, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 33924
+    ctime1: 32305
     ctime2: 65535
     ctime3: 0
     ctime4: 0
@@ -53315,7 +53315,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  fill: {fileID: 1468101537}
+  fill: {fileID: 0}
 --- !u!114 &1559499362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71169,15 +71169,15 @@ MonoBehaviour:
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 0.88955367, g: 1, b: 0, a: 1}
-    key2: {r: 0.09825277, g: 1, b: 0, a: 0}
+    key1: {r: 1, g: 0.74288446, b: 0, a: 1}
+    key2: {r: 0.023668766, g: 1, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 33924
+    ctime1: 32305
     ctime2: 65535
     ctime3: 0
     ctime4: 0
@@ -71196,7 +71196,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  fill: {fileID: 2007806786}
+  fill: {fileID: 0}
 --- !u!114 &1793395495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72753,15 +72753,15 @@ MonoBehaviour:
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 0.88955367, g: 1, b: 0, a: 1}
-    key2: {r: 0.09825277, g: 1, b: 0, a: 0}
+    key1: {r: 1, g: 0.74288446, b: 0, a: 1}
+    key2: {r: 0.023668766, g: 1, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 33924
+    ctime1: 32305
     ctime2: 65535
     ctime3: 0
     ctime4: 0
@@ -72780,7 +72780,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  fill: {fileID: 799682003}
+  fill: {fileID: 0}
 --- !u!114 &1944829491
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Text.RegularExpressions;
 using UnityEngine.UI;
 using TMPro;
+using MilkShake;
 public class DragonController : MonoBehaviour
 {
     [SerializeField] FireballSysrem fireballSystem;
@@ -20,6 +21,7 @@ public class DragonController : MonoBehaviour
     [SerializeField] List<Transform> flame_targets = new List<Transform>();
     [SerializeField] Color textColor;
     [SerializeField] GameObject damagePopup;
+    [SerializeField] ShakePreset DragonFlyAwayShake_preset;
     int hp;
     bool pauseTimer;
     float graphAnimatorSpeed, animatorSpeed;
@@ -72,6 +74,10 @@ public class DragonController : MonoBehaviour
         this.graphAnimator.speed = 0f;
         this.animator.speed = 0f;
         this.hpBar.gameObject.SetActive(false);
+    }
+    public void ShakeOfLeaving()
+    {
+        Shaker.ShakeAll(this.DragonFlyAwayShake_preset);
     }
     public void dropFireballs(Vector3 layPos)
     {

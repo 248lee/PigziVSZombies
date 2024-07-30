@@ -104,6 +104,7 @@
     <Compile Include="Assets\OpenAI_API\Chat\ChatRequest.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Core\InteractOnButton2D.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\SceneControllerWrapper.cs" />
+    <Compile Include="Assets\MilkShake\Demo\Scripts\CameraDistance.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\LightControl\LightControlMixerBehaviour.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\Bullet.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Utility\SetMaterialRenderQueue.cs" />
@@ -117,6 +118,8 @@
     <Compile Include="Assets\OpenAI_API\EndpointBase.cs" />
     <Compile Include="Assets\OpenAI_API\Audio\ITextToSpeechEndpoint.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\ScreenFader.cs" />
+    <Compile Include="Assets\MilkShake\Demo\Scripts\ToggleAudio.cs" />
+    <Compile Include="Assets\MilkShake\Scripts\ShakeParameters.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\AI\GunnerBeam.cs" />
     <Compile Include="Assets\Scripts\DragonController.cs" />
     <Compile Include="Assets\Shared\Scripts\SimpleCharacterMotor.cs" />
@@ -130,6 +133,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\Localization\TranslatedPhrases.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Core\LayerMaskExtensions.cs" />
     <Compile Include="Assets\OpenAI_API\Chat\Conversation.cs" />
+    <Compile Include="Assets\MilkShake\Scripts\ShakeResult.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Enemies\ChomperAttackSMB.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Audio\BackgroundMusicPlayer.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\UI\InputDisplayUI.cs" />
@@ -151,10 +155,12 @@
     <Compile Include="Assets\2DGamekit\Scripts\Effect\SpriteColorChange.cs" />
     <Compile Include="Assets\OpenAI_API\Files\File.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\AI\InstantiateObject.cs" />
+    <Compile Include="Assets\MilkShake\Scripts\ShakeInstance.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Audio\AudioSurface.cs" />
     <Compile Include="Assets\OpenAI_API\ApiResultBase.cs" />
     <Compile Include="Assets\TestStateMachine.cs" />
     <Compile Include="Assets\OpenAI_API\Images\ImageGenerationEndpoint.cs" />
+    <Compile Include="Assets\MilkShake\Scripts\ShakePreset.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Objects\WeaponPickup.cs" />
     <Compile Include="Assets\Scripts\Question.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\SceneTransitionDestination.cs" />
@@ -171,6 +177,8 @@
     <Compile Include="Assets\OpenAI_API\OpenAIAPI.cs" />
     <Compile Include="Assets\OpenAI_API\Images\ImageSize.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Core\TimedDisabling.cs" />
+    <Compile Include="Assets\MilkShake\Scripts\ShakeType.cs" />
+    <Compile Include="Assets\MilkShake\Demo\Scripts\CameraSwitcher.cs" />
     <Compile Include="Assets\Scripts\WaterController.cs" />
     <Compile Include="Assets\Scripts\WaterSystem.cs" />
     <Compile Include="Assets\OpenAI_API\Usage.cs" />
@@ -204,12 +212,14 @@
     <Compile Include="Assets\Shared\Ramps\Runtime\RampAsset.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Effect\GunnerShieldEffect.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Effect\GunnerLightning.cs" />
+    <Compile Include="Assets\MilkShake\Scripts\ShakeState.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\AI\BT.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\TransformTweenMixerBehaviour.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Player\RespawnSMB.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Objects\Pushables\Pushable.cs" />
     <Compile Include="Assets\OpenAI_API\Chat\ChatEndpoint.cs" />
     <Compile Include="Assets\Scripts\Wave\Subwave.cs" />
+    <Compile Include="Assets\MilkShake\Demo\Scripts\CustomShake.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Enemies\ChomperPatrolSMB.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\PlayerInput.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\CharacterStateSetter.cs" />
@@ -232,6 +242,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\SpitterBT.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\Video\VideoSchedulerPlayableBehaviour.cs" />
     <Compile Include="Assets\OpenAI_API\Chat\IChatEndpoint.cs" />
+    <Compile Include="Assets\MilkShake\Demo\Scripts\ShakeClicker.cs" />
     <Compile Include="Assets\Newnew.cs" />
     <Compile Include="Assets\OpenAI_API\Audio\TextToSpeechEndpoint.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Player\HurtSMB.cs" />
@@ -240,8 +251,10 @@
     <Compile Include="Assets\2DGamekit\Scripts\Timeline\ScrollingText\ScrollingTextClip.cs" />
     <Compile Include="Assets\Scripts\Timers.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Audio\RandomAudioPlayer.cs" />
+    <Compile Include="Assets\MilkShake\Scripts\Shaker.cs" />
     <Compile Include="Assets\Scripts\Paragraph.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\ScreenFader\ScreenFaderClip.cs" />
+    <Compile Include="Assets\MilkShake\Demo\Scripts\ShakeButton.cs" />
     <Compile Include="Assets\FlyAwayState.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Localization\TranslatedText.cs" />
@@ -264,6 +277,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\Effect\BossDoorStateManager.cs" />
     <Compile Include="Assets\OpenAI_API\Audio\AudioResult.cs" />
     <Compile Include="Assets\OpenAI_API\Completions\ICompletionEndpoint.cs" />
+    <Compile Include="Assets\MilkShake\Scripts\IShakeParameters.cs" />
     <Compile Include="Assets\OpenAI_API\Moderation\ModerationResult.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\UI\OptionUI.cs" />
     <Compile Include="Assets\OpenAI_API\Images\ImageResponseFormat.cs" />
@@ -305,11 +319,13 @@
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedTile.shader" />
     <None Include="Assets\ParticlePack\EffectExamples\Magic Effects\Shaders\Ice.shader" />
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Shaders\Respawn.shader" />
+    <None Include="Assets\MilkShake\Documentation\Readme.txt" />
     <None Include="Assets\TreePack1_Free\Read Me.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\strong.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\certain.txt" />
+    <None Include="Assets\MilkShake\Documentation\Simple Setup.txt" />
     <None Include="Assets\2DGamekit\Utilities\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBloom.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedTileAnimated.shader" />

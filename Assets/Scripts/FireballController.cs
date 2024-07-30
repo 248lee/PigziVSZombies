@@ -97,7 +97,8 @@ public class FireballController : MonoBehaviour
                     // This is the post-process of answering correctly
                     if (this.type == TypeMode.EnemyPart)
                     {
-                        this.fireballSystem.bossDragon.minusBlood();
+                        int minusHP = 10 + Random.Range(-5, 5);
+                        this.fireballSystem.bossDragon.AddHP(-minusHP);
                         this.correctForPart(); // fireballsystem.currentPart minus 1
                     }
                     if (this.type == TypeMode.Healball)

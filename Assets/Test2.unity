@@ -20173,10 +20173,10 @@ RectTransform:
   - {fileID: 345325653}
   m_Father: {fileID: 922449879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.786, y: 0.29444444}
-  m_AnchorMax: {x: 1, y: 0.8908519}
-  m_AnchoredPosition: {x: -12, y: -3.9544067}
-  m_SizeDelta: {x: -23.697754, y: 3.9088135}
+  m_AnchorMin: {x: 0.786, y: 0.22218518}
+  m_AnchorMax: {x: 1, y: 0.81951857}
+  m_AnchoredPosition: {x: -12, y: 1.5}
+  m_SizeDelta: {x: -23.697754, y: 2.9088135}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &647425927
 MonoBehaviour:
@@ -48478,7 +48478,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 10
+  m_Value: 98.3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -71907,7 +71907,6 @@ MonoBehaviour:
   - {fileID: 198214375678341575}
   hpBar: {fileID: 1548764186}
   maxHP: 100
-  minusHP: 10
   flameGraphForPause: {fileID: 198637950729853403}
   paragraphText: {fileID: 436598121}
   testball: {fileID: 4654557689394644033, guid: 4aac599197226a144a158201b0d1779e, type: 3}
@@ -71917,6 +71916,7 @@ MonoBehaviour:
   - {fileID: 832073211}
   - {fileID: 2074478317}
   textColor: {r: 0, g: 0, b: 0, a: 1}
+  damagePopup: {fileID: 772610535133546210, guid: 2fc65745daa59f14c82523fd7ff31a01, type: 3}
   is_on_stage: 0
 --- !u!95 &1855131373
 Animator:

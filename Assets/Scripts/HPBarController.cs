@@ -29,4 +29,8 @@ public class HPBarController : MonoBehaviour
     {
         this.slider.value = HP;
     }
+    public Transform GetFilling()
+    {
+        return this.fill.transform;
+    }
 }

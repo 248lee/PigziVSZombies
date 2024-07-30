@@ -13,12 +13,13 @@ public class DragonController : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] List<ParticleSystem> flameParticles = new List<ParticleSystem>();
     [SerializeField] HPBarController hpBar;
-    [SerializeField] int maxHP = 100, minusHP = 10;
+    [SerializeField] int maxHP = 100;
     [SerializeField] ParticleSystem flameGraphForPause;
     [SerializeField] TextMeshProUGUI paragraphText;
     [SerializeField] GameObject testball;
     [SerializeField] List<Transform> flame_targets = new List<Transform>();
     [SerializeField] Color textColor;
+    [SerializeField] GameObject damagePopup;
     int hp;
     bool pauseTimer;
     float graphAnimatorSpeed, animatorSpeed;
@@ -193,12 +194,20 @@ public class DragonController : MonoBehaviour
         this.hpBar.SetHP(this.hp);
         this.animator.SetFloat("hpRatio", this.hp / this.maxHP);
     }
-    public void minusBlood()
+    public void AddHP(int deltaHP)
     {
         if (this.hp > 0)
         {
-            this.hp -= (this.minusHP + Random.Range(-5, 5));
+            StartCoroutine(this._AddHP(deltaHP));
         }
+    }
+
+    IEnumerator _AddHP(int deltaHP)
+    {
+        this.hp += deltaHP;
+        yield return null;
+        // popup damage number
+        Instantiate(this.damagePopup, this.hpBar.GetFilling());
     }
 
     //Graph Animation Controller

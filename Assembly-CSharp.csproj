@@ -276,8 +276,8 @@
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\CharacterController2D.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Effect\BossDoorStateManager.cs" />
     <Compile Include="Assets\OpenAI_API\Audio\AudioResult.cs" />
-    <Compile Include="Assets\OpenAI_API\Completions\ICompletionEndpoint.cs" />
     <Compile Include="Assets\MilkShake\Scripts\IShakeParameters.cs" />
+    <Compile Include="Assets\OpenAI_API\Completions\ICompletionEndpoint.cs" />
     <Compile Include="Assets\OpenAI_API\Moderation\ModerationResult.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\UI\OptionUI.cs" />
     <Compile Include="Assets\OpenAI_API\Images\ImageResponseFormat.cs" />

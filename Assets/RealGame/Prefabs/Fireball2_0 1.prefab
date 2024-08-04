@@ -14555,7 +14555,7 @@ GameObject:
   - component: {fileID: 5533423520768580191}
   - component: {fileID: 7693794772000073454}
   - component: {fileID: 5093057243764820200}
-  - component: {fileID: 5147028210429197858}
+  - component: {fileID: 7576629840388159412}
   m_Layer: 12
   m_Name: Fireball2_0 1
   m_TagString: Fireball
@@ -14645,7 +14645,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5147028210429197858
+--- !u!114 &7576629840388159412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14654,26 +14654,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3617078845615308998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f33c60ca3d2d32429f86eb9559c52d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 89a3f8eb545ea1e44b6e7aa43f1c64ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  speed: -1.1
-  realSpeed: 0
   question:
     vocabulary: 
     sentence: 
     real_sentence: 
   questionText: {fileID: 5336158128362746146}
   ableShoot: 1
-  graph1: {fileID: 6804638442088478519}
-  graph2: {fileID: 81332743265948744}
   burningTree: {fileID: 0}
   index: -1
   ableToBeDestroyed: 0
-  progressBar: {fileID: 8030803186999363819}
-  fireballSystem: {fileID: 0}
-  healPar: {fileID: 2812748507665122716}
+  speed: -1.1
+  realSpeed: 0
+  fireball_particle: {fileID: 6804638442088478519}
+  wildfire_particle: {fileID: 81332743265948744}
 --- !u!1 &4317206514729939604
 GameObject:
   m_ObjectHideFlags: 0
@@ -29220,7 +29217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4322012105590311248
 Transform:
   m_ObjectHideFlags: 0

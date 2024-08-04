@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class TreeController : MonoBehaviour
 {
-    public FireballController burningFire;
+    public FireFireballController burningFire;
     public bool is_onFire;
     public bool is_alive;
     [SerializeField] float max_hp = 100f, hp, damageRate = 20f;
@@ -33,7 +33,7 @@ public class TreeController : MonoBehaviour
         this.SetTreeImage(this.hp / this.max_hp);
         if (this.burningFire != null && this.is_alive == false)
         {
-            this.burningFire.FireOnDeadTree();
+            this.burningFire.WildfireOnDeadTree();
         }
 
     }
@@ -46,14 +46,15 @@ public class TreeController : MonoBehaviour
         if (collision.tag == "Fireball")
         {
             // Setup the incoming fireball
-            FireballController fireball = collision.GetComponent<FireballController>();
+            FallingFireballController fireball = collision.GetComponent<FireFireballController>();
             fireball.burningTree = this;
 
             if (this.burningFire == null)
             {
                 if (!fireball.ableToBeDestroyed)
                 {
-                    this.burningFire = fireball;
+                    if (fireball is FireFireballController fire)
+                        this.burningFire = fire;
                     fireball.wrong();
                 }
                 

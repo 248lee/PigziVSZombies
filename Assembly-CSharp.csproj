@@ -75,6 +75,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\Damager.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Player\DeadLandingSMB.cs" />
     <Compile Include="Assets\Scripts\HealParController.cs" />
+    <Compile Include="Assets\Scripts\EnemypartFireballController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Player\PushingSMB.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TextSwitcher\TextSwitcherMixerBehaviour.cs" />
     <Compile Include="Assets\DamagePopupStateMachine.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Assets\OpenAI_API\Chat\ChatRequest.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Core\InteractOnButton2D.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\SceneControllerWrapper.cs" />
+    <Compile Include="Assets\Scripts\FireFireballController.cs" />
     <Compile Include="Assets\MilkShake\Demo\Scripts\CameraDistance.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\LightControl\LightControlMixerBehaviour.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\Bullet.cs" />
@@ -237,6 +239,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\UI\StartUI.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\NavMeshAgentControl\NavMeshAgentControlTrack.cs" />
     <Compile Include="Assets\Shared\Scripts\AdjustTimeScale.cs" />
+    <Compile Include="Assets\Scripts\FallingFireballController.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\TransformTweenClip.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\SpitterBT.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\Video\VideoSchedulerPlayableBehaviour.cs" />

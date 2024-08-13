@@ -16,7 +16,6 @@ public class FireballController : MonoBehaviour
     public Question question = new Question("", "");
     public TextMeshProUGUI questionText;
     public bool ableShoot = true;
-    public TreeController burningTree;
     public int index = -1;
     public bool ableToBeDestroyed;
     protected FireballSysrem fireballSystem;

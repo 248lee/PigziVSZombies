@@ -6,6 +6,7 @@ public class FireballSysrem : MonoBehaviour
 {
     [SerializeField] private FireFireballController fireball;
     [SerializeField] private EnemypartFireballController enemypart;
+    [SerializeField] private HealFireballController healball;
     public List<Transform> generateTransforms = new List<Transform>();
     public List<FireballController> fire_onScreen = new List<FireballController>();
     public DragonController bossDragon;
@@ -19,6 +20,12 @@ public class FireballSysrem : MonoBehaviour
     public Vector3 bulletStartPosition;
     public GameObject dust;
     public float z_delta_enemy_part_position = 0.7f;
+    [SerializeField] private float _healball_bound;
+    // Public property to allow read-only access from other classes
+    public float healballBound
+    {
+        get { return _healball_bound; }
+    }
     int prePos = -1;
     [SerializeField] float fireballSpeed = 0.7f;
     private void Awake()
@@ -41,7 +48,7 @@ public class FireballSysrem : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            //this.generateHealball();
+            this.generateHealball(new Question("johnlee", "<johnlee> is handsome."));
         }
         //²M°£©U§£
         for (int i = 0; i < this.fire_onScreen.Count; i++)
@@ -81,7 +88,7 @@ public class FireballSysrem : MonoBehaviour
         }
         this.prePos = posIndex;
 
-        FireballController temp = Instantiate(this.fireball.gameObject, generateTransforms[posIndex].position, Quaternion.identity).GetComponent<FireballController>();
+        FireballController temp = Instantiate(this.healball.gameObject, generateTransforms[posIndex].position, Quaternion.identity).GetComponent<FireballController>();
         temp.type = TypeMode.Healball;
         temp.question = question;
         this.fire_onScreen.Add(temp);
@@ -119,6 +126,18 @@ public class FireballSysrem : MonoBehaviour
         {
             i.SetPause(set);
         }
+    }
+    private void OnDrawGizmos()
+    {
+        // Set the color of the Gizmo
+        Gizmos.color = Color.blue;
+
+        // Define the start and end points of the horizontal line
+        Vector3 startPoint = new Vector3(-10, _healball_bound, 0);
+        Vector3 endPoint = new Vector3(10, _healball_bound, 0);
+
+        // Draw the line in the scene view
+        Gizmos.DrawLine(startPoint, endPoint);
     }
 }
 

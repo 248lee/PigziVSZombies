@@ -8804,7 +8804,6 @@ MonoBehaviour:
     real_sentence: 
   questionText: {fileID: 485860331}
   ableShoot: 1
-  burningTree: {fileID: 0}
   index: -1
   ableToBeDestroyed: 0
 --- !u!50 &445968834
@@ -15208,7 +15207,6 @@ MonoBehaviour:
     real_sentence: 
   questionText: {fileID: 0}
   ableShoot: 1
-  burningTree: {fileID: 0}
   index: -1
   ableToBeDestroyed: 0
 --- !u!1 &608113884
@@ -78089,6 +78087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 7576629840388159412, guid: 3161ddde27b4f75488049ea593862a5d, type: 3}
   enemypart: {fileID: -6848077535955841394, guid: 883306276ee16ed4da1d173aa8d1716a, type: 3}
+  healball: {fileID: 2073048220869671834, guid: 2915574ad45a248489a72d4b80d0024b, type: 3}
   generateTransforms:
   - {fileID: 949457286}
   - {fileID: 1575626048}
@@ -78108,6 +78107,7 @@ MonoBehaviour:
   bulletStartPosition: {x: 3.42, y: -6.83, z: 0}
   dust: {fileID: 1025285306637258, guid: 201f1b760524f31419c17c7736c072c6, type: 3}
   z_delta_enemy_part_position: 0.85
+  _healball_bound: -3.95
   fireballSpeed: 0.7
 --- !u!1 &2000825576
 GameObject:
@@ -96207,7 +96207,6 @@ MonoBehaviour:
     real_sentence: 
   questionText: {fileID: 49248859}
   ableShoot: 1
-  burningTree: {fileID: 0}
   index: -1
   ableToBeDestroyed: 0
 --- !u!50 &8439146430327322369

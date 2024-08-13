@@ -103,9 +103,9 @@
     <Compile Include="Assets\FlameController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Utility\PhysicsHelper.cs" />
     <Compile Include="Assets\OpenAI_API\Chat\ChatRequest.cs" />
+    <Compile Include="Assets\Scripts\FireFireballController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Core\InteractOnButton2D.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\SceneControllerWrapper.cs" />
-    <Compile Include="Assets\Scripts\FireFireballController.cs" />
     <Compile Include="Assets\MilkShake\Demo\Scripts\CameraDistance.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\LightControl\LightControlMixerBehaviour.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\Bullet.cs" />
@@ -288,6 +288,7 @@
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TimeDilation\TimeDilationTrack.cs" />
     <Compile Include="Assets\Scripts\IListExtensions.cs" />
     <Compile Include="Assets\OpenAI_API\Completions\CompletionEndpoint.cs" />
+    <Compile Include="Assets\Scripts\HealFireballController.cs" />
     <Compile Include="Assets\OpenAI_API\Images\ImageResult.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\AI\SendSignal.cs" />
     <Compile Include="Assets\Scripts\TreeController.cs" />

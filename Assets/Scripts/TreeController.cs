@@ -46,7 +46,7 @@ public class TreeController : MonoBehaviour
         if (collision.tag == "Fireball")
         {
             // Setup the incoming fireball
-            FallingFireballController fireball = collision.GetComponent<FireFireballController>();
+            FireFireballController fireball = collision.GetComponent<FireFireballController>();
             fireball.burningTree = this;
 
             if (this.burningFire == null)
@@ -54,14 +54,17 @@ public class TreeController : MonoBehaviour
                 if (!fireball.ableToBeDestroyed)
                 {
                     if (fireball is FireFireballController fire)
+                    {
                         this.burningFire = fire;
-                    fireball.wrong();
+                        fire.wrong();
+                    }
                 }
                 
             }
             else
             {
-                fireball.wrong_withFire();
+                if (fireball is FireFireballController fire)
+                    fire.wrong_withFire();
             }
         }
     }

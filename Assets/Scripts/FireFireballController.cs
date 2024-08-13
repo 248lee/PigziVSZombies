@@ -6,6 +6,7 @@ public class FireFireballController : FallingFireballController
 {
     private bool is_onTree;
     [SerializeField] private ParticleSystem fireball_particle, wildfire_particle;
+    public TreeController burningTree;
     protected override void InitProcess()
     {
         gameObject.layer = 12;
@@ -14,7 +15,7 @@ public class FireFireballController : FallingFireballController
         this.questionText.text = question.sentence;
         this.ableShoot = true;
         this.ableToBeDestroyed = false;
-        this.fireball_particle.gameObject.SetActive(true);
+        this.fireball_particle.gameObject.SetActive(true); // Light up the particle effects
         //this.progressBar.gameObject.SetActive(false);
     }
     protected override void PostProcessAfterCorrect()

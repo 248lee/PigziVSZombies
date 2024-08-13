@@ -74,7 +74,6 @@ public class FireballSysrem : MonoBehaviour
 
         FireFireballController temp = Instantiate(this.fireball.gameObject, generateTransforms[posIndex].position, Quaternion.identity).GetComponent<FireFireballController>();
         temp.speed = -this.fireballSpeed;
-        temp.type = TypeMode.Fireball;
         temp.question = question;
 
         this.fire_onScreen.Add(temp);
@@ -89,7 +88,6 @@ public class FireballSysrem : MonoBehaviour
         this.prePos = posIndex;
 
         FireballController temp = Instantiate(this.healball.gameObject, generateTransforms[posIndex].position, Quaternion.identity).GetComponent<FireballController>();
-        temp.type = TypeMode.Healball;
         temp.question = question;
         this.fire_onScreen.Add(temp);
     }
@@ -98,7 +96,6 @@ public class FireballSysrem : MonoBehaviour
     {
         FireFireballController temp = Instantiate(this.fireball.gameObject, genPos, Quaternion.identity).GetComponent<FireFireballController>();
         temp.speed = -this.fireballSpeed;
-        temp.type = TypeMode.Fireball;
         temp.question = question;
 
         this.fire_onScreen.Add(temp);

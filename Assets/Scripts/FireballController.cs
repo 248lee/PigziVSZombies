@@ -12,7 +12,6 @@ public enum TypeMode
 }
 public class FireballController : MonoBehaviour
 {
-    public TypeMode type = TypeMode.Fireball;
     public Question question = new Question("", "");
     public TextMeshProUGUI questionText;
     public bool ableShoot = true;
@@ -46,7 +45,7 @@ public class FireballController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         // Dealing with signals
         if (shootMeSignal || isShootingMe)
@@ -88,16 +87,6 @@ public class FireballController : MonoBehaviour
 
                     // This is the post-process of answering correctly
                     this.PostProcessAfterCorrect();
-                    if (this.type == TypeMode.EnemyPart)
-                    {
-                       
-                    }
-                    //if (this.type == TypeMode.Healball)
-                    //    this.healPar.startFall();
-                    //if (this.type != TypeMode.EnemyPart)
-                    //{
-                        
-                    //}
                 }
             }
         }

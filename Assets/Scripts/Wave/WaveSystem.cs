@@ -93,7 +93,8 @@ public class WaveSystem : MonoBehaviour
         {
             await gpt_task;
         }
-        StartCoroutine(this.gameProcess());
+        if (Application.isPlaying)
+            StartCoroutine(this.gameProcess());
     }
 
     // Update is called once per frame
@@ -255,6 +256,8 @@ public class WaveSystem : MonoBehaviour
         {
             List<string> gpt_result_sentences = await RequestSentenceGPT(vocabulary, 5);
             Debug.Log(vocabulary);
+            if (!Application.isPlaying)
+                return;
             for (int i = 0; i < gpt_result_sentences.Count; i++)
             {
                 print(gpt_result_sentences[i]);

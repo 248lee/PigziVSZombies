@@ -6,10 +6,11 @@ public class HealFireballController : FallingFireballController
 {
     [SerializeField] HealParController falling_potion;
     [SerializeField] ParticleSystem healball_particle;
-    private void Update()
+    protected override void Update()
     {
         if (this.ableShoot && transform.position.y < this.fireballSystem.healballBound)
             this.wrong();
+        base.Update();
     }
     protected override void InitProcess()
     {
@@ -18,6 +19,12 @@ public class HealFireballController : FallingFireballController
         this.ableShoot = true;
         this.ableToBeDestroyed = false;
         this.healball_particle.gameObject.SetActive(true); // Light up the particle effects
+    }
+    protected override void PostProcessAfterCorrect()
+    {
+        this.SetAbleToBeDestroyed();
+        this.healball_particle.gameObject.SetActive(false); // Turn off the particle effects
+        falling_potion.StartFall();
     }
     protected override void pause()
     {

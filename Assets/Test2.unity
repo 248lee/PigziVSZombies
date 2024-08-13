@@ -8797,7 +8797,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f33c60ca3d2d32429f86eb9559c52d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   question:
     vocabulary: 
     sentence: 
@@ -15200,7 +15199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f33c60ca3d2d32429f86eb9559c52d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   question:
     vocabulary: 
     sentence: 
@@ -73002,6 +73000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accelerationValue: 5.06
+  agglomerationSpeed: 2
   healEffect: {fileID: 7551541739811113754, guid: 4dce78f3842477445966340a80096c76, type: 3}
 --- !u!50 &1973848518
 Rigidbody2D:
@@ -78087,7 +78086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 7576629840388159412, guid: 3161ddde27b4f75488049ea593862a5d, type: 3}
   enemypart: {fileID: -6848077535955841394, guid: 883306276ee16ed4da1d173aa8d1716a, type: 3}
-  healball: {fileID: 2073048220869671834, guid: 2915574ad45a248489a72d4b80d0024b, type: 3}
+  healball: {fileID: 8933180312663210332, guid: 2915574ad45a248489a72d4b80d0024b, type: 3}
   generateTransforms:
   - {fileID: 949457286}
   - {fileID: 1575626048}
@@ -95883,7 +95882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchorMin.x
@@ -95891,7 +95890,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -95931,11 +95930,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 183.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -96200,7 +96199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f33c60ca3d2d32429f86eb9559c52d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   question:
     vocabulary: 
     sentence: 

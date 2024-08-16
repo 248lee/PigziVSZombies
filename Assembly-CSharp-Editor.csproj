@@ -77,7 +77,6 @@
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\Editor\TransitionStartEditor.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Timeline\ScrollingText\Editor\ScrollingTextDrawer.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\Editor\BTDebug.cs" />
-    <Compile Include="Assets\Editor\WaveSystemEditor.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TextSwitcher\Editor\TextSwitcherDrawer.cs" />
     <Compile Include="Assets\Editor\WaveEditor.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\Editor\RuleTileEditor.cs" />
@@ -94,7 +93,6 @@
     <Compile Include="Assets\2DGamekit\Utilities\Editor\NewSceneCreator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Editor\WaveSystemEditor.uxml" />
     <None Include="Assets\Editor\JohnTestEditor.uxml" />
     <None Include="Assets\Editor\Uss\Test.uss" />
   </ItemGroup>

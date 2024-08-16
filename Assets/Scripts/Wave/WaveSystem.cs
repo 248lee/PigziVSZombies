@@ -12,15 +12,19 @@ using System.Text.RegularExpressions;
 public enum WaveMode
 {
     Normal,
-    Boss
+    Boss,
+    LoopLabel
 }
 [System.Serializable]
 public class Wave
 {
     public WaveMode mode;
+
     public List<string> v_candidates;
     public List<Question> questions = new();
     public List<Subwave> subwaves = new();
+
+    public string labelName = "Unnamed";
 
     // For Boss
     public Paragraph dragon_paragraph = null;

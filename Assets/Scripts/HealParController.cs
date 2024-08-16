@@ -8,7 +8,6 @@ public class HealParController : MonoBehaviour
     float speed;
     bool fallOnTree;
     [SerializeField] float accelerationValue = .5f;
-    [SerializeField] float agglomerationSpeed = 2f;
     [SerializeField] GameObject healEffect;
     // Start is called before the first frame update
     void Start()
@@ -35,7 +34,7 @@ public class HealParController : MonoBehaviour
         {
             collision.GetComponentInParent<TreeController>().heal();
             GameObject tempEffect = Instantiate(this.healEffect, transform.position, Quaternion.identity);
-            Destroy(tempEffect, 0.5f);
+            Destroy(tempEffect, 1.5f);
             this.fallOnTree = true;
             Destroy(gameObject, 0.3f);
         }

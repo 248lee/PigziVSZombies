@@ -24736,7 +24736,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.7
+      scalar: 1.06
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -25200,7 +25200,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.7
+      value: 0.8
       mode: 0
       spread: 0
       speed:
@@ -25319,7 +25319,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4.5
+      scalar: 5.49
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -25425,7 +25425,7 @@ ParticleSystem:
     m_BurstCount: 0
     m_Bursts: []
   SizeModule:
-    enabled: 1
+    enabled: 0
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -29304,8 +29304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accelerationValue: 5.06
-  agglomerationSpeed: 1.1
-  healEffect: {fileID: 7551541739811113754, guid: 4dce78f3842477445966340a80096c76, type: 3}
+  healEffect: {fileID: 1786706039427795776, guid: 4dce78f3842477445966340a80096c76, type: 3}
 --- !u!58 &4342362228431713482
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -29488,7 +29487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8285794463515657899
 Transform:
   m_ObjectHideFlags: 0

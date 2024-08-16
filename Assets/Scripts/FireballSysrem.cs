@@ -11,9 +11,6 @@ public class FireballSysrem : MonoBehaviour
     public List<FireballController> fire_onScreen = new List<FireballController>();
     public DragonController bossDragon;
     public float shootAnimSpeed = 5f;
-    public int min_1, max_1;
-    public int min_2, max_2;
-    public string operater;
     public int currentParts;
     public float healRatio = 0.2f;
     public GameObject bullet;
@@ -48,7 +45,8 @@ public class FireballSysrem : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            this.generateHealball(new Question("johnlee", "<johnlee> is handsome."));
+            Question[] qs = { new Question("johnlee", "<johnlee> is handsome."), new Question("qjohnlee", "<qjohnlee> is handsome."), new Question("johtnlee", "<johnlee> is handsome."), new Question("johndlee", "<johnlee> is handsome.") };
+            this.generateFourHealballs(qs);
         }
         //²M°£©U§£
         for (int i = 0; i < this.fire_onScreen.Count; i++)
@@ -59,7 +57,6 @@ public class FireballSysrem : MonoBehaviour
                 this.fire_onScreen.RemoveAt(i);
                 i--;
             }
-
         }
     }
 
@@ -78,15 +75,15 @@ public class FireballSysrem : MonoBehaviour
 
         this.fire_onScreen.Add(temp);
     }
-    void generateHealball(Question question)
+    public void generateFourHealballs(Question[] four_questions)
     {
-        int posIndex = UnityEngine.Random.Range(0, 4);
-        while (posIndex == this.prePos)
+        for (int i = 0; i < 4; i++)
         {
-            posIndex = UnityEngine.Random.Range(0, 4);
+            this.generateOneHealball(four_questions[i], i);
         }
-        this.prePos = posIndex;
-
+    }
+    void generateOneHealball(Question question, int posIndex)
+    {
         FireballController temp = Instantiate(this.healball.gameObject, generateTransforms[posIndex].position, Quaternion.identity).GetComponent<FireballController>();
         temp.question = question;
         this.fire_onScreen.Add(temp);
@@ -112,7 +109,7 @@ public class FireballSysrem : MonoBehaviour
     public void clearAllParts()
     {
         List<EnemypartFireballController> enemyparts_onScreen = fire_onScreen.OfType<EnemypartFireballController>().ToList();
-        foreach (EnemypartFireballController i in fire_onScreen)
+        foreach (EnemypartFireballController i in enemyparts_onScreen)
         {
             i.partWrong();
         }

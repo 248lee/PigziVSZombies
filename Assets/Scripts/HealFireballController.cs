@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class HealFireballController : FallingFireballController
 {
@@ -25,6 +26,16 @@ public class HealFireballController : FallingFireballController
         this.SetAbleToBeDestroyed();
         this.healball_particle.gameObject.SetActive(false); // Turn off the particle effects
         falling_potion.StartFall();
+
+        // Wrong out other fireballs on the same row
+        List<HealFireballController> healballs_onScreen = this.fireballSystem.fire_onScreen.OfType<HealFireballController>().ToList();
+        foreach(HealFireballController healball in healballs_onScreen)
+        {
+            if (healball != this && healball.transform.position.y == transform.position.y)
+            {
+                healball.wrong();
+            }
+        }
     }
     protected override void pause()
     {
@@ -38,8 +49,18 @@ public class HealFireballController : FallingFireballController
     }
     public override void wrong()
     {
+        // Take out the particle system. It should be destroyed independently in order to wait for fading-out.
+        this.healball_particle.transform.parent = null;
+        var particle_effects = this.healball_particle.GetComponentsInChildren<ParticleSystem>();
         var em = this.healball_particle.emission;
         em.enabled = false;
+        foreach (var pe in particle_effects)
+        {
+            em = pe.emission;
+            em.enabled = false;
+        }
+        Destroy(this.healball_particle.gameObject, 1.5f);
+
         this.ableShoot = false;
         this.SetAbleToBeDestroyed();
         this.questionText.SetText(this.question.GetRealSentenceWithColor("blue")); // show out the correct answer

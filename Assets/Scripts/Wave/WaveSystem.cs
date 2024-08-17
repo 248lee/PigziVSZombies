@@ -13,7 +13,16 @@ public enum WaveMode
 {
     Normal,
     Boss,
-    LoopLabel
+    LoopLabel,
+    LoopEndCondition
+}
+public enum Relation
+{
+    greater,
+    geq,
+    less,
+    leq,
+    equal
 }
 [System.Serializable]
 public class Wave
@@ -25,6 +34,11 @@ public class Wave
     public List<Subwave> subwaves = new();
 
     public string labelName = "Unnamed";
+
+    public string targetLabelName = "Unnamed";
+    public string runtimeVariableA = "UnknownGlobalVariable";
+    public Relation relation;
+    public string runtimeVariableB = "UnknownGlobalVariable";
 
     // For Boss
     public Paragraph dragon_paragraph = null;

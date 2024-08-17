@@ -27583,6 +27583,10 @@ MonoBehaviour:
       durationMax: 7
       healBallDelay: 999
     labelName: Hello World
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
     dragon_paragraph:
       vocabularies: []
       article: 
@@ -27601,6 +27605,10 @@ MonoBehaviour:
       durationMax: 6.9
       healBallDelay: 999
     labelName: boss not dead yet
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
     dragon_paragraph:
       vocabularies: []
       article: 
@@ -27619,6 +27627,54 @@ MonoBehaviour:
       durationMax: 6.9
       healBallDelay: 999
     labelName: 
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 1
+    v_candidates:
+    - chunk
+    - mammal
+    - environment
+    - trainer
+    - certain
+    questions: []
+    subwaves:
+    - startDelay: 0.1
+      numOfEmmisions: 10
+      durationMin: 3.96
+      durationMax: 6.9
+      healBallDelay: 999
+    labelName: 
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 3
+    v_candidates:
+    - chunk
+    - mammal
+    - environment
+    - trainer
+    - certain
+    questions: []
+    subwaves:
+    - startDelay: 0.1
+      numOfEmmisions: 10
+      durationMin: 3.96
+      durationMax: 6.9
+      healBallDelay: 999
+    labelName: 
+    targetLabelName: boss not dead yet
+    runtimeVariableA: BossHP
+    relation: 3
+    runtimeVariableB: 0
     dragon_paragraph:
       vocabularies: []
       article: 

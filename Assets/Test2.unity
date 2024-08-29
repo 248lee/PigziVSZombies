@@ -27575,6 +27575,8 @@ MonoBehaviour:
     - traffic
     - final
     - paris
+    waveName: 
+    numOfVocabularies: 5
     questions: []
     subwaves:
     - startDelay: 0.1
@@ -27597,6 +27599,8 @@ MonoBehaviour:
     - environment
     - trainer
     - certain
+    waveName: 
+    numOfVocabularies: 5
     questions: []
     subwaves:
     - startDelay: 0.1
@@ -27619,6 +27623,8 @@ MonoBehaviour:
     - environment
     - trainer
     - certain
+    waveName: 
+    numOfVocabularies: 5
     questions: []
     subwaves:
     - startDelay: 0.1
@@ -27641,6 +27647,8 @@ MonoBehaviour:
     - environment
     - trainer
     - certain
+    waveName: 
+    numOfVocabularies: 5
     questions: []
     subwaves:
     - startDelay: 0.1
@@ -27663,6 +27671,8 @@ MonoBehaviour:
     - environment
     - trainer
     - certain
+    waveName: 
+    numOfVocabularies: 5
     questions: []
     subwaves:
     - startDelay: 0.1
@@ -27678,7 +27688,7 @@ MonoBehaviour:
     dragon_paragraph:
       vocabularies: []
       article: 
-  nowWave: 0
+  nowWaveIndex: 0
 --- !u!1 &857332123
 GameObject:
   m_ObjectHideFlags: 0
@@ -72237,7 +72247,7 @@ MonoBehaviour:
   - {fileID: 198637950729853403}
   - {fileID: 198214375678341575}
   hpBar: {fileID: 1548764186}
-  maxHP: 100
+  maxHP: 40
   flameGraphForPause: {fileID: 198637950729853403}
   paragraphText: {fileID: 436598121}
   testball: {fileID: 4654557689394644033, guid: 4aac599197226a144a158201b0d1779e, type: 3}
@@ -78654,6 +78664,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989458825}
   m_CullTransparentMesh: 1
+--- !u!1 &1989700012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1989700014}
+  - component: {fileID: 1989700013}
+  m_Layer: 0
+  m_Name: Stage Word Bank
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1989700013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989700012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf9690c980130a43a8b23d854e67dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regularWords: []
+--- !u!4 &1989700014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989700012}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2039818, y: -4.6069956, z: 0.2040267}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2000290249
 GameObject:
   m_ObjectHideFlags: 0
@@ -96837,3 +96892,4 @@ SceneRoots:
   - {fileID: 7150972811541217264}
   - {fileID: 445968836}
   - {fileID: 3660238872518720076}
+  - {fileID: 1989700014}

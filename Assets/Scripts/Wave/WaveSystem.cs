@@ -7,6 +7,7 @@ using OpenAI_API;
 using OpenAI_API.Chat;
 using OpenAI_API.Models;
 using System.Text.RegularExpressions;
+using JohnUtils;
 
 [System.Serializable]
 public enum WaveMode
@@ -30,6 +31,8 @@ public class Wave
     public WaveMode mode;
 
     public List<string> v_candidates;
+    public string waveName = "";
+    public int numOfVocabularies = 5;
     public List<Question> questions = new();
     public List<Subwave> subwaves = new();
 
@@ -68,7 +71,7 @@ public class WaveSystem : MonoBehaviour
     [SerializeField] VocabularyBoard vocabularyBoard;
     
     public List<Wave> waves;
-    public int nowWave = 0;
+    public int nowWaveIndex = 0;
     PlayerController playerController;
     DragonController dragon;
     FireballSysrem fireballsystem;
@@ -118,15 +121,63 @@ public class WaveSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
     IEnumerator gameProcess()
     {
-        foreach (Wave wave in this.waves)
+        while (this.nowWaveIndex < this.waves.Count)
         {
-            this.vocabularyBoard.UpdateVocabularyBoard(wave.v_candidates);
-            yield return StartCoroutine(this.implementWaveProcess(wave));
-            this.nowWave++;
+            Wave wave = this.waves[this.nowWaveIndex];
+            if (wave.mode == WaveMode.Boss || wave.mode == WaveMode.Normal)
+            {
+                this.vocabularyBoard.UpdateVocabularyBoard(wave.v_candidates);
+                yield return StartCoroutine(this.implementWaveProcess(wave));
+            }
+            else if (wave.mode == WaveMode.LoopEndCondition)
+            {
+                bool is_endloop = false;
+                // Check loop condition
+                float variableA, variableB;
+                if (!float.TryParse(wave.runtimeVariableA, out variableA))  // if the string is in the form of float, just convert it to float
+                {
+                    variableA = RuntimeGlobalDictionary.GetVariableFloat(wave.runtimeVariableA);  // else, get the actual value from runtime global dictionary
+                }
+                if (!float.TryParse(wave.runtimeVariableB, out variableB))  // if the string is in the form of float, just convert it to float
+                {
+                    variableB = RuntimeGlobalDictionary.GetVariableFloat(wave.runtimeVariableB);  // else, get the actual value from runtime global dictionary
+                }
+                switch (wave.relation)
+                {
+                    case Relation.greater:
+                        is_endloop = variableA > variableB;
+                        break;
+                    case Relation.geq:
+                        is_endloop = variableA >= variableB;
+                        break;
+                    case Relation.less:
+                        is_endloop = variableA < variableB;
+                        break;
+                    case Relation.leq:
+                        is_endloop = variableA <= variableB;
+                        break;
+                    case Relation.equal:
+                        is_endloop = variableA == variableB;
+                        break;
+                    default:
+                        break;
+                }
+                if (!is_endloop)  // loop back if the condition is not satisfied
+                {
+                    for (int i = this.nowWaveIndex; i >= 0; i--)  // scan from this wave all the way to the front
+                    {
+                        if (this.waves[i].mode == WaveMode.LoopLabel && this.waves[i].labelName == wave.targetLabelName)
+                        {
+                            this.nowWaveIndex = i;  // this is like setting the program counter in the CPU to the loop label
+                            break;
+                        }
+                    }
+                }
+            }
+            this.nowWaveIndex++;
         }
     }
     IEnumerator implementWaveProcess(Wave wave)
@@ -145,7 +196,7 @@ public class WaveSystem : MonoBehaviour
                 }
             }
         }
-        else
+        else if (wave.mode == WaveMode.Boss)
         {
             this.dragon.Born(wave);
             while (this.dragon.is_on_stage == true)  // wait until the dragon flies away

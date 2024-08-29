@@ -47,9 +47,18 @@ public class WaveEditor : PropertyDrawer
                 PropertyField v_candidatesField = new PropertyField();
                 // 此處unity有嚴重bug,如果你使用 PropertyField v_candidatesField = new PropertyField(property.FindPropertyRelative("v_candidates"));
                 v_candidatesField.BindProperty(property.FindPropertyRelative("v_candidates"));
+
+                PropertyField waveNameField = new PropertyField();
+                waveNameField.BindProperty(property.FindPropertyRelative("waveName"));
+
+                PropertyField numOfVocabulariesField = new PropertyField();
+                numOfVocabulariesField.BindProperty(property.FindPropertyRelative("numOfVocabularies"));
+
                 Button subwaveWindowButton = new Button(() => { OpenJohnEditorWindow(property); });
                 subwaveWindowButton.text = "Subwave Editor";
                 container1.Add(subwaveWindowButton);
+                container1.Add(waveNameField);
+                container1.Add(numOfVocabulariesField);
                 container1.Add(v_candidatesField);
 
                 // Setup Red Cutline

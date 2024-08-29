@@ -108,6 +108,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\SceneControllerWrapper.cs" />
     <Compile Include="Assets\MilkShake\Demo\Scripts\CameraDistance.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\LightControl\LightControlMixerBehaviour.cs" />
+    <Compile Include="Assets\Scripts\RuntimeGlobalDictionary.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\Bullet.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Utility\SetMaterialRenderQueue.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\AI\GunnerProjectile.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\Utility\DialogueCanvasController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Player\LocomotionWithGunSMB.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Utility\AutoCameraSetup.cs" />
+    <Compile Include="Assets\StageWordBank.cs" />
     <Compile Include="Assets\2DGamekit\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Core\ObjectPool.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\LightControl\LightControlClip.cs" />

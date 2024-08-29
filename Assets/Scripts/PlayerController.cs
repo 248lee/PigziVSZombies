@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
+using JohnUtils;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,7 +25,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject normalPP, frozenPP;
     [SerializeField] Animator UIanimator;
     bool isFreezing;
-    // Start is called before the first frame update
+    private void LateUpdate()
+    {
+        RuntimeGlobalDictionary.CopyBufferToReal();
+    }
     void Start()
     {
         this.isFreezing = false;

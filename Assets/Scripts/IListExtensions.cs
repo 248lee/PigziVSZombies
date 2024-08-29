@@ -3,31 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public static class IListExtensions
+namespace JohnUtils
 {
-    /// <summary>
-    /// Shuffles the element order of the specified list.
-    /// </summary>
-    public static void Shuffle<T>(this IList<T> ts)
+    public static class IListExtensions
     {
-        var count = ts.Count;
-        var last = count - 1;
-        for (var i = 0; i < last; ++i)
+        /// <summary>
+        /// Shuffles the element order of the specified list.
+        /// </summary>
+        public static void Shuffle<T>(this IList<T> ts)
         {
-            var r = UnityEngine.Random.Range(i, count);
-            var tmp = ts[i];
-            ts[i] = ts[r];
-            ts[r] = tmp;
+            var count = ts.Count;
+            var last = count - 1;
+            for (var i = 0; i < last; ++i)
+            {
+                var r = UnityEngine.Random.Range(i, count);
+                var tmp = ts[i];
+                ts[i] = ts[r];
+                ts[r] = tmp;
+            }
         }
-    }
-    public static int[] ConvertStringToIntArray(string input)
-    {
-        // Split the string by commas and remove any surrounding whitespace
-        string[] stringArray = input.Split(',').Select(s => s.Trim()).ToArray();
+        public static int[] ConvertStringToIntArray(string input)
+        {
+            // Split the string by commas and remove any surrounding whitespace
+            string[] stringArray = input.Split(',').Select(s => s.Trim()).ToArray();
 
-        // Convert the string array to an int array
-        int[] intArray = stringArray.Select(int.Parse).ToArray();
+            // Convert the string array to an int array
+            int[] intArray = stringArray.Select(int.Parse).ToArray();
 
-        return intArray;
+            return intArray;
+        }
     }
 }

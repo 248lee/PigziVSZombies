@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System.Text.RegularExpressions;
+using JohnUtils;
 using UnityEngine.UI;
 using TMPro;
 using MilkShake;
@@ -59,6 +60,7 @@ public class DragonController : MonoBehaviour
         this.updateTheNumOfCurrentParts();
         this.updateFireballsInStateMachine();
         this.updateHPbarAndStateMachine();
+        RuntimeGlobalDictionary.SetVariable("BossHP", (float)this.hp);
     }
     public void Born(Wave wave)
     {

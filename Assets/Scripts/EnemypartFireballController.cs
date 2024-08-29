@@ -50,7 +50,6 @@ public class EnemypartFireballController : FireballController
         this.SetAbleToBeDestroyed();
         this.progressBar.gameObject.SetActive(false);
         this.questionText.text = "";
-        this.fireballSystem.currentParts--;
     }
     IEnumerator countTime() //過時流程由fireballSystem呼叫，此處僅計時用途
     {

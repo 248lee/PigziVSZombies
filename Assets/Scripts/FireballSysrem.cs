@@ -113,6 +113,7 @@ public class FireballSysrem : MonoBehaviour
         {
             i.partWrong();
         }
+        this.currentParts = 0;  // set to 0 since all the parts are cleared
     }
     public void SetPause(bool set)
     {

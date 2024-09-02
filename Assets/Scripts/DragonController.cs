@@ -21,7 +21,7 @@ public class DragonController : MonoBehaviour
     [SerializeField] GameObject testball;
     [SerializeField] List<Transform> flame_targets = new List<Transform>();
     [SerializeField] Color textColor;
-    [SerializeField] GameObject damagePopup;
+    [SerializeField] DamagePopupController damagePopup;
     [SerializeField] ShakePreset DragonFlyAwayShake_preset;
     int hp;
     bool pauseTimer;
@@ -29,9 +29,11 @@ public class DragonController : MonoBehaviour
     Wave wave;
     public bool is_on_stage = false;
     ChildSticker textSticker;
+    WaveSystem waveSystemOfThisStage;
     // Start is called before the first frame update
     void Start()
     {
+        this.waveSystemOfThisStage = FindObjectOfType<WaveSystem>();
         this.textSticker = GetComponentInChildren<ChildSticker>();
         this.pauseTimer = false;
         this.hp = this.maxHP;
@@ -83,8 +85,8 @@ public class DragonController : MonoBehaviour
     }
     public void dropFireballs(Vector3 layPos)
     {
-        this.fireballSystem.generateFireballForDragon(layPos, wave.questions[0]);
-        wave.questions.RemoveAt(0); // pop out a question
+        Question question = this.waveSystemOfThisStage.AskForAQuestion(wave);
+        this.fireballSystem.generateFireballForDragon(layPos, question);
     }
     public void partAttackForFlame(float countdowntime)  //倒數秒數請至state machine調整
     {
@@ -215,7 +217,7 @@ public class DragonController : MonoBehaviour
         this.hp += deltaHP;
         yield return null;
         // popup damage number
-        Instantiate(this.damagePopup, this.hpBar.GetFilling());
+        this.damagePopup.InitializeDamagePopup(deltaHP, this.hpBar.GetFilling());
     }
 
     //Graph Animation Controller

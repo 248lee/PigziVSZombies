@@ -107,6 +107,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\Core\InteractOnButton2D.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\SceneControllerWrapper.cs" />
     <Compile Include="Assets\MilkShake\Demo\Scripts\CameraDistance.cs" />
+    <Compile Include="Assets\Scripts\StaticGlobalVariables.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\LightControl\LightControlMixerBehaviour.cs" />
     <Compile Include="Assets\Scripts\RuntimeGlobalDictionary.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\Bullet.cs" />
@@ -139,6 +140,8 @@
     <Compile Include="Assets\MilkShake\Scripts\ShakeResult.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Enemies\ChomperAttackSMB.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Audio\BackgroundMusicPlayer.cs" />
+    <Compile Include="Assets\Scripts\GPTRequester.cs" />
+    <Compile Include="Assets\Scripts\DamagePopupController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\UI\InputDisplayUI.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Player\AirborneMeleeAttackSMB.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\UI\HealthUI.cs" />
@@ -168,6 +171,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\SceneTransitionDestination.cs" />
     <Compile Include="Assets\VocabularyBoard.cs" />
     <Compile Include="Assets\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
+    <Compile Include="Assets\Scripts\StageWordBank.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\VFXController.cs" />
     <Compile Include="Assets\Scripts\FireballSysrem.cs" />
     <Compile Include="Assets\OpenAI_API\Moderation\IModerationEndpoint.cs" />
@@ -188,7 +192,6 @@
     <Compile Include="Assets\2DGamekit\Scripts\Utility\DialogueCanvasController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Player\LocomotionWithGunSMB.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Utility\AutoCameraSetup.cs" />
-    <Compile Include="Assets\StageWordBank.cs" />
     <Compile Include="Assets\2DGamekit\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Core\ObjectPool.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\LightControl\LightControlClip.cs" />
@@ -308,6 +311,7 @@
     <Compile Include="Assets\OpenAI_API\Audio\TextToSpeechRequest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\StreamingAssets\SentenceBanks\optimize.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\UnityStandardParticleShadow.cginc" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -315,10 +319,13 @@
     <None Include="Assets\2DGamekit\Utilities\Shaders\FrostedGlass.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedSprite-Animated.shader" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\shuttle.txt" />
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\protracted.txt" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedSprite.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\traffic.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\outgive.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Sprites\EmojiOne_License.txt" />
     <None Include="Assets\2DGamekit\Utilities\Fonts\Rajdhani\RajdhaniFontLicense.txt" />
     <None Include="Assets\2DGamekit\2DGameKit_Third-PartyNotice.txt" />
@@ -329,6 +336,7 @@
     <None Include="Assets\TreePack1_Free\Read Me.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\strong.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\nationwide.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\certain.txt" />
     <None Include="Assets\MilkShake\Documentation\Simple Setup.txt" />
@@ -349,11 +357,14 @@
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Shaders\FireFly.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\final.txt" />
     <None Include="Assets\SomeFires\Procedural fire\Shaders\FireSphere.shader" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\generate.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\fight.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\deposit.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\SomeFires\Procedural fire\Demo scene\Readme.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\eternal.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\paris.txt" />
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Shaders\Dissolve.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />

@@ -14744,13 +14744,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.44
-  m_fontSizeBase: 11.44
+  m_fontSize: 13.75
+  m_fontSizeBase: 13.75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -15292,13 +15292,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.44
-  m_fontSizeBase: 11.44
+  m_fontSize: 13.75
+  m_fontSizeBase: 13.75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -27569,6 +27569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vocabularyBoard: {fileID: 647425930}
+  wordBankOfThisStage: {fileID: 1989700013}
   waves:
   - mode: 1
     v_candidates:
@@ -27584,6 +27585,7 @@ MonoBehaviour:
       durationMin: 8
       durationMax: 7
       healBallDelay: 999
+    p_numOfVocabularies: 3
     labelName: Hello World
     targetLabelName: Unnamed
     runtimeVariableA: UnknownGlobalVariable
@@ -27608,6 +27610,7 @@ MonoBehaviour:
       durationMin: 3.96
       durationMax: 6.9
       healBallDelay: 999
+    p_numOfVocabularies: 0
     labelName: boss not dead yet
     targetLabelName: Unnamed
     runtimeVariableA: UnknownGlobalVariable
@@ -27632,6 +27635,7 @@ MonoBehaviour:
       durationMin: 3.96
       durationMax: 6.9
       healBallDelay: 999
+    p_numOfVocabularies: 0
     labelName: 
     targetLabelName: Unnamed
     runtimeVariableA: UnknownGlobalVariable
@@ -27656,6 +27660,7 @@ MonoBehaviour:
       durationMin: 3.96
       durationMax: 6.9
       healBallDelay: 999
+    p_numOfVocabularies: 2
     labelName: 
     targetLabelName: Unnamed
     runtimeVariableA: UnknownGlobalVariable
@@ -27680,6 +27685,7 @@ MonoBehaviour:
       durationMin: 3.96
       durationMax: 6.9
       healBallDelay: 999
+    p_numOfVocabularies: 0
     labelName: 
     targetLabelName: boss not dead yet
     runtimeVariableA: BossHP
@@ -72692,13 +72698,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.44
-  m_fontSizeBase: 11.44
+  m_fontSize: 13.75
+  m_fontSizeBase: 13.75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -78614,13 +78620,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.44
-  m_fontSizeBase: 11.44
+  m_fontSize: 13.75
+  m_fontSizeBase: 13.75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -78693,7 +78699,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9690c980130a43a8b23d854e67dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularWords: []
+  regularWords:
+  - generate
+  - outgive
+  - eternal
+  - protracted
+  - deposit
+  - nationwide
+  - optimize
+  - shuttle
+  waveSystemOfThisStage: {fileID: 853094385}
 --- !u!4 &1989700014
 Transform:
   m_ObjectHideFlags: 0

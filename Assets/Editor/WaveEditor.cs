@@ -61,6 +61,14 @@ public class WaveEditor : PropertyDrawer
                 container1.Add(numOfVocabulariesField);
                 container1.Add(v_candidatesField);
 
+                // Boss: field of p_numOfVocabularies
+                if (newMode == WaveMode.Boss)
+                {
+                    PropertyField p_numOfVocabulariesField = new PropertyField();
+                    p_numOfVocabulariesField.BindProperty(property.FindPropertyRelative("p_numOfVocabularies"));
+                    container1.Add(p_numOfVocabulariesField);
+                }
+
                 // Setup Red Cutline
                 StyleSheet cutLine_uss = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Editor/Uss/Test.uss");
                 cutLine.styleSheets.Add(cutLine_uss);

@@ -32,9 +32,11 @@ public class Wave
 
     public List<string> v_candidates;
     public string waveName = "";
-    public int numOfVocabularies = 5;
+    public int numOfVocabularies = 0;
     public List<Question> questions = new();
     public List<Subwave> subwaves = new();
+
+    public int p_numOfVocabularies = 0;
 
     public string labelName = "Unnamed";
 
@@ -69,58 +71,30 @@ public class WaveSystem : MonoBehaviour
     private List<ChatMessage> default_example = new List<ChatMessage> { exampleMessage_sentence_q, exampleMessage_sencence_ans, exampleMessage_sentence_o, exampleMessage_sencence_ans2};
 
     [SerializeField] VocabularyBoard vocabularyBoard;
+    [SerializeField] StageWordBank wordBankOfThisStage;
     
     public List<Wave> waves;
     public int nowWaveIndex = 0;
-    PlayerController playerController;
     DragonController dragon;
     FireballSysrem fireballsystem;
     private OpenAIAPI gpt;
-    private Conversation chat;
     private ChatMessage systemMessage_sentence, systemMessage_paragraph;
 
     // Start is called before the first frame update
-    async void Start()
+    void Start()
     {
-        this.gpt = new OpenAIAPI(Environment.GetEnvironmentVariable("OPENAI_KEY", EnvironmentVariableTarget.User));
-        this.chat = this.gpt.Chat.CreateConversation();
-        this.chat.Model = Model.GPT4_Turbo;
-        this.chat.RequestParameters.Temperature = 0;
-
-        string systemMessage_sentence_string = @"Make an example using the given vocabulary. Surround the vocabulary 
-            with a brackey '<    >' . Also keep the sentence within ten words. Each sentence should only have one bracket,
-            and if you use more than two times of the given vocabulary, just surround the first appearance with the bracket.";
-        this.systemMessage_sentence = new ChatMessage(ChatMessageRole.System, systemMessage_sentence_string);
-
-        string systemMessage_paragraph_string = @"The user will give you a list of English vocabularies. 
-            Your job is to write a short paragraph using these vocabularies. The paragraph you provided 
-            will be used as a fill-in-the-blank problem. Please put the word you use from the provided 
-            vocabularies between < and >. Each vocabulary should be used exactly one time.
-            In the next line, print out the order of the vocabularies you used in terms of the original order in the list of the given vocabularies, seperated with commas.
-            Do not output anything else I've not mentioned.";
-        this.systemMessage_paragraph = new ChatMessage(ChatMessageRole.System, systemMessage_paragraph_string);
-        this.playerController = FindObjectOfType<PlayerController>();
         this.dragon = FindObjectOfType<DragonController>();
         this.fireballsystem = FindObjectOfType<FireballSysrem>();
-
-        List<Task> generateGPTasks = new List<Task>();
-        foreach (Wave wave in waves)
-        {
-            generateGPTasks.Add(generateQuestions(wave));
-            if (wave.mode == WaveMode.Boss)
-                generateGPTasks.Add(generateParagraph(wave));
-        }
-        foreach (Task gpt_task in generateGPTasks)
-        {
-            await gpt_task;
-        }
-        if (Application.isPlaying)
-            StartCoroutine(this.gameProcess());
     }
 
     // Update is called once per frame
     void Update()
     {
+    }
+    public void StartGameProcess()
+    {
+        if (Application.isPlaying)
+            StartCoroutine(this.gameProcess());
     }
     IEnumerator gameProcess()
     {
@@ -129,6 +103,10 @@ public class WaveSystem : MonoBehaviour
             Wave wave = this.waves[this.nowWaveIndex];
             if (wave.mode == WaveMode.Boss || wave.mode == WaveMode.Normal)
             {
+                if (wave.mode == WaveMode.Normal)
+                    this.wordBankOfThisStage.WordsOutgive(wave);
+                else
+                    this.wordBankOfThisStage.ParagraphAndWordsOutgive(wave);
                 this.vocabularyBoard.UpdateVocabularyBoard(wave.v_candidates);
                 yield return StartCoroutine(this.implementWaveProcess(wave));
             }
@@ -180,6 +158,13 @@ public class WaveSystem : MonoBehaviour
             this.nowWaveIndex++;
         }
     }
+    public Question AskForAQuestion(Wave wave)
+    {
+        int random_index = UnityEngine.Random.Range(0, wave.v_candidates.Count);
+        string vocabulary = wave.v_candidates[random_index];  // Randomly select a vocabulary from wave.v_candidates
+        string sentence = this.wordBankOfThisStage.GiveOneSentence(vocabulary);
+        return new Question(vocabulary, sentence);
+    }
     IEnumerator implementWaveProcess(Wave wave)
     {
         if (wave.mode == WaveMode.Normal)
@@ -189,9 +174,9 @@ public class WaveSystem : MonoBehaviour
                 yield return new WaitForSeconds(subwave.startDelay); // Implementing Subwave process here
                 for (int i = 0; i < subwave.numOfEmmisions; i++)
                 {
+                    Question question = this.AskForAQuestion(wave);
+                    this.fireballsystem.generateFireball(question);
                     float delayTime = UnityEngine.Random.Range(subwave.durationMin, subwave.durationMax);
-                    this.fireballsystem.generateFireball(wave.questions[0]); // pop out a question
-                    wave.questions.RemoveAt(0); // pop out a question
                     yield return new WaitForSeconds(delayTime);
                 }
             }
@@ -363,7 +348,6 @@ public class WaveSystem : MonoBehaviour
         Debug.Log(gpt_result_paragraph_and_order);
         int[] orders = IListExtensions.ConvertStringToIntArray(tmp[tmp.Length - 1]);
 
-
         // Reorder the query vocabularies into the order that GPT used.
         List<string> used_vocabularies = new List<string>();
         foreach (int o in orders)
@@ -373,17 +357,5 @@ public class WaveSystem : MonoBehaviour
 
         // Send the resulting paragraph and vocabularies(answers) to the DuLagooooon!!!!
         wave.dragon_paragraph = new Paragraph(used_vocabularies, gpt_result_paragraph);
-    }
-
-    float getTimeRandPos(float duration, float td)
-    {
-        float tmp = UnityEngine.Random.Range(0, duration);
-        if (tmp < td)
-        {
-            int rePick = UnityEngine.Random.Range(0, 2);
-            if (rePick == 0)
-                tmp = getTimeRandPos(duration, td);
-        }
-        return tmp;
     }
 }

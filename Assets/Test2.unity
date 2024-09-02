@@ -26737,6 +26737,7 @@ MonoBehaviour:
   - {fileID: 312495447}
   - {fileID: 2084487814}
   - {fileID: 754046371}
+  healPopup: {fileID: 2720161301293355817, guid: 47201e78d8f209940b16dcce80aa224a, type: 3}
 --- !u!61 &795700802
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27346,6 +27347,7 @@ MonoBehaviour:
   - {fileID: 494254406}
   - {fileID: 2057716055}
   - {fileID: 1617126067}
+  healPopup: {fileID: 2720161301293355817, guid: 47201e78d8f209940b16dcce80aa224a, type: 3}
 --- !u!61 &841247948
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27591,106 +27593,6 @@ MonoBehaviour:
     runtimeVariableA: UnknownGlobalVariable
     relation: 0
     runtimeVariableB: UnknownGlobalVariable
-    dragon_paragraph:
-      vocabularies: []
-      article: 
-  - mode: 2
-    v_candidates:
-    - chunk
-    - mammal
-    - environment
-    - trainer
-    - certain
-    waveName: 
-    numOfVocabularies: 5
-    questions: []
-    subwaves:
-    - startDelay: 0.1
-      numOfEmmisions: 10
-      durationMin: 3.96
-      durationMax: 6.9
-      healBallDelay: 999
-    p_numOfVocabularies: 0
-    labelName: boss not dead yet
-    targetLabelName: Unnamed
-    runtimeVariableA: UnknownGlobalVariable
-    relation: 0
-    runtimeVariableB: UnknownGlobalVariable
-    dragon_paragraph:
-      vocabularies: []
-      article: 
-  - mode: 0
-    v_candidates:
-    - chunk
-    - mammal
-    - environment
-    - trainer
-    - certain
-    waveName: 
-    numOfVocabularies: 5
-    questions: []
-    subwaves:
-    - startDelay: 0.1
-      numOfEmmisions: 10
-      durationMin: 3.96
-      durationMax: 6.9
-      healBallDelay: 999
-    p_numOfVocabularies: 0
-    labelName: 
-    targetLabelName: Unnamed
-    runtimeVariableA: UnknownGlobalVariable
-    relation: 0
-    runtimeVariableB: UnknownGlobalVariable
-    dragon_paragraph:
-      vocabularies: []
-      article: 
-  - mode: 1
-    v_candidates:
-    - chunk
-    - mammal
-    - environment
-    - trainer
-    - certain
-    waveName: 
-    numOfVocabularies: 5
-    questions: []
-    subwaves:
-    - startDelay: 0.1
-      numOfEmmisions: 10
-      durationMin: 3.96
-      durationMax: 6.9
-      healBallDelay: 999
-    p_numOfVocabularies: 2
-    labelName: 
-    targetLabelName: Unnamed
-    runtimeVariableA: UnknownGlobalVariable
-    relation: 0
-    runtimeVariableB: UnknownGlobalVariable
-    dragon_paragraph:
-      vocabularies: []
-      article: 
-  - mode: 3
-    v_candidates:
-    - chunk
-    - mammal
-    - environment
-    - trainer
-    - certain
-    waveName: 
-    numOfVocabularies: 5
-    questions: []
-    subwaves:
-    - startDelay: 0.1
-      numOfEmmisions: 10
-      durationMin: 3.96
-      durationMax: 6.9
-      healBallDelay: 999
-    p_numOfVocabularies: 0
-    labelName: 
-    targetLabelName: boss not dead yet
-    runtimeVariableA: BossHP
-    relation: 3
-    runtimeVariableB: 0
     dragon_paragraph:
       vocabularies: []
       article: 
@@ -28683,6 +28585,7 @@ MonoBehaviour:
   - {fileID: 492885759}
   - {fileID: 2081349660}
   - {fileID: 585358877}
+  healPopup: {fileID: 2720161301293355817, guid: 47201e78d8f209940b16dcce80aa224a, type: 3}
 --- !u!61 &957523199
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -48461,6 +48364,7 @@ MonoBehaviour:
   - {fileID: 1054272478697708}
   - {fileID: 836202478}
   - {fileID: 1543306345613490}
+  healPopup: {fileID: 2720161301293355817, guid: 47201e78d8f209940b16dcce80aa224a, type: 3}
 --- !u!50 &1527108156
 Rigidbody2D:
   serializedVersion: 4
@@ -72263,7 +72167,7 @@ MonoBehaviour:
   - {fileID: 832073211}
   - {fileID: 2074478317}
   textColor: {r: 0, g: 0, b: 0, a: 1}
-  damagePopup: {fileID: 772610535133546210, guid: 2fc65745daa59f14c82523fd7ff31a01, type: 3}
+  damagePopup: {fileID: 2720161301293355817, guid: 2fc65745daa59f14c82523fd7ff31a01, type: 3}
   DragonFlyAwayShake_preset: {fileID: 11400000, guid: 91dc7f73104ac1c40a55abc4ccfd5e4f, type: 2}
   is_on_stage: 0
 --- !u!95 &1855131373

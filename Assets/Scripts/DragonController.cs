@@ -217,7 +217,7 @@ public class DragonController : MonoBehaviour
         this.hp += deltaHP;
         yield return null;
         // popup damage number
-        this.damagePopup.InitializeDamagePopup(deltaHP, this.hpBar.GetFilling());
+        this.damagePopup.CreateDamagePopup(deltaHP, this.hpBar.GetFilling());
     }
 
     //Graph Animation Controller

@@ -3,11 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+public enum PopupAnimationType
+{
+    PopFromUpToDown,
+    FloatsAbove
+}
 public class DamagePopupController : MonoBehaviour
 {
-    public void InitializeDamagePopup(int damageValue, Transform parent)
+    [SerializeField] PopupAnimationType popupAnimationType;
+    public void CreateDamagePopup(int damageValue, Transform parent)
     {
-        Instantiate(gameObject, parent);  // This gameObject will be destroyed after the popup animation is end by the state machine
+        DamagePopupController popup_inScreen = Instantiate(this, parent);  // This gameObject will be destroyed after the popup animation is end by the state machine
+        popup_inScreen._Initialize(damageValue);
+    }
+    void _Initialize(int damageValue)
+    {
+        // Decide animation
+        if (this.popupAnimationType == PopupAnimationType.PopFromUpToDown)
+            GetComponent<Animator>().SetInteger("animationSelect", 1);
+        else if (this.popupAnimationType == PopupAnimationType.FloatsAbove)
+            GetComponent<Animator>().SetInteger("animationSelect", 2);
+
+        // Draw text
         string damageText;
         if (damageValue > 0)
             damageText = "+ " + damageValue.ToString();

@@ -10,6 +10,7 @@ public class TreeController : MonoBehaviour
     [SerializeField] float max_hp = 100f, hp, damageRate = 20f;
     [SerializeField] HPBarController hpBar;
     [SerializeField] List<GameObject> Leafs;
+    [SerializeField] DamagePopupController healPopup;
     bool isDamagedByFire;
     FireballSysrem fs;
 
@@ -117,6 +118,8 @@ public class TreeController : MonoBehaviour
         if (this.is_alive)
         {
             this.hp += this.max_hp * this.fs.healRatio;
+            this.hp = Mathf.Max(this.hp, this.max_hp);
+            this.healPopup.CreateDamagePopup((int)(this.max_hp * this.fs.healRatio), this.hpBar.transform);
         }
     }
     void correctHP()

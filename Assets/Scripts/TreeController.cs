@@ -11,7 +11,6 @@ public class TreeController : MonoBehaviour
     [SerializeField] HPBarController hpBar;
     [SerializeField] List<GameObject> Leafs;
     [SerializeField] DamagePopupController healPopup;
-    bool isDamagedByFire;
     FireballSysrem fs;
 
     // Start is called before the first frame update
@@ -20,21 +19,20 @@ public class TreeController : MonoBehaviour
         this.is_alive = true;
         this.hp = this.max_hp;
         this.burningFire = null;
-        this.isDamagedByFire = false;
         this.fs = FindObjectOfType<FireballSysrem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (this.isDamagedByFire)
+        if (this.burningFire != null)
         {
             this.DamagingByFire();
         }
         this.SetTreeImage(this.hp / this.max_hp);
         if (this.burningFire != null && this.is_alive == false)
         {
-            this.burningFire.WildfireOnDeadTree();
+            this.burningFire.WildfireOnDeadTree();  // This turns this.burningFire into null
         }
 
     }
@@ -56,7 +54,6 @@ public class TreeController : MonoBehaviour
                 {
                     if (fireball is FireFireballController fire)
                     {
-                        this.burningFire = fire;
                         fire.wrong();
                     }
                 }
@@ -103,22 +100,20 @@ public class TreeController : MonoBehaviour
         }
     }
 
-    public void SetPersistentDamage(bool isFired, float rate)
+    public void SetBurningFire(FireFireballController fire)
     {
-        this.isDamagedByFire = isFired;
-        this.damageRate = rate;
-    }
-    public void SetPersistentDamage(bool isFired)
-    {
-        this.isDamagedByFire = isFired;
-        this.damageRate = 20f;
+        this.burningFire = fire;
+        if (fire != null)
+            this.damageRate = 20f;
+        else
+            this.damageRate = 0f;
     }
     public void ApplyHeal(float HP)
     {
         if (this.is_alive)
         {
             this.hp += HP;
-            this.hp = Mathf.Max(this.hp, this.max_hp);
+            this.hp = Mathf.Min(this.hp, this.max_hp);
         }
     }
     public void Revive(float recoverHP)

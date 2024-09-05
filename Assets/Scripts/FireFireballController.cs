@@ -23,7 +23,7 @@ public class FireFireballController : FallingFireballController
         this.putOutFireball();
         this.SetAbleToBeDestroyed();
         if (this.burningTree != null)
-            this.burningTree.SetPersistentDamage(false);
+            this.burningTree.SetBurningFire(null);
     }
     protected override void pause()
     {
@@ -34,7 +34,7 @@ public class FireFireballController : FallingFireballController
         }
         else
         {
-            this.burningTree.burningFire = null;
+            this.burningTree.SetBurningFire(null);
             this.ableShoot = false;
             this.SetAbleToBeDestroyed();
             Destroy(this.wildfire_particle.gameObject);
@@ -53,7 +53,7 @@ public class FireFireballController : FallingFireballController
             this.is_onTree = true;
             this.realSpeed = 0f;
             this.putOutFireball();
-            this.burningTree.SetPersistentDamage(true, 20f);
+            this.burningTree.SetBurningFire(this);
             this.wildfire_particle.gameObject.SetActive(true);
             this.questionText.color = Color.black;
         }
@@ -74,6 +74,7 @@ public class FireFireballController : FallingFireballController
         this.ableShoot = false;
         this.SetAbleToBeDestroyed();
         this.putOutWildFire();
+        this.burningTree.SetBurningFire(null);
         // transform.position += new Vector3(0f, 0f, 1f);
         this.realSpeed = 0f; // stop the fireball from falling down
     }

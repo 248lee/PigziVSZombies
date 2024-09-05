@@ -12,7 +12,8 @@ public class FireballSysrem : MonoBehaviour
     public DragonController bossDragon;
     public float shootAnimSpeed = 5f;
     public int currentParts;
-    public float healRatio = 0.2f;
+    public float healRatio = 0.4f;
+    public float reviveHealRatio = 0.1f;
     public GameObject bullet;
     public Vector3 bulletStartPosition;
     public GameObject dust;

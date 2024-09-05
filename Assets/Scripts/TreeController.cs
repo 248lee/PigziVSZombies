@@ -7,7 +7,7 @@ public class TreeController : MonoBehaviour
     public FireFireballController burningFire;
     public bool is_onFire;
     public bool is_alive;
-    [SerializeField] float max_hp = 100f, hp, damageRate = 20f;
+    public float max_hp = 100f, hp, damageRate = 20f;
     [SerializeField] HPBarController hpBar;
     [SerializeField] List<GameObject> Leafs;
     [SerializeField] DamagePopupController healPopup;
@@ -113,13 +113,20 @@ public class TreeController : MonoBehaviour
         this.isDamagedByFire = isFired;
         this.damageRate = 20f;
     }
-    public void heal()
+    public void ApplyHeal(float HP)
     {
         if (this.is_alive)
         {
-            this.hp += this.max_hp * this.fs.healRatio;
+            this.hp += HP;
             this.hp = Mathf.Max(this.hp, this.max_hp);
-            this.healPopup.CreateDamagePopup((int)(this.max_hp * this.fs.healRatio), this.hpBar.transform);
+        }
+    }
+    public void Revive(float recoverHP)
+    {
+        if (!this.is_alive)
+        {
+            this.hp = recoverHP;
+            this.is_alive = true;
         }
     }
     void correctHP()

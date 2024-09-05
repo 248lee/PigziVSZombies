@@ -29305,6 +29305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accelerationValue: 5.06
   healEffect: {fileID: 1786706039427795776, guid: 4dce78f3842477445966340a80096c76, type: 3}
+  healScript: {fileID: 0}
 --- !u!58 &4342362228431713482
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -34436,6 +34437,7 @@ MonoBehaviour:
   realSpeed: 0
   falling_potion: {fileID: 4848417935368937607}
   healball_particle: {fileID: 7624574381212389606}
+  healScript: {fileID: 11400000, guid: 405350f36bc2d844fb9a0e0dbe377ac7, type: 2}
 --- !u!1 &7422032014892762532
 GameObject:
   m_ObjectHideFlags: 0

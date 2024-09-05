@@ -9,6 +9,7 @@ public class HealParController : MonoBehaviour
     bool fallOnTree;
     [SerializeField] float accelerationValue = .5f;
     [SerializeField] GameObject healEffect;
+    public ChangeHPScript healScript = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,12 +33,36 @@ public class HealParController : MonoBehaviour
     {
         if (collision.tag == "floor")
         {
-            collision.GetComponentInParent<TreeController>().heal();
+            TreeController targetTree = collision.GetComponentInParent<TreeController>();
+            if (this.healScript == null)
+            {
+                Debug.LogError("JohnLee: You should assign a scriptable object called ChangeHPScript to this particle in order to apply damage!");
+                return;
+            }
+            if (targetTree.is_alive)
+            {
+                float deltaHP = this.healScript.ComputeHPChange(targetTree.max_hp);
+                this.healScript.ShowPopup(deltaHP, targetTree.transform);
+                targetTree.ApplyHeal(deltaHP);
+            }
+            else
+            {
+                float deltaHP = this.healScript.ComputeHPChangeRevive(targetTree.max_hp);
+                targetTree.Revive(deltaHP);
+                StartCoroutine(this.ReviveTreePopup(deltaHP, targetTree));
+            }
+            
             GameObject tempEffect = Instantiate(this.healEffect, transform.position, Quaternion.identity);
             Destroy(tempEffect, 1.5f);
             this.fallOnTree = true;
             Destroy(gameObject, 0.3f);
         }
+    }
+    IEnumerator ReviveTreePopup(float recoverHP, TreeController targetTree)
+    {
+        this.healScript.ShowPopupRevive(targetTree.transform);
+        yield return new WaitForSeconds(.25f);
+        this.healScript.ShowPopup(recoverHP, targetTree.transform);
     }
     public void StartFall()
     {

@@ -7,6 +7,7 @@ public class HealFireballController : FallingFireballController
 {
     [SerializeField] HealParController falling_potion;
     [SerializeField] ParticleSystem healball_particle;
+    [SerializeField] ChangeHPScript healScript = null;
     protected override void Update()
     {
         if (this.ableShoot && transform.position.y < this.fireballSystem.healballBound)
@@ -25,6 +26,7 @@ public class HealFireballController : FallingFireballController
     {
         this.SetAbleToBeDestroyed();
         this.healball_particle.gameObject.SetActive(false); // Turn off the particle effects
+        falling_potion.healScript = this.healScript;
         falling_potion.StartFall();
 
         // Wrong out other fireballs on the same row

@@ -14657,20 +14657,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a3f8eb545ea1e44b6e7aa43f1c64ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   question:
     vocabulary: 
     sentence: 
     real_sentence: 
   questionText: {fileID: 5336158128362746146}
   ableShoot: 1
-  burningTree: {fileID: 0}
   index: -1
   ableToBeDestroyed: 0
   speed: -1.1
   realSpeed: 0
   fireball_particle: {fileID: 6804638442088478519}
   wildfire_particle: {fileID: 81332743265948744}
+  burningTree: {fileID: 0}
 --- !u!1 &4317206514729939604
 GameObject:
   m_ObjectHideFlags: 0
@@ -29208,7 +29207,6 @@ GameObject:
   - component: {fileID: 4322012105590311248}
   - component: {fileID: 4119660986012318268}
   - component: {fileID: 4120304350952286698}
-  - component: {fileID: 2812748507665122716}
   - component: {fileID: 8664092997095515326}
   - component: {fileID: 5593197039213209848}
   m_Layer: 0
@@ -34046,20 +34044,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &2812748507665122716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4318468585851659250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6ac1000c94017c468862589da87e0fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  accelerationValue: 5.06
-  healEffect: {fileID: 7551541739811113754, guid: 4dce78f3842477445966340a80096c76, type: 3}
 --- !u!58 &8664092997095515326
 CircleCollider2D:
   m_ObjectHideFlags: 0

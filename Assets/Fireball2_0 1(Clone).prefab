@@ -113,23 +113,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f33c60ca3d2d32429f86eb9559c52d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  speed: -1.1
-  realSpeed: 0
   question:
     vocabulary: final
     sentence: <        >
     real_sentence: <final>
   questionText: {fileID: 2670363050042873545}
   ableShoot: 1
-  graph1: {fileID: 6583367179005905279}
-  graph2: {fileID: 7084983926686437849}
-  burningTree: {fileID: 0}
   index: -1
   ableToBeDestroyed: 0
-  progressBar: {fileID: 3909415538810804003}
-  fireballSystem: {fileID: 0}
-  healPar: {fileID: 3517495880265463641}
 --- !u!1 &1311748347814091793
 GameObject:
   m_ObjectHideFlags: 0
@@ -19731,7 +19722,6 @@ GameObject:
   - component: {fileID: 2006150925250087855}
   - component: {fileID: 5302055334074817389}
   - component: {fileID: 4590625209753603620}
-  - component: {fileID: 3517495880265463641}
   - component: {fileID: 5536874514725665177}
   - component: {fileID: 3276750326236795974}
   m_Layer: 0
@@ -24569,20 +24559,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &3517495880265463641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6167033640837056755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6ac1000c94017c468862589da87e0fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  accelerationValue: 5.06
-  healEffect: {fileID: 7551541739811113754, guid: 4dce78f3842477445966340a80096c76, type: 3}
 --- !u!58 &5536874514725665177
 CircleCollider2D:
   m_ObjectHideFlags: 0

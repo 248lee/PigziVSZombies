@@ -70,7 +70,7 @@ public class FireballSysrem : MonoBehaviour
         }
         this.prePos = posIndex;
 
-        FireFireballController temp = Instantiate(this.fireball.gameObject, generateTransforms[posIndex].position, Quaternion.identity).GetComponent<FireFireballController>();
+        FireFireballController temp = Instantiate(this.fireball.gameObject, generateTransforms[posIndex].position, Quaternion.identity, this.transform).GetComponent<FireFireballController>();
         temp.speed = -this.fireballSpeed;
         temp.question = question;
 
@@ -85,14 +85,14 @@ public class FireballSysrem : MonoBehaviour
     }
     void generateOneHealball(Question question, int posIndex)
     {
-        FireballController temp = Instantiate(this.healball.gameObject, generateTransforms[posIndex].position, Quaternion.identity).GetComponent<FireballController>();
+        FireballController temp = Instantiate(this.healball.gameObject, generateTransforms[posIndex].position, Quaternion.identity, this.transform).GetComponent<FireballController>();
         temp.question = question;
         this.fire_onScreen.Add(temp);
     }
 
     public void generateFireballForDragon(Vector3 genPos, Question question)
     {
-        FireFireballController temp = Instantiate(this.fireball.gameObject, genPos, Quaternion.identity).GetComponent<FireFireballController>();
+        FireFireballController temp = Instantiate(this.fireball.gameObject, genPos, Quaternion.identity, this.transform).GetComponent<FireFireballController>();
         temp.speed = -this.fireballSpeed;
         temp.question = question;
 
@@ -100,7 +100,7 @@ public class FireballSysrem : MonoBehaviour
     }
     public void generateEnemyPartForDragon(Transform parent, Vector3 genPos, float duration, string vocabulary_in_paragraph, string vocabulary_to_ans)
     {
-        EnemypartFireballController temp = Instantiate(this.enemypart.gameObject, genPos - new Vector3(0f, z_delta_enemy_part_position, 0f), Quaternion.identity).GetComponent<EnemypartFireballController>();
+        EnemypartFireballController temp = Instantiate(this.enemypart.gameObject, genPos - new Vector3(0f, z_delta_enemy_part_position, 0f), Quaternion.identity, this.transform).GetComponent<EnemypartFireballController>();
         temp.transform.SetParent(parent);
         temp.setMaxTimeForPart(duration);
         temp.question = new Question(vocabulary_to_ans, vocabulary_in_paragraph, 8);

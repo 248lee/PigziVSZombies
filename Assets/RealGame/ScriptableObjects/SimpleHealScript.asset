@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ratio_of_maxHP: 0.4
   bias: 0
-  revive_ratio_of_maxHP: 0.1
+  revive_ratio_of_maxHP: 0.2
   revive_bias: 0
   isShowingPopup: 1
   popup: {fileID: 5216769848582715955, guid: b20ca1314a47ef540a680b5def3077e3, type: 3}

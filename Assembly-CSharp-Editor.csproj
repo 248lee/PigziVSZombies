@@ -83,6 +83,7 @@
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\Editor\TransformTweenDrawer.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\Editor\ParameterSetterDrawer.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Timeline\Editor\DirectorTriggerEditor.cs" />
+    <Compile Include="Assets\Editor\Vector3CustomEditor.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\Editor\DataPersisterEditor.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Objects\Editor\MovingPlatformEditor.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\Editor\SceneNameDrawer.cs" />

@@ -17477,13 +17477,13 @@ MonoBehaviour:
   vocabularyBoard: {fileID: 647425930}
   wordBankOfThisStage: {fileID: 1989700013}
   waves:
-  - mode: 1
+  - mode: 0
     v_candidates:
     - traffic
     - final
-    - paris
+    - diospora
     waveName: 
-    numOfVocabularies: 5
+    numOfVocabularies: 3
     questions: []
     subwaves:
     - startDelay: 0.1
@@ -17497,6 +17497,100 @@ MonoBehaviour:
     runtimeVariableA: UnknownGlobalVariable
     relation: 0
     runtimeVariableB: UnknownGlobalVariable
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 2
+    v_candidates:
+    - traffic
+    - final
+    - diospora
+    waveName: 
+    numOfVocabularies: 3
+    questions: []
+    subwaves:
+    - startDelay: 0.1
+      numOfEmmisions: 1
+      durationMin: 8
+      durationMax: 7
+      healBallDelay: 999
+    p_numOfVocabularies: 3
+    labelName: Wait for Boss Dead
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 0
+    v_candidates:
+    - traffic
+    - final
+    - security
+    - apple
+    - omnipresent
+    waveName: 
+    numOfVocabularies: 5
+    questions: []
+    subwaves:
+    - startDelay: 0.1
+      numOfEmmisions: 6
+      durationMin: 8
+      durationMax: 7
+      healBallDelay: 999
+    p_numOfVocabularies: 3
+    labelName: Hello World
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 1
+    v_candidates:
+    - traffic
+    - final
+    - diospora
+    waveName: 
+    numOfVocabularies: 3
+    questions: []
+    subwaves:
+    - startDelay: 0.1
+      numOfEmmisions: 1
+      durationMin: 8
+      durationMax: 7
+      healBallDelay: 999
+    p_numOfVocabularies: 3
+    labelName: Hello World
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 3
+    v_candidates:
+    - traffic
+    - final
+    - diospora
+    waveName: 
+    numOfVocabularies: 3
+    questions: []
+    subwaves:
+    - startDelay: 0.1
+      numOfEmmisions: 1
+      durationMin: 8
+      durationMax: 7
+      healBallDelay: 999
+    p_numOfVocabularies: 3
+    labelName: Hello World
+    targetLabelName: Wait for Boss Dead
+    runtimeVariableA: BossHP
+    relation: 3
+    runtimeVariableB: 0
     dragon_paragraph:
       vocabularies: []
       article: 
@@ -23492,6 +23586,7 @@ GameObject:
   - component: {fileID: 1527108156}
   - component: {fileID: 1527108157}
   - component: {fileID: 1527108155}
+  - component: {fileID: 1527108158}
   m_Layer: 0
   m_Name: Tree1
   m_TagString: Untagged
@@ -23619,6 +23714,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.49, y: 3.26}
   m_EdgeRadius: 0
+--- !u!114 &1527108158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527108153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95dc9c6f04d8c6b43a87865363790e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  leftPosition: {x: -0.6, y: 0, z: 0}
+  rightPosition: {x: 0.5, y: 0, z: 0}
 --- !u!1 &1533383545
 GameObject:
   m_ObjectHideFlags: 0
@@ -39275,6 +39385,8 @@ MonoBehaviour:
   - nationwide
   - optimize
   - shuttle
+  - omnipresent
+  - diospora
   waveSystemOfThisStage: {fileID: 853094385}
 --- !u!4 &1989700014
 Transform:
@@ -39317,7 +39429,7 @@ Transform:
   m_GameObject: {fileID: 2000290249}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.42, y: -6.83, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

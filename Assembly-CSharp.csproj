@@ -88,6 +88,7 @@
     <Compile Include="Assets\OpenAI_API\IOpenAIAPI.cs" />
     <Compile Include="Assets\OpenAI_API\Embedding\IEmbeddingEndpoint.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Localization\Translator.cs" />
+    <Compile Include="Assets\Scripts\AnimalHome.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Effect\Grenade.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\TransformTweenBehaviour.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TimeDilation\TimeDilationClip.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Enemies\ChomperPatrolSMB.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\PlayerInput.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\CharacterStateSetter.cs" />
+    <Compile Include="Assets\Scripts\Attributes\Vector3CustomShowAttribute.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Timeline\ScrollingText\ScrollingTextMixerBehaviour.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Player\SceneLinkedSMB.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\Video\VideoScriptPlayableAsset.cs" />
@@ -321,6 +323,7 @@
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedSprite-Animated.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\shuttle.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\diospora.txt" />
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\protracted.txt" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedSprite.shader" />
@@ -353,6 +356,7 @@
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\Particle Standard Unlit.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\chunk.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\omnipresent.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\environment.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Shaders\FireFly.shader" />

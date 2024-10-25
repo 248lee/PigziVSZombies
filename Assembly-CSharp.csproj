@@ -78,7 +78,6 @@
     <Compile Include="Assets\Scripts\EnemypartFireballController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Player\PushingSMB.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TextSwitcher\TextSwitcherMixerBehaviour.cs" />
-    <Compile Include="Assets\DamagePopupStateMachine.cs" />
     <Compile Include="Assets\Scripts\DustController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Player\MeleeAttackSMB.cs" />
     <Compile Include="Assets\Scripts\WaterGenerate.cs" />
@@ -91,6 +90,7 @@
     <Compile Include="Assets\Scripts\AnimalHome.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Effect\Grenade.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\TransformTweenBehaviour.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Animal_SM\AnimalReturningState.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TimeDilation\TimeDilationClip.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\LightControl\LightControlTrack.cs" />
     <Compile Include="Assets\Scripts\HPBarController.cs" />
@@ -114,6 +114,7 @@
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\Bullet.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Utility\SetMaterialRenderQueue.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\AI\GunnerProjectile.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Dragon_SM\DragonBeforeFloatIntroState.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TimeDilation\TimeDilationBehaviour.cs" />
     <Compile Include="Assets\Shared\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Player\TriggerVFX.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\NavMeshAgentControl\NavMeshAgentControlMixerBehaviour.cs" />
     <Compile Include="Assets\OpenAI_API\EndpointBase.cs" />
     <Compile Include="Assets\OpenAI_API\Audio\ITextToSpeechEndpoint.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Animal_SM\AnimalEscapingState.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\ScreenFader.cs" />
     <Compile Include="Assets\MilkShake\Demo\Scripts\ToggleAudio.cs" />
     <Compile Include="Assets\MilkShake\Scripts\ShakeParameters.cs" />
@@ -140,6 +142,7 @@
     <Compile Include="Assets\OpenAI_API\Chat\Conversation.cs" />
     <Compile Include="Assets\MilkShake\Scripts\ShakeResult.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\StateMachineBehaviours\Enemies\ChomperAttackSMB.cs" />
+    <Compile Include="Assets\Scripts\AnimalController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Audio\BackgroundMusicPlayer.cs" />
     <Compile Include="Assets\Scripts\GPTRequester.cs" />
     <Compile Include="Assets\Scripts\DamagePopupController.cs" />
@@ -264,6 +267,7 @@
     <Compile Include="Assets\MilkShake\Scripts\Shaker.cs" />
     <Compile Include="Assets\Scripts\Paragraph.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\ScreenFader\ScreenFaderClip.cs" />
+    <Compile Include="Assets\Scripts\AnimalSystem.cs" />
     <Compile Include="Assets\MilkShake\Demo\Scripts\ShakeButton.cs" />
     <Compile Include="Assets\FlyAwayState.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
@@ -273,7 +277,6 @@
     <Compile Include="Assets\2DGamekit\Scripts\Objects\Platforms\MovingPlatform.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\ScreenFader\ScreenFaderMixerBehaviour.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\BulletPool.cs" />
-    <Compile Include="Assets\DragonBeforeFloatIntroState.cs" />
     <Compile Include="Assets\DeleteMe.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\Video\VideoScriptPlayableTrack.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Core\InventoryItem.cs" />
@@ -299,6 +302,7 @@
     <Compile Include="Assets\Scripts\HealFireballController.cs" />
     <Compile Include="Assets\OpenAI_API\Images\ImageResult.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\AI\SendSignal.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\DamagePopup_SM\DamagePopupStateMachine.cs" />
     <Compile Include="Assets\Scripts\TreeController.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Utility\LocalTransformDuplicator.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\ScreenFader\ScreenFaderTrack.cs" />

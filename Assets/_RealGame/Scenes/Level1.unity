@@ -39632,7 +39632,6 @@ MonoBehaviour:
   reviveHealRatio: 0.1
   bullet: {fileID: 4409468344802831724, guid: eb5e6233d04fb75488b260268c44623c, type: 3}
   bulletStartPosition: {x: 3.42, y: -6.83, z: 0}
-  dust: {fileID: 1025285306637258, guid: 201f1b760524f31419c17c7736c072c6, type: 3}
   z_delta_enemy_part_position: 0.85
   _healball_bound: -3.95
   fireballSpeed: 0.7
@@ -52506,7 +52505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchorMin.x
@@ -52514,7 +52513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -52554,11 +52553,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 183.15
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 67860250886233147, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -16,7 +16,6 @@ public class FireballSysrem : MonoBehaviour
     public float reviveHealRatio = 0.1f;
     public GameObject bullet;
     public Vector3 bulletStartPosition;
-    public GameObject dust;
     public float z_delta_enemy_part_position = 0.7f;
     [SerializeField] private float _healball_bound;
     // Public property to allow read-only access from other classes

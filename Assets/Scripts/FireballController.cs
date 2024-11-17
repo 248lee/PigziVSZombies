@@ -83,7 +83,7 @@ public class FireballController : MonoBehaviour
                     this.isShootingMe = false;
                     this.questionText.SetText(this.question.GetRealSentenceWithColor("red")); // show out the correct answer
                     Destroy(temp_bullet, 0.5f);
-                    Instantiate(fireballSystem.dust, transform.position, Quaternion.identity);
+                    //Instantiate(fireballSystem.dust, transform.position, Quaternion.identity);
 
                     // This is the post-process of answering correctly
                     this.PostProcessAfterCorrect();

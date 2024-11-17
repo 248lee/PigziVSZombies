@@ -116,11 +116,11 @@ public class FireballSysrem : MonoBehaviour
         }
         this.currentParts = 0;  // set to 0 since all the parts are cleared
     }
-    public void SetPause(bool set)
+    public void SetFreeze(bool set)
     {
         foreach (FireballController i in this.fire_onScreen)
         {
-            i.SetPause(set);
+            i.SetFreeze(set);
         }
     }
     private void OnDrawGizmos()

@@ -300,7 +300,7 @@ public class DragonController : MonoBehaviour
     {
         this.animator.SetInteger("curBalls", this.fireballSystem.fire_onScreen.Count);
     }
-    public void SetPause(bool set)
+    public void SetFreeze(bool set)
     {
         if (set == true)
         {

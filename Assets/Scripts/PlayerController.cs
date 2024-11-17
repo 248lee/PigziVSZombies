@@ -25,10 +25,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject normalPP, frozenPP;
     [SerializeField] Animator UIanimator;
     bool isFreezing;
-    private void LateUpdate()
-    {
-        RuntimeGlobalDictionary.CopyBufferToReal();
-    }
     void Start()
     {
         this.isFreezing = false;
@@ -58,10 +54,10 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-        //Initialize
+        // Initialize
         this.playerValue = "";
-        //InputButton
-        if (valueInput.Count < 20)
+        // InputButton
+        if (GameflowSystem.instance.is_pausing == false && valueInput.Count < 20)
         {
             if (Input.GetKeyDown(KeyCode.Keypad1))
             {
@@ -117,7 +113,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //valueUpdate
+        // valueUpdate
         if (valueInput.Count != 0)
         {
             foreach (char item in valueInput)
@@ -126,7 +122,8 @@ public class PlayerController : MonoBehaviour
             }
         }
         this.valueText.text = this.playerValue;
-        //answer
+
+        // answer
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (valueInput.Count != 0)
@@ -135,7 +132,16 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //Water系統
+        // pause
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            if (!GameflowSystem.instance.is_pausing)
+                GameflowSystem.instance.SetPause();
+            else
+                GameflowSystem.instance.SetUnpaused();
+        }
+
+        // Water系統
         this.updateWaterAmountToText();
     }
     void preShoot()
@@ -181,8 +187,8 @@ public class PlayerController : MonoBehaviour
     }
     void frozen()
     {
-        this.fireballsystem.SetPause(true);
-        this.dragonController.SetPause(true);
+        this.fireballsystem.SetFreeze(true);
+        this.dragonController.SetFreeze(true);
         AnimatorCleaer.ResetAllTriggers(this.UIanimator);
         this.UIanimator.SetTrigger("frozen");
         this.normalPP.layer = 14;
@@ -195,8 +201,8 @@ public class PlayerController : MonoBehaviour
         this.normalPP.layer = 13;
         this.frozenPP.layer = 14;
         yield return new WaitForSeconds(2f);
-        this.fireballsystem.SetPause(false);
-        this.dragonController.SetPause(false);
+        this.fireballsystem.SetFreeze(false);
+        this.dragonController.SetFreeze(false);
     }
     IEnumerator FrozeProcess()
     {

@@ -199,6 +199,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\Scripts\StageWordBank.cs" />
     <Compile Include="Assets\2DGamekit\Scripts\Character\MonoBehaviours\VFXController.cs" />
+    <Compile Include="Assets\Scripts\GameflowSystem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\Scripts\FireballSysrem.cs" />
     <Compile Include="Assets\OpenAI_API\Moderation\IModerationEndpoint.cs" />

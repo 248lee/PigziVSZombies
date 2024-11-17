@@ -142,7 +142,7 @@ public class FireballController : MonoBehaviour
     //    this.healPar.gameObject.SetActive(true);
     //}
     
-    public void SetPause(bool set)
+    public void SetFreeze(bool set)
     {
         if (set == true)
         {

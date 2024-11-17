@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         }
         if (valueInput.Count != 0)
         {
-            if (Input.GetKeyDown(KeyCode.Backspace))
+            if (GameflowSystem.instance.is_pausing == false && Input.GetKeyDown(KeyCode.Backspace))
             {
                 valueInput.Pop();
             }
@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
         this.valueText.text = this.playerValue;
 
         // answer
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (GameflowSystem.instance.is_pausing == false && Input.GetKeyDown(KeyCode.Space))
         {
             if (valueInput.Count != 0)
             {

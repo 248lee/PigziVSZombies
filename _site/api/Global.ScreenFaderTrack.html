@@ -1,0 +1,569 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ScreenFaderTrack
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ScreenFaderTrack
+   ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Global.ScreenFaderTrack">
+  
+  
+  <h1 id="Global_ScreenFaderTrack" data-uid="Global.ScreenFaderTrack" class="text-break">Class ScreenFaderTrack
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
+    <div class="level2"><span class="xref">UnityEngine.ScriptableObject</span></div>
+    <div class="level3"><span class="xref">UnityEngine.Playables.PlayableAsset</span></div>
+    <div class="level4"><span class="xref">UnityEngine.Timeline.TrackAsset</span></div>
+    <div class="level5"><span class="xref">ScreenFaderTrack</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">UnityEngine.Playables.IPlayableAsset</span></div>
+    <div><span class="xref">UnityEngine.ISerializationCallbackReceiver</span></div>
+    <div><span class="xref">UnityEngine.Timeline.IPropertyPreview</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.m_Clips</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.OnBeforeTrackSerialize()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.OnAfterTrackDeserialize()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.UnityEngine.ISerializationCallbackReceiver.OnBeforeSerialize()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.UnityEngine.ISerializationCallbackReceiver.OnAfterDeserialize()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.GetClips()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.GetChildTracks()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.CreateCurves(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.CreatePlayable(UnityEngine.Playables.PlayableGraph, UnityEngine.GameObject)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.CreateDefaultClip()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.CreateClip&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.DeleteClip(UnityEngine.Timeline.TimelineClip)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.CreateMarker(System.Type, System.Double)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.CreateMarker&lt;T&gt;(System.Double)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.DeleteMarker(UnityEngine.Timeline.IMarker)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.GetMarkers()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.GetMarkerCount()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.GetMarker(System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.OnCreateClip(UnityEngine.Timeline.TimelineClip)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.CalculateItemsHash()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.CreatePlayable(UnityEngine.Playables.PlayableGraph, UnityEngine.GameObject, UnityEngine.Timeline.TimelineClip)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.CanCreateTrackMixer()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.GetAnimationClipHash(UnityEngine.AnimationClip)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.start</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.end</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.duration</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.muted</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.mutedInHierarchy</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.timelineAsset</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.parent</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.isEmpty</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.hasClips</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.hasCurves</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.isSubTrack</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.outputs</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.curves</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.locked</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.lockedInHierarchy</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Timeline.TrackAsset.supportsNotifications</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.ScriptableObject.SetDirty()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.ScriptableObject.CreateInstance(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.ScriptableObject.CreateInstance(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.ScriptableObject.CreateInstance&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.GetInstanceID()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.InstantiateAsync&lt;T&gt;(T)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.InstantiateAsync&lt;T&gt;(T, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.InstantiateAsync&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.InstantiateAsync&lt;T&gt;(T, UnityEngine.Transform, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.InstantiateAsync&lt;T&gt;(T, System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.InstantiateAsync&lt;T&gt;(T, System.Int32, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.InstantiateAsync&lt;T&gt;(T, System.Int32, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.InstantiateAsync&lt;T&gt;(T, System.Int32, System.ReadOnlySpan&lt;UnityEngine.Vector3&gt;, System.ReadOnlySpan&lt;UnityEngine.Quaternion&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.InstantiateAsync&lt;T&gt;(T, System.Int32, UnityEngine.Transform, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.InstantiateAsync&lt;T&gt;(T, System.Int32, UnityEngine.Transform, System.ReadOnlySpan&lt;UnityEngine.Vector3&gt;, System.ReadOnlySpan&lt;UnityEngine.Quaternion&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.SceneManagement.Scene)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object, System.Single)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsByType(System.Type, UnityEngine.FindObjectsSortMode)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsByType(System.Type, UnityEngine.FindObjectsInactive, UnityEngine.FindObjectsSortMode)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DontDestroyOnLoad(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object, System.Single)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindSceneObjectsOfType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfTypeIncludingAssets(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsByType&lt;T&gt;(UnityEngine.FindObjectsSortMode)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsByType&lt;T&gt;(UnityEngine.FindObjectsInactive, UnityEngine.FindObjectsSortMode)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindFirstObjectByType&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindAnyObjectByType&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindFirstObjectByType&lt;T&gt;(UnityEngine.FindObjectsInactive)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindAnyObjectByType&lt;T&gt;(UnityEngine.FindObjectsInactive)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfTypeAll(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindFirstObjectByType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindAnyObjectByType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindFirstObjectByType(System.Type, UnityEngine.FindObjectsInactive)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindAnyObjectByType(System.Type, UnityEngine.FindObjectsInactive)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.name</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.hideFlags</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Global.html">Global</a></h6>
+  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h5 id="Global_ScreenFaderTrack_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TrackColor(0.875F, 0.5944853F, 0.1737132F)]
+[TrackClipType(typeof(ScreenFaderClip))]
+[TrackBindingType(typeof(Image))]
+public class ScreenFaderTrack : TrackAsset, IPlayableAsset, ISerializationCallbackReceiver, IPropertyPreview</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/248lee/PigziVSZombies/new/master/apiSpec/new?filename=Global_ScreenFaderTrack_CreateTrackMixer_UnityEngine_Playables_PlayableGraph_UnityEngine_GameObject_System_Int32_.md&amp;value=---%0Auid%3A%20Global.ScreenFaderTrack.CreateTrackMixer(UnityEngine.Playables.PlayableGraph%2CUnityEngine.GameObject%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/248lee/PigziVSZombies/blob/master/Assets/2DGamekit/Utilities/DefaultPlayables/ScreenFader/ScreenFaderTrack.cs/#L12">View Source</a>
+  </span>
+  <a id="Global_ScreenFaderTrack_CreateTrackMixer_" data-uid="Global.ScreenFaderTrack.CreateTrackMixer*"></a>
+  <h4 id="Global_ScreenFaderTrack_CreateTrackMixer_UnityEngine_Playables_PlayableGraph_UnityEngine_GameObject_System_Int32_" data-uid="Global.ScreenFaderTrack.CreateTrackMixer(UnityEngine.Playables.PlayableGraph,UnityEngine.GameObject,System.Int32)">CreateTrackMixer(PlayableGraph, GameObject, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Playable CreateTrackMixer(PlayableGraph graph, GameObject go, int inputCount)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Playables.PlayableGraph</span></td>
+        <td><span class="parametername">graph</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="parametername">go</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">inputCount</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Playables.Playable</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.Timeline.TrackAsset.CreateTrackMixer(UnityEngine.Playables.PlayableGraph, UnityEngine.GameObject, System.Int32)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/248lee/PigziVSZombies/new/master/apiSpec/new?filename=Global_ScreenFaderTrack_GatherProperties_UnityEngine_Playables_PlayableDirector_UnityEngine_Timeline_IPropertyCollector_.md&amp;value=---%0Auid%3A%20Global.ScreenFaderTrack.GatherProperties(UnityEngine.Playables.PlayableDirector%2CUnityEngine.Timeline.IPropertyCollector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/248lee/PigziVSZombies/blob/master/Assets/2DGamekit/Utilities/DefaultPlayables/ScreenFader/ScreenFaderTrack.cs/#L17">View Source</a>
+  </span>
+  <a id="Global_ScreenFaderTrack_GatherProperties_" data-uid="Global.ScreenFaderTrack.GatherProperties*"></a>
+  <h4 id="Global_ScreenFaderTrack_GatherProperties_UnityEngine_Playables_PlayableDirector_UnityEngine_Timeline_IPropertyCollector_" data-uid="Global.ScreenFaderTrack.GatherProperties(UnityEngine.Playables.PlayableDirector,UnityEngine.Timeline.IPropertyCollector)">GatherProperties(PlayableDirector, IPropertyCollector)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void GatherProperties(PlayableDirector director, IPropertyCollector driver)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Playables.PlayableDirector</span></td>
+        <td><span class="parametername">director</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Timeline.IPropertyCollector</span></td>
+        <td><span class="parametername">driver</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.Timeline.TrackAsset.GatherProperties(UnityEngine.Playables.PlayableDirector, UnityEngine.Timeline.IPropertyCollector)</span></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">UnityEngine.Playables.IPlayableAsset</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.ISerializationCallbackReceiver</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.Timeline.IPropertyPreview</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/248lee/PigziVSZombies/new/master/apiSpec/new?filename=Global_ScreenFaderTrack.md&amp;value=---%0Auid%3A%20Global.ScreenFaderTrack%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/248lee/PigziVSZombies/blob/master/Assets/2DGamekit/Utilities/DefaultPlayables/ScreenFader/ScreenFaderTrack.cs/#L7" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

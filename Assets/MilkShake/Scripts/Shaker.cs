@@ -62,7 +62,7 @@ namespace MilkShake
         /// <param name="shakeData">The shake parameters such as strength and roughness and fade in/out times.</param>
         /// <param name="shakeInstances">An optional list that will be populated with all of the created ShakeInstances.</param>
         /// <param name="seed">A optional seed to use for the shake. Shakes that have the same seed will have the same movement.</param>
-        /// If the distance between this Shaker and the point is greater than the max distance, null will be returned.</returns>
+        /// <returns>If the distance between this Shaker and the point is greater than the max distance, null will be returned.</returns>
         public static void ShakeAllFromPoint(Vector3 point, float maxDistance, IShakeParameters shakeData, List<ShakeInstance> shakeInstances = null, int? seed = null)
         {
             if (shakeInstances != null)

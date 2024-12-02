@@ -61,37 +61,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\SimpleBindingExample.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\Character\Editor\PlayerCharacterEditor.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\ScreenFader\Editor\ScreenFaderDrawer.cs" />
     <Compile Include="Assets\2DGamekit\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\Objects\Editor\PressurePadEditor.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\LightControl\Editor\LightControlDrawer.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\Objects\Editor\MovingPlatformPreview.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\Localization\Editor\TranslatedPhrasesEditor.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\Character\Editor\PlayerInputEditor.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\Localization\Editor\PhraseDrawer.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\Character\Editor\DamagerEditor.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\Character\Editor\DamageableEditor.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TimeDilation\Editor\TimeDilationDrawer.cs" />
     <Compile Include="Assets\Shared\Ramps\Editor\RampAssetEditor.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\Editor\TransitionStartEditor.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\Timeline\ScrollingText\Editor\ScrollingTextDrawer.cs" />
-    <Compile Include="Assets\2DGamekit\Utilities\Editor\BTDebug.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TextSwitcher\Editor\TextSwitcherDrawer.cs" />
     <Compile Include="Assets\Editor\WaveEditor.cs" />
-    <Compile Include="Assets\2DGamekit\Utilities\Editor\RuleTileEditor.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\Editor\TransformTweenDrawer.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\Editor\ParameterSetterDrawer.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\Timeline\Editor\DirectorTriggerEditor.cs" />
     <Compile Include="Assets\Editor\Vector3CustomEditor.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\Editor\DataPersisterEditor.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\Objects\Editor\MovingPlatformEditor.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\SceneManagement\Editor\SceneNameDrawer.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\Localization\Editor\TranslatorEditor.cs" />
     <Compile Include="Assets\Editor\JohnTestEditor.cs" />
-    <Compile Include="Assets\2DGamekit\Scripts\Character\Editor\CharacterStateSetterEditor.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\Editor\TimelinePlayableWizard.cs" />
-    <Compile Include="Assets\2DGamekit\Utilities\Editor\NewSceneCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Editor\JohnTestEditor.uxml" />

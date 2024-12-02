@@ -21,14 +21,15 @@ public class AnimalReturningState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Vector3 targetPosition = animator.GetComponent<AnimalController>().selfHomePosition;
-        if ((animator.transform.position.x - targetPosition.x) > .25f)  // if the animal is righter than the target
+        AnimalController animalController = animator.GetComponent<AnimalController>();
+        Vector3 targetPosition = animalController.selfHomeMiddlePosition;
+        if ((animator.transform.position.x - targetPosition.x) > animalController.stepSize)  // if the animal is righter than the target
         {
-            animator.GetComponent<AnimalController>().SetRunThisFrame(direction: Vector3.left);
+            animalController.SetRunThisFrame(direction: Vector3.left);
         }
-        else if ((animator.transform.position.x - targetPosition.x) < -.25f)  // if the animal is lefter than the target
+        else if ((animator.transform.position.x - targetPosition.x) < -animalController.stepSize)  // if the animal is lefter than the target
         {
-            animator.GetComponent<AnimalController>().SetRunThisFrame(direction: Vector3.right);
+            animalController.SetRunThisFrame(direction: Vector3.right);
         }
         else  // else, the animal arrived its target
         {

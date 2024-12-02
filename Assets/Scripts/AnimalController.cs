@@ -7,6 +7,7 @@ public class AnimalController : MonoBehaviour
 {
     public int index; //  The no. of this animal. We identify each animal by this variable.
     public float runSpeed = 10f;
+    public float stepSize { get => runSpeed * Time.deltaTime; }
     Vector3 runDirection = Vector3.zero;
     AnimalSystem animalSystem;
     Animator stateMachine;
@@ -34,57 +35,103 @@ public class AnimalController : MonoBehaviour
         }
         this.runDirection = Vector3.zero;
     }
+    /// <summary>
+    /// Check whether this animal can escape to the left.
+    /// </summary>
     public bool isLeftHomeEscapable
     {
         get => this.index > 0 ? this.animalSystem.IsHomeEscapable(this.index - 1) : false;
     }
+    /// <summary>
+    /// Check whether this animal can escape to the right.
+    /// </summary>
     public bool isRightHomeEscapable
     {
         get => this.index < this.animalSystem.countsOfAnimalControllersOnScene - 1 ? this.animalSystem.IsHomeEscapable(this.index + 1) : false;
     }
+    /// <summary>
+    /// Check whether this animal can ccome back to its home.
+    /// </summary>
     public bool isSelfHomeAvailable
     {
         get => this.animalSystem.IsHomeAvailable(this.index);
     }
+    /// <summary>
+    /// The destination for the animal when escaping to the left (Left tree's right position).
+    /// </summary>
     public Vector3 leftHomeTargetPosition
     {
-        get => this.animalSystem.GetHomePositionRight(this.index - 1);  // Left tree's right position
+        get => this.animalSystem.GetRightPosition(this.index - 1);
     }
+    /// <summary>
+    /// The destination for the animal when escaping to the right (Right tree's left position).
+    /// </summary>
     public Vector3 rightHomeTargetPosition
     {
-        get => this.animalSystem.GetHomePositionLeft(this.index + 1);  // Right tree's left position
+        get => this.animalSystem.GetLeftPosition(this.index + 1);
     }
-    public Vector3 selfHomePosition
+    /// <summary>
+    /// The position of its warm home~
+    /// </summary>
+    public Vector3 selfHomeMiddlePosition
     {
-        get => this.animalSystem.GetHomePosition(this.index);
+        get => this.animalSystem.GetMiddlePosition(this.index);
+    }
+    /// <summary>
+    /// The left_position of its home.
+    /// </summary>
+    public Vector3 selfHomeLeftPosition
+    {
+        get => this.animalSystem.GetLeftPosition(this.index);
+    }
+    /// <summary>
+    /// The right_position of its home.
+    /// </summary>
+    public Vector3 selfHomeRightPosition
+    {
+        get => this.animalSystem.GetRightPosition(this.index);
     }
     /// <summary>
     /// Request AnimalSystem to let me occupy the <u>LEFT</u> home.
     /// </summary>
     public void OccupyLeftHome()
     {
-        this.animalSystem.SetOccupyHomeLeft(this.index - 1, is_occupying: true);
+        this.animalSystem.SetOccupyRightPosition(this.index - 1, is_occupying: true);
     }
     /// <summary>
     /// Request AnimalSystem to let me occupy the <u>RIGHT</u> home.
     /// </summary>
     public void OccupyRightHome()
     {
-        this.animalSystem.SetOccupyHomeLeft(this.index + 1, is_occupying: true);
+        this.animalSystem.SetOccupyLeftPosition(this.index + 1, is_occupying: true);
+    }
+    /// <summary>
+    /// Request AnimalSystem to check whether my <u>left home</u> is occupied. If true, I have to step aside.
+    /// </summary>
+    public bool isSelfHomeLeftOccupied
+    {
+        get => this.animalSystem.GetLeftPositionOccupied(this.index);
+    }
+    /// <summary>
+    /// Request AnimalSystem to check whether my <u>right home</u> is occupied. If true, I have to step aside.
+    /// </summary>
+    public bool isSelfHomeRightOccupied
+    {
+        get => this.animalSystem.GetRightPositionOccupied(this.index);
     }
     /// <summary>
     /// Request AnimalSystem to let me release the <u>LEFT</u> home.
     /// </summary>
     public void LeaveLeftHome()
     {
-        this.animalSystem.SetOccupyHomeLeft(this.index - 1, is_occupying: false);
+        this.animalSystem.SetOccupyRightPosition(this.index - 1, is_occupying: false);
     }
     /// <summary>
     /// Request AnimalSystem to let me release the <u>RIGHT</u> home.
     /// </summary>
     public void LeaveRightHome()
     {
-        this.animalSystem.SetOccupyHomeLeft(this.index + 1, is_occupying: false);
+        this.animalSystem.SetOccupyLeftPosition(this.index + 1, is_occupying: false);
     }
     /// <summary>
     /// Ask the animal to <u>run a small step</u> for this frame at a given direction.

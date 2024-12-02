@@ -34,59 +34,77 @@ public class AnimalSystem : MonoBehaviour
         get => this.animalControllersOnScene.Count;
     }
     /// <summary>
-    /// Return the position of the home number "index"
+    /// Return the position of the home number "home_index"
     /// </summary>
-    /// <param name="index">NOTICE: The number of home you want to access its position.</param>
-    public Vector3 GetHomePosition(int index)
+    /// <param name="home_index">The number of home you want to access its position.</param>
+    public Vector3 GetMiddlePosition(int home_index)
     {
-        return this.homesOnScene[index].transform.position;
+        return this.homesOnScene[home_index].transform.position;
     }
     /// <summary>
-    /// Return whether the home number "index" is able to protect the animals.
+    /// Return whether the home number "home_index" is able to protect the animals.
     /// </summary>
-    /// <param name="index">NOTICE: The number of home you want to check whether it's available.</param>
-    public bool IsHomeAvailable(int index)
+    /// <param name="home_index">The number of home you want to check whether it's available.</param>
+    public bool IsHomeAvailable(int home_index)
     {
-        return this.homesOnScene[index].isTreeAlive;
+        return this.homesOnScene[home_index].isTreeAlive;
     }
     /// <summary>
-    /// Return whether the home number "index" still has space to accommodate new animal.
+    /// Return whether the home number "home_index" still has space to accommodate new animal.
     /// </summary>
-    /// <param name="index">NOTICE: The number of home you want to check whether it's escapable.</param>
-    public bool IsHomeEscapable(int index)
+    /// <param name="home_index">The number of home you want to check whether it's escapable.</param>
+    public bool IsHomeEscapable(int home_index)
     {
-        return this.homesOnScene[index].isTreeAlive && !this.homesOnScene[index].leftOccupied && !this.homesOnScene[index].rightOccupied;
+        return this.homesOnScene[home_index].isTreeAlive && !this.homesOnScene[home_index].leftOccupied && !this.homesOnScene[home_index].rightOccupied;
     }
     /// <summary>
-    /// Return the <u>LEFT position</u> of the home number "index"
+    /// Return the <u>LEFT position</u> of the home number "home_index"
     /// </summary>
-    /// <param name="index">NOTICE: The number of home you want to access its left position.</param>
-    public Vector3 GetHomePositionLeft(int index)
+    /// <param name="home_index">The number of home you want to access its left position.</param>
+    public Vector3 GetLeftPosition(int home_index)
     {
-        return this.homesOnScene[index].leftPosition;
+        return this.homesOnScene[home_index].leftPosition;
     }
     /// <summary>
-    /// Return the <u>RIGHT position</u> of the home number "index"
+    /// Return the <u>RIGHT position</u> of the home number "home_index"
     /// </summary>
-    /// <param name="index">NOTICE: The number of home you want to access its right position.</param>
-    public Vector3 GetHomePositionRight(int index)
+    /// <param name="home_index">The number of home you want to access its right position.</param>
+    public Vector3 GetRightPosition(int home_index)
     {
-        return this.homesOnScene[index].rightPosition;
+        return this.homesOnScene[home_index].rightPosition;
     }
     /// <summary>
-    /// Occupy the <u>LEFT</u> of the home number "index."
+    /// Occupy the left <u>Position</u> of the home number "home_index."
     /// </summary>
-    /// <param name="index">NOTICE: The number of home you want to occupy its left.</param>
-    public void SetOccupyHomeLeft(int index, bool is_occupying)
+    /// <param name="home_index">The number of home you want to occupy its left.</param>
+    /// <param name="is_occupying">Set the value you wish.</param>
+    public void SetOccupyLeftPosition(int home_index, bool is_occupying)
     {
-        this.homesOnScene[index].leftOccupied = is_occupying;
+        this.homesOnScene[home_index].leftOccupied = is_occupying;
     }
     /// <summary>
-    /// Occupy the <u>RIGHT</u> of the home number "index."
+    /// Occupy the right <u>Position</u> of the home number "home_index."
     /// </summary>
-    /// <param name="index">NOTICE: The number of home you want to occupy its right.</param>
-    public void SetOccupyHomeRight(int index, bool is_occupying)
+    /// <param name="home_index">The number of home you want to occupy its right.</param>
+    /// <param name="is_occupying">Set the value you wish.</param>
+    public void SetOccupyRightPosition(int home_index, bool is_occupying)
     {
-        this.homesOnScene[index].rightOccupied = is_occupying;
+        this.homesOnScene[home_index].rightOccupied = is_occupying;
+    }
+    /// <summary>
+    /// Check whether the <u>LEFT</u> of the home number "home_index is occupied."
+    /// </summary>
+    /// <param name="home_index">The number of home you want to check.</param>
+    public bool GetLeftPositionOccupied(int home_index)
+    {
+        return this.homesOnScene[home_index].leftOccupied;
+    }
+    /// <summary>
+    /// Check whether the <u>RIGHT</u> of the home number "home_index is occupied."
+    /// </summary>
+    /// <param name="home_index">The number of home you want to check.</param>
+    public bool GetRightPositionOccupied(int home_index)
+    {
+        return this.homesOnScene[home_index].rightOccupied;
     }
 }

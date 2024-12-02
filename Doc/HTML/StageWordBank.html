@@ -1,0 +1,18 @@
+<html><body><h1 string="StageWordBank"></h1><h2 string="Attributes"></h2><ul><li>private waveSystemOfThisStage - </li></ul><h2 string="Methods"></h2><ul><li>public WordsOutgive() - &lt;summary&gt;
+For regular wave, randomly selects wave.numOfVocabularies words from regularWords and uniquily-append them to wave.v_candidates.
+For specified wave, copy the words in waveSpecifiedWords[wave.waveName] into wave.v_candidates.
+&lt;para&gt;NOTICE: This method is expected to be called right before the wave is executed.&lt;/para&gt;
+&lt;/summary&gt;
+&lt;param name="wave"&gt;NOTICE: The wave's mode can ONLY be "Normal"!!&lt;/param&gt;</li><li>public ParagraphAndWordsOutgive() - &lt;summary&gt;
+For regular wave, randomly selects wave.numOfVocabularies words from regularWords and uniquily-append them to wave.v_candidates,
+and assign a paragraph using wave.p_numOfVocabularies of these chosen words.
+For specified wave, copy the words in waveSpecifiedWords[wave.waveName] into wave.v_candidates,
+and assign a paragraph using wave.p_numOfVocabularies of these chosen words.
+&lt;para&gt;NOTICE: This method is expected to be called right before the wave is executed.&lt;/para&gt;
+&lt;/summary&gt;
+&lt;param name="wave"&gt;NOTICE: The wave's mode can ONLY be "Boss"!!&lt;/param&gt;</li><li>public GiveOneSentence() - &lt;summary&gt;
+Give a sentence(string) of the given vocabulary. Notice that when the sentence of the vocabulary become less,
+this method will request sentences from gpt.
+&lt;/summary&gt;
+&lt;param name="vocabulary"&gt;&lt;/param&gt;
+&lt;returns&gt;&lt;/returns&gt;</li><li>private _RefillSpecifiedParagraph() - </li></ul></body></html>

@@ -1,0 +1,686 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TranscriptionEndpoint
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TranscriptionEndpoint
+   ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="OpenAI_API.Audio.TranscriptionEndpoint">
+  
+  
+  <h1 id="OpenAI_API_Audio_TranscriptionEndpoint" data-uid="OpenAI_API.Audio.TranscriptionEndpoint" class="text-break">Class TranscriptionEndpoint
+  </h1>
+  <div class="markdown level0 summary"><p>Transcribe audio into text, with optional translation into English.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="OpenAI_API.EndpointBase.html">EndpointBase</a></div>
+    <div class="level2"><span class="xref">TranscriptionEndpoint</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="OpenAI_API.Audio.ITranscriptionEndpoint.html">ITranscriptionEndpoint</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="OpenAI_API.EndpointBase.html#OpenAI_API_EndpointBase__Api">EndpointBase._Api</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenAI_API.EndpointBase.html#OpenAI_API_EndpointBase_Url">EndpointBase.Url</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenAI_API.EndpointBase.html#OpenAI_API_EndpointBase_GetClient">EndpointBase.GetClient()</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenAI_API.EndpointBase.html#OpenAI_API_EndpointBase_GetErrorMessage_System_String_System_Net_Http_HttpResponseMessage_System_String_System_String_">EndpointBase.GetErrorMessage(String, HttpResponseMessage, String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenAI_API.EndpointBase.html#OpenAI_API_EndpointBase_HttpStreamingRequest__1_System_String_System_Net_Http_HttpMethod_System_Object_">EndpointBase.HttpStreamingRequest&lt;T&gt;(String, HttpMethod, Object)</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="OpenAI_API.Audio.html">OpenAI_API.Audio</a></h6>
+  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h5 id="OpenAI_API_Audio_TranscriptionEndpoint_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TranscriptionEndpoint : EndpointBase, ITranscriptionEndpoint</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/248lee/PigziVSZombies/new/master/apiSpec/new?filename=OpenAI_API_Audio_TranscriptionEndpoint_DefaultRequestArgs.md&amp;value=---%0Auid%3A%20OpenAI_API.Audio.TranscriptionEndpoint.DefaultRequestArgs%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/248lee/PigziVSZombies/blob/master/Assets/OpenAI_API/Audio/TranscriptionEndpoint.cs/#L44">View Source</a>
+  </span>
+  <a id="OpenAI_API_Audio_TranscriptionEndpoint_DefaultRequestArgs_" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.DefaultRequestArgs*"></a>
+  <h4 id="OpenAI_API_Audio_TranscriptionEndpoint_DefaultRequestArgs" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.DefaultRequestArgs">DefaultRequestArgs</h4>
+  <div class="markdown level1 summary"><p>This allows you to set default parameters for every request, for example to set a default language.  For every request, if you do not have a parameter set on the request but do have it set here as a default, the request will automatically pick up the default value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioRequest DefaultRequestArgs { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="OpenAI_API.Audio.AudioRequest.html">AudioRequest</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/248lee/PigziVSZombies/new/master/apiSpec/new?filename=OpenAI_API_Audio_TranscriptionEndpoint_Endpoint.md&amp;value=---%0Auid%3A%20OpenAI_API.Audio.TranscriptionEndpoint.Endpoint%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/248lee/PigziVSZombies/blob/master/Assets/OpenAI_API/Audio/TranscriptionEndpoint.cs/#L16">View Source</a>
+  </span>
+  <a id="OpenAI_API_Audio_TranscriptionEndpoint_Endpoint_" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.Endpoint*"></a>
+  <h4 id="OpenAI_API_Audio_TranscriptionEndpoint_Endpoint" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.Endpoint">Endpoint</h4>
+  <div class="markdown level1 summary"><p>The name of the endpoint, which is the final path segment in the API URL.  Must be overriden in a derived class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override string Endpoint { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="OpenAI_API.EndpointBase.html#OpenAI_API_EndpointBase_Endpoint">EndpointBase.Endpoint</a></div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/248lee/PigziVSZombies/new/master/apiSpec/new?filename=OpenAI_API_Audio_TranscriptionEndpoint_GetAsFormatAsync_System_IO_Stream_System_String_System_String_System_String_System_String_System_Nullable_System_Double__.md&amp;value=---%0Auid%3A%20OpenAI_API.Audio.TranscriptionEndpoint.GetAsFormatAsync(System.IO.Stream%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Nullable%7BSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/248lee/PigziVSZombies/blob/master/Assets/OpenAI_API/Audio/TranscriptionEndpoint.cs/#L144">View Source</a>
+  </span>
+  <a id="OpenAI_API_Audio_TranscriptionEndpoint_GetAsFormatAsync_" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.GetAsFormatAsync*"></a>
+  <h4 id="OpenAI_API_Audio_TranscriptionEndpoint_GetAsFormatAsync_System_IO_Stream_System_String_System_String_System_String_System_String_System_Nullable_System_Double__" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.GetAsFormatAsync(System.IO.Stream,System.String,System.String,System.String,System.String,System.Nullable{System.Double})">GetAsFormatAsync(Stream, String, String, String, String, Nullable&lt;Double&gt;)</h4>
+  <div class="markdown level1 summary"><p>Gets the transcription of the audio stream, in the specified format</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;string&gt; GetAsFormatAsync(Stream audioStream, string filename, string responseFormat, string language = null, string prompt = null, double? temperature = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IO.Stream</span></td>
+        <td><span class="parametername">audioStream</span></td>
+        <td><p>The stream containing audio data, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">filename</span></td>
+        <td><p>The name of the audio file in the stream.  This does not have to be real, but it must contain the correct file extension.  For example, &quot;file.mp3&quot; if you are supplying an mp3 audio stream.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">responseFormat</span></td>
+        <td><p>The format of the response.  Suggested value are <a class="xref" href="OpenAI_API.Audio.AudioRequest.ResponseFormats.html#OpenAI_API_Audio_AudioRequest_ResponseFormats_SRT">SRT</a> or <a class="xref" href="OpenAI_API.Audio.AudioRequest.ResponseFormats.html#OpenAI_API_Audio_AudioRequest_ResponseFormats_VTT">VTT</a>.  For text and Json formats, try <a class="xref" href="OpenAI_API.Audio.TranscriptionEndpoint.html#OpenAI_API_Audio_TranscriptionEndpoint_GetTextAsync_System_IO_Stream_System_String_System_String_System_String_System_Nullable_System_Double__">GetTextAsync(Stream, String, String, String, Nullable&lt;Double&gt;)</a> or <a class="xref" href="OpenAI_API.Audio.TranscriptionEndpoint.html#OpenAI_API_Audio_TranscriptionEndpoint_GetWithDetailsAsync_System_IO_Stream_System_String_System_String_System_String_System_Nullable_System_Double__">GetWithDetailsAsync(Stream, String, String, String, Nullable&lt;Double&gt;)</a> instead.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>The language of the input audio. Supplying the input language in ISO-639-1 format will improve accuracy and latency.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">prompt</span></td>
+        <td><p>An optional text to guide the model&apos;s style or continue a previous audio segment. The prompt should match the audio language.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Double</span>&gt;</td>
+        <td><span class="parametername">temperature</span></td>
+        <td><p>The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><p>A string of the transcribed text</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/248lee/PigziVSZombies/new/master/apiSpec/new?filename=OpenAI_API_Audio_TranscriptionEndpoint_GetAsFormatAsync_System_String_System_String_System_String_System_String_System_Nullable_System_Double__.md&amp;value=---%0Auid%3A%20OpenAI_API.Audio.TranscriptionEndpoint.GetAsFormatAsync(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Nullable%7BSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/248lee/PigziVSZombies/blob/master/Assets/OpenAI_API/Audio/TranscriptionEndpoint.cs/#L183">View Source</a>
+  </span>
+  <a id="OpenAI_API_Audio_TranscriptionEndpoint_GetAsFormatAsync_" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.GetAsFormatAsync*"></a>
+  <h4 id="OpenAI_API_Audio_TranscriptionEndpoint_GetAsFormatAsync_System_String_System_String_System_String_System_String_System_Nullable_System_Double__" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.GetAsFormatAsync(System.String,System.String,System.String,System.String,System.Nullable{System.Double})">GetAsFormatAsync(String, String, String, String, Nullable&lt;Double&gt;)</h4>
+  <div class="markdown level1 summary"><p>Gets the transcription of the audio file, in the specified format</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;string&gt; GetAsFormatAsync(string audioFilePath, string responseFormat, string language = null, string prompt = null, double? temperature = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">audioFilePath</span></td>
+        <td><p>The local path to the audio file, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">responseFormat</span></td>
+        <td><p>The format of the response.  Suggested value are <a class="xref" href="OpenAI_API.Audio.AudioRequest.ResponseFormats.html#OpenAI_API_Audio_AudioRequest_ResponseFormats_SRT">SRT</a> or <a class="xref" href="OpenAI_API.Audio.AudioRequest.ResponseFormats.html#OpenAI_API_Audio_AudioRequest_ResponseFormats_VTT">VTT</a>.  For text and Json formats, try <a class="xref" href="OpenAI_API.Audio.TranscriptionEndpoint.html#OpenAI_API_Audio_TranscriptionEndpoint_GetTextAsync_System_String_System_String_System_String_System_Nullable_System_Double__">GetTextAsync(String, String, String, Nullable&lt;Double&gt;)</a> or <a class="xref" href="OpenAI_API.Audio.TranscriptionEndpoint.html#OpenAI_API_Audio_TranscriptionEndpoint_GetWithDetailsAsync_System_String_System_String_System_String_System_Nullable_System_Double__">GetWithDetailsAsync(String, String, String, Nullable&lt;Double&gt;)</a> instead.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>The language of the input audio. Supplying the input language in ISO-639-1 format will improve accuracy and latency.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">prompt</span></td>
+        <td><p>An optional text to guide the model&apos;s style or continue a previous audio segment. The prompt should match the audio language.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Double</span>&gt;</td>
+        <td><span class="parametername">temperature</span></td>
+        <td><p>The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><p>A string of the transcribed text</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/248lee/PigziVSZombies/new/master/apiSpec/new?filename=OpenAI_API_Audio_TranscriptionEndpoint_GetTextAsync_System_IO_Stream_System_String_System_String_System_String_System_Nullable_System_Double__.md&amp;value=---%0Auid%3A%20OpenAI_API.Audio.TranscriptionEndpoint.GetTextAsync(System.IO.Stream%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Nullable%7BSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/248lee/PigziVSZombies/blob/master/Assets/OpenAI_API/Audio/TranscriptionEndpoint.cs/#L60">View Source</a>
+  </span>
+  <a id="OpenAI_API_Audio_TranscriptionEndpoint_GetTextAsync_" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.GetTextAsync*"></a>
+  <h4 id="OpenAI_API_Audio_TranscriptionEndpoint_GetTextAsync_System_IO_Stream_System_String_System_String_System_String_System_Nullable_System_Double__" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.GetTextAsync(System.IO.Stream,System.String,System.String,System.String,System.Nullable{System.Double})">GetTextAsync(Stream, String, String, String, Nullable&lt;Double&gt;)</h4>
+  <div class="markdown level1 summary"><p>Gets the transcription of the audio stream as a text string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;string&gt; GetTextAsync(Stream audioStream, string filename, string language = null, string prompt = null, double? temperature = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IO.Stream</span></td>
+        <td><span class="parametername">audioStream</span></td>
+        <td><p>The stream containing audio data, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">filename</span></td>
+        <td><p>The name of the audio file in the stream.  This does not have to be real, but it must contain the correct file extension.  For example, &quot;file.mp3&quot; if you are supplying an mp3 audio stream.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>The language of the input audio. Supplying the input language in ISO-639-1 format will improve accuracy and latency.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">prompt</span></td>
+        <td><p>An optional text to guide the model&apos;s style or continue a previous audio segment. The prompt should match the audio language.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Double</span>&gt;</td>
+        <td><span class="parametername">temperature</span></td>
+        <td><p>The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><p>A string of the transcribed text</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/248lee/PigziVSZombies/new/master/apiSpec/new?filename=OpenAI_API_Audio_TranscriptionEndpoint_GetTextAsync_System_String_System_String_System_String_System_Nullable_System_Double__.md&amp;value=---%0Auid%3A%20OpenAI_API.Audio.TranscriptionEndpoint.GetTextAsync(System.String%2CSystem.String%2CSystem.String%2CSystem.Nullable%7BSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/248lee/PigziVSZombies/blob/master/Assets/OpenAI_API/Audio/TranscriptionEndpoint.cs/#L71">View Source</a>
+  </span>
+  <a id="OpenAI_API_Audio_TranscriptionEndpoint_GetTextAsync_" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.GetTextAsync*"></a>
+  <h4 id="OpenAI_API_Audio_TranscriptionEndpoint_GetTextAsync_System_String_System_String_System_String_System_Nullable_System_Double__" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.GetTextAsync(System.String,System.String,System.String,System.Nullable{System.Double})">GetTextAsync(String, String, String, Nullable&lt;Double&gt;)</h4>
+  <div class="markdown level1 summary"><p>Gets the transcription of the audio file as a text string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;string&gt; GetTextAsync(string audioFilePath, string language = null, string prompt = null, double? temperature = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">audioFilePath</span></td>
+        <td><p>The local path to the audio file, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>The language of the input audio. Supplying the input language in ISO-639-1 format will improve accuracy and latency.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">prompt</span></td>
+        <td><p>An optional text to guide the model&apos;s style or continue a previous audio segment. The prompt should match the audio language.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Double</span>&gt;</td>
+        <td><span class="parametername">temperature</span></td>
+        <td><p>The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><p>A string of the transcribed text</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/248lee/PigziVSZombies/new/master/apiSpec/new?filename=OpenAI_API_Audio_TranscriptionEndpoint_GetWithDetailsAsync_System_IO_Stream_System_String_System_String_System_String_System_Nullable_System_Double__.md&amp;value=---%0Auid%3A%20OpenAI_API.Audio.TranscriptionEndpoint.GetWithDetailsAsync(System.IO.Stream%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Nullable%7BSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/248lee/PigziVSZombies/blob/master/Assets/OpenAI_API/Audio/TranscriptionEndpoint.cs/#L88">View Source</a>
+  </span>
+  <a id="OpenAI_API_Audio_TranscriptionEndpoint_GetWithDetailsAsync_" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.GetWithDetailsAsync*"></a>
+  <h4 id="OpenAI_API_Audio_TranscriptionEndpoint_GetWithDetailsAsync_System_IO_Stream_System_String_System_String_System_String_System_Nullable_System_Double__" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.GetWithDetailsAsync(System.IO.Stream,System.String,System.String,System.String,System.Nullable{System.Double})">GetWithDetailsAsync(Stream, String, String, String, Nullable&lt;Double&gt;)</h4>
+  <div class="markdown level1 summary"><p>Gets the transcription of the audio stream, with full metadata</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;AudioResultVerbose&gt; GetWithDetailsAsync(Stream audioStream, string filename, string language = null, string prompt = null, double? temperature = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IO.Stream</span></td>
+        <td><span class="parametername">audioStream</span></td>
+        <td><p>The stream containing audio data, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">filename</span></td>
+        <td><p>The name of the audio file in the stream.  This does not have to be real, but it must contain the correct file extension.  For example, &quot;file.mp3&quot; if you are supplying an mp3 audio stream.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>The language of the input audio. Supplying the input language in ISO-639-1 format will improve accuracy and latency.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">prompt</span></td>
+        <td><p>An optional text to guide the model&apos;s style or continue a previous audio segment. The prompt should match the audio language.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Double</span>&gt;</td>
+        <td><span class="parametername">temperature</span></td>
+        <td><p>The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="OpenAI_API.Audio.AudioResultVerbose.html">AudioResultVerbose</a>&gt;</td>
+        <td><p>A string of the transcribed text</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/248lee/PigziVSZombies/new/master/apiSpec/new?filename=OpenAI_API_Audio_TranscriptionEndpoint_GetWithDetailsAsync_System_String_System_String_System_String_System_Nullable_System_Double__.md&amp;value=---%0Auid%3A%20OpenAI_API.Audio.TranscriptionEndpoint.GetWithDetailsAsync(System.String%2CSystem.String%2CSystem.String%2CSystem.Nullable%7BSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/248lee/PigziVSZombies/blob/master/Assets/OpenAI_API/Audio/TranscriptionEndpoint.cs/#L126">View Source</a>
+  </span>
+  <a id="OpenAI_API_Audio_TranscriptionEndpoint_GetWithDetailsAsync_" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.GetWithDetailsAsync*"></a>
+  <h4 id="OpenAI_API_Audio_TranscriptionEndpoint_GetWithDetailsAsync_System_String_System_String_System_String_System_Nullable_System_Double__" data-uid="OpenAI_API.Audio.TranscriptionEndpoint.GetWithDetailsAsync(System.String,System.String,System.String,System.Nullable{System.Double})">GetWithDetailsAsync(String, String, String, Nullable&lt;Double&gt;)</h4>
+  <div class="markdown level1 summary"><p>Gets the transcription of the audio file, with full metadata</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;AudioResultVerbose&gt; GetWithDetailsAsync(string audioFilePath, string language = null, string prompt = null, double? temperature = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">audioFilePath</span></td>
+        <td><p>The local path to the audio file, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>The language of the input audio. Supplying the input language in ISO-639-1 format will improve accuracy and latency.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">prompt</span></td>
+        <td><p>An optional text to guide the model&apos;s style or continue a previous audio segment. The prompt should match the audio language.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Double</span>&gt;</td>
+        <td><span class="parametername">temperature</span></td>
+        <td><p>The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="OpenAI_API.Audio.AudioResultVerbose.html">AudioResultVerbose</a>&gt;</td>
+        <td><p>A string of the transcribed text</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="OpenAI_API.Audio.ITranscriptionEndpoint.html">ITranscriptionEndpoint</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/248lee/PigziVSZombies/new/master/apiSpec/new?filename=OpenAI_API_Audio_TranscriptionEndpoint.md&amp;value=---%0Auid%3A%20OpenAI_API.Audio.TranscriptionEndpoint%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/248lee/PigziVSZombies/blob/master/Assets/OpenAI_API/Audio/TranscriptionEndpoint.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

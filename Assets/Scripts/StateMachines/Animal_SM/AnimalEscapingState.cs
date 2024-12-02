@@ -25,19 +25,20 @@ public class AnimalEscapingState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        AnimalController animalController = animator.GetComponent<AnimalController>();
         Vector3 targetPosition;
         if (this.escapingTo == EscapingTo.TheLeft)
-            targetPosition = animator.GetComponent<AnimalController>().leftHomeTargetPosition;
+            targetPosition = animalController.leftHomeTargetPosition;
         else
-            targetPosition = animator.GetComponent<AnimalController>().rightHomeTargetPosition;
+            targetPosition = animalController.rightHomeTargetPosition;
 
-        if ((animator.transform.position.x - targetPosition.x) > .25f)  // if the animal is righter than the target
+        if ((animator.transform.position.x - targetPosition.x) > animalController.stepSize)  // if the animal is righter than the target
         {
-            animator.GetComponent<AnimalController>().SetRunThisFrame(direction: Vector3.left);
+            animalController.SetRunThisFrame(direction: Vector3.left);
         }
-        else if ((animator.transform.position.x - targetPosition.x) < -.25f)  // if the animal is lefter than the target
+        else if ((animator.transform.position.x - targetPosition.x) < -animalController.stepSize)  // if the animal is lefter than the target
         {
-            animator.GetComponent<AnimalController>().SetRunThisFrame(direction: Vector3.right);
+            animalController.SetRunThisFrame(direction: Vector3.right);
         }
         else  // else, the animal arrived its target
         {

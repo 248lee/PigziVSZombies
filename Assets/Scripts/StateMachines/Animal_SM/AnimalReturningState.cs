@@ -22,12 +22,12 @@ public class AnimalReturningState : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         AnimalController animalController = animator.GetComponent<AnimalController>();
-        Vector3 targetPosition = animalController.selfHomeMiddlePosition;
-        if ((animator.transform.position.x - targetPosition.x) > animalController.stepSize)  // if the animal is righter than the target
+        Vector3 targetPosition = AnimalSM.TargetOfHome.GetTargetPosition(animalController);
+        if ((animator.transform.position.x - targetPosition.x) > 5 * animalController.stepSize)  // if the animal is righter than the target
         {
             animalController.SetRunThisFrame(direction: Vector3.left);
         }
-        else if ((animator.transform.position.x - targetPosition.x) < -animalController.stepSize)  // if the animal is lefter than the target
+        else if ((animator.transform.position.x - targetPosition.x) < -5 * animalController.stepSize)  // if the animal is lefter than the target
         {
             animalController.SetRunThisFrame(direction: Vector3.right);
         }

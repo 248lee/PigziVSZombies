@@ -32,11 +32,11 @@ public class AnimalEscapingState : StateMachineBehaviour
         else
             targetPosition = animalController.rightHomeTargetPosition;
 
-        if ((animator.transform.position.x - targetPosition.x) > animalController.stepSize)  // if the animal is righter than the target
+        if ((animator.transform.position.x - targetPosition.x) > 5 * animalController.stepSize)  // if the animal is righter than the target
         {
             animalController.SetRunThisFrame(direction: Vector3.left);
         }
-        else if ((animator.transform.position.x - targetPosition.x) < -animalController.stepSize)  // if the animal is lefter than the target
+        else if ((animator.transform.position.x - targetPosition.x) < -5 * animalController.stepSize)  // if the animal is lefter than the target
         {
             animalController.SetRunThisFrame(direction: Vector3.right);
         }

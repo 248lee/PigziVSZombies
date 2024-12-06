@@ -40,7 +40,7 @@ public class TreeController : MonoBehaviour
     {
         this.correctHP();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.tag == "Fireball")
         {

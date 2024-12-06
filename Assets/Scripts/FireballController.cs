@@ -18,7 +18,7 @@ public class FireballController : MonoBehaviour
     public int index = -1;
     public bool ableToBeDestroyed;
     protected FireballSysrem fireballSystem;
-    protected Rigidbody2D rid;
+    protected Rigidbody rid;
     private bool shootMeSignal = false;
     private bool isShootingMe = false;
     private GameObject temp_bullet;
@@ -27,7 +27,7 @@ public class FireballController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.rid = GetComponent<Rigidbody2D>();
+        this.rid = GetComponent<Rigidbody>();
         this.fireballSystem = FindObjectOfType<FireballSysrem>();
         this.InitProcess();
         //if (this.type == TypeMode.Fireball)

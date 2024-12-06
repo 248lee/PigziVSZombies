@@ -4,7 +4,7 @@ using System.Collections;
 
 public class HealParController : MonoBehaviour
 {
-    Rigidbody2D rid;
+    Rigidbody rid;
     float speed;
     bool fallOnTree;
     [SerializeField] float accelerationValue = .5f;
@@ -13,7 +13,7 @@ public class HealParController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.rid = GetComponent<Rigidbody2D>();
+        this.rid = GetComponent<Rigidbody>();
         this.speed = 0f;
         this.fallOnTree = false;
         var emmision = GetComponent<ParticleSystem>().emission;
@@ -29,9 +29,9 @@ public class HealParController : MonoBehaviour
     {
         this.rid.velocity = new Vector2(0f, -this.speed);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == "floor")
+        if (collision.tag == "root")
         {
             TreeController targetTree = collision.GetComponentInParent<TreeController>();
             if (this.healScript == null)

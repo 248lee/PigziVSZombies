@@ -7,8 +7,8 @@ TagManager:
   - Fireball
   - waterReceivedSpot
   - dragonHPBar
-  - floor
   - Waterball
+  - root
   layers:
   - Default
   - TransparentFX

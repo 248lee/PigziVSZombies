@@ -187,6 +187,7 @@
     <Compile Include="Assets\MilkShake\Demo\Scripts\CustomShake.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\LevelLoader.cs" />
+    <Compile Include="Assets\Scripts\FireThowerOverlapDetection.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\Attributes\Vector3CustomShowAttribute.cs" />
@@ -260,8 +261,10 @@
     <None Include="Assets\StreamingAssets\SentenceBanks\shuttle.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\diospora.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\permeable.txt" />
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\protracted.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\impenetrable.txt" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedSprite.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\traffic.txt" />
@@ -272,6 +275,7 @@
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedTile.shader" />
     <None Include="Assets\StageSelectionTutorial\Fonts\OFL.txt" />
     <None Include="Assets\ParticlePack\EffectExamples\Magic Effects\Shaders\Ice.shader" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\clandestine.txt" />
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Shaders\Respawn.shader" />
     <None Include="Assets\MilkShake\Documentation\Readme.txt" />
     <None Include="Assets\TreePack1_Free\Read Me.txt" />
@@ -294,6 +298,7 @@
     <None Include="Assets\2DGamekit\Utilities\Shaders\Particle Standard Unlit.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\chunk.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\omnipresent.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\excerpt.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\environment.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Shaders\FireFly.shader" />

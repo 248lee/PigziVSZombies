@@ -76,7 +76,7 @@ public class TreeController : MonoBehaviour
     private void SetTreeImage(float state)
     {
         int count = this.Leafs.Count;
-        int leafs = Mathf.FloorToInt(count * state);
+        int leafs = Mathf.CeilToInt(count * state);
         if (leafs > 0)
         {
             for (int i = 0; i < count; i++)

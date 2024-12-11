@@ -231,6 +231,7 @@
     <Compile Include="Assets\OpenAI_API\Moderation\ModerationResult.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Animal_SM\AnimalStayAtHomeState.cs" />
     <Compile Include="Assets\OpenAI_API\Images\ImageResponseFormat.cs" />
+    <Compile Include="Assets\Scripts\AnnotationComponent.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TimeDilation\TimeDilationTrack.cs" />
     <Compile Include="Assets\Scripts\IListExtensions.cs" />
     <Compile Include="Assets\OpenAI_API\Completions\CompletionEndpoint.cs" />

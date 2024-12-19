@@ -110,19 +110,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04704d3eed4d334680d86508e68cda6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  speed: 0
-  realSpeed: 0
   question:
     vocabulary: 
     sentence: 
     real_sentence: 
   questionText: {fileID: 5336158128362746146}
   ableShoot: 1
-  fireball_particle: {fileID: 0}
-  wildfire_particle: {fileID: 0}
-  healPar: {fileID: 0}
-  burningTree: {fileID: 0}
   index: -1
   ableToBeDestroyed: 0
   progressBar: {fileID: 8030803186999363819}
@@ -495,7 +488,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e8570054da5518e43a209c449716faeb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0084ec732e308048882897de4b8681b, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -572,7 +565,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e8570054da5518e43a209c449716faeb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0084ec732e308048882897de4b8681b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

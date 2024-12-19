@@ -13,7 +13,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: -4997358645720971277}
   m_StateMachineBehaviours:
-  - {fileID: 2250622018107737719}
+  - {fileID: -4546707689147064220}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -22,7 +22,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 3235e09c0a420354a91450d8838483f3, type: 2}
+  m_Motion: {fileID: 7400000, guid: 813e411ea7c43114a81f4f6ff5f9d45a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -78,6 +78,18 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &-4546707689147064220
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085805807b988b84d957136c36eeaeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-2822456306437531014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,7 +115,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 134432797877664107}
   m_StateMachineBehaviours:
-  - {fileID: -2822456306437531014}
+  - {fileID: -293025375520498338}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -112,7 +124,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 702fba196046aee47914bb6955605838, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7ef18a07084f26e459c12dfda251f1c2, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -143,6 +155,18 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &-293025375520498338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085805807b988b84d957136c36eeaeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0

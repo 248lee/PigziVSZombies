@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class AnimalReturningState : StateMachineBehaviour
 {
-    public EscapingTo escapingTo;
+    public EscapingTo escapingFrom;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (escapingTo == EscapingTo.TheLeft)
+        if (escapingFrom == EscapingTo.TheLeft)
         {
             animator.GetComponent<AnimalController>().LeaveLeftHome();
         }

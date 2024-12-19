@@ -58,15 +58,15 @@ public class FireThowerOverlapDetection : MonoBehaviour
             Vector2 screenToWorldPoint = mainCamera.ScreenToWorldPoint(screenPos);
 
             // Visualize the point in the scene using Debug.DrawRay
-            if (i == 15)
-            {
-                Instantiate(test, screenToWorldPoint, Quaternion.identity);
+            //if (i == 15)
+            //{
+                //Instantiate(test, screenToWorldPoint, Quaternion.identity);
                 //Debug.Log(triggerColliders[0].OverlapPoint(screenToWorldPoint));
                 //Debug.Log(screenToWorldPoint);
                 //Debug.Log(triggerColliders[0].bounds.max);
                 //Debug.Log(triggerColliders[0].bounds.min);
                 //Debug.Log("==============================================");
-            }
+            //}
 
             // Check if the particle overlaps with the 2D trigger
             bool is_overlapping = false;

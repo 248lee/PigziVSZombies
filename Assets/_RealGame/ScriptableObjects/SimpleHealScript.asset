@@ -17,4 +17,4 @@ MonoBehaviour:
   revive_ratio_of_maxHP: 0.2
   revive_bias: 0
   isShowingPopup: 1
-  popup: {fileID: 5216769848582715955, guid: b20ca1314a47ef540a680b5def3077e3, type: 3}
+  popup: {fileID: 5216769848582715955, guid: f90d4c0fde59d2746bdcbe7afc70c79b, type: 3}

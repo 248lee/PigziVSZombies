@@ -34437,7 +34437,7 @@ MonoBehaviour:
   realSpeed: 0
   falling_potion: {fileID: 4848417935368937607}
   healball_particle: {fileID: 7624574381212389606}
-  healScript: {fileID: 11400000, guid: 405350f36bc2d844fb9a0e0dbe377ac7, type: 2}
+  healScript: {fileID: 11400000, guid: 8c4e7d3c47fc12e4aa6adf78aed50037, type: 2}
 --- !u!1 &7422032014892762532
 GameObject:
   m_ObjectHideFlags: 0

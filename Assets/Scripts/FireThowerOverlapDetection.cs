@@ -12,7 +12,6 @@ public class FireThowerOverlapDetection : MonoBehaviour
 
     void Start()
     {
-        Timers.SetTimer("Deleteme Fire Thower", 2f);
         ps = GetComponent<ParticleSystem>();
         particles = new ParticleSystem.Particle[ps.main.maxParticles];
 
@@ -24,10 +23,6 @@ public class FireThowerOverlapDetection : MonoBehaviour
 
     void Update()
     {
-        if (Timers.isTimerFinished("Deleteme Fire Thower"))
-        {
-            Debug.Log("");
-        }
         int count = ps.GetParticles(particles);
 
         for (int i = 0; i < count; i++)

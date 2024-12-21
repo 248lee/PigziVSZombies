@@ -75,6 +75,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Scripts\WaterGenerate.cs" />
     <Compile Include="Assets\OpenAI_API\Embedding\EmbeddingRequest.cs" />
+    <Compile Include="Assets\Scripts\AutoCompleteInput.cs" />
     <Compile Include="Assets\OpenAI_API\Model\Model.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\OpenAI_API\IOpenAIAPI.cs" />

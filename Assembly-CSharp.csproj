@@ -245,6 +245,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsBase.cs" />
+    <Compile Include="Assets\Scripts\AlwaysActiveInputField.cs" />
     <Compile Include="Assets\SwiftAnimation.cs" />
     <Compile Include="Assets\Scripts\Wave\SentenceBank.cs" />
     <Compile Include="Assets\Scripts\floatMovement.cs" />

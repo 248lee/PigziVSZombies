@@ -42,6 +42,11 @@ public class AutoCompleteInput : MonoBehaviour
     private int selectedIndex = -1;
 
     /// <summary>
+    /// To record the state whether the current input change is caused by accepting a suggestion.
+    /// </summary>
+    private bool isJustAutoFilled = false;
+
+    /// <summary>
     /// Initializes the component and sets up event listeners.
     /// </summary>
     void Start()
@@ -62,29 +67,42 @@ public class AutoCompleteInput : MonoBehaviour
             return;
         }
 
+        if (isJustAutoFilled)  // If this observation of input-changed is based on the selection of the suggestions, then do not update suggestion list
+        {
+            isJustAutoFilled = false;
+            return;
+        }
+
         // Filter word bank to find matches starting with the input text.
         var suggestions = wordBank
             .Where(word => word.StartsWith(input, System.StringComparison.OrdinalIgnoreCase))
             .ToList();
 
-        UpdateSuggestions(suggestions);
+        UpdateSuggestions(input, suggestions);
+
+        // Select the first item that shows the players original input
+        selectedIndex = 0;
+        HighlightSuggestion();
     }
 
     /// <summary>
     /// Updates the suggestion panel with the provided list of suggestions.
     /// </summary>
+    /// <param name="originalString">The original input of the player.</param>
     /// <param name="suggestions">List of words to display as suggestions.</param>
-    void UpdateSuggestions(List<string> suggestions)
+    void UpdateSuggestions(string originalString, List<string> suggestions)
     {
         ClearSuggestions();
 
-        if (suggestions.Count == 0)
-        {
-            suggestionPanel.SetActive(false);
-            return;
-        }
-
         suggestionPanel.SetActive(true);
+
+        // Instantiate the item indicating the original word
+        var originalWordItem = Instantiate(suggestionPrefab, suggestionPanel.transform);
+        // Set the text of the suggestion item.
+        originalWordItem.GetComponentInChildren<TextMeshProUGUI>().text = originalString;
+        // Add a click listener to apply the suggestion.
+        originalWordItem.GetComponent<Button>().onClick.AddListener(() => OnSuggestionClicked(originalString));
+        this.activeSuggestions.Add(originalWordItem);
 
         foreach (var suggestion in suggestions)
         {
@@ -95,10 +113,9 @@ public class AutoCompleteInput : MonoBehaviour
             suggestionItem.GetComponentInChildren<TextMeshProUGUI>().text = suggestion;
 
             // Add a click listener to apply the suggestion.
-            var button = suggestionItem.GetComponent<Button>();
-            button.onClick.AddListener(() => OnSuggestionClicked(suggestion));
+            suggestionItem.GetComponent<Button>().onClick.AddListener(() => OnSuggestionClicked(suggestion));
 
-            activeSuggestions.Add(suggestionItem);
+            this.activeSuggestions.Add(suggestionItem);
         }
     }
 
@@ -109,8 +126,7 @@ public class AutoCompleteInput : MonoBehaviour
     /// <param name="suggestion">The selected suggestion text.</param>
     void OnSuggestionClicked(string suggestion)
     {
-        inputField.text = suggestion;
-        inputField.caretPosition = suggestion.Length;
+        FillSuggestion(suggestion);
         ClearSuggestions();
     }
 
@@ -157,13 +173,30 @@ public class AutoCompleteInput : MonoBehaviour
     /// <summary>
     /// Highlights the currently selected suggestion in the suggestion list.
     /// Changes the text color of the selected suggestion for visual feedback.
+    /// Sets the input field text to the selected suggestion.
     /// </summary>
     void HighlightSuggestion()
     {
         for (int i = 0; i < activeSuggestions.Count; i++)
         {
             var text = activeSuggestions[i].GetComponentInChildren<TextMeshProUGUI>();
-            text.color = i == selectedIndex ? Color.yellow : Color.white;
-        }
+            text.color = Color.white;
+            if (i == selectedIndex)
+            {
+                text.color = Color.yellow;
+                FillSuggestion(text.text);
+            }
+        }        
+    }
+    /// <summary>
+    /// Apply the suggested string into the input field.
+    /// </summary>
+    /// <param name="suggestion"></param>
+    void FillSuggestion(string suggestion)
+    {
+        if (inputField.text != suggestion)
+            isJustAutoFilled = true;  // This tells the observer of the input-changed not to refresh the suggestions if the player is choosing a suggestion
+        inputField.text = suggestion;
+        inputField.caretPosition = suggestion.Length;
     }
 }

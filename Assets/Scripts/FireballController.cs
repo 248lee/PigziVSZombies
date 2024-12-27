@@ -85,6 +85,9 @@ public class FireballController : MonoBehaviour
                     Destroy(temp_bullet, 0.5f);
                     //Instantiate(fireballSystem.dust, transform.position, Quaternion.identity);
 
+                    // Add the word to the word bank
+                    AutoCompleteInput.instance.AddWordToWordBank(this.question.vocabulary);
+
                     // This is the post-process of answering correctly
                     this.PostProcessAfterCorrect();
                 }

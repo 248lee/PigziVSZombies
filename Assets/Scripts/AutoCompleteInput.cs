@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using JohnUtils;
 
 /// <summary>
 /// Manages an input field with an auto-complete functionality.
@@ -30,7 +31,7 @@ public class AutoCompleteInput : MonoBehaviour
     /// <summary>
     /// List of words available for auto-completion.
     /// </summary>
-    public List<string> wordBank;
+    private List<string> wordBank = new List<string>();
 
     /// <summary>
     /// List of currently active suggestion GameObjects.
@@ -47,7 +48,6 @@ public class AutoCompleteInput : MonoBehaviour
     /// </summary>
     private bool isJustAutoFilled = false;
 
-    public delegate void EventHandlerWithString(string word);
     /// <summary>
     /// This handler is called when the player press Enter or click on a suggestion vocabulary.
     /// </summary>
@@ -70,6 +70,7 @@ public class AutoCompleteInput : MonoBehaviour
     /// </summary>
     void Start()
     {
+        wordBank.Sort();
         suggestionPanel.SetActive(false);
         inputField.onValueChanged.AddListener(OnInputChanged);
     }
@@ -219,5 +220,29 @@ public class AutoCompleteInput : MonoBehaviour
             isJustAutoFilled = true;  // This tells the observer of the input-changed not to refresh the suggestions if the player is choosing a suggestion
         inputField.text = suggestion;
         inputField.caretPosition = suggestion.Length;
+    }
+
+    /// <summary>
+    /// Add a word(string) to the word bank, which will be suggested to the player in his/her future input.
+    /// </summary>
+    /// <param name="word">The string you want to add.</param>
+    /// <returns>True if the word is new. False when the word is already in the word bank.</returns>
+    public bool AddWordToWordBank(string word)
+    {
+        wordBank.Sort(); // just in case
+
+        // Find the index to insert the new element
+        int index = wordBank.BinarySearch(word);
+
+        if (index >= 0)  // If the element is already in the wordBank, return false
+        {
+            return false;
+        }
+
+        // Insert the element at the correct position
+        index = ~index;  // If the element is not found, BinarySearch returns a negative number which is the complement of the index it should be
+        wordBank.Insert(index, word);
+
+        return true;
     }
 }

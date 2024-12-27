@@ -7,7 +7,6 @@ using JohnUtils;
 
 public class PlayerController : MonoBehaviour
 {
-    public static KeyCode[] keys = { KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.M, KeyCode.N, KeyCode.O, KeyCode.P, KeyCode.Q, KeyCode.R, KeyCode.S, KeyCode.T, KeyCode.U, KeyCode.V, KeyCode.W, KeyCode.X, KeyCode.Y, KeyCode.Z };
     //---------------------public---------------------//
     public string playerValue;
     public int waters;
@@ -16,9 +15,7 @@ public class PlayerController : MonoBehaviour
     //---------------------private---------------------//
     //WaterSystem watersystem;
     DragonController dragonController;
-    Stack valueInput = new Stack();
     [SerializeField] float frozenTime = 5f;
-    [SerializeField] TextMeshProUGUI valueText;
     [SerializeField] GameObject bullet_empty_shoot;
     [SerializeField] Transform bulletStartPoint;
     [SerializeField] Text waterAmountText;
@@ -32,7 +29,6 @@ public class PlayerController : MonoBehaviour
         this.normalPP.layer = 13;
         this.frozenPP.layer = 14;
         this.playerValue = "";
-        this.valueInput = new Stack();
         this.fireballsystem = FindObjectOfType<FireballSysrem>();
         //this.watersystem = FindObjectOfType<WaterSystem>();
         this.dragonController = FindObjectOfType<DragonController>();
@@ -40,6 +36,7 @@ public class PlayerController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(11, 11, true);
         Physics2D.IgnoreLayerCollision(11, 12, true);
         Physics2D.IgnoreLayerCollision(12, 12, true);
+        AutoCompleteInput.instance.inputCompleteHandler += this.ActivateShoot;  // Suscribe the Shoot Activation (previously called "preshoot" onto the AutoCompleteInput class.
     }
 
     // Update is called once per frame
@@ -56,81 +53,15 @@ public class PlayerController : MonoBehaviour
         
         // Initialize
         this.playerValue = "";
-        // InputButton
-        if (GameflowSystem.instance.is_pausing == false && valueInput.Count < 20)
-        {
-            if (Input.GetKeyDown(KeyCode.Keypad1))
-            {
-                valueInput.Push(1);
-            }
-            else if (Input.GetKeyDown(KeyCode.Keypad2))
-            {
-                valueInput.Push(2);
-            }
-            else if (Input.GetKeyDown(KeyCode.Keypad3))
-            {
-                valueInput.Push(3);
-            }
-            else if (Input.GetKeyDown(KeyCode.Keypad4))
-            {
-                valueInput.Push(4);
-            }
-            else if (Input.GetKeyDown(KeyCode.Keypad5))
-            {
-                valueInput.Push(5);
-            }
-            else if (Input.GetKeyDown(KeyCode.Keypad6))
-            {
-                valueInput.Push(6);
-            }
-            else if (Input.GetKeyDown(KeyCode.Keypad7))
-            {
-                valueInput.Push(7);
-            }
-            else if (Input.GetKeyDown(KeyCode.Keypad8))
-            {
-                valueInput.Push(8);
-            }
-            else if (Input.GetKeyDown(KeyCode.Keypad9))
-            {
-                valueInput.Push(9);
-            }
-            else if (Input.GetKeyDown(KeyCode.Keypad0))
-            {
-                valueInput.Push(0);
-            }
-            for (int i = 0; i < 26; i++)
-            {
-                if (Input.GetKeyDown(keys[i]))
-                    valueInput.Push((char)('a' + i));
-            }
-        }
-        if (valueInput.Count != 0)
-        {
-            if (GameflowSystem.instance.is_pausing == false && Input.GetKeyDown(KeyCode.Backspace))
-            {
-                valueInput.Pop();
-            }
-        }
-
-        // valueUpdate
-        if (valueInput.Count != 0)
-        {
-            foreach (char item in valueInput)
-            {
-                this.playerValue = item.ToString() + this.playerValue;
-            }
-        }
-        this.valueText.text = this.playerValue;
 
         // answer
-        if (GameflowSystem.instance.is_pausing == false && Input.GetKeyDown(KeyCode.Space))
-        {
-            if (valueInput.Count != 0)
-            {
-                this.preShoot();
-            }
-        }
+        //if (GameflowSystem.instance.is_pausing == false && Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    if (valueInput.Count != 0)
+        //    {
+        //        this.preShoot();
+        //    }
+        //}
 
         // pause
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -144,14 +75,12 @@ public class PlayerController : MonoBehaviour
         // Water¨t²Î
         this.updateWaterAmountToText();
     }
-    void preShoot()
+    void ActivateShoot(string input)
     {
         bool correct = false;
-        this.valueInput.Clear();
-        this.valueText.text = "";
         for (int i = 0; i < this.fireballsystem.fire_onScreen.Count; i++)
         {
-            if (this.fireballsystem.fire_onScreen[i].question.vocabulary == this.playerValue && this.fireballsystem.fire_onScreen[i].ableShoot)
+            if (this.fireballsystem.fire_onScreen[i].question.vocabulary == input && this.fireballsystem.fire_onScreen[i].ableShoot)
             {
                 correct = true;
                 this.fireballsystem.fire_onScreen[i].correct(); // this completes the shoot animation

@@ -1,0 +1,4 @@
+﻿[*.{cs,vb}]
+
+# IDE0003: 移除限定性條件
+dotnet_style_qualification_for_event = true

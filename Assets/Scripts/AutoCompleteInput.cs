@@ -10,6 +10,7 @@ using TMPro;
 /// </summary>
 public class AutoCompleteInput : MonoBehaviour
 {
+    public static AutoCompleteInput instance;
     /// <summary>
     /// Reference to the TMP_InputField where the user types.
     /// </summary>
@@ -45,6 +46,24 @@ public class AutoCompleteInput : MonoBehaviour
     /// To record the state whether the current input change is caused by accepting a suggestion.
     /// </summary>
     private bool isJustAutoFilled = false;
+
+    public delegate void EventHandlerWithString(string word);
+    /// <summary>
+    /// This handler is called when the player press Enter or click on a suggestion vocabulary.
+    /// </summary>
+    public event EventHandlerWithString inputCompleteHandler;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     /// <summary>
     /// Initializes the component and sets up event listeners.
@@ -101,7 +120,7 @@ public class AutoCompleteInput : MonoBehaviour
         // Set the text of the suggestion item.
         originalWordItem.GetComponentInChildren<TextMeshProUGUI>().text = originalString;
         // Add a click listener to apply the suggestion.
-        originalWordItem.GetComponent<Button>().onClick.AddListener(() => OnSuggestionClicked(originalString));
+        originalWordItem.GetComponent<Button>().onClick.AddListener(() => OnSuggestionClickedOrEnterPressed(originalString));
         this.activeSuggestions.Add(originalWordItem);
 
         foreach (var suggestion in suggestions)
@@ -113,7 +132,7 @@ public class AutoCompleteInput : MonoBehaviour
             suggestionItem.GetComponentInChildren<TextMeshProUGUI>().text = suggestion;
 
             // Add a click listener to apply the suggestion.
-            suggestionItem.GetComponent<Button>().onClick.AddListener(() => OnSuggestionClicked(suggestion));
+            suggestionItem.GetComponent<Button>().onClick.AddListener(() => OnSuggestionClickedOrEnterPressed(suggestion));
 
             this.activeSuggestions.Add(suggestionItem);
         }
@@ -124,10 +143,12 @@ public class AutoCompleteInput : MonoBehaviour
     /// Sets the input field text to the selected suggestion.
     /// </summary>
     /// <param name="suggestion">The selected suggestion text.</param>
-    void OnSuggestionClicked(string suggestion)
+    void OnSuggestionClickedOrEnterPressed(string suggestion)
     {
         FillSuggestion(suggestion);
         ClearSuggestions();
+        if (this.inputCompleteHandler != null)
+            this.inputCompleteHandler.Invoke(suggestion);
     }
 
     /// <summary>
@@ -166,7 +187,7 @@ public class AutoCompleteInput : MonoBehaviour
         // Select the highlighted suggestion.
         else if (Input.GetKeyDown(KeyCode.Return) && selectedIndex >= 0)
         {
-            OnSuggestionClicked(activeSuggestions[selectedIndex].GetComponentInChildren<TextMeshProUGUI>().text);
+            OnSuggestionClickedOrEnterPressed(activeSuggestions[selectedIndex].GetComponentInChildren<TextMeshProUGUI>().text);
         }
     }
 

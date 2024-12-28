@@ -9,6 +9,7 @@ using JohnUtils;
 /// Manages an input field with an auto-complete functionality.
 /// Displays a list of word suggestions as the user types and allows selection via mouse or keyboard.
 /// </summary>
+[RequireComponent(typeof(TabSystem))]
 public class AutoCompleteInput : MonoBehaviour
 {
     public static AutoCompleteInput instance;
@@ -53,6 +54,8 @@ public class AutoCompleteInput : MonoBehaviour
     /// </summary>
     public event EventHandlerWithString inputCompleteHandler;
 
+    private TabSystem tabSystem;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -71,7 +74,8 @@ public class AutoCompleteInput : MonoBehaviour
     void Start()
     {
         wordBank.Sort();
-        suggestionPanel.SetActive(false);
+        this.tabSystem = GetComponent<TabSystem>();
+        this.tabSystem.switchToDefaultTab();
         inputField.onValueChanged.AddListener(OnInputChanged);
     }
 
@@ -114,7 +118,7 @@ public class AutoCompleteInput : MonoBehaviour
     {
         ClearSuggestions();
 
-        suggestionPanel.SetActive(true);
+        this.tabSystem.switchToTab("±ÀÂË¦r");
 
         // Instantiate the item indicating the original word
         var originalWordItem = Instantiate(suggestionPrefab, suggestionPanel.transform);
@@ -162,7 +166,7 @@ public class AutoCompleteInput : MonoBehaviour
             Destroy(suggestion);
         }
         activeSuggestions.Clear();
-        suggestionPanel.SetActive(false);
+        this.tabSystem.switchToDefaultTab();
     }
 
     /// <summary>

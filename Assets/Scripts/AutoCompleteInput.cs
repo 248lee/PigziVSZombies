@@ -125,7 +125,7 @@ public class AutoCompleteInput : MonoBehaviour
         // Set the text of the suggestion item.
         originalWordItem.GetComponentInChildren<TextMeshProUGUI>().text = originalString;
         // Add a click listener to apply the suggestion.
-        originalWordItem.GetComponent<Button>().onClick.AddListener(() => OnSuggestionClickedOrEnterPressed(originalString));
+        originalWordItem.GetComponent<Button>().onClick.AddListener(() => OnSuggestionClickedOrCtrlPressed(originalString));
         this.activeSuggestions.Add(originalWordItem);
 
         foreach (var suggestion in suggestions)
@@ -137,7 +137,7 @@ public class AutoCompleteInput : MonoBehaviour
             suggestionItem.GetComponentInChildren<TextMeshProUGUI>().text = suggestion;
 
             // Add a click listener to apply the suggestion.
-            suggestionItem.GetComponent<Button>().onClick.AddListener(() => OnSuggestionClickedOrEnterPressed(suggestion));
+            suggestionItem.GetComponent<Button>().onClick.AddListener(() => OnSuggestionClickedOrCtrlPressed(suggestion));
 
             this.activeSuggestions.Add(suggestionItem);
         }
@@ -148,12 +148,27 @@ public class AutoCompleteInput : MonoBehaviour
     /// Sets the input field text to the selected suggestion.
     /// </summary>
     /// <param name="suggestion">The selected suggestion text.</param>
-    void OnSuggestionClickedOrEnterPressed(string suggestion)
+    void OnSuggestionClickedOrCtrlPressed(string suggestion)
     {
         FillSuggestion(suggestion);
+    }
+
+    void HandleSubmit()
+    {
+        string inputText = inputField.text;
+
         ClearSuggestions();
-        if (this.inputCompleteHandler != null)
-            this.inputCompleteHandler.Invoke(suggestion);
+
+        if (!string.IsNullOrEmpty(inputText))
+        {
+            // Pass the input text to your function
+            if (this.inputCompleteHandler != null)
+                this.inputCompleteHandler.Invoke(inputText);
+        }
+
+        // Clear the input field and reactivate it
+        inputField.text = string.Empty;
+        // ReactivateInputField();
     }
 
     /// <summary>
@@ -190,9 +205,14 @@ public class AutoCompleteInput : MonoBehaviour
             HighlightSuggestion();
         }
         // Select the highlighted suggestion.
-        else if (Input.GetKeyDown(KeyCode.Return) && selectedIndex >= 0)
+        else if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl) && selectedIndex >= 0)
         {
-            OnSuggestionClickedOrEnterPressed(activeSuggestions[selectedIndex].GetComponentInChildren<TextMeshProUGUI>().text);
+            OnSuggestionClickedOrCtrlPressed(activeSuggestions[selectedIndex].GetComponentInChildren<TextMeshProUGUI>().text);
+        }
+        // Press Enter to submit the answer
+        else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            HandleSubmit();
         }
     }
 
@@ -210,7 +230,7 @@ public class AutoCompleteInput : MonoBehaviour
             if (i == selectedIndex)
             {
                 text.color = Color.yellow;
-                FillSuggestion(text.text);
+                //FillSuggestion(text.text);
             }
         }        
     }

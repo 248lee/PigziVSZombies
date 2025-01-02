@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         //}
 
         // pause
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             if (!GameflowSystem.instance.is_pausing)
                 GameflowSystem.instance.SetPause();

@@ -7610,6 +7610,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658b4917feab4854083e9bbefb36f428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorOfSelectedButtonBackground: {r: 0, g: 0, b: 0, a: 1}
+  colorOfSelectedButtonText: {r: 1, g: 1, b: 1, a: 1}
   tabPages:
   - tabName: "\u55AE\u5B57"
     backgroundColor: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 0.5529412}
@@ -21936,6 +21938,14 @@ MonoBehaviour:
   - shuttle
   - omnipresent
   - diaspora
+  - appoint
+  - custodian
+  - stipulate
+  - proceeds
+  - loan
+  - auditor
+  - expendient
+  - mutilate
   waveSystemOfThisStage: {fileID: 853094385}
 --- !u!4 &1989700014
 Transform:

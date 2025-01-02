@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TabSystem : MonoBehaviour
 {
@@ -13,14 +14,19 @@ public class TabSystem : MonoBehaviour
         public Button tabButton;
         public GameObject objectToShow;
     }
+    public Color colorOfSelectedButtonBackground, colorOfSelectedButtonText;
     public List<TabPage> tabPages;
+    private List<Color> original_button_colors_background = new List<Color>(), original_button_colors_text = new List<Color>();
     // Start is called before the first frame update
     void Start()
     {
         foreach (TabPage tabPage in this.tabPages)
         {
             tabPage.tabButton.onClick.AddListener(() => this.switchToTab(tabPage.tabName));
+            this.original_button_colors_background.Add(tabPage.tabButton.GetComponent<Image>().color);
+            this.original_button_colors_text.Add(tabPage.tabButton.GetComponentInChildren<TextMeshProUGUI>().color);
         }
+        switchToDefaultTab();
     }
 
     // Update is called once per frame
@@ -30,15 +36,22 @@ public class TabSystem : MonoBehaviour
     }
     public void switchToTab(string targetTabName)
     {
-        foreach (TabPage tabPage in this.tabPages)
+        for (int i = 0; i < this.tabPages.Count; i++)
         {
+            TabPage tabPage = this.tabPages[i];
             if (tabPage.tabName == targetTabName)
             {
                 tabPage.objectToShow.SetActive(true);
                 GetComponent<Image>().color = tabPage.backgroundColor;
+                tabPage.tabButton.GetComponent<Image>().color = this.colorOfSelectedButtonBackground;
+                tabPage.tabButton.GetComponentInChildren<TextMeshProUGUI>().color = this.colorOfSelectedButtonText;
             }
             else
+            {
                 tabPage.objectToShow.SetActive(false);
+                tabPage.tabButton.GetComponent<Image>().color = this.original_button_colors_background[i];
+                tabPage.tabButton.GetComponentInChildren<TextMeshProUGUI>().color = this.original_button_colors_text[i];
+            }
         }
     }
     public void switchToDefaultTab()
@@ -48,12 +61,6 @@ public class TabSystem : MonoBehaviour
             Debug.LogWarning("NO tabs in the TabSystem!");
             return;
         }
-        tabPages[0].objectToShow.SetActive(true);
-        GetComponent<Image>().color = tabPages[0].backgroundColor;
-
-        for (int i = 1; i < tabPages.Count; i++)  // turn off all other tabs
-        {
-            tabPages[i].objectToShow.SetActive(false);
-        }
+        switchToTab(this.tabPages[0].tabName);
     }
 }

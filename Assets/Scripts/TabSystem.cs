@@ -16,6 +16,7 @@ public class TabSystem : MonoBehaviour
     }
     public Color colorOfSelectedButtonBackground, colorOfSelectedButtonText;
     public List<TabPage> tabPages;
+    public string currentTabName { get; private set; }
     private List<Color> original_button_colors_background = new List<Color>(), original_button_colors_text = new List<Color>();
     // Start is called before the first frame update
     void Start()
@@ -45,6 +46,7 @@ public class TabSystem : MonoBehaviour
                 GetComponent<Image>().color = tabPage.backgroundColor;
                 tabPage.tabButton.GetComponent<Image>().color = this.colorOfSelectedButtonBackground;
                 tabPage.tabButton.GetComponentInChildren<TextMeshProUGUI>().color = this.colorOfSelectedButtonText;
+                currentTabName = tabPage.tabName;
             }
             else
             {

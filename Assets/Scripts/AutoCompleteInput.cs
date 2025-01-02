@@ -87,7 +87,7 @@ public class AutoCompleteInput : MonoBehaviour
     {
         if (string.IsNullOrEmpty(input))
         {
-            ClearSuggestions();
+            OnInputEmpty();
             return;
         }
 
@@ -97,12 +97,9 @@ public class AutoCompleteInput : MonoBehaviour
             return;
         }
 
-        // Filter word bank to find matches starting with the input text.
-        var suggestions = wordBank
-            .Where(word => word.StartsWith(input, System.StringComparison.OrdinalIgnoreCase))
-            .ToList();
+        this.tabSystem.switchToTab("±ÀÂË¦r");
 
-        UpdateSuggestions(input, suggestions);
+        UpdateSuggestions();
 
         // Select the first item that shows the players original input
         selectedIndex = 0;
@@ -110,23 +107,17 @@ public class AutoCompleteInput : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the suggestion panel with the provided list of suggestions.
+    /// Updates the suggestion panel according to the given input string.
     /// </summary>
-    /// <param name="originalString">The original input of the player.</param>
-    /// <param name="suggestions">List of words to display as suggestions.</param>
-    void UpdateSuggestions(string originalString, List<string> suggestions)
+    void UpdateSuggestions()
     {
         ClearSuggestions();
+        string inputText = inputField.text;
 
-        this.tabSystem.switchToTab("±ÀÂË¦r");
-
-        // Instantiate the item indicating the original word
-        var originalWordItem = Instantiate(suggestionPrefab, suggestionPanel.transform);
-        // Set the text of the suggestion item.
-        originalWordItem.GetComponentInChildren<TextMeshProUGUI>().text = originalString;
-        // Add a click listener to apply the suggestion.
-        originalWordItem.GetComponent<Button>().onClick.AddListener(() => OnSuggestionClickedOrCtrlPressed(originalString));
-        this.activeSuggestions.Add(originalWordItem);
+        // Filter word bank to find matches starting with the input text.
+        var suggestions = wordBank
+            .Where(word => word.StartsWith(inputText, System.StringComparison.OrdinalIgnoreCase))
+            .ToList();
 
         foreach (var suggestion in suggestions)
         {
@@ -152,23 +143,22 @@ public class AutoCompleteInput : MonoBehaviour
     {
         FillSuggestion(suggestion);
     }
-
+    /// <summary>
+    /// Submit the answer to the handler. Called when the player press Enter.
+    /// </summary>
     void HandleSubmit()
     {
         string inputText = inputField.text;
 
-        ClearSuggestions();
-
         if (!string.IsNullOrEmpty(inputText))
         {
-            // Pass the input text to your function
+            // Pass the input text to your function.
             if (this.inputCompleteHandler != null)
                 this.inputCompleteHandler.Invoke(inputText);
         }
 
-        // Clear the input field and reactivate it
+        // Clear the input field and get back all the suggesstions.
         inputField.text = string.Empty;
-        // ReactivateInputField();
     }
 
     /// <summary>
@@ -181,6 +171,11 @@ public class AutoCompleteInput : MonoBehaviour
             Destroy(suggestion);
         }
         activeSuggestions.Clear();
+    }
+    void OnInputEmpty()
+    {
+        ClearSuggestions();
+        UpdateSuggestions();
         this.tabSystem.switchToDefaultTab();
     }
 
@@ -190,30 +185,30 @@ public class AutoCompleteInput : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (activeSuggestions.Count == 0) return;
+        // Press Enter to submit the answer
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            HandleSubmit();
+        }
 
+        if (this.tabSystem.currentTabName != "±ÀÂË¦r")  // If the current tab is not the suggesstion panel, the player cannot select any suggesstion
+            return;
         // Navigate down through suggestions.
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             selectedIndex = (selectedIndex + 1) % activeSuggestions.Count;
-            HighlightSuggestion();
         }
         // Navigate up through suggestions.
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             selectedIndex = (selectedIndex - 1 + activeSuggestions.Count) % activeSuggestions.Count;
-            HighlightSuggestion();
         }
         // Select the highlighted suggestion.
         else if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl) && selectedIndex >= 0)
         {
             OnSuggestionClickedOrCtrlPressed(activeSuggestions[selectedIndex].GetComponentInChildren<TextMeshProUGUI>().text);
         }
-        // Press Enter to submit the answer
-        else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-        {
-            HandleSubmit();
-        }
+        HighlightSuggestion();
     }
 
     /// <summary>
@@ -267,6 +262,7 @@ public class AutoCompleteInput : MonoBehaviour
         index = ~index;  // If the element is not found, BinarySearch returns a negative number which is the complement of the index it should be
         wordBank.Insert(index, word);
 
+        UpdateSuggestions();
         return true;
     }
 }

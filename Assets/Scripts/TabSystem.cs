@@ -44,7 +44,7 @@ public class TabSystem : MonoBehaviour
             {
                 tabPage.objectToShow.SetActive(true);
                 GetComponent<Image>().color = tabPage.backgroundColor;
-                tabPage.tabButton.GetComponent<Image>().color = this.colorOfSelectedButtonBackground;
+                tabPage.tabButton.GetComponent<Image>().color = tabPage.backgroundColor;
                 tabPage.tabButton.GetComponentInChildren<TextMeshProUGUI>().color = this.colorOfSelectedButtonText;
                 currentTabName = tabPage.tabName;
             }

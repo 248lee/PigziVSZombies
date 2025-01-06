@@ -11,7 +11,7 @@ public class HealFireballController : FallingFireballController
     protected override void Update()
     {
         if (this.ableShoot && transform.position.y < this.fireballSystem.healballBound)
-            this.wrong();
+            this.Wrong();
         base.Update();
     }
     protected override void InitProcess()
@@ -35,7 +35,7 @@ public class HealFireballController : FallingFireballController
         {
             if (healball != this && healball.transform.position.y == transform.position.y)
             {
-                healball.wrong();
+                healball.Wrong();
             }
         }
     }
@@ -49,7 +49,7 @@ public class HealFireballController : FallingFireballController
         this.realSpeed = this.speed;
         this.healball_particle.Play();
     }
-    public override void wrong()
+    public override void Wrong()
     {
         // Take out the particle system. It should be destroyed independently in order to wait for fading-out.
         this.healball_particle.transform.parent = null;
@@ -67,7 +67,11 @@ public class HealFireballController : FallingFireballController
         this.SetAbleToBeDestroyed();
         this.questionText.SetText(this.question.GetRealSentenceWithColor("blue")); // show out the correct answer
     }
-    public override void wrong_withFire()
+    public override void Wrong_onFireTree()
+    {
+        Debug.LogError("This method shouldn't be called. There may be some bugs.");
+    }
+    public override void Wrong_onFloor()
     {
         Debug.LogError("This method shouldn't be called. There may be some bugs.");
     }

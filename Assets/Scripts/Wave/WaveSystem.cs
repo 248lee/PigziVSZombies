@@ -30,7 +30,7 @@ public class Wave
 {
     public WaveMode mode;
 
-    public List<string> v_candidates;
+    public List<string> v_candidates { get; set; }
     public string waveName = "";
     public int numOfVocabularies = 0;
     public List<Question> questions = new();

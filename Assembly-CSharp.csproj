@@ -197,6 +197,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\MilkShake\Demo\Scripts\CameraSwitcher.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Components\FxaaComponent.cs" />
+    <Compile Include="Assets\Scripts\FloorTouchFireball.cs" />
     <Compile Include="Assets\Scripts\WaterController.cs" />
     <Compile Include="Assets\Scripts\WaterSystem.cs" />
     <Compile Include="Assets\OpenAI_API\Usage.cs" />

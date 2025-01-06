@@ -44,9 +44,9 @@ public class WaveEditor : PropertyDrawer
             if (newMode == WaveMode.Normal || newMode == WaveMode.Boss)
             {
                 container1.Clear();
-                PropertyField v_candidatesField = new PropertyField();
+                // PropertyField v_candidatesField = new PropertyField();
                 // 此處unity有嚴重bug,如果你使用 PropertyField v_candidatesField = new PropertyField(property.FindPropertyRelative("v_candidates"));
-                v_candidatesField.BindProperty(property.FindPropertyRelative("v_candidates"));
+                // v_candidatesField.BindProperty(property.FindPropertyRelative("v_candidates"));
 
                 PropertyField waveNameField = new PropertyField();
                 waveNameField.BindProperty(property.FindPropertyRelative("waveName"));
@@ -59,7 +59,7 @@ public class WaveEditor : PropertyDrawer
                 container1.Add(subwaveWindowButton);
                 container1.Add(waveNameField);
                 container1.Add(numOfVocabulariesField);
-                container1.Add(v_candidatesField);
+                // container1.Add(v_candidatesField);
 
                 // Boss: field of p_numOfVocabularies
                 if (newMode == WaveMode.Boss)

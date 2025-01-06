@@ -11,7 +11,7 @@ public class TreeController : MonoBehaviour
     [SerializeField] HPBarController hpBar;
     [SerializeField] List<GameObject> Leafs;
     [SerializeField] DamagePopupController healPopup;
-    FireballSysrem fs;
+    [SerializeField] List<Collider2D> animalProtections;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,6 @@ public class TreeController : MonoBehaviour
         this.is_alive = true;
         this.hp = this.max_hp;
         this.burningFire = null;
-        this.fs = FindObjectOfType<FireballSysrem>();
     }
 
     // Update is called once per frame
@@ -35,6 +34,13 @@ public class TreeController : MonoBehaviour
             this.burningFire.WildfireOnDeadTree();  // This turns this.burningFire into null
         }
 
+        // Determine tree's protection for the animal
+        if (this.is_alive)
+            foreach (Collider2D protection in this.animalProtections)
+                protection.enabled = true;
+        else
+            foreach (Collider2D protection in this.animalProtections)
+                protection.enabled = false;
     }
     void FixedUpdate()
     {
@@ -54,7 +60,7 @@ public class TreeController : MonoBehaviour
                 {
                     if (fireball is FireFireballController fire)
                     {
-                        fire.wrong();
+                        fire.Wrong();
                     }
                 }
                 
@@ -62,7 +68,7 @@ public class TreeController : MonoBehaviour
             else
             {
                 if (fireball is FireFireballController fire)
-                    fire.wrong_withFire();
+                    fire.Wrong_onFireTree();
             }
         }
     }

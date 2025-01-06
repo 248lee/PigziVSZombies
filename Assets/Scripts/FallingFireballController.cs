@@ -9,11 +9,15 @@ public class FallingFireballController : FireballController
     {
         this.rid.velocity = new Vector2(0f, this.realSpeed);
     }
-    public virtual void wrong()
+    public virtual void Wrong()
     {
 
     }
-    public virtual void wrong_withFire()
+    public virtual void Wrong_onFireTree()
+    {
+
+    }
+    public virtual void Wrong_onFloor()
     {
 
     }

@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class FireThowerOverlapDetection : MonoBehaviour
 {
-    public List<Collider2D> triggerColliders; // Assign your 2D trigger collider
-    public GameObject test;
+    public List<Collider2D> treeColliders; // Assign your 2D trigger collider
+    public List<AnimalController> animalControllers;
     private Camera mainCamera;          // Assign the Camera viewing the scene
-    private ParticleSystem ps;
+    [SerializeField] private ParticleSystem flameParticleSystem;
     private ParticleSystem.Particle[] particles;
 
     void Start()
     {
-        ps = GetComponent<ParticleSystem>();
-        particles = new ParticleSystem.Particle[ps.main.maxParticles];
+        particles = new ParticleSystem.Particle[flameParticleSystem.main.maxParticles];
 
         if (mainCamera == null)
         {
@@ -23,7 +22,7 @@ public class FireThowerOverlapDetection : MonoBehaviour
 
     void Update()
     {
-        int count = ps.GetParticles(particles);
+        int count = flameParticleSystem.GetParticles(particles);
 
         for (int i = 0; i < count; i++)
         {
@@ -34,20 +33,12 @@ public class FireThowerOverlapDetection : MonoBehaviour
             if (screenPos.z < 0) continue;
 
             // Project particles onto the plane on which the trigger is.
-            if (this.triggerColliders.Count == 0)
+            if (this.treeColliders.Count == 0)
             {
                 Debug.LogError("No 2D trigger is assigned");
                 continue;
             }
-            foreach (Collider2D trigger in this.triggerColliders)  // Check whether all the triggers are on the same plane
-            {
-                if (trigger.transform.position.z != this.triggerColliders[0].transform.position.z)
-                {
-                    Debug.LogWarning("The triggers should suppose be on the same 2D plane so that we know where to project to!");
-                    continue;
-                }
-            }
-            screenPos.Set(screenPos.x, screenPos.y, mainCamera.WorldToScreenPoint(this.triggerColliders[0].transform.position).z);
+            screenPos.Set(screenPos.x, screenPos.y, mainCamera.WorldToScreenPoint(this.treeColliders[0].transform.position).z);
 
             // Convert screen space to world point for 2D trigger check
             Vector2 screenToWorldPoint = mainCamera.ScreenToWorldPoint(screenPos);
@@ -56,32 +47,42 @@ public class FireThowerOverlapDetection : MonoBehaviour
             //if (i == 15)
             //{
                 //Instantiate(test, screenToWorldPoint, Quaternion.identity);
-                //Debug.Log(triggerColliders[0].OverlapPoint(screenToWorldPoint));
+                //Debug.Log(treeColliders[0].OverlapPoint(screenToWorldPoint));
                 //Debug.Log(screenToWorldPoint);
-                //Debug.Log(triggerColliders[0].bounds.max);
-                //Debug.Log(triggerColliders[0].bounds.min);
+                //Debug.Log(treeColliders[0].bounds.max);
+                //Debug.Log(treeColliders[0].bounds.min);
                 //Debug.Log("==============================================");
             //}
 
-            // Check if the particle overlaps with the 2D trigger
-            bool is_overlapping = false;
-            for (int t = 0; !is_overlapping && t < triggerColliders.Count; t++)
+            // Check if the particle overlaps with the trees' 2D triggers
+            for (int j = 0; j < treeColliders.Count; j++)
             {
-                is_overlapping = is_overlapping || triggerColliders[t].OverlapPoint(screenToWorldPoint);
-            }
-            if (is_overlapping)
-            {
-                Debug.Log("Flame inside tree");
-                // Fade out the particle
-                Color32 color = particles[i].startColor;
-                color.a = (byte)Mathf.Clamp(color.a - 5, 0, 255); // Gradually fade alpha
-                particles[i].startColor = color;
+                bool is_overlapping = treeColliders[j].OverlapPoint(screenToWorldPoint);
+                if (is_overlapping)
+                {
+                    // Fade out the particle
+                    Color32 color = particles[i].startColor;
+                    color.a = (byte)Mathf.Clamp(color.a - 5, 0, 255); // Gradually fade alpha
+                    particles[i].startColor = color;
 
-                // Optionally reduce particle lifetime for faster removal
-                particles[i].remainingLifetime *= 0.625f;
+                    // Optionally reduce particle lifetime for faster removal
+                    particles[i].remainingLifetime *= 0.625f;
+
+                    break;
+                }
+            }
+
+            // Check if the particle overlaps with the animals' triggers
+            for (int j = 0; j < animalControllers.Count; j++)
+            {
+                bool is_overlapping = animalControllers[j].GetComponent<Collider2D>().OverlapPoint(screenToWorldPoint);
+                if (is_overlapping)
+                {
+                    animalControllers[j].Death();
+                }
             }
         }
 
-        ps.SetParticles(particles, count);
+        flameParticleSystem.SetParticles(particles, count);
     }
 }

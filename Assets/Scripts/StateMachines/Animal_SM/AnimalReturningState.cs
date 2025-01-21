@@ -10,18 +10,18 @@ public class AnimalReturningState : StateMachineBehaviour
     {
         if (escapingFrom == EscapingTo.TheLeft)
         {
-            animator.GetComponent<AnimalController>().LeaveLeftHome();
+            animator.GetComponent<AnimalMovementController>().LeaveLeftHome();
         }
         else
         {
-            animator.GetComponent<AnimalController>().LeaveRightHome();
+            animator.GetComponent<AnimalMovementController>().LeaveRightHome();
         }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        AnimalController animalController = animator.GetComponent<AnimalController>();
+        AnimalMovementController animalController = animator.GetComponent<AnimalMovementController>();
         Vector3 targetPosition = AnimalSM.TargetOfHome.GetTargetPosition(animalController);
         if ((animator.transform.position.x - targetPosition.x) > 5 * animalController.stepSize)  // if the animal is righter than the target
         {

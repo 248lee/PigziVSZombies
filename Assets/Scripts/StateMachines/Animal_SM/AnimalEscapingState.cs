@@ -14,18 +14,18 @@ public class AnimalEscapingState : StateMachineBehaviour
     {
         if (escapingTo == EscapingTo.TheLeft)
         {
-            animator.GetComponent<AnimalController>().OccupyLeftHome();
+            animator.GetComponent<AnimalMovementController>().OccupyLeftHome();
         }
         else
         {
-            animator.GetComponent<AnimalController>().OccupyRightHome();
+            animator.GetComponent<AnimalMovementController>().OccupyRightHome();
         }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        AnimalController animalController = animator.GetComponent<AnimalController>();
+        AnimalMovementController animalController = animator.GetComponent<AnimalMovementController>();
         Vector3 targetPosition;
         if (this.escapingTo == EscapingTo.TheLeft)
             targetPosition = animalController.leftHomeTargetPosition;

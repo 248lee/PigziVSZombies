@@ -1077,9 +1077,10 @@ GameObject:
   - component: {fileID: 97178208}
   - component: {fileID: 97178207}
   - component: {fileID: 97178206}
-  - component: {fileID: 97178205}
+  - component: {fileID: 97178210}
   - component: {fileID: 97178204}
   - component: {fileID: 97178203}
+  - component: {fileID: 97178209}
   m_Layer: 0
   m_Name: Animal2
   m_TagString: Untagged
@@ -1122,27 +1123,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!135 &97178205
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97178202}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &97178206
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1208,6 +1188,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 670490591}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &97178209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97178202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be6c79d5c7e45340be4d6d78cbf3663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &97178210
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97178202}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &100711158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2056,7 +2083,7 @@ MonoBehaviour:
   annotation: This trigger2D is used in the dragon's firethower in order to block
     the particle.
   relatedGameobjects:
-  - {fileID: 1634768255968153}
+  - {fileID: 1855131371}
 --- !u!1 &226038332
 GameObject:
   m_ObjectHideFlags: 0
@@ -5736,9 +5763,10 @@ GameObject:
   - component: {fileID: 624367828}
   - component: {fileID: 624367827}
   - component: {fileID: 624367826}
-  - component: {fileID: 624367825}
+  - component: {fileID: 624367831}
   - component: {fileID: 624367824}
   - component: {fileID: 624367829}
+  - component: {fileID: 624367830}
   m_Layer: 0
   m_Name: Animal1
   m_TagString: Untagged
@@ -5767,27 +5795,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!135 &624367825
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624367823}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &624367826
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5867,6 +5874,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 1
   runSpeed: 2
+--- !u!114 &624367830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624367823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be6c79d5c7e45340be4d6d78cbf3663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &624367831
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624367823}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &627061361
 GameObject:
   m_ObjectHideFlags: 0
@@ -6231,7 +6285,7 @@ MonoBehaviour:
   - {fileID: 795700804}
   - {fileID: 841247950}
   - {fileID: 957523201}
-  animalControllersOnScene:
+  animalMoveControllersOnScene:
   - {fileID: 1910134375}
   - {fileID: 624367829}
   - {fileID: 97178203}
@@ -8741,25 +8795,6 @@ MonoBehaviour:
   vocabularyBoard: {fileID: 647425930}
   wordBankOfThisStage: {fileID: 1989700013}
   waves:
-  - mode: 0
-    waveName: 
-    numOfVocabularies: 7
-    questions: []
-    subwaves:
-    - startDelay: 1.49
-      numOfEmmisions: 15
-      durationMin: 1.54
-      durationMax: 7.12
-      healBallDelay: 999
-    p_numOfVocabularies: 3
-    labelName: Hello World
-    targetLabelName: Unnamed
-    runtimeVariableA: UnknownGlobalVariable
-    relation: 0
-    runtimeVariableB: UnknownGlobalVariable
-    dragon_paragraph:
-      vocabularies: []
-      article: 
   - mode: 2
     waveName: 
     numOfVocabularies: 3
@@ -8788,6 +8823,25 @@ MonoBehaviour:
       numOfEmmisions: 1
       durationMin: 8
       durationMax: 7
+      healBallDelay: 999
+    p_numOfVocabularies: 3
+    labelName: Hello World
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 0
+    waveName: 
+    numOfVocabularies: 7
+    questions: []
+    subwaves:
+    - startDelay: 1.49
+      numOfEmmisions: 15
+      durationMin: 1.54
+      durationMax: 7.12
       healBallDelay: 999
     p_numOfVocabularies: 3
     labelName: Hello World
@@ -9733,7 +9787,7 @@ MonoBehaviour:
   annotation: This trigger2D is used in the dragon's firethower in order to block
     the particle.
   relatedGameobjects:
-  - {fileID: 1634768255968153}
+  - {fileID: 1855131371}
 --- !u!1 &947792859
 GameObject:
   m_ObjectHideFlags: 0
@@ -15523,7 +15577,7 @@ MonoBehaviour:
   annotation: This trigger2D is used in the dragon's firethower in order to block
     the particle.
   relatedGameobjects:
-  - {fileID: 1634768255968153}
+  - {fileID: 1855131371}
 --- !u!1 &1548764184
 GameObject:
   m_ObjectHideFlags: 0
@@ -17960,9 +18014,10 @@ GameObject:
   - component: {fileID: 1690911582}
   - component: {fileID: 1690911581}
   - component: {fileID: 1690911580}
-  - component: {fileID: 1690911579}
+  - component: {fileID: 1690911584}
   - component: {fileID: 1690911578}
   - component: {fileID: 1690911577}
+  - component: {fileID: 1690911583}
   m_Layer: 0
   m_Name: Animal3
   m_TagString: Untagged
@@ -18005,27 +18060,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!135 &1690911579
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690911576}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1690911580
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18091,6 +18125,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 670490591}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1690911583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690911576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be6c79d5c7e45340be4d6d78cbf3663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &1690911584
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690911576}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1691510981
 GameObject:
   m_ObjectHideFlags: 0
@@ -19440,7 +19521,7 @@ MonoBehaviour:
   annotation: This trigger2D is used in the dragon's firethower in order to block
     the particle.
   relatedGameobjects:
-  - {fileID: 1634768255968153}
+  - {fileID: 1855131371}
 --- !u!1 &1826114654
 GameObject:
   m_ObjectHideFlags: 0
@@ -19922,6 +20003,7 @@ GameObject:
   - component: {fileID: 1855131374}
   - component: {fileID: 1855131372}
   - component: {fileID: 1855131373}
+  - component: {fileID: 1855131375}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Untagged
@@ -20003,6 +20085,29 @@ Transform:
   - {fileID: 766945753}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 9.628, y: 175.86, z: 0.326}
+--- !u!114 &1855131375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855131371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6d9868b412a7e647b451ae23453ad07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeColliders:
+  - {fileID: 223231926}
+  - {fileID: 1818765656}
+  - {fileID: 1541125956}
+  - {fileID: 941245480}
+  animalControllers:
+  - {fileID: 1910134382}
+  - {fileID: 624367830}
+  - {fileID: 97178209}
+  - {fileID: 1690911583}
+  flameParticleSystem: {fileID: 198637950729853403}
 --- !u!4 &1856894020
 Transform:
   m_ObjectHideFlags: 0
@@ -20675,9 +20780,10 @@ GameObject:
   - component: {fileID: 1910134380}
   - component: {fileID: 1910134379}
   - component: {fileID: 1910134378}
-  - component: {fileID: 1910134377}
   - component: {fileID: 1910134376}
   - component: {fileID: 1910134375}
+  - component: {fileID: 1910134382}
+  - component: {fileID: 1910134381}
   m_Layer: 0
   m_Name: Animal0
   m_TagString: Untagged
@@ -20720,27 +20826,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!135 &1910134377
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910134374}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1910134378
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20806,6 +20891,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 670490591}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1910134381
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910134374}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &1910134382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910134374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be6c79d5c7e45340be4d6d78cbf3663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1910764579
 GameObject:
   m_ObjectHideFlags: 0
@@ -23863,7 +23995,6 @@ GameObject:
   - component: {fileID: 4584431091839979}
   - component: {fileID: 198637950729853403}
   - component: {fileID: 199982541499844721}
-  - component: {fileID: 199982541499844722}
   m_Layer: 0
   m_Name: FlameThrower 1
   m_TagString: Untagged
@@ -34135,24 +34266,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &199982541499844722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634768255968153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6d9868b412a7e647b451ae23453ad07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerColliders:
-  - {fileID: 223231926}
-  - {fileID: 1818765656}
-  - {fileID: 1541125956}
-  - {fileID: 941245480}
-  test: {fileID: 0}
 --- !u!212 &212012128459860282
 SpriteRenderer:
   m_ObjectHideFlags: 0

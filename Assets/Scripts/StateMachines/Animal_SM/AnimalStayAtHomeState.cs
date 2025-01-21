@@ -5,17 +5,17 @@ public class AnimalStayAtHomeState : StateMachineBehaviour
 {
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        AnimalController animalController = animator.GetComponent<AnimalController>();
+        AnimalMovementController animalController = animator.GetComponent<AnimalMovementController>();
         Vector3 targetPosition = AnimalSM.TargetOfHome.GetTargetPosition(animalController);
 
         // Move to the right place
         if ((animator.transform.position.x - targetPosition.x) > 5 * animalController.stepSize)  // if the animal is righter than the target
         {
-            animator.GetComponent<AnimalController>().SetRunThisFrame(direction: Vector3.left);
+            animator.GetComponent<AnimalMovementController>().SetRunThisFrame(direction: Vector3.left);
         }
         else if ((animator.transform.position.x - targetPosition.x) < -5 * animalController.stepSize)  // if the animal is lefter than the target
         {
-            animator.GetComponent<AnimalController>().SetRunThisFrame(direction: Vector3.right);
+            animator.GetComponent<AnimalMovementController>().SetRunThisFrame(direction: Vector3.right);
         }
         else  // else, the animal arrived its target
         {
@@ -28,7 +28,7 @@ namespace AnimalSM
 {
     public class TargetOfHome
     {
-        public static Vector3 GetTargetPosition(AnimalController animalController)
+        public static Vector3 GetTargetPosition(AnimalMovementController animalController)
         {
             Vector3 targetPosition;
             if (animalController.isSelfHomeLeftOccupied)

@@ -224,6 +224,7 @@
     <Compile Include="Assets\OpenAI_API\Chat\ChatResult.cs" />
     <Compile Include="Assets\Shared\Ramps\Runtime\RampAsset.cs" />
     <Compile Include="Assets\MilkShake\Scripts\ShakeState.cs" />
+    <Compile Include="Assets\Scripts\AnimalMovementController.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Models\GrainModel.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\TransformTweenMixerBehaviour.cs" />
     <Compile Include="Assets\OpenAI_API\Chat\ChatEndpoint.cs" />

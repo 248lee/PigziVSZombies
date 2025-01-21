@@ -7,11 +7,11 @@ public class AnimalSystem : MonoBehaviour
     [SerializeField]
     private List<AnimalHome> homesOnScene;
     [SerializeField]
-    private List<AnimalController> animalControllersOnScene;
+    private List<AnimalMovementController> animalMoveControllersOnScene;
     // Start is called before the first frame update
     void Start()
     {
-        if (homesOnScene.Count != animalControllersOnScene.Count)
+        if (homesOnScene.Count != animalMoveControllersOnScene.Count)
         {
             Debug.LogError("There should be the same counts of animals and homes!!");
             return;
@@ -19,7 +19,7 @@ public class AnimalSystem : MonoBehaviour
         for (int i = 0; i < homesOnScene.Count; i++)  // Assign the id as the index
         {
             homesOnScene[i].index = i;
-            animalControllersOnScene[i].index = i;
+            animalMoveControllersOnScene[i].index = i;
         }
     }
 
@@ -31,7 +31,7 @@ public class AnimalSystem : MonoBehaviour
 
     public int countsOfAnimalControllersOnScene
     {
-        get => this.animalControllersOnScene.Count;
+        get => this.animalMoveControllersOnScene.Count;
     }
     /// <summary>
     /// Return the position of the home number "home_index"

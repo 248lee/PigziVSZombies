@@ -78,7 +78,7 @@ public class FireThowerOverlapDetection : MonoBehaviour
                 bool is_overlapping = animalControllers[j].GetComponent<Collider2D>().OverlapPoint(screenToWorldPoint);
                 if (is_overlapping)
                 {
-                    animalControllers[j].Death();
+                    animalControllers[j].StartBurned();
                 }
             }
         }

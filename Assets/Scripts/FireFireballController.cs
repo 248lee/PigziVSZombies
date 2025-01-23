@@ -97,4 +97,11 @@ public class FireFireballController : FallingFireballController
     {
         this.wildfire_particle.GetComponent<WildFireTurnOffer>().TurnOffWildFire();
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<AnimalController>() != null)
+        {
+            collision.GetComponent<AnimalController>().StartBurned();
+        }
+    }
 }

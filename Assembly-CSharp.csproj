@@ -115,8 +115,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\Scripts\EventHandlersDelegates.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
-    <Compile Include="Assets\Scripts\ProgressBarController.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Buttons\UISwitch.cs" />
+    <Compile Include="Assets\Scripts\ProgressBarController.cs" />
     <Compile Include="Assets\FlameController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\Unity UI Samples\Scripts\TiltWindow.cs" />
@@ -198,8 +198,8 @@
     <Compile Include="Assets\StageSelectionTutorial\Scripts\UniversalLevelManager.cs" />
     <Compile Include="Assets\VocabularyBoard.cs" />
     <Compile Include="Assets\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Buttons\UIButton.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\Scripts\StageWordBank.cs" />
     <Compile Include="Assets\Scripts\GameflowSystem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
@@ -236,8 +236,8 @@
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Buttons\Controllers\UIButtonStateController.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\NavMeshAgentControl\NavMeshAgentControlClip.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Models\AmbientOcclusionModel.cs" />
-    <Compile Include="Assets\ChildSticker.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Sample\Scripts\UIWindows\SamplePanel1.cs" />
+    <Compile Include="Assets\ChildSticker.cs" />
     <Compile Include="Assets\OpenAI_API\Audio\TranscriptionEndpoint.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Buttons\ShowWindowButton.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
@@ -283,8 +283,8 @@
     <Compile Include="Assets\OpenAI_API\Audio\TextToSpeechEndpoint.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Timers.cs" />
-    <Compile Include="Assets\MilkShake\Scripts\Shaker.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Base\Enums\UIWindowType.cs" />
+    <Compile Include="Assets\MilkShake\Scripts\Shaker.cs" />
     <Compile Include="Assets\Scripts\Paragraph.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Models\EyeAdaptationModel.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Components\ScreenSpaceReflectionComponent.cs" />
@@ -310,8 +310,8 @@
     <Compile Include="Assets\MilkShake\Scripts\IShakeParameters.cs" />
     <Compile Include="Assets\OpenAI_API\Completions\ICompletionEndpoint.cs" />
     <Compile Include="Assets\OpenAI_API\Moderation\ModerationResult.cs" />
-    <Compile Include="Assets\Scripts\StateMachines\Animal_SM\AnimalStayAtHomeState.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Base\ListElement.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Animal_SM\AnimalStayAtHomeState.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Sample\Scripts\UIWindows\SamplePanel2.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Components\EyeAdaptationComponent.cs" />
     <Compile Include="Assets\OpenAI_API\Images\ImageResponseFormat.cs" />

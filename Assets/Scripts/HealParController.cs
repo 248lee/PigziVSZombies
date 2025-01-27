@@ -31,7 +31,7 @@ public class HealParController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "floor")
+        if (collision.tag == "tree_ground")
         {
             TreeController targetTree = collision.GetComponentInParent<TreeController>();
             if (this.healScript == null)

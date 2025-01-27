@@ -9,6 +9,7 @@ TagManager:
   - dragonHPBar
   - floor
   - Waterball
+  - tree_ground
   layers:
   - Default
   - TransparentFX

@@ -159,6 +159,7 @@ public class WaveSystem : MonoBehaviour
         {
             foreach (Subwave subwave in wave.subwaves)
             {
+                var waitingForHealballCoroutine = StartCoroutine(this.WaitForHealball(wave, subwave.healBallDelay));
                 yield return new WaitForSeconds(subwave.startDelay); // Implementing Subwave process here
                 for (int i = 0; i < subwave.numOfEmmisions; i++)
                 {
@@ -167,6 +168,7 @@ public class WaveSystem : MonoBehaviour
                     float delayTime = UnityEngine.Random.Range(subwave.durationMin, subwave.durationMax);
                     yield return new WaitForSeconds(delayTime);
                 }
+                StopCoroutine(waitingForHealballCoroutine);  // If the healball delay is too long, just simply cancel it.
             }
         }
         else if (wave.mode == WaveMode.Boss)
@@ -181,5 +183,14 @@ public class WaveSystem : MonoBehaviour
         {
             yield return null;
         }
+    }
+    IEnumerator WaitForHealball(Wave wave, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Question[] questions = new Question[4];
+        for (int i = 0; i < 4; i++)
+            questions[i] = this.AskForAQuestion(wave);
+
+        this.fireballsystem.generateFourHealballs(questions);  // Generate Healballs
     }
 }

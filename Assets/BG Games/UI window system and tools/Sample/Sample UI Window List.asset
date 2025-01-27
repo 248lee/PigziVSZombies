@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d0a74d6aea445eb9fc2f39f74c1631, type: 3}
+  m_Name: Sample UI Window List
+  m_EditorClassIdentifier: 
+  <Windows>k__BackingField:
+  - <Prefab>k__BackingField: {fileID: 6904923947820112286, guid: b25a968dccdad894b8ee0f1d04a20b02, type: 3}
+    <Type>k__BackingField: 1
+  - <Prefab>k__BackingField: {fileID: -8457774467550141452, guid: c117c8c43623f8f418c2a65239250184, type: 3}
+    <Type>k__BackingField: 2

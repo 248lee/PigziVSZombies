@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.IO;
 using UnityEngine;
 using System.Threading.Tasks;
 using OpenAI_API;
@@ -19,11 +20,9 @@ public static class GPTRequester
     private static ChatMessage exampleMessage_sencence_ans = new ChatMessage(ChatMessageRole.Assistant, exampleMessage_sentence_ans_string);
     private static ChatMessage exampleMessage_sentence_o = new ChatMessage(ChatMessageRole.User, exampleMessage_sentence_o_string);
     private static ChatMessage exampleMessage_sencence_ans2 = new ChatMessage(ChatMessageRole.Assistant, exampleMessage_sentence_ans2_string);
-    private static List<ChatMessage> default_example = new List<ChatMessage> { exampleMessage_sentence_q, exampleMessage_sencence_ans, exampleMessage_sentence_o, exampleMessage_sencence_ans2 };
+    private static List<ChatMessage> default_example = new List<ChatMessage> { exampleMessage_sentence_q, exampleMessage_sencence_ans };
     private static OpenAIAPI gpt;
-    private const string systemMessage_sentence_string = @"Make an example using the given vocabulary. Surround the vocabulary 
-            with a brackey '<    >' . Also keep the sentence within ten words. Each sentence should only have one bracket,
-            and if you use more than two times of the given vocabulary, just surround the first appearance with the bracket.";
+    private static string systemMessage_sentence_string = File.ReadAllText(Application.streamingAssetsPath + "/GPTSystemMessage.txt");
     private static ChatMessage systemMessage_sentence = new ChatMessage(ChatMessageRole.System, systemMessage_sentence_string);
     private const string systemMessage_paragraph_string = @"The user will give you a list of English vocabularies. 
             Your job is to write a short paragraph using these vocabularies. The paragraph you provided 
@@ -47,6 +46,7 @@ public static class GPTRequester
         if (history.Count == 0)
         {
             Debug.Log("Hello " + vocabulary);
+            Debug.LogError(systemMessage_sentence_string);
             messages.AddRange(new List<ChatMessage>(default_example));
             messages.Add(sentence_q);
         }

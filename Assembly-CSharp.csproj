@@ -194,6 +194,7 @@
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Models\BloomModel.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Components\VignetteComponent.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
+    <Compile Include="Assets\Scripts\ResultEntryController.cs" />
     <Compile Include="Assets\Scripts\Question.cs" />
     <Compile Include="Assets\StageSelectionTutorial\Scripts\UniversalLevelManager.cs" />
     <Compile Include="Assets\VocabularyBoard.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\ScreenFader\ScreenFaderBehaviour.cs" />
+    <Compile Include="Assets\Scripts\ResultSystem.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TextSwitcher\TextSwitcherTrack.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Utils\GraphicsUtils.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Buttons\Controllers\UIButtonStateController.cs" />

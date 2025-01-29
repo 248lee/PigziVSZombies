@@ -65,7 +65,7 @@ public class HealFireballController : FallingFireballController
 
         this.ableShoot = false;
         this.SetAbleToBeDestroyed();
-        this.questionText.SetText(this.question.GetRealSentenceWithColor("blue")); // show out the correct answer
+        this.questionText.SetText(this.question.GetRealSentenceWithColor("red")); // show out the correct answer
     }
     public override void Wrong_onFireTree()
     {

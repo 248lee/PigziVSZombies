@@ -46,7 +46,7 @@ public class FireFireballController : FallingFireballController
         this.realSpeed = this.speed;
         this.fireball_particle.Play();
     }
-    public override void Wrong()
+    public override void Wrong()  // Ignite the wild fire.
     {
         if (this.ableShoot)
         {
@@ -60,7 +60,7 @@ public class FireFireballController : FallingFireballController
     }
     public override void Wrong_onFireTree()
     {
-        this.questionText.SetText(this.question.GetRealSentenceWithColor("blue")); // show out the correct answer
+        this.questionText.SetText(this.question.GetRealSentenceWithColor("red")); // show out the correct answer
         this.ableShoot = false;
         this.SetAbleToBeDestroyed();
         this.putOutFireball();
@@ -69,7 +69,7 @@ public class FireFireballController : FallingFireballController
     }
     public override void Wrong_onFloor()
     {
-        this.questionText.SetText(this.question.GetRealSentenceWithColor("blue")); // show out the correct answer
+        this.questionText.SetText(this.question.GetRealSentenceWithColor("red")); // show out the correct answer
         this.ableShoot = false;
         this.SetAbleToBeDestroyed();
         this.putOutFireball();
@@ -77,7 +77,7 @@ public class FireFireballController : FallingFireballController
     }
     public void WildfireOnDeadTree() // For FireFireballController
     {
-        this.questionText.SetText(this.question.GetRealSentenceWithColor("blue")); // show out the correct answer
+        this.questionText.SetText(this.question.GetRealSentenceWithColor("red")); // show out the correct answer
         this.ableShoot = false;
         this.SetAbleToBeDestroyed();
         this.putOutWildFire();

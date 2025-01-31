@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using JohnUtils;
 
 public class EnemypartFireballController : FireballController
 {
+    public event EventHandlerWithVoid onShoot;
     private float maxTime = 5f, nowTime = 0f;
     private bool pauseTimer = false;
     [SerializeField] private ProgressBarController progressBar;
@@ -31,6 +33,7 @@ public class EnemypartFireballController : FireballController
         int minusHP = 10 + Random.Range(-5, 5);
         this.fireballSystem.bossDragon.AddHP(-minusHP);
         this.fireballSystem.currentParts--;
+        this.onShoot();
     }
     protected override void pause()
     {

@@ -9517,30 +9517,6 @@ MonoBehaviour:
   vocabularyBoard: {fileID: 647425930}
   wordBankOfThisStage: {fileID: 1989700013}
   waves:
-  - mode: 0
-    waveName: 
-    numOfVocabularies: 5
-    questions: []
-    subwaves:
-    - startDelay: 2.36
-      numOfEmmisions: 3
-      durationMin: 7
-      durationMax: 7
-      healBallDelay: 10
-    - startDelay: 2.36
-      numOfEmmisions: 10
-      durationMin: 3
-      durationMax: 5
-      healBallDelay: 9999
-    p_numOfVocabularies: 3
-    labelName: Hello World
-    targetLabelName: Unnamed
-    runtimeVariableA: UnknownGlobalVariable
-    relation: 0
-    runtimeVariableB: UnknownGlobalVariable
-    dragon_paragraph:
-      vocabularies: []
-      article: 
   - mode: 2
     waveName: 
     numOfVocabularies: 3
@@ -9570,6 +9546,30 @@ MonoBehaviour:
       durationMin: 8
       durationMax: 7
       healBallDelay: 999
+    p_numOfVocabularies: 3
+    labelName: Hello World
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 0
+    waveName: 
+    numOfVocabularies: 5
+    questions: []
+    subwaves:
+    - startDelay: 2.36
+      numOfEmmisions: 3
+      durationMin: 7
+      durationMax: 7
+      healBallDelay: 10
+    - startDelay: 2.36
+      numOfEmmisions: 10
+      durationMin: 3
+      durationMax: 5
+      healBallDelay: 9999
     p_numOfVocabularies: 3
     labelName: Hello World
     targetLabelName: Unnamed
@@ -22477,6 +22477,7 @@ MonoBehaviour:
   textColor: {r: 0, g: 0, b: 0, a: 1}
   damagePopup: {fileID: 2754710032881910559, guid: 9375b7f39fb59a94289ec88496f4d4fe, type: 3}
   DragonFlyAwayShake_preset: {fileID: 11400000, guid: 2cd1978197dadf445be45cb098d6fce1, type: 2}
+  z_delta_enemy_part_position: 0.85
   is_on_stage: 0
 --- !u!95 &1855131373
 Animator:
@@ -24587,7 +24588,6 @@ MonoBehaviour:
   reviveHealRatio: 0.1
   bullet: {fileID: 4409468344802831724, guid: eb5e6233d04fb75488b260268c44623c, type: 3}
   bulletStartPosition: {x: 3.42, y: -6.83, z: 0}
-  z_delta_enemy_part_position: 0.85
   _healball_bound: -3.95
   fireballSpeed: 0.7
 --- !u!1 &2000825576

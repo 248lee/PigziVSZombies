@@ -24,7 +24,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6ce4c1a2d81af4ca8b3abd61b64bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partDuration: 5
+  partDuration: 33.12
 --- !u!1102 &-7685589631983471754
 AnimatorState:
   serializedVersion: 6

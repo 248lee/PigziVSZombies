@@ -12,14 +12,14 @@ public class Question
     public Question(string vocabulary, string real_sentence, int num_of_spaces)
     {
         this.vocabulary = vocabulary;
-        string blank = new string(' ', num_of_spaces);
+        string blank = new string('\u00A0', num_of_spaces);
         this.sentence = Regex.Replace(real_sentence, "<.*?>", "<" + blank + ">"); // make the blank modifiable, convenient for me;
         this.real_sentence = real_sentence;
     }
     public Question(string vocabulary, string real_sentence)
     {
         this.vocabulary = vocabulary;
-        this.sentence = Regex.Replace(real_sentence, "<.*?>", "<    >"); // this is a blank with constantly 4 spaces
+        this.sentence = Regex.Replace(real_sentence, "<.*?>", "<\u00A0\u00A0\u00A0\u00A0>"); // this is a blank with constantly 4 spaces
         this.real_sentence = real_sentence;
     }
     public string GetRealSentenceWithColor(string color_tag)

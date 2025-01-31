@@ -16,7 +16,6 @@ public class FireballSysrem : MonoBehaviour
     public float reviveHealRatio = 0.1f;
     public GameObject bullet;
     public Vector3 bulletStartPosition;
-    public float z_delta_enemy_part_position = 0.7f;
     [SerializeField] private float _healball_bound;
     // Public property to allow read-only access from other classes
     public float healballBound
@@ -97,14 +96,15 @@ public class FireballSysrem : MonoBehaviour
 
         this.fire_onScreen.Add(temp);
     }
-    public void generateEnemyPartForDragon(Transform parent, Vector3 genPos, float duration, string vocabulary_in_paragraph, string vocabulary_to_ans)
+    public EnemypartFireballController generateEnemyPartForDragon(Transform parent, Vector3 genPos, float duration, string vocabulary_in_paragraph, string vocabulary_to_ans)
     {
-        EnemypartFireballController temp = Instantiate(this.enemypart.gameObject, genPos - new Vector3(0f, z_delta_enemy_part_position, 0f), Quaternion.identity, this.transform).GetComponent<EnemypartFireballController>();
+        EnemypartFireballController temp = Instantiate(this.enemypart.gameObject, genPos, Quaternion.identity, this.transform).GetComponent<EnemypartFireballController>();
         temp.transform.SetParent(parent);
         temp.setMaxTimeForPart(duration);
         temp.question = new Question(vocabulary_to_ans, vocabulary_in_paragraph, 8);
         this.fire_onScreen.Add(temp);
         this.currentParts++;
+        return temp;
     }
     public void clearAllParts()
     {

@@ -22,7 +22,7 @@ public class FireFireballController : FallingFireballController
     {
         this.putOutFireball();
         this.SetAbleToBeDestroyed();
-        if (this.burningTree != null)
+        if (this.burningTree != null && this.burningTree.burningFire == this)
             this.burningTree.SetBurningFire(null);
     }
     protected override void pause()

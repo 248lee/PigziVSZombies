@@ -23,6 +23,7 @@ public class DragonController : MonoBehaviour
     [SerializeField] Color textColor;
     [SerializeField] DamagePopupController damagePopup;
     [SerializeField] ShakePreset DragonFlyAwayShake_preset;
+    [SerializeField] float z_delta_enemy_part_position = 0.85f;
     int hp;
     bool pauseTimer;
     float graphAnimatorSpeed, animatorSpeed;
@@ -30,6 +31,9 @@ public class DragonController : MonoBehaviour
     public bool is_on_stage = false;
     ChildSticker textSticker;
     WaveSystem waveSystemOfThisStage;
+    List<EnemypartFireballController> enemyparts;
+
+    private const string blank = "              ";
     // Start is called before the first frame update
     void Start()
     {
@@ -121,8 +125,7 @@ public class DragonController : MonoBehaviour
     }
     IEnumerator _partAttackForFlame(float duration)
     {
-        List<int> blank_indexes = new List<int>();
-        int pos_of_left_bracket = 0;
+        this.enemyparts = new List<EnemypartFireballController>();  // Clear the enemyparts-object-recorder.
 
         // Pickup surrounded vocabularies
         List<string> vocabularies_to_show = new List<string>();
@@ -132,24 +135,32 @@ public class DragonController : MonoBehaviour
             vocabularies_to_show.Add(match.Value);
         }
 
-        // Replace surrounded vocabularies with blank 
-        string text_to_show = Regex.Replace(this.wave.dragon_paragraph.article, "<.*?>", "[            ]"); // make the blank modifiable, convenient for me
-        bool insideSubstring = false;
+        // Initially process the article (Replace <vocabularies> with [    ])
+        List<string> initial_tags = new List<string>();
+        for (int i = 0; i < this.wave.dragon_paragraph.vocabularies.Count; i++)
+            initial_tags.Add(null);
+        string text_to_show = new string(this.wave.dragon_paragraph.article);
+        text_to_show = Regex.Replace(text_to_show, @"<.*?>", "[" + blank + "]"); // make the blank size fixed, convenient for me
+
+        // Get the indices of blanks
+        List<int> blank_indexes = new List<int>();
+        int pos_of_left_bracket = 0;
         for (int i = 0; i < text_to_show.Length; i++)
         {
-            if (text_to_show[i] == '[' && insideSubstring == false)
+            if (text_to_show[i] == '[')
             {
                 pos_of_left_bracket = i;
-                insideSubstring = true;
-                text_to_show = text_to_show.Remove(i, 1).Insert(i, " "); // Replace the character '<' into a space
             }
             else if (text_to_show[i] == ']')
             {
-                blank_indexes.Add((i + pos_of_left_bracket) / 2);
-                insideSubstring = false;
-                text_to_show = text_to_show.Remove(i, 1).Insert(i, " "); // Replace the character '>' into a space
+                blank_indexes.Add((pos_of_left_bracket + i) / 2);
             }
         }
+
+        // Clean up the brackets
+        for (int i = 0; i < text_to_show.Length; i++)
+            if (text_to_show[i] == '[' || text_to_show[i] == ']')
+                text_to_show = text_to_show.Remove(i, 1).Insert(i, " ");
 
         // Show the text(paragraph)
         this.paragraphText.SetText(text_to_show);
@@ -164,8 +175,15 @@ public class DragonController : MonoBehaviour
             TMP_TextInfo textInfo = this.paragraphText.textInfo;
             TMP_CharacterInfo charInfo = textInfo.characterInfo[blank_indexes[i]];
             Vector3 charPosition = (charInfo.topRight + charInfo.bottomRight) * 0.5f;
-            Vector3 worldPosition = this.paragraphText.transform.TransformPoint(charPosition);
-            this.fireballSystem.generateEnemyPartForDragon(this.textSticker.transform, worldPosition, duration, vocabularies_to_show[i], this.wave.dragon_paragraph.vocabularies[i]);
+            Vector3 worldPosition = this.paragraphText.transform.TransformPoint(charPosition) - new Vector3(0f, this.z_delta_enemy_part_position, 0f);
+            var part = this.fireballSystem.generateEnemyPartForDragon(
+                this.textSticker.transform, 
+                worldPosition, duration,
+                vocabularies_to_show[i],
+                this.wave.dragon_paragraph.vocabularies[i]
+            );
+            part.onShoot += RecalculatePartPositionAndText;
+            this.enemyparts.Add(part);
             this.updateTheNumOfCurrentParts();
         }
 
@@ -189,7 +207,6 @@ public class DragonController : MonoBehaviour
 
         this.paragraphText.color = Color.clear; // Clear the this.wave.dragon_paragraph text
         this.textSticker.UnstickPosition();
-        FireballController[] enemyParts = GetComponentsInChildren<FireballController>();
 
         int remain_parts = this.fireballSystem.currentParts;
         this.fireballSystem.clearAllParts(); // Clear all the enemy parts, and this sets this.fireballSystem.currentParts = 0
@@ -198,6 +215,90 @@ public class DragonController : MonoBehaviour
 
         AnimatorCleaer.ResetAllTriggers(this.animator);
         this.animator.SetTrigger("finishAttack");
+    }
+    private void RecalculatePartPositionAndText()
+    {
+        StartCoroutine(_RecalculatePartPositionAndText());
+    }
+    IEnumerator _RecalculatePartPositionAndText()
+    {
+        // Initially process the article (Replace <vocabularies> with [    ])
+        bool insideSubstring = false;
+        int index_of_parts = 0;
+        string text_to_show = new string(this.wave.dragon_paragraph.article);
+
+        // Convert the answered blank into [various-sized] in advance 
+        for (int i = 0; i < text_to_show.Length; i++)
+        {
+            if (text_to_show[i] == '<' && insideSubstring == false)
+            {
+                if (index_of_parts >= this.enemyparts.Count)
+                {
+                    Debug.LogError("The number of tags is supposed to be equal to the number of \'[\'s. Please double check");
+                    Debug.Log(text_to_show);
+                    Debug.Log("Count of tags: " + this.enemyparts.Count.ToString());
+                }
+
+                insideSubstring = true;
+                if (!this.enemyparts[index_of_parts].ableShoot)
+                    text_to_show = text_to_show.Remove(i, 1).Insert(i, "["); // Replace the character '<' into '['
+            }
+            else if (text_to_show[i] == '>')
+            {
+                insideSubstring = false;
+                if (!this.enemyparts[index_of_parts].ableShoot)
+                {
+                    text_to_show = text_to_show.Remove(i, 1).Insert(i, "]"); // Replace the character '>' into ']'
+                }
+                index_of_parts++;  // Go on to the next part
+            }
+            else if (insideSubstring)
+            {
+                if (!this.enemyparts[index_of_parts].ableShoot)
+                {
+                    text_to_show = text_to_show.Remove(i, 1).Insert(i, " \u202F"); // Replace the character inside into '+'
+                    i += 1;
+                }
+            }
+        }
+        text_to_show = Regex.Replace(text_to_show, @"<.*?>", "[" + blank + "]"); // make the blank size fixed, convenient for me
+
+        // Get the indices of blanks
+        List<int> blank_indexes = new List<int>();
+        int pos_of_left_bracket = 0;
+        for (int i = 0; i < text_to_show.Length; i++)
+        {
+            if (text_to_show[i] == '[')
+            {
+                pos_of_left_bracket = i;
+            }
+            else if (text_to_show[i] == ']')
+            {
+                blank_indexes.Add((pos_of_left_bracket + i) / 2);
+            }
+        }
+
+        // Clean up the brackets
+        for (int i = 0; i < text_to_show.Length; i++)
+            if (text_to_show[i] == '[' || text_to_show[i] == ']')
+                text_to_show = text_to_show.Remove(i, 1).Insert(i, " ");
+
+        // Show the text(paragraph)
+        this.paragraphText.SetText(text_to_show);
+        this.paragraphText.color = this.textColor;
+        this.textSticker.SetStickPosition();
+
+        yield return null; // This delay frame is needed for the textinfo to update
+
+        // Re-position the parts
+        for (int i = 0; i < this.enemyparts.Count; i++)
+        {
+            TMP_TextInfo textInfo = this.paragraphText.textInfo;
+            TMP_CharacterInfo charInfo = textInfo.characterInfo[blank_indexes[i]];
+            Vector3 charPosition = (charInfo.topRight + charInfo.bottomRight) * 0.5f;
+            Vector3 worldPosition = this.paragraphText.transform.TransformPoint(charPosition) - new Vector3(0f, this.z_delta_enemy_part_position, 0f);
+            this.enemyparts[i].transform.position = worldPosition;
+        }
     }
     void updateHPbarAndStateMachine()
     {

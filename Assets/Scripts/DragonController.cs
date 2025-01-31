@@ -177,8 +177,9 @@ public class DragonController : MonoBehaviour
             Vector3 charPosition = (charInfo.topRight + charInfo.bottomRight) * 0.5f;
             Vector3 worldPosition = this.paragraphText.transform.TransformPoint(charPosition) - new Vector3(0f, this.z_delta_enemy_part_position, 0f);
             var part = this.fireballSystem.generateEnemyPartForDragon(
-                this.textSticker.transform, 
-                worldPosition, duration,
+                this.paragraphText.transform, 
+                worldPosition,
+                duration,
                 vocabularies_to_show[i],
                 this.wave.dragon_paragraph.vocabularies[i]
             );
@@ -256,12 +257,14 @@ public class DragonController : MonoBehaviour
             {
                 if (!this.enemyparts[index_of_parts].ableShoot)
                 {
-                    text_to_show = text_to_show.Remove(i, 1).Insert(i, " \u202F"); // Replace the character inside into '+'
-                    i += 1;
+                    text_to_show = text_to_show.Remove(i, 1).Insert(i, " \u200A\u200A\u200A"); // Replace the character inside into '+'
+                    i += 3;
                 }
             }
         }
         text_to_show = Regex.Replace(text_to_show, @"<.*?>", "[" + blank + "]"); // make the blank size fixed, convenient for me
+        //string pattern = @"(\+(?:\u200B\+)+)";  // Regular expression to match sequences of "+\u200B"
+        //text_to_show = Regex.Replace(text_to_show, pattern, "<color=#0000>$1</color>");  // Make the "++++" become tranparent
 
         // Get the indices of blanks
         List<int> blank_indexes = new List<int>();

@@ -4409,8 +4409,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'a li bu si da wfewfuih ifoejwoij oiejoi iowejo oiwejfjeiwlfeef ewfwe ouewofowjeiofjoiwejfoijewf
-    oiwejoio oiewfjoi '
+  m_text: 'a li bu si da wfewfuih ifoejwoij oiejoi iowejo oiwejfjeiwlfeef ewfwe ouewofowjeiofjo
+    iwejfoijew  <color=#256568>+\u200B++++++ </color>f oiwejoio oiewfjoi '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 019473047e81bb642a82968929a78303, type: 2}
@@ -22477,7 +22477,7 @@ MonoBehaviour:
   textColor: {r: 0, g: 0, b: 0, a: 1}
   damagePopup: {fileID: 2754710032881910559, guid: 9375b7f39fb59a94289ec88496f4d4fe, type: 3}
   DragonFlyAwayShake_preset: {fileID: 11400000, guid: 2cd1978197dadf445be45cb098d6fce1, type: 2}
-  z_delta_enemy_part_position: 0.85
+  z_delta_enemy_part_position: -0.1
   is_on_stage: 0
 --- !u!95 &1855131373
 Animator:

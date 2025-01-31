@@ -98,7 +98,7 @@ public class FireballSysrem : MonoBehaviour
     }
     public EnemypartFireballController generateEnemyPartForDragon(Transform parent, Vector3 genPos, float duration, string vocabulary_in_paragraph, string vocabulary_to_ans)
     {
-        EnemypartFireballController temp = Instantiate(this.enemypart.gameObject, genPos, Quaternion.identity, this.transform).GetComponent<EnemypartFireballController>();
+        EnemypartFireballController temp = Instantiate(this.enemypart.gameObject, genPos, Quaternion.LookRotation(parent.forward), this.transform).GetComponent<EnemypartFireballController>();
         temp.transform.SetParent(parent);
         temp.setMaxTimeForPart(duration);
         temp.question = new Question(vocabulary_to_ans, vocabulary_in_paragraph, 8);

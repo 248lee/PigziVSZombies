@@ -60,6 +60,8 @@ public class Wave
 //}
 public class WaveSystem : MonoBehaviour
 {
+    public static WaveSystem instance { get; private set; }
+
     [SerializeField] VocabularyBoard vocabularyBoard;
     [SerializeField] StageWordBank wordBankOfThisStage;
 
@@ -67,6 +69,14 @@ public class WaveSystem : MonoBehaviour
     public int nowWaveIndex = 0;
     DragonController dragon;
     FireballSysrem fireballsystem;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+            Destroy(this);
+        else
+            instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()

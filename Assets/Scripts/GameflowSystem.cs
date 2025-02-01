@@ -37,10 +37,12 @@ public class GameflowSystem : MonoBehaviour
     {
         this.is_pausing = true;
         Time.timeScale = 0;
+        ResultSystem.instance.OpenResultWindow();
     }
     public void SetUnpaused()
     {
         this.is_pausing = false;
         Time.timeScale = 1;
+        ResultSystem.instance.CloseResultWindow();
     }
 }

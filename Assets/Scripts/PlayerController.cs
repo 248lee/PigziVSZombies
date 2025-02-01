@@ -80,12 +80,13 @@ public class PlayerController : MonoBehaviour
         bool correct = false;
         for (int i = 0; i < this.fireballsystem.fire_onScreen.Count; i++)
         {
+            if (correct && !(this.fireballsystem.fire_onScreen[i] is HealFireballController))
+                continue;
             if (this.fireballsystem.fire_onScreen[i].question.vocabulary == input && this.fireballsystem.fire_onScreen[i].ableShoot)
             {
                 correct = true;
                 this.fireballsystem.fire_onScreen[i].correct(); // this completes the shoot animation
                 this.shoot(); // this is fake
-                break;
             }
         }
         //for (int i = 0; i < this.watersystem.waterBall_onScreen.Count; i++)

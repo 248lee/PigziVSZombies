@@ -81,7 +81,7 @@ public class FireballController : MonoBehaviour
                 if (Timers.isTimerFinished("StartShooting" + gameObject.GetInstanceID())) // If the bullet hits the fire
                 {
                     this.isShootingMe = false;
-                    this.questionText.SetText(this.question.GetRealSentenceWithColor("blue")); // show out the correct answer
+                    this.questionText.SetText(this.question.GetRealSentenceWithColor("#0000FF")); // show out the correct answer
                     Destroy(temp_bullet, 0.5f);
                     //Instantiate(fireballSystem.dust, transform.position, Quaternion.identity);
 

@@ -11,7 +11,17 @@ public class HealFireballController : FallingFireballController
     protected override void Update()
     {
         if (this.ableShoot && transform.position.y < this.fireballSystem.healballBound)
+        {
             this.Wrong();
+            string text = this.question.GetRealSentenceWithColor("red");
+            ResultSystem.instance.AddRecord(
+                WaveSystem.instance.nowWaveIndex.ToString(),
+                this.question.vocabulary,
+                text,
+                RecordType_inResults.Healball,
+                false
+            );
+        }
         base.Update();
     }
     protected override void InitProcess()
@@ -29,6 +39,16 @@ public class HealFireballController : FallingFireballController
         falling_potion.healScript = this.healScript;
         falling_potion.StartFall();
 
+        // Add record to ResultSystem
+        string text = this.question.GetRealSentenceWithColor("#0000FF");
+        ResultSystem.instance.AddRecord(
+            WaveSystem.instance.nowWaveIndex.ToString(),
+            this.question.vocabulary,
+            text,
+            RecordType_inResults.Healball,
+            true
+        );
+
         // Wrong out other fireballs on the same row
         List<HealFireballController> healballs_onScreen = this.fireballSystem.fire_onScreen.OfType<HealFireballController>().ToList();
         foreach(HealFireballController healball in healballs_onScreen)
@@ -36,6 +56,15 @@ public class HealFireballController : FallingFireballController
             if (healball != this && healball.transform.position.y == transform.position.y)
             {
                 healball.Wrong();
+                // Add record to ResultSystem
+                text = healball.question.GetRealSentenceWithColor("#000080");
+                ResultSystem.instance.AddRecord(
+                    WaveSystem.instance.nowWaveIndex.ToString(),
+                    healball.question.vocabulary,
+                    text,
+                    RecordType_inResults.Healball,
+                    true
+                );
             }
         }
     }

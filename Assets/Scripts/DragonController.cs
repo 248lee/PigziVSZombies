@@ -30,14 +30,12 @@ public class DragonController : MonoBehaviour
     Wave wave;
     public bool is_on_stage = false;
     ChildSticker textSticker;
-    WaveSystem waveSystemOfThisStage;
     List<EnemypartFireballController> enemyparts;
 
     private const string blank = "              ";
     // Start is called before the first frame update
     void Start()
     {
-        this.waveSystemOfThisStage = FindObjectOfType<WaveSystem>();
         this.textSticker = GetComponentInChildren<ChildSticker>();
         this.pauseTimer = false;
         this.hp = this.maxHP;
@@ -89,34 +87,12 @@ public class DragonController : MonoBehaviour
     }
     public void dropFireballs(Vector3 layPos)
     {
-        Question question = this.waveSystemOfThisStage.AskForAQuestion(wave);
+        Question question = WaveSystem.instance.AskForAQuestion(wave);
         this.fireballSystem.generateFireballForDragon(layPos, question);
     }
     public void partAttackForFlame(float countdowntime)  //倒數秒數請至state machine調整
     {
         StartCoroutine(this._partAttackForFlame(countdowntime));
-    }
-    List<int> generateRandomDifferInts(int n, int min, int max)
-    {
-        int range = max - min + 1;
-        List<bool> tmp = new List<bool>();
-        for (int i = 0; i < range; i++)
-        {
-            tmp.Add(false);
-        }
-        List<int> result = new List<int>();
-        for (int i = 0; i < n; i++)
-        {
-            int chosen = Random.Range(0, range);
-            while (tmp[chosen])
-            {
-                chosen = Random.Range(0, range);
-            }
-            tmp[chosen] = true;
-            result.Add(min + chosen);
-        }
-
-        return result;
     }
 
     void updateTheNumOfCurrentParts()
@@ -206,13 +182,17 @@ public class DragonController : MonoBehaviour
         }
         /*_計算時間_*/
 
+        this.AddParagraphRecordToResultSystem();
         this.paragraphText.color = Color.clear; // Clear the this.wave.dragon_paragraph text
         this.textSticker.UnstickPosition();
 
         int remain_parts = this.fireballSystem.currentParts;
         this.fireballSystem.clearAllParts(); // Clear all the enemy parts, and this sets this.fireballSystem.currentParts = 0
         if (remain_parts > 0)
+        {
+            yield return new WaitForSeconds(3f);
             yield return StartCoroutine(this.flame());
+        }
 
         AnimatorCleaer.ResetAllTriggers(this.animator);
         this.animator.SetTrigger("finishAttack");
@@ -302,6 +282,27 @@ public class DragonController : MonoBehaviour
             Vector3 worldPosition = this.paragraphText.transform.TransformPoint(charPosition) - new Vector3(0f, this.z_delta_enemy_part_position, 0f);
             this.enemyparts[i].transform.position = worldPosition;
         }
+    }
+    void AddParagraphRecordToResultSystem()
+    {
+        List<string> tags = new List<string>();
+        bool mark = true;
+        foreach (EnemypartFireballController part in this.enemyparts)
+        {
+            if (part.ableShoot)
+                tags.Add("Blue");
+            else
+                tags.Add("red");
+            mark = mark && (!part.ableShoot);  // only if all the parts are correct then mark will be true
+        }
+        string text = this.wave.dragon_paragraph.GetProcessedTextofParagraph(tags);
+        ResultSystem.instance.AddRecord(
+                WaveSystem.instance.nowWaveIndex.ToString(),
+                System.String.Join(", ", this.wave.dragon_paragraph.vocabularies),
+                text,
+                RecordType_inResults.Boss,
+                mark
+        );
     }
     void updateHPbarAndStateMachine()
     {

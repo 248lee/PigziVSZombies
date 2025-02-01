@@ -24,6 +24,20 @@ public class FireFireballController : FallingFireballController
         this.SetAbleToBeDestroyed();
         if (this.burningTree != null && this.burningTree.burningFire == this)
             this.burningTree.SetBurningFire(null);
+
+        // Add record to ResultSystem
+        string text;
+        if (this.is_onTree)
+            text = this.question.GetRealSentenceWithColor("#000080");
+        else
+            text = this.question.GetRealSentenceWithColor("#0000FF");
+        ResultSystem.instance.AddRecord (
+                WaveSystem.instance.nowWaveIndex.ToString(),
+                this.question.vocabulary,
+                text,
+                RecordType_inResults.Fireball,
+                true
+        );
     }
     protected override void pause()
     {
@@ -60,30 +74,57 @@ public class FireFireballController : FallingFireballController
     }
     public override void Wrong_onFireTree()
     {
-        this.questionText.SetText(this.question.GetRealSentenceWithColor("red")); // show out the correct answer
+        string text = this.question.GetRealSentenceWithColor("red");
+        this.questionText.SetText(text); // show out the correct answer
         this.ableShoot = false;
         this.SetAbleToBeDestroyed();
         this.putOutFireball();
         transform.position += new Vector3(0f, 0f, -1f);
         // this.realSpeed = 0f; // stop the fireball from falling down
+
+        ResultSystem.instance.AddRecord(
+                WaveSystem.instance.nowWaveIndex.ToString(),
+                this.question.vocabulary,
+                text,
+                RecordType_inResults.Fireball,
+                false
+        );
     }
     public override void Wrong_onFloor()
     {
-        this.questionText.SetText(this.question.GetRealSentenceWithColor("red")); // show out the correct answer
+        string text = this.question.GetRealSentenceWithColor("red");
+        this.questionText.SetText(text); // show out the correct answer
         this.ableShoot = false;
         this.SetAbleToBeDestroyed();
         this.putOutFireball();
         this.realSpeed = 0f;
+
+        ResultSystem.instance.AddRecord(
+                WaveSystem.instance.nowWaveIndex.ToString(),
+                this.question.vocabulary,
+                text,
+                RecordType_inResults.Fireball,
+                false
+        );
     }
-    public void WildfireOnDeadTree() // For FireFireballController
+    public void WildfireOnDeadTree() // Called when the wildfire burned all of the tree
     {
-        this.questionText.SetText(this.question.GetRealSentenceWithColor("red")); // show out the correct answer
+        string text = this.question.GetRealSentenceWithColor("red");
+        this.questionText.SetText(text); // show out the correct answer
         this.ableShoot = false;
         this.SetAbleToBeDestroyed();
         this.putOutWildFire();
         this.burningTree.SetBurningFire(null);
         // transform.position += new Vector3(0f, 0f, 1f);
         this.realSpeed = 0f; // stop the fireball from falling down
+
+        ResultSystem.instance.AddRecord(
+                WaveSystem.instance.nowWaveIndex.ToString(),
+                this.question.vocabulary,
+                text,
+                RecordType_inResults.Fireball,
+                false
+        );
     }
     private void putOutFireball()
     {
@@ -102,6 +143,15 @@ public class FireFireballController : FallingFireballController
         if (collision.GetComponent<AnimalController>() != null)
         {
             collision.GetComponent<AnimalController>().StartBurned();
+
+            string text = this.question.GetRealSentenceWithColor("red");
+            ResultSystem.instance.AddRecord(
+                WaveSystem.instance.nowWaveIndex.ToString(),
+                this.question.vocabulary,
+                text,
+                RecordType_inResults.Fireball,
+                false
+        );
         }
     }
 }

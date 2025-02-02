@@ -270,6 +270,7 @@
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Base\AnimationPresets\AnimationPresetContainer.cs" />
     <Compile Include="Assets\OpenAI_API\Chat\ChatMessage.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Models\BuiltinDebugViewsModel.cs" />
+    <Compile Include="Assets\Scripts\DynamicResizerAccordingToText.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\NavMeshAgentControl\NavMeshAgentControlTrack.cs" />
     <Compile Include="Assets\Shared\Scripts\AdjustTimeScale.cs" />
     <Compile Include="Assets\Scripts\FallingFireballController.cs" />

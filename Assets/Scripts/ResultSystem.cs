@@ -63,7 +63,7 @@ public class ResultSystem : MonoBehaviour
     public void OpenResultWindow()
     {
         // Clean up all the records in the content
-        ResultEntryController[] previousRecords = GetComponentsInChildren<ResultEntryController>();
+        ResultEntryController[] previousRecords = this.resultContent.GetComponentsInChildren<ResultEntryController>();
         foreach (var record in previousRecords)
             Destroy(record.gameObject);
 

@@ -8,9 +8,9 @@ public class ResultEntryController : MonoBehaviour
 {
     public List<Image> icons = new List<Image>(System.Enum.GetValues(typeof(RecordType_inResults)).Length);
     public TextMeshProUGUI textOfNo, textOfWave, textOfVocab, textOfText;
-    public void SetupEntryText(ResultRecord record)
+    public void SetupEntryText(string no, ResultRecord record)
     {
-        this.textOfNo.text = record.no;
+        this.textOfNo.text = no;
         this.textOfWave.text = record.wave;
         this.textOfVocab.text = record.vocab;
         this.textOfText.text = record.text;

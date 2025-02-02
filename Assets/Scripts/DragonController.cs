@@ -290,9 +290,9 @@ public class DragonController : MonoBehaviour
         foreach (EnemypartFireballController part in this.enemyparts)
         {
             if (part.ableShoot)
-                tags.Add("Blue");
-            else
                 tags.Add("red");
+            else
+                tags.Add("#0000FF");
             mark = mark && (!part.ableShoot);  // only if all the parts are correct then mark will be true
         }
         string text = this.wave.dragon_paragraph.GetProcessedTextofParagraph(tags);

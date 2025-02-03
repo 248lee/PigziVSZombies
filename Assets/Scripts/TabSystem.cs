@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using JohnUtils;
 
 public class TabSystem : MonoBehaviour
 {
@@ -14,10 +15,12 @@ public class TabSystem : MonoBehaviour
         public Button tabButton;
         public GameObject objectToShow;
     }
-    public Color colorOfSelectedButtonBackground, colorOfSelectedButtonText;
+    public Color colorOfSelectedButtonText;
     public List<TabPage> tabPages;
+    public event EventHandlerWithString onTabSwitched;
     public string currentTabName { get; private set; }
     private List<Color> original_button_colors_background = new List<Color>(), original_button_colors_text = new List<Color>();
+    [SerializeField] private bool changeButtonBackgroundColor = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,14 +47,20 @@ public class TabSystem : MonoBehaviour
             {
                 tabPage.objectToShow.SetActive(true);
                 GetComponent<Image>().color = tabPage.backgroundColor;
-                tabPage.tabButton.GetComponent<Image>().color = tabPage.backgroundColor;
+                if (this.changeButtonBackgroundColor)
+                    tabPage.tabButton.GetComponent<Image>().color = tabPage.backgroundColor;
                 tabPage.tabButton.GetComponentInChildren<TextMeshProUGUI>().color = this.colorOfSelectedButtonText;
                 currentTabName = tabPage.tabName;
+
+                // Trigger the event of switching tab
+                if (this.onTabSwitched != null)
+                    this.onTabSwitched.Invoke(targetTabName);
             }
             else
             {
                 tabPage.objectToShow.SetActive(false);
-                tabPage.tabButton.GetComponent<Image>().color = this.original_button_colors_background[i];
+                if (this.changeButtonBackgroundColor)
+                    tabPage.tabButton.GetComponent<Image>().color = this.original_button_colors_background[i];
                 tabPage.tabButton.GetComponentInChildren<TextMeshProUGUI>().color = this.original_button_colors_text[i];
             }
         }

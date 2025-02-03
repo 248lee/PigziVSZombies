@@ -234,6 +234,7 @@
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\ScreenFader\ScreenFaderBehaviour.cs" />
     <Compile Include="Assets\Scripts\ResultSystem.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TextSwitcher\TextSwitcherTrack.cs" />
+    <Compile Include="Assets\Scripts\TabSelectIconController.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Utils\GraphicsUtils.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Buttons\Controllers\UIButtonStateController.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\NavMeshAgentControl\NavMeshAgentControlClip.cs" />
@@ -343,6 +344,7 @@
     <Compile Include="Assets\Scripts\Wave\SentenceBank.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\PostProcessingModel.cs" />
     <Compile Include="Assets\Scripts\floatMovement.cs" />
+    <Compile Include="Assets\_Heathen Engineering\Samples\UX Examples\Flat Icons [Free]\ToggleSetAnimatorBoolean.cs" />
     <Compile Include="Assets\OpenAI_API\Audio\TextToSpeechRequest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -428,6 +430,7 @@
     <None Include="Assets\StreamingAssets\SentenceBanks\omnipresent.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor Resources\Monitors\WaveformRender.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
+    <None Include="Assets\_Heathen Engineering\Documentation\UX\Flat Icons [Free]\Read Me.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\Common.cginc" />
     <None Include="Assets\unity-frosted-glass-master\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\mutilate.txt" />

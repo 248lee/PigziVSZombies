@@ -29,9 +29,8 @@ public class ResultSystem : MonoBehaviour
 {
     public static ResultSystem instance { get; private set; }
     [SerializeField] GameObject resultWindow;
-    [SerializeField] GameObject resultContent;
+    [SerializeField] GameObject resultContentSortByTime, resultContentSortByDic;
     [SerializeField] ResultEntryController resultRecordPrefab;
-    [SerializeField] Button sortByTimeButton, sortByDicButton;
     public List<ResultRecord> records = new List<ResultRecord>();
     private void Awake()
     {
@@ -48,8 +47,8 @@ public class ResultSystem : MonoBehaviour
     void Start()
     {
         records = new List<ResultRecord>();
-        this.sortByTimeButton.onClick.AddListener(delegate() { this.DrawRecordsByTime(); });  // This is the older C# format.
-        this.sortByDicButton.onClick.AddListener(() => this.DrawRecordsByDictionary());  // This is the modern C# format.
+        //this.sortByTimeButton.onClick.AddListener(delegate() { this.DrawRecordsByTime(); });  // This is the older C# format.
+        //this.sortByDicButton.onClick.AddListener(() => this.DrawRecordsByDictionary());  // This is the modern C# format.
     }
 
     // Update is called once per frame
@@ -65,6 +64,7 @@ public class ResultSystem : MonoBehaviour
     public void OpenResultWindow()
     {
         this.DrawRecordsByTime();
+        this.DrawRecordsByDictionary();
 
         // Show the window
         this.resultWindow.SetActive(true);
@@ -76,7 +76,7 @@ public class ResultSystem : MonoBehaviour
     public void DrawRecordsByTime()
     {
         // Clean up all the records in the content
-        ResultEntryController[] previousRecords = this.resultContent.GetComponentsInChildren<ResultEntryController>();
+        ResultEntryController[] previousRecords = this.resultContentSortByTime.GetComponentsInChildren<ResultEntryController>();
         foreach (var record in previousRecords)
             Destroy(record.gameObject);
 
@@ -84,7 +84,7 @@ public class ResultSystem : MonoBehaviour
         int no = 1;
         foreach (var record in this.records)
         {
-            ResultEntryController entryController = Instantiate(this.resultRecordPrefab.gameObject, this.resultContent.transform).GetComponent<ResultEntryController>();
+            ResultEntryController entryController = Instantiate(this.resultRecordPrefab.gameObject, this.resultContentSortByTime.transform).GetComponent<ResultEntryController>();
             entryController.SetupEntryText(no.ToString(), record);
             no++;
         }
@@ -92,7 +92,7 @@ public class ResultSystem : MonoBehaviour
     public void DrawRecordsByDictionary()
     {
         // Clean up all the records in the content
-        ResultEntryController[] previousRecords = this.resultContent.GetComponentsInChildren<ResultEntryController>();
+        ResultEntryController[] previousRecords = this.resultContentSortByDic.GetComponentsInChildren<ResultEntryController>();
         foreach (var record in previousRecords)
             Destroy(record.gameObject);
 
@@ -110,7 +110,7 @@ public class ResultSystem : MonoBehaviour
         int no = 1;
         foreach (var record in records_byDic)
         {
-            ResultEntryController entryController = Instantiate(this.resultRecordPrefab.gameObject, this.resultContent.transform).GetComponent<ResultEntryController>();
+            ResultEntryController entryController = Instantiate(this.resultRecordPrefab.gameObject, this.resultContentSortByDic.transform).GetComponent<ResultEntryController>();
             entryController.SetupEntryText(no.ToString(), record);
             no++;
         }

@@ -373,7 +373,7 @@ public class DragonController : MonoBehaviour
         this.Graph_SetTrigger("flame");
         
         yield return new WaitForSeconds(2f);
-        while (this.graphAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fly Flame Attack"))
+        while (this.graphAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fly Flame Attack (This name is dependent in DragonController.cs)"))
         {
             yield return new WaitForSeconds(0.1f);
         }

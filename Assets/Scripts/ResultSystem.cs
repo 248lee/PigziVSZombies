@@ -28,9 +28,12 @@ public class ResultRecord
 public class ResultSystem : MonoBehaviour
 {
     public static ResultSystem instance { get; private set; }
+    [SerializeField] GameObject resultSplashScreen;
     [SerializeField] GameObject resultWindow;
     [SerializeField] GameObject resultContentSortByTime, resultContentSortByDic;
     [SerializeField] ResultEntryController resultRecordPrefab;
+    [SerializeField] Button confirmButton;
+    [SerializeField] YesOrNoWindow leaveYesOrNoWindow;
     public List<ResultRecord> records = new List<ResultRecord>();
     private void Awake()
     {
@@ -47,6 +50,7 @@ public class ResultSystem : MonoBehaviour
     void Start()
     {
         records = new List<ResultRecord>();
+        this.confirmButton.onClick.AddListener(() => this.OnConfirmButtonPressed());
         //this.sortByTimeButton.onClick.AddListener(delegate() { this.DrawRecordsByTime(); });  // This is the older C# format.
         //this.sortByDicButton.onClick.AddListener(() => this.DrawRecordsByDictionary());  // This is the modern C# format.
     }
@@ -67,10 +71,12 @@ public class ResultSystem : MonoBehaviour
         this.DrawRecordsByDictionary();
 
         // Show the window
+        this.resultSplashScreen.SetActive(true);
         this.resultWindow.SetActive(true);
     }
     public void CloseResultWindow()
     {
+        this.resultSplashScreen.SetActive(false);
         this.resultWindow.SetActive(false);
     }
     public void DrawRecordsByTime()
@@ -114,5 +120,10 @@ public class ResultSystem : MonoBehaviour
             entryController.SetupEntryText(no.ToString(), record);
             no++;
         }
+    }
+    private void OnConfirmButtonPressed()
+    {
+        this.leaveYesOrNoWindow.gameObject.SetActive(true);
+        this.leaveYesOrNoWindow.AddYesButtonListener(() => GameflowSystem.instance.LeaveStage());
     }
 }

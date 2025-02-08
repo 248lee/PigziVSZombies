@@ -35,7 +35,7 @@ public class StageWordBank : MonoBehaviour
         // At the beginning, refill enough regular paragraphs
         // 1. collect the p_num_of_vocabularies that may occur
         List<int> may_occur_p_num_of_vocabularies = new List<int>();
-        foreach (Wave wave in this.waveSystemOfThisStage.waves)
+        foreach (Wave wave in WaveSystem.instance.waves)
         {
             if (wave.mode == WaveMode.Boss)
             {
@@ -63,7 +63,7 @@ public class StageWordBank : MonoBehaviour
         }
 
         // After refilling, we can start play the game!
-        this.waveSystemOfThisStage.StartGameProcess();
+        WaveSystem.instance.StartGameProcess();
     }
 
     private List<string> UniqueRandomSelectWords(int num)

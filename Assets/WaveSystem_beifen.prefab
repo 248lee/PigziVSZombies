@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9080686909213760059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7158504384609060706}
+  - component: {fileID: 2397521564536363832}
+  m_Layer: 0
+  m_Name: WaveSystem_beifen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7158504384609060706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9080686909213760059}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2397521564536363832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9080686909213760059}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343573efdfe3a8e4d8ced3bbb33cfaaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vocabularyBoard: {fileID: 0}
+  wordBankOfThisStage: {fileID: 0}
+  waves:
+  - mode: 0
+    waveName: 
+    numOfVocabularies: 5
+    questions: []
+    subwaves:
+    - startDelay: 2.36
+      numOfEmmisions: 3
+      durationMin: 7
+      durationMax: 7
+      healBallDelay: 10
+    - startDelay: 2.36
+      numOfEmmisions: 10
+      durationMin: 3
+      durationMax: 5
+      healBallDelay: 9999
+    p_numOfVocabularies: 3
+    labelName: Hello World
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 2
+    waveName: 
+    numOfVocabularies: 3
+    questions: []
+    subwaves:
+    - startDelay: 0.1
+      numOfEmmisions: 1
+      durationMin: 8
+      durationMax: 7
+      healBallDelay: 999
+    p_numOfVocabularies: 3
+    labelName: Wait for Boss Dead
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 1
+    waveName: 
+    numOfVocabularies: 3
+    questions: []
+    subwaves:
+    - startDelay: 0.1
+      numOfEmmisions: 1
+      durationMin: 8
+      durationMax: 7
+      healBallDelay: 999
+    p_numOfVocabularies: 3
+    labelName: Hello World
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 0
+    waveName: 
+    numOfVocabularies: 7
+    questions: []
+    subwaves:
+    - startDelay: 1.49
+      numOfEmmisions: 15
+      durationMin: 1.54
+      durationMax: 7.12
+      healBallDelay: 999
+    p_numOfVocabularies: 3
+    labelName: Hello World
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 3
+    waveName: 
+    numOfVocabularies: 3
+    questions: []
+    subwaves:
+    - startDelay: 0.1
+      numOfEmmisions: 1
+      durationMin: 8
+      durationMax: 7
+      healBallDelay: 999
+    p_numOfVocabularies: 3
+    labelName: Hello World
+    targetLabelName: Wait for Boss Dead
+    runtimeVariableA: BossHP
+    relation: 3
+    runtimeVariableB: 0
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  nowWaveIndex: 0

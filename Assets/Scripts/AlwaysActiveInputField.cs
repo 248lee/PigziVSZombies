@@ -6,6 +6,7 @@ public class AlwaysActiveInputField : MonoBehaviour
     public static AlwaysActiveInputField instance { get; private set; }
     public delegate void InputHandler(string input); // Delegate for handling input
     private TMP_InputField inputField;
+    private bool isAllowInput;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class AlwaysActiveInputField : MonoBehaviour
         else
         {
             instance = this;
+            this.isAllowInput = true;
         }
     }
     void Start()
@@ -26,6 +28,9 @@ public class AlwaysActiveInputField : MonoBehaviour
 
     void Update()
     {
+        if (!this.isAllowInput)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             ReactivateInputField();  // Activate the input field after the user submit the answer in AutoCompleteInput.cs
@@ -41,5 +46,12 @@ public class AlwaysActiveInputField : MonoBehaviour
     {
         inputField.ActivateInputField();
         inputField.Select();
+    }
+    public void SetAllowInput(bool set)
+    {
+        this.isAllowInput = set;
+        inputField.enabled = this.isAllowInput;
+        if (this.isAllowInput)
+            ReactivateInputField();
     }
 }

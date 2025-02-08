@@ -53,7 +53,7 @@ public class HealFireballController : FallingFireballController
         List<HealFireballController> healballs_onScreen = this.fireballSystem.fire_onScreen.OfType<HealFireballController>().ToList();
         foreach(HealFireballController healball in healballs_onScreen)
         {
-            if (healball != this && healball.transform.position.y == transform.position.y)
+            if (healball != this && healball.transform.position.y == transform.position.y && healball.ableShoot)
             {
                 healball.Wrong();
                 // Add record to ResultSystem

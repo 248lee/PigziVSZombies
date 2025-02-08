@@ -28,7 +28,7 @@ public class AnimalController : MonoBehaviour
     public void Death()
     {
         Debug.Log(gameObject.name + "is dying!");
-        GameflowSystem.instance.SetPause();
+        GameflowSystem.instance.StageLose();
     }
     public bool StartBurned()
     {

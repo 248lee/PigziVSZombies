@@ -99,6 +99,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\OpenAI_API\IOpenAIAPI.cs" />
     <Compile Include="Assets\OpenAI_API\Embedding\IEmbeddingEndpoint.cs" />
+    <Compile Include="Assets\Scripts\YesOrNoWindow.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Base\UIWindowAnimator.cs" />
     <Compile Include="Assets\Scripts\AnimalHome.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\TransformTweenBehaviour.cs" />
@@ -319,6 +320,7 @@
     <Compile Include="Assets\BG Games\UI window system and tools\Sample\Scripts\UIWindows\SamplePanel2.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Components\EyeAdaptationComponent.cs" />
     <Compile Include="Assets\OpenAI_API\Images\ImageResponseFormat.cs" />
+    <Compile Include="Assets\Heathen Engineering\Samples\UX Examples\Flat Icons [Free]\ToggleSetAnimatorBoolean.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Components\AmbientOcclusionComponent.cs" />
     <Compile Include="Assets\Scripts\AnnotationComponent.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TimeDilation\TimeDilationTrack.cs" />
@@ -344,7 +346,6 @@
     <Compile Include="Assets\Scripts\Wave\SentenceBank.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\PostProcessingModel.cs" />
     <Compile Include="Assets\Scripts\floatMovement.cs" />
-    <Compile Include="Assets\_Heathen Engineering\Samples\UX Examples\Flat Icons [Free]\ToggleSetAnimatorBoolean.cs" />
     <Compile Include="Assets\OpenAI_API\Audio\TextToSpeechRequest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -371,6 +372,7 @@
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
     <None Include="Assets\StreamingAssets\SentenceBanks\shuttle.txt" />
     <None Include="Assets\Unity UI Samples\Textures and Sprites\SF UI\Background\LICENSE.txt" />
+    <None Include="Assets\_RealGame\Materials\blur.shader" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\TAA.cginc" />
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
@@ -430,7 +432,7 @@
     <None Include="Assets\StreamingAssets\SentenceBanks\omnipresent.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor Resources\Monitors\WaveformRender.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
-    <None Include="Assets\_Heathen Engineering\Documentation\UX\Flat Icons [Free]\Read Me.txt" />
+    <None Include="Assets\Heathen Engineering\Documentation\UX\Flat Icons [Free]\Read Me.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\Common.cginc" />
     <None Include="Assets\unity-frosted-glass-master\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\mutilate.txt" />
@@ -1482,16 +1484,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.PixelPerfect">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.TextMeshPro">

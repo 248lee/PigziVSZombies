@@ -92,7 +92,10 @@ public class WaveSystem : MonoBehaviour
     public void StartGameProcess()
     {
         if (Application.isPlaying)
+        {
+            GameflowSystem.instance.SetUnpaused();
             StartCoroutine(this.gameProcess());
+        }
     }
     IEnumerator gameProcess()
     {
@@ -155,6 +158,7 @@ public class WaveSystem : MonoBehaviour
             }
             this.nowWaveIndex++;
         }
+        GameflowSystem.instance.StageWin();  // The game stage is completed!!
     }
     public Question AskForAQuestion(Wave wave)
     {

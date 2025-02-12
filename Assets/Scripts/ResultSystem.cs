@@ -33,7 +33,7 @@ public class ResultSystem : MonoBehaviour
     [SerializeField] GameObject resultContentSortByTime, resultContentSortByDic;
     [SerializeField] ResultEntryController resultRecordPrefab;
     [SerializeField] Button confirmButton;
-    [SerializeField] YesOrNoWindow leaveYesOrNoWindow;
+    [SerializeField] ChoiceWindow leaveYesOrNoWindow;
     public List<ResultRecord> records = new List<ResultRecord>();
     private void Awake()
     {
@@ -124,6 +124,7 @@ public class ResultSystem : MonoBehaviour
     private void OnConfirmButtonPressed()
     {
         this.leaveYesOrNoWindow.gameObject.SetActive(true);
-        this.leaveYesOrNoWindow.AddYesButtonListener(() => GameflowSystem.instance.LeaveStage());
+        this.leaveYesOrNoWindow.AddButtonListener(0, () => GameflowSystem.instance.LeaveStage(), true);
+        this.leaveYesOrNoWindow.SetLastButtonToCloseWindow();
     }
 }

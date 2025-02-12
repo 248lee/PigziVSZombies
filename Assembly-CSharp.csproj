@@ -99,7 +99,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\OpenAI_API\IOpenAIAPI.cs" />
     <Compile Include="Assets\OpenAI_API\Embedding\IEmbeddingEndpoint.cs" />
-    <Compile Include="Assets\Scripts\YesOrNoWindow.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Base\UIWindowAnimator.cs" />
     <Compile Include="Assets\Scripts\AnimalHome.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\TransformTweenBehaviour.cs" />
@@ -160,6 +159,7 @@
     <Compile Include="Assets\Scripts\TabSystem.cs" />
     <Compile Include="Assets\Scripts\AnimatorCleaer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\Scripts\ChoiceWindow.cs" />
     <Compile Include="Assets\OpenAI_API\Chat\Conversation.cs" />
     <Compile Include="Assets\MilkShake\Scripts\ShakeResult.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Base\AnimationPresets\ShowAnimationPreset.cs" />
@@ -216,6 +216,7 @@
     <Compile Include="Assets\MilkShake\Demo\Scripts\CameraSwitcher.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Components\FxaaComponent.cs" />
     <Compile Include="Assets\Scripts\FloorTouchFireball.cs" />
+    <Compile Include="Assets\Scripts\ExceptionHandler.cs" />
     <Compile Include="Assets\Scripts\WaterController.cs" />
     <Compile Include="Assets\Scripts\WaterSystem.cs" />
     <Compile Include="Assets\OpenAI_API\Usage.cs" />

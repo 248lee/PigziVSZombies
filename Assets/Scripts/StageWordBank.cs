@@ -2,68 +2,107 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using JohnUtils;
+using System.Threading;
 using System.Threading.Tasks;
 
 public class StageWordBank : MonoBehaviour
 {
     public List<string> regularWords = new();
     public Dictionary<string, List<string>> waveSpecifiedWords = new();
+    [SerializeField] private ChoiceWindow requestErrorNotification;
+    [SerializeField] private TMPro.TextMeshProUGUI requestErrorMessageText;
     private Dictionary<string, Queue<string>> sentences;
     private Dictionary<int, Queue<Paragraph>> paragraphs;
     private Dictionary<string, Paragraph> waveSpecifiedParagraphs;
-    [SerializeField] private WaveSystem waveSystemOfThisStage;
+    private CancellationTokenSource cts;
+
     // Start is called before the first frame update
     async void Start()
+    {
+        GPTRequester.SetupGPTModel();
+        await InitializeWordBank();
+    }
+    private async Task InitializeWordBank()
     {
         this.sentences = new Dictionary<string, Queue<string>>();
         this.paragraphs = new Dictionary<int, Queue<Paragraph>>();
         this.waveSpecifiedParagraphs = new Dictionary<string, Paragraph>();
-        GPTRequester.SetupGPTModel();
 
-        // At the beginning, refill enough sentences.
+        cts = new CancellationTokenSource();
         List<Task> sentenceGPTTasks = new List<Task>();
-        foreach (string word in regularWords)
+        try
         {
-            this.sentences.Add(word, new Queue<string>());
-            sentenceGPTTasks.Add(this._RefillSentences(word, StaticGlobalVariables.INITIAL_NUM_OF_REFILL_SENTENCE));
-        }
-        foreach (Task sentenceGPTTask in sentenceGPTTasks)
-        {
-            await sentenceGPTTask;
-        }
-
-        // At the beginning, refill enough regular paragraphs
-        // 1. collect the p_num_of_vocabularies that may occur
-        List<int> may_occur_p_num_of_vocabularies = new List<int>();
-        foreach (Wave wave in WaveSystem.instance.waves)
-        {
-            if (wave.mode == WaveMode.Boss)
+            await Task.Delay(1000); // A short delay to for fake loading
+            foreach (string word in regularWords)
             {
-                bool isRepeated = false;
-                foreach (int mopnv in may_occur_p_num_of_vocabularies)
+                this.sentences.Add(word, new Queue<string>());
+                // Pass the token to the task
+                sentenceGPTTasks.Add(this._RefillSentences(word, StaticGlobalVariables.INITIAL_NUM_OF_REFILL_SENTENCE));
+            }
+            await Task.WhenAll(sentenceGPTTasks);  // If any task fails, an exception will be thrown here
+
+            await Task.Delay(1000); // A short delay to prevent dense GPT-4 requests
+
+            // Refill paragraphs (this part remains unchanged)
+            List<int> may_occur_p_num_of_vocabularies = new List<int>();
+            foreach (Wave wave in WaveSystem.instance.waves)
+            {
+                if (wave.mode == WaveMode.Boss && !may_occur_p_num_of_vocabularies.Contains(wave.p_numOfVocabularies))
                 {
-                    if (mopnv == wave.p_numOfVocabularies)
-                    {
-                        isRepeated = true;
-                        break;
-                    }
-                }
-                if (!isRepeated)
                     may_occur_p_num_of_vocabularies.Add(wave.p_numOfVocabularies);
+                }
             }
-        }
-        // 2. Start refill the paragraphs for each case of p_num_of_vocabularies
-        foreach (int mopnv in may_occur_p_num_of_vocabularies)
-        {
-            this.paragraphs.Add(mopnv, new Queue<Paragraph>());
-            for (int i = 0; i < StaticGlobalVariables.INITIAL_NUM_OF_REFILL_PARAGRAPH; i++)
-            {
-                await this._RefillOneParagraph(mopnv);
-            }
-        }
 
-        // After refilling, we can start play the game!
-        WaveSystem.instance.StartGameProcess();
+            foreach (int mopnv in may_occur_p_num_of_vocabularies)
+            {
+                this.paragraphs.Add(mopnv, new Queue<Paragraph>());
+                for (int i = 0; i < StaticGlobalVariables.INITIAL_NUM_OF_REFILL_PARAGRAPH; i++)
+                {
+                    await this._RefillOneParagraph(mopnv);
+                }
+            }
+
+            // After everything is ready, start the game
+            WaveSystem.instance.StartGameProcess();
+        }
+        catch (System.Exception ex)
+        {
+            // Cancel all _RefillSentences tasks immediately
+            cts.Cancel();
+            Debug.LogError($"Error occurred while refilling sentences: {ex.Message}");
+
+            // Get a friendly error message based on the exception type
+            string friendlyMessage = ExceptionHandler.GetFriendlyMessage(ex);
+
+            // Show a retry/cancel dialog with the friendly message
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+            this.requestErrorNotification.gameObject.SetActive(true);
+            this.requestErrorMessageText.text = friendlyMessage;  // Setup the error message
+            this.requestErrorNotification.AddButtonListener(0, () =>  // the first button is "retry"
+            {
+                this.requestErrorNotification.gameObject.SetActive(false);
+                tcs.SetResult(true);
+            }, true);
+            this.requestErrorNotification.AddButtonListener(1, () =>  // the second button is "leave"
+            {
+                this.requestErrorNotification.gameObject.SetActive(false);
+                tcs.SetResult(false);
+            }, true);
+
+            await tcs.Task;  // Wait for the player to enter the choice
+            bool retry = tcs.Task.Result;
+
+            if (retry)
+            {
+                // Restart the entire process
+                await InitializeWordBank();
+            }
+            else
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelection");
+                return;
+            }
+        }
     }
 
     private List<string> UniqueRandomSelectWords(int num)
@@ -251,17 +290,41 @@ public class StageWordBank : MonoBehaviour
     }
     private async Task _RefillSentences(string word, int num_to_refill)
     {
-        List<string> resulting_sentences = await GPTRequester.RequestSentenceGPT(word, num_to_refill);
-        foreach (string result_sentence in resulting_sentences)
+        if (cts.Token.IsCancellationRequested)
+            return;
+
+        try
         {
-            this.sentences[word].Enqueue(result_sentence);
+            List<string> resulting_sentences = await GPTRequester.RequestSentenceGPT(word, num_to_refill);
+            if (cts.Token.IsCancellationRequested)
+                return;
+
+            foreach (string result_sentence in resulting_sentences)
+            {
+                this.sentences[word].Enqueue(result_sentence);
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Error while fetching sentences for {word}: {ex.Message}");
+            // Rethrow the exception so that Task.WhenAll catches it (and aggregates if necessary)
+            throw;
         }
     }
     private async Task _RefillOneParagraph(int num_of_vocabularies)
     {
-        List<string> selected_words_for_paragraph = this.UniqueRandomSelectWords(num_of_vocabularies);
-        Paragraph resulting_paragrpah = await GPTRequester.RequestParagraphGPT(selected_words_for_paragraph);
-        this.paragraphs[num_of_vocabularies].Enqueue(resulting_paragrpah);
+        try
+        {
+            List<string> selected_words_for_paragraph = this.UniqueRandomSelectWords(num_of_vocabularies);
+            Paragraph resulting_paragrpah = await GPTRequester.RequestParagraphGPT(selected_words_for_paragraph);
+            this.paragraphs[num_of_vocabularies].Enqueue(resulting_paragrpah);
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Error while fetching paragraph: {ex.Message}");
+            // Rethrow the exception so that Task.WhenAll catches it (and aggregates if necessary)
+            throw;
+        }
     }
     private void _RefillSpecifiedParagraph(Wave wave)
     {

@@ -67,82 +67,65 @@ public static class GPTRequester
         bool wrong_before = false;
         for (int i = 0; i < num_of_sentence; i++)
         {
-            try
+            ChatResult chatResult;
+            if (!wrong_before)
             {
-                ChatResult chatResult;
-                if (!wrong_before)
+                chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
                 {
-                    chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
-                    {
-                        Model = Model.ChatGPTTurbo,
-                        Temperature = 0.1,
-                        MaxTokens = 2000,
-                        Messages = messages
-                    });
-                }
-                else
+                    Model = Model.ChatGPTTurbo,
+                    Temperature = 0.1,
+                    MaxTokens = 2000,
+                    Messages = messages
+                });
+            }
+            else
+            {
+                chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
                 {
-                    chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
-                    {
-                        Model = Model.GPT4,
-                        Temperature = 0.1,
-                        MaxTokens = 2000,
-                        Messages = messages
-                    });
-                }
+                    Model = Model.GPT4,
+                    Temperature = 0.1,
+                    MaxTokens = 2000,
+                    Messages = messages
+                });
+            }
 
+            messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.TextContent));
+            int wrong_time = 0, max_wrong_time = 3;
+            while (!Regex.IsMatch(chatResult.Choices[0].Message.TextContent, "<.*?>") && wrong_time < max_wrong_time)
+            {
+                wrong_before = true;
+                Debug.LogError("Wrong GPT response format for sentence: " + chatResult.Choices[0].Message.TextContent);
+                messages.Add(new ChatMessage(ChatMessageRole.User, "Wrong! Please cover the vocabulary \"" + vocabulary + "\" with a bracket \"<    >\". Give me the correct sentence directly."));
+                chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
+                {
+                    Model = Model.GPT4,
+                    Temperature = 0.05,
+                    MaxTokens = 2000,
+                    TopP = 0.5,
+                    Messages = messages
+                });
                 messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.TextContent));
-                int wrong_time = 0, max_wrong_time = 3;
-                while (!Regex.IsMatch(chatResult.Choices[0].Message.TextContent, "<.*?>") && wrong_time < max_wrong_time)
+                wrong_time++;
+                Debug.Log("++++++++++++++++++++++++++++");
+                foreach (ChatMessage cm in messages)
                 {
-                    wrong_before = true;
-                    Debug.LogError("Wrong GPT response format for sentence: " + chatResult.Choices[0].Message.TextContent);
-                    messages.Add(new ChatMessage(ChatMessageRole.User, "Wrong! Please cover the vocabulary \"" + vocabulary + "\" with a bracket \"<    >\". Give me the correct sentence directly."));
-                    chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
-                    {
-                        Model = Model.GPT4,
-                        Temperature = 0.05,
-                        MaxTokens = 2000,
-                        TopP = 0.5,
-                        Messages = messages
-                    });
-                    messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.TextContent));
-                    wrong_time++;
-                    Debug.Log("++++++++++++++++++++++++++++");
-                    foreach (ChatMessage cm in messages)
-                    {
-                        Debug.Log(cm.TextContent);
-                    }
-                    Debug.Log("----------------------------");
+                    Debug.Log(cm.TextContent);
                 }
-                if (wrong_time == max_wrong_time)
-                {
+                Debug.Log("----------------------------");
+            }
+            if (wrong_time == max_wrong_time)
+            {
 
-                }
-                else
-                {
-                    results.Add(chatResult.Choices[0].Message.TextContent); // Push the response into the resulting sentences
-                }
-                if (history.Count == 0 && i == 0)
-                    messages.Add(sentence_o); // The next request after the first sentence should be thorough, others can be simple.
-                else
-                    messages.Add(new ChatMessage(ChatMessageRole.User, "one more"));
             }
-            catch (TaskCanceledException ex)
+            else
             {
-                Debug.LogError("Task is canceled here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                Debug.LogError(ex);
+                results.Add(chatResult.Choices[0].Message.TextContent); // Push the response into the resulting sentences
             }
-            catch (System.Net.Http.HttpRequestException ex)
-            {
-                Debug.LogError("You are maybe not connecting to the Internet.");
-                Debug.Log(ex);
-            }
-            catch (Exception ex)
-            {
-                Debug.Log(ex);
-                Debug.LogError(ex.Message);
-            }
+            if (history.Count == 0 && i == 0)
+                messages.Add(sentence_o); // The next request after the first sentence should be thorough, others can be simple.
+            else
+                messages.Add(new ChatMessage(ChatMessageRole.User, "one more"));
+            
         }
 
         sb.SetAllSentences(results);

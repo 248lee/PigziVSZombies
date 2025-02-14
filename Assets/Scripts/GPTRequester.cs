@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 using UnityEngine;
+using System.Threading;
 using System.Threading.Tasks;
 using OpenAI_API;
 using OpenAI_API.Chat;
@@ -35,7 +36,7 @@ public static class GPTRequester
     {
         gpt = new OpenAIAPI(Environment.GetEnvironmentVariable("OPENAI_KEY", EnvironmentVariableTarget.User));
     }
-    public static async Task<List<string>> RequestSentenceGPT(string vocabulary, int num_of_sentence)
+    public static async Task<List<string>> RequestSentenceGPT(string vocabulary, int num_of_sentence, CancellationTokenSource cts, ProgressCounter p_counter)
     {
         SentenceBank sb = new SentenceBank(vocabulary);
         ChatMessage sentence_q = new ChatMessage(ChatMessageRole.User, "vocabulary: " + vocabulary);
@@ -67,6 +68,9 @@ public static class GPTRequester
         bool wrong_before = false;
         for (int i = 0; i < num_of_sentence; i++)
         {
+            if (cts.Token.IsCancellationRequested)  // If the cancelation source is triggered, cancel the tasks immediately.
+                return null;
+
             ChatResult chatResult;
             if (!wrong_before)
             {
@@ -95,7 +99,7 @@ public static class GPTRequester
             {
                 wrong_before = true;
                 Debug.LogError("Wrong GPT response format for sentence: " + chatResult.Choices[0].Message.TextContent);
-                messages.Add(new ChatMessage(ChatMessageRole.User, "Wrong! Please cover the vocabulary \"" + vocabulary + "\" with a bracket \"<    >\". Give me the correct sentence directly."));
+                messages.Add(new ChatMessage(ChatMessageRole.User, "Wrong! Please cover the vocabulary \"" + vocabulary + "\" with a bracket \"<    >\". Give me the correct sentence directly without saying anything unnecessary."));
                 chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
                 {
                     Model = Model.GPT4,
@@ -125,7 +129,9 @@ public static class GPTRequester
                 messages.Add(sentence_o); // The next request after the first sentence should be thorough, others can be simple.
             else
                 messages.Add(new ChatMessage(ChatMessageRole.User, "one more"));
-            
+
+            // Finish one sentence. Let's count up the progress!
+            p_counter.CountUp();
         }
 
         sb.SetAllSentences(results);

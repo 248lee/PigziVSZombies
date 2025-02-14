@@ -29,6 +29,7 @@ public class HPBarController : MonoBehaviour
     }
     public void SetMaxHP(float maxHP)
     {
+        this.slider = GetComponent<Slider>();
         this.slider.maxValue = maxHP;
         this.maxHP = maxHP;
     }

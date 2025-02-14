@@ -103,6 +103,7 @@
     <Compile Include="Assets\Scripts\AnimalHome.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\TransformTweenBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Animal_SM\AnimalReturningState.cs" />
+    <Compile Include="Assets\Scripts\GPTProgressUISystem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TimeDilation\TimeDilationClip.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
@@ -308,10 +309,12 @@
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\ScreenFader\ScreenFaderMixerBehaviour.cs" />
     <Compile Include="Assets\DeleteMe.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\Video\VideoScriptPlayableTrack.cs" />
+    <Compile Include="Assets\Scripts\ProgressCounter.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Models\ColorGradingModel.cs" />
     <Compile Include="Assets\Scripts\WildFireTurnOffer.cs" />
     <Compile Include="Assets\OpenAI_API\APIAuthentication.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TextSwitcher\TextSwitcherBehaviour.cs" />
+    <Compile Include="Assets\Scripts\StatusStackSystem.cs" />
     <Compile Include="Assets\OpenAI_API\Audio\AudioResult.cs" />
     <Compile Include="Assets\MilkShake\Scripts\IShakeParameters.cs" />
     <Compile Include="Assets\OpenAI_API\Completions\ICompletionEndpoint.cs" />

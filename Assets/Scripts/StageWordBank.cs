@@ -11,6 +11,8 @@ public class StageWordBank : MonoBehaviour
     public Dictionary<string, List<string>> waveSpecifiedWords = new();
     [SerializeField] private ChoiceWindow requestErrorNotification;
     [SerializeField] private TMPro.TextMeshProUGUI requestErrorMessageText;
+    [SerializeField] private GPTProgressUISystem progressPanel;
+    private List<ProgressCounter> p_counters;
     private Dictionary<string, Queue<string>> sentences;
     private Dictionary<int, Queue<Paragraph>> paragraphs;
     private Dictionary<string, Paragraph> waveSpecifiedParagraphs;
@@ -19,6 +21,7 @@ public class StageWordBank : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
+        this.p_counters = new List<ProgressCounter>();
         GPTRequester.SetupGPTModel();
         await InitializeWordBank();
     }
@@ -36,9 +39,13 @@ public class StageWordBank : MonoBehaviour
             foreach (string word in regularWords)
             {
                 this.sentences.Add(word, new Queue<string>());
-                // Pass the token to the task
-                sentenceGPTTasks.Add(this._RefillSentences(word, StaticGlobalVariables.INITIAL_NUM_OF_REFILL_SENTENCE));
+                ProgressCounter p_counter = new ProgressCounter(StaticGlobalVariables.INITIAL_NUM_OF_REFILL_SENTENCE, word);
+                sentenceGPTTasks.Add(this._RefillSentences(word, StaticGlobalVariables.INITIAL_NUM_OF_REFILL_SENTENCE, p_counter));
+                this.p_counters.Add(p_counter);
             }
+
+            this.progressPanel.SetupProgressBars(p_counters);
+
             await Task.WhenAll(sentenceGPTTasks);  // If any task fails, an exception will be thrown here
 
             await Task.Delay(1000); // A short delay to prevent dense GPT-4 requests
@@ -285,17 +292,17 @@ public class StageWordBank : MonoBehaviour
     {
         string resulting_sentence = this.sentences[vocabulary].Dequeue();
         if (this.sentences[vocabulary].Count < StaticGlobalVariables.REFILL_SENTENCE_THRESHOLD)
-            _ = this._RefillSentences(vocabulary, this.sentences[vocabulary].Count);  // Here _RefillSentences keeps running in the background until it completes its task of refilling the sentences.
+            _ = this._RefillSentences(vocabulary, this.sentences[vocabulary].Count, null);  // Here _RefillSentences keeps running in the background until it completes its task of refilling the sentences.
         return resulting_sentence;  // We don't wait for the sentences refilling
     }
-    private async Task _RefillSentences(string word, int num_to_refill)
+    private async Task _RefillSentences(string word, int num_to_refill, ProgressCounter p_counter)
     {
         if (cts.Token.IsCancellationRequested)
             return;
 
         try
         {
-            List<string> resulting_sentences = await GPTRequester.RequestSentenceGPT(word, num_to_refill);
+            List<string> resulting_sentences = await GPTRequester.RequestSentenceGPT(word, num_to_refill, cts, p_counter);
             if (cts.Token.IsCancellationRequested)
                 return;
 

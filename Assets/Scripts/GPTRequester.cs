@@ -70,10 +70,11 @@ public static class GPTRequester
         {
             if (cts.Token.IsCancellationRequested)  // If the cancelation source is triggered, cancel the tasks immediately.
                 return null;
-
             ChatResult chatResult;
+            StatusEntry statusEntry;
             if (!wrong_before)
             {
+                statusEntry = StatusStackSystem.instance.AddStatusEntry($"剛剛向GPT3.5請求了 {vocabulary} 的例句，正在等待回應...");
                 chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
                 {
                     Model = Model.ChatGPTTurbo,
@@ -84,6 +85,7 @@ public static class GPTRequester
             }
             else
             {
+                statusEntry = StatusStackSystem.instance.AddStatusEntry($"剛剛向GPT4請求了 {vocabulary} 的例句，正在等待回應...");
                 chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
                 {
                     Model = Model.GPT4,
@@ -93,10 +95,15 @@ public static class GPTRequester
                 });
             }
 
+            string resultText = chatResult.Choices[0].Message.TextContent.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)[0];
             messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.TextContent));
             int wrong_time = 0, max_wrong_time = 3;
             while (!Regex.IsMatch(chatResult.Choices[0].Message.TextContent, "<.*?>") && wrong_time < max_wrong_time)
             {
+                // Update the status
+                statusEntry.SetDone();
+                statusEntry = StatusStackSystem.instance.AddStatusEntry($"<color=orange>偵測到 {vocabulary} 的例句格式錯誤，重新發送請求中...", true);
+
                 wrong_before = true;
                 Debug.LogError("Wrong GPT response format for sentence: " + chatResult.Choices[0].Message.TextContent);
                 messages.Add(new ChatMessage(ChatMessageRole.User, "Wrong! Please cover the vocabulary \"" + vocabulary + "\" with a bracket \"<    >\". Give me the correct sentence directly without saying anything unnecessary."));
@@ -117,21 +124,27 @@ public static class GPTRequester
                 }
                 Debug.Log("----------------------------");
             }
-            if (wrong_time == max_wrong_time)
+            if (wrong_time > max_wrong_time)
             {
-
+                // Delete the history sentence bank and try again.
+                sb.ResetSentenceBankOfThisVocabulary();
+                statusEntry.SetDone();
+                statusEntry = StatusStackSystem.instance.AddStatusEntry($"<color=red>{vocabulary} 的例句格式錯誤已經超過{max_wrong_time}次，正在重設歷史例句。可能的原因是GPT無法理解您所提供的單字，請double check拼字是否正確。", true);
+                await RequestSentenceGPT(vocabulary, num_of_sentence, cts, p_counter);
+                statusEntry.SetDone();
             }
             else
             {
                 results.Add(chatResult.Choices[0].Message.TextContent); // Push the response into the resulting sentences
+
+                // The vocabulary is successfully added, updata status and progress.
+                statusEntry.SetDone();
+                p_counter.CountUp();  // Finish one sentence. Let's count up the progress!
             }
             if (history.Count == 0 && i == 0)
                 messages.Add(sentence_o); // The next request after the first sentence should be thorough, others can be simple.
             else
                 messages.Add(new ChatMessage(ChatMessageRole.User, "one more"));
-
-            // Finish one sentence. Let's count up the progress!
-            p_counter.CountUp();
         }
 
         sb.SetAllSentences(results);

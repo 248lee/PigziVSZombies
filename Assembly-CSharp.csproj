@@ -424,6 +424,7 @@
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\Fog.shader" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\MotionBlur.shader" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\wjeopjaw9ielijr.txt" />
     <None Include="Assets\Unity UI Samples\Fonts\Jupiter\LICENSE.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\auditor.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\DiskKernels.cginc" />

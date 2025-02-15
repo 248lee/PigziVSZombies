@@ -12549,8 +12549,8 @@ RectTransform:
   - {fileID: 1703773202}
   - {fileID: 916458502}
   - {fileID: 614982467}
-  - {fileID: 849995014}
   - {fileID: 1224451302}
+  - {fileID: 849995014}
   m_Father: {fileID: 43000348}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -27777,6 +27777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1989700014}
   - component: {fileID: 1989700013}
+  - component: {fileID: 1989700015}
   m_Layer: 0
   m_Name: Stage Word Bank
   m_TagString: Untagged
@@ -27833,6 +27834,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1989700015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989700012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 586b510d31f423a4baf85c67e529f1a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barText: {fileID: 849995015}
 --- !u!1 &1991406342
 GameObject:
   m_ObjectHideFlags: 0

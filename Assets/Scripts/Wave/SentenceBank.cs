@@ -32,7 +32,7 @@ public class SentenceBank
         this.sentences = new List<string>(_sentences);  // copy the parameter to the ram
         if (!File.Exists(pathname))
         {
-            Debug.LogError("The file \"" + this.pathname + "\" does not exist!!");
+            Debug.LogError("JOHNLEE: The file \"" + this.pathname + "\" does not exist!!");
             return;
         }
         File.WriteAllLines(this.pathname, this.sentences);  // write the sentences in the ram into disk
@@ -40,5 +40,12 @@ public class SentenceBank
     public List<string> GetAllSentences()
     {
         return new List<string>(this.sentences);
+    }
+    public void ResetSentenceBankOfThisVocabulary()
+    {
+        if (File.Exists(this.pathname))
+        {
+            File.Delete(this.pathname);
+        }
     }
 }

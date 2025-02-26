@@ -160,6 +160,9 @@ public static class GPTRequester
         ChatMessage[] example_vs = { new ChatMessage(ChatMessageRole.User, "complete, homework, happiness") };
         ChatMessage[] example_ps = { new ChatMessage(ChatMessageRole.Assistant, "Sarah experienced <happiness> when she finished her <homework>. The sense of accomplishment filled her with joy, making the effort worthwhile. This tells us always <complete> important task first, so we can relax and enjoy the rest of our day.\n3, 2, 1") };
         List<ChatMessage> messages = new List<ChatMessage> { systemMessage_paragraph, example_vs[0], example_ps[0], query };
+
+        StatusEntry statusEntry = StatusStackSystem.instance.AddStatusEntry($"GPT4正在生成包含{vocabularies.Count}個單字的文章");
+
         var chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
         {
             Model = Model.GPT4,
@@ -180,6 +183,7 @@ public static class GPTRequester
             used_vocabularies.Add(vocabularies[o - 1]); // the first index given by gpt is 0
         }
 
+        statusEntry.SetDone();
         // Return the resulting paragraph and vocabularies(answers)
         return new Paragraph(used_vocabularies, gpt_result_paragraph);
     }

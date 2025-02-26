@@ -13,6 +13,7 @@ public class StageWordBank : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI requestErrorMessageText;
     [SerializeField] private GPTProgressUISystem progressPanel;
     private List<ProgressCounter> p_counters;
+    private ProgressCounter paragraph_p_counter;
     private Dictionary<string, Queue<string>> sentences;
     private Dictionary<int, Queue<Paragraph>> paragraphs;
     private Dictionary<string, Paragraph> waveSpecifiedParagraphs;
@@ -36,21 +37,18 @@ public class StageWordBank : MonoBehaviour
         try
         {
             await Task.Delay(1000); // A short delay to for fake loading
+            // Initialization for sentences, and start the requesting processes concurrently
             foreach (string word in regularWords)
             {
                 this.sentences.Add(word, new Queue<string>());
+
                 ProgressCounter p_counter = new ProgressCounter(StaticGlobalVariables.INITIAL_NUM_OF_REFILL_SENTENCE, word);
-                sentenceGPTTasks.Add(this._RefillSentences(word, StaticGlobalVariables.INITIAL_NUM_OF_REFILL_SENTENCE, p_counter));
                 this.p_counters.Add(p_counter);
+
+                sentenceGPTTasks.Add(this._RefillSentences(word, StaticGlobalVariables.INITIAL_NUM_OF_REFILL_SENTENCE, p_counter));
             }
 
-            this.progressPanel.SetupProgressBars(p_counters);
-
-            await Task.WhenAll(sentenceGPTTasks);  // If any task fails, an exception will be thrown here
-
-            await Task.Delay(1000); // A short delay to prevent dense GPT-4 requests
-
-            // Refill paragraphs (this part remains unchanged)
+            // Initialization for paragraphs
             List<int> may_occur_p_num_of_vocabularies = new List<int>();
             foreach (Wave wave in WaveSystem.instance.waves)
             {
@@ -60,6 +58,16 @@ public class StageWordBank : MonoBehaviour
                 }
             }
 
+            this.paragraph_p_counter = new ProgressCounter(may_occur_p_num_of_vocabularies.Count, "[Paragraphs]");
+            this.p_counters.Add(paragraph_p_counter);
+
+            this.progressPanel.SetupProgressBars(p_counters);
+
+            await Task.WhenAll(sentenceGPTTasks);  // If any task fails, an exception will be thrown here
+
+            await Task.Delay(1000); // A short delay to prevent dense GPT-4 requests
+
+            // Refill paragraphs (this part remains unchanged)
             foreach (int mopnv in may_occur_p_num_of_vocabularies)
             {
                 this.paragraphs.Add(mopnv, new Queue<Paragraph>());
@@ -67,6 +75,7 @@ public class StageWordBank : MonoBehaviour
                 {
                     await this._RefillOneParagraph(mopnv);
                 }
+                this.paragraph_p_counter.CountUp();
             }
 
             // After everything is ready, start the game

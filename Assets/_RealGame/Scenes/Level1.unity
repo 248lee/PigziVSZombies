@@ -10303,7 +10303,7 @@ MonoBehaviour:
   burningFire: {fileID: 0}
   is_onFire: 0
   is_alive: 0
-  max_hp: 10
+  max_hp: 500
   hp: 0
   damageRate: 20
   hpBar: {fileID: 1944829490}
@@ -11067,7 +11067,7 @@ MonoBehaviour:
   burningFire: {fileID: 0}
   is_onFire: 0
   is_alive: 0
-  max_hp: 10
+  max_hp: 500
   hp: 0
   damageRate: 20
   hpBar: {fileID: 1559499361}
@@ -13347,7 +13347,7 @@ MonoBehaviour:
   burningFire: {fileID: 0}
   is_onFire: 0
   is_alive: 0
-  max_hp: 10
+  max_hp: 500
   hp: 0
   damageRate: 20
   hpBar: {fileID: 909504883}
@@ -19981,7 +19981,7 @@ MonoBehaviour:
   burningFire: {fileID: 0}
   is_onFire: 0
   is_alive: 0
-  max_hp: 10
+  max_hp: 500
   hp: 0
   damageRate: 20
   hpBar: {fileID: 1793395494}
@@ -22606,11 +22606,30 @@ MonoBehaviour:
     questions: []
     subwaves:
     - startDelay: 2.36
-      numOfEmmisions: 3
+      numOfEmmisions: 8
       durationMin: 7
       durationMax: 7
       healBallDelay: 10
     p_numOfVocabularies: 3
+    labelName: Hello World
+    targetLabelName: Unnamed
+    runtimeVariableA: UnknownGlobalVariable
+    relation: 0
+    runtimeVariableB: UnknownGlobalVariable
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 1
+    waveName: 
+    numOfVocabularies: 7
+    questions: []
+    subwaves:
+    - startDelay: 2.36
+      numOfEmmisions: 3
+      durationMin: 7
+      durationMax: 7
+      healBallDelay: 10
+    p_numOfVocabularies: 5
     labelName: Hello World
     targetLabelName: Unnamed
     runtimeVariableA: UnknownGlobalVariable
@@ -27798,24 +27817,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   regularWords:
-  - generate
-  - outgive
-  - eternal
-  - protracted
-  - deposit
-  - nationwide
-  - optimize
-  - shuttle
-  - omnipresent
-  - diaspora
-  - appoint
-  - custodian
-  - stipulate
-  - proceeds
-  - loan
-  - auditor
-  - expendient
-  - mutilate
+  - abandon
+  - ambulance
+  - emergency
+  - toothpaste
+  - colgate
+  - quacker
+  - householder
   requestErrorNotification: {fileID: 614982468}
   requestErrorMessageText: {fileID: 1025059404}
   progressPanel: {fileID: 1224451305}
@@ -27986,7 +27994,7 @@ MonoBehaviour:
   bullet: {fileID: 4409468344802831724, guid: eb5e6233d04fb75488b260268c44623c, type: 3}
   bulletStartPosition: {x: 3.42, y: -6.83, z: 0}
   _healball_bound: -3.95
-  fireballSpeed: 0.7
+  fireballSpeed: 0.35
 --- !u!1 &2000825576
 GameObject:
   m_ObjectHideFlags: 0

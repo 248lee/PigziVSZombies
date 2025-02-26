@@ -95,17 +95,18 @@ public static class GPTRequester
                 });
             }
 
-            string resultText = chatResult.Choices[0].Message.TextContent.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)[0];
-            messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.TextContent));
+            // 只檢查法第一行的話可以避免GPT講的廢話被採用
+            string resultText = (chatResult.Choices[0].Message.TextContent + "\n").Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)[0];
+            messages.Add(new ChatMessage(ChatMessageRole.Assistant, resultText));
             int wrong_time = 0, max_wrong_time = 3;
-            while (!Regex.IsMatch(chatResult.Choices[0].Message.TextContent, "<.*?>") && wrong_time < max_wrong_time)
+            while (!Regex.IsMatch(resultText, "<.*?>") && wrong_time < max_wrong_time)
             {
                 // Update the status
                 statusEntry.SetDone();
                 statusEntry = StatusStackSystem.instance.AddStatusEntry($"<color=orange>偵測到 {vocabulary} 的例句格式錯誤，重新發送請求中...", true);
 
                 wrong_before = true;
-                Debug.LogError("Wrong GPT response format for sentence: " + chatResult.Choices[0].Message.TextContent);
+                Debug.LogError("Wrong GPT response format for sentence: " + resultText);
                 messages.Add(new ChatMessage(ChatMessageRole.User, "Wrong! Please cover the vocabulary \"" + vocabulary + "\" with a bracket \"<    >\". Give me the correct sentence directly without saying anything unnecessary."));
                 chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
                 {
@@ -115,7 +116,8 @@ public static class GPTRequester
                     TopP = 0.5,
                     Messages = messages
                 });
-                messages.Add(new ChatMessage(ChatMessageRole.Assistant, chatResult.Choices[0].Message.TextContent));
+                resultText = (chatResult.Choices[0].Message.TextContent + "\n").Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)[0];
+                messages.Add(new ChatMessage(ChatMessageRole.Assistant, resultText));
                 wrong_time++;
                 Debug.Log("++++++++++++++++++++++++++++");
                 foreach (ChatMessage cm in messages)
@@ -135,7 +137,7 @@ public static class GPTRequester
             }
             else
             {
-                results.Add(chatResult.Choices[0].Message.TextContent); // Push the response into the resulting sentences
+                results.Add(resultText); // Push the response into the resulting sentences
 
                 // The vocabulary is successfully added, updata status and progress.
                 statusEntry.SetDone();

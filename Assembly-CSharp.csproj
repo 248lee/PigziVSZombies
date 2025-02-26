@@ -387,7 +387,9 @@
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\appoint.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\outgive.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\quacker.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\ambulance.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Sprites\EmojiOne_License.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
@@ -407,6 +409,7 @@
     <None Include="Assets\MilkShake\Documentation\Simple Setup.txt" />
     <None Include="Assets\2DGamekit\Utilities\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBloom.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\toothpaste.txt" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedTileAnimated.shader" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\ACES.cginc" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
@@ -419,6 +422,7 @@
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\Shield.shader" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\emergency.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\Tonemapping.cginc" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\Fog.shader" />
@@ -432,6 +436,7 @@
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Bluenoise64\COPYING.txt" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\Particle Standard Unlit.shader" />
     <None Include="Assets\unity-frosted-glass-master\Assets\FrostedGlass\Shaders\FrostedGlass.shader" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\colgate.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor Resources\UI\Trackball.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\stipulate.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\omnipresent.txt" />
@@ -460,10 +465,12 @@
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\expendient.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\householder.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\deposit.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\SomeFires\Procedural fire\Demo scene\Readme.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\eternal.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\abandon.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\FrostedGlass\Shaders\SeparableBlur.shader" />
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Shaders\Dissolve.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />

@@ -10,6 +10,7 @@ public class StageWordBank : MonoBehaviour
     public List<string> regularWords = new();
     public Dictionary<string, List<string>> waveSpecifiedWords = new();
     [SerializeField] private ChoiceWindow requestErrorNotification;
+    [SerializeField] private ChoiceWindow queueEmptyErrorWindow;
     [SerializeField] private TMPro.TextMeshProUGUI requestErrorMessageText;
     [SerializeField] private GPTProgressUISystem progressPanel;
     private List<ProgressCounter> p_counters;
@@ -85,7 +86,6 @@ public class StageWordBank : MonoBehaviour
         {
             // Cancel all _RefillSentences tasks immediately
             cts.Cancel();
-            Debug.LogError($"Error occurred while refilling sentences: {ex.Message}");
 
             // Get a friendly error message based on the exception type
             string friendlyMessage = ExceptionHandler.GetFriendlyMessage(ex);
@@ -299,6 +299,11 @@ public class StageWordBank : MonoBehaviour
     /// <returns></returns>
     public string GiveOneSentence(string vocabulary)
     {
+        if (this.sentences[vocabulary].Count == 0)  // If the queue is empty, pop up the error message and leave the game.
+        {
+            this.ShowQueueEmptyErrorWindow();
+            return "";
+        }
         string resulting_sentence = this.sentences[vocabulary].Dequeue();
         if (this.sentences[vocabulary].Count <= StaticGlobalVariables.REFILL_SENTENCE_THRESHOLD)
             _ = this._RefillSentencesDuringStage(vocabulary, this.sentences[vocabulary].Count, null);  // Here _RefillSentences keeps running in the background until it completes its task of refilling the sentences.
@@ -366,6 +371,13 @@ public class StageWordBank : MonoBehaviour
     private void _RefillSpecifiedParagraph(Wave wave)
     {
 
+    }
+    private void ShowQueueEmptyErrorWindow()
+    {
+        GameflowSystem.instance.SetPause();
+        this.queueEmptyErrorWindow.gameObject.SetActive(true);
+        this.queueEmptyErrorWindow.SetLastButtonToCloseWindow();
+        this.queueEmptyErrorWindow.AddButtonListener(0, () => ResultSystem.instance.OpenResultWindow(), false);
     }
 
 }

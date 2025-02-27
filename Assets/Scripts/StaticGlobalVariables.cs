@@ -17,7 +17,7 @@ namespace JohnUtils
 
         public const int REFILL_PARAGRAPH_THRESHOLD = 1;
 
-        public const int INITIAL_NUM_OF_REFILL_SENTENCE = 4;
+        public const int INITIAL_NUM_OF_REFILL_SENTENCE = 2;
 
         public const int INITIAL_NUM_OF_REFILL_PARAGRAPH = 2;
     }

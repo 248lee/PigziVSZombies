@@ -246,6 +246,11 @@ public class StageWordBank : MonoBehaviour
                 Debug.LogError("JohnLee: We expect that you should have more words in this stage. This doesn't even enough for a wave!!");
                 return;
             }
+            if (this.paragraphs[wave.p_numOfVocabularies].Count == 0)  // If the paragraph queue is empty, pop up the error message and leave the game
+            {
+                this.ShowQueueEmptyErrorWindow();
+                return;
+            }
             Paragraph paragraph = this.paragraphs[wave.p_numOfVocabularies].Dequeue();
             wave.dragon_paragraph = paragraph;
             wave.v_candidates = new List<string>();
@@ -275,7 +280,7 @@ public class StageWordBank : MonoBehaviour
             // refill regular paragraphs of the number if the paragraphs are not enough
             if (this.paragraphs[wave.p_numOfVocabularies].Count < StaticGlobalVariables.REFILL_PARAGRAPH_THRESHOLD)
             {
-                _ = this._RefillOneParagraph(wave.p_numOfVocabularies);  // Here _RefillOneParagrpah keeps running in the background until it completes its task of refilling the paragraph.
+                _ = this._RefillOneParagraphDuringStage(wave.p_numOfVocabularies);  // Here _RefillOneParagrpah keeps running in the background until it completes its task of refilling the paragraph.
                 // We don't wait for the paragraph refilling.
             }
         }
@@ -343,7 +348,6 @@ public class StageWordBank : MonoBehaviour
         {
             // Cancel all _RefillSentences tasks immediately
             cts.Cancel();
-            Debug.LogError($"Error occurred while refilling sentences: {ex.Message}");
 
             // Get a friendly error message based on the exception type
             string friendlyMessage = ExceptionHandler.GetFriendlyMessage(ex);
@@ -367,6 +371,25 @@ public class StageWordBank : MonoBehaviour
             // Rethrow the exception so that Task.WhenAll catches it (and aggregates if necessary)
             throw;
         }
+    }
+    private async Task _RefillOneParagraphDuringStage(int num_of_vocabularies)
+    {
+        try
+        {
+            await this._RefillOneParagraph(num_of_vocabularies);
+        }
+        catch (System.Exception ex)
+        {
+            // Cancel all _RefillSentences tasks immediately
+            cts.Cancel();
+
+            // Get a friendly error message based on the exception type
+            string friendlyMessage = ExceptionHandler.GetFriendlyMessage(ex);
+            StatusStackSystem.instance.AddLevel3EmergencyEntry("<color=red>¿ù»~: " + friendlyMessage + "</color>");
+
+            return;
+        }
+        StatusStackSystem.instance.Level3EmergencyEntrySetDone();  // If there exist any successful refill, clear the error message.
     }
     private void _RefillSpecifiedParagraph(Wave wave)
     {

@@ -39,6 +39,13 @@ public class GPTProgressUISystem : MonoBehaviour
         {
             this.totalProgressUI.SetHP(this.totalProgressCounter.currentCount);
         }
+
+        // Check if everything is done
+        if (this.totalProgressCounter != null && this.totalProgressCounter.currentCount >= this.totalProgressCounter.fullCount)
+        {
+            gameObject.SetActive(false);
+        }
+
     }
     public void SetupProgressBars(List<ProgressCounter> progressCounters)
     {

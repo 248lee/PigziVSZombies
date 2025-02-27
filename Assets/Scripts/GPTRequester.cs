@@ -141,7 +141,8 @@ public static class GPTRequester
 
                 // The vocabulary is successfully added, updata status and progress.
                 statusEntry.SetDone();
-                p_counter.CountUp();  // Finish one sentence. Let's count up the progress!
+                if (p_counter != null)
+                    p_counter.CountUp();  // Finish one sentence. Let's count up the progress!
             }
             if (history.Count == 0 && i == 0)
                 messages.Add(sentence_o); // The next request after the first sentence should be thorough, others can be simple.

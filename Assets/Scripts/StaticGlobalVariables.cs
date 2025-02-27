@@ -13,11 +13,11 @@ namespace JohnUtils
         /// </summary>
         public const int UNIQUE_RANDOM_SELECT_METHOD_RATIO = 25;
 
-        public const int REFILL_SENTENCE_THRESHOLD = 4;
+        public const int REFILL_SENTENCE_THRESHOLD = 3;
 
         public const int REFILL_PARAGRAPH_THRESHOLD = 1;
 
-        public const int INITIAL_NUM_OF_REFILL_SENTENCE = 8;
+        public const int INITIAL_NUM_OF_REFILL_SENTENCE = 4;
 
         public const int INITIAL_NUM_OF_REFILL_PARAGRAPH = 2;
     }

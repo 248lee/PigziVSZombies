@@ -300,8 +300,9 @@ public class StageWordBank : MonoBehaviour
     public string GiveOneSentence(string vocabulary)
     {
         string resulting_sentence = this.sentences[vocabulary].Dequeue();
-        if (this.sentences[vocabulary].Count < StaticGlobalVariables.REFILL_SENTENCE_THRESHOLD)
-            _ = this._RefillSentences(vocabulary, this.sentences[vocabulary].Count, null);  // Here _RefillSentences keeps running in the background until it completes its task of refilling the sentences.
+        if (this.sentences[vocabulary].Count <= StaticGlobalVariables.REFILL_SENTENCE_THRESHOLD)
+            _ = this._RefillSentencesDuringStage(vocabulary, this.sentences[vocabulary].Count, null);  // Here _RefillSentences keeps running in the background until it completes its task of refilling the sentences.
+        
         return resulting_sentence;  // We don't wait for the sentences refilling
     }
     private async Task _RefillSentences(string word, int num_to_refill, ProgressCounter p_counter)
@@ -326,6 +327,26 @@ public class StageWordBank : MonoBehaviour
             // Rethrow the exception so that Task.WhenAll catches it (and aggregates if necessary)
             throw;
         }
+    }
+    private async Task _RefillSentencesDuringStage(string word, int num_to_refill, ProgressCounter p_counter)
+    {
+        try
+        {
+            await this._RefillSentences(word, num_to_refill, p_counter);
+        }
+        catch (System.Exception ex)
+        {
+            // Cancel all _RefillSentences tasks immediately
+            cts.Cancel();
+            Debug.LogError($"Error occurred while refilling sentences: {ex.Message}");
+
+            // Get a friendly error message based on the exception type
+            string friendlyMessage = ExceptionHandler.GetFriendlyMessage(ex);
+            StatusStackSystem.instance.AddLevel3EmergencyEntry("<color=red>¿ù»~: " + friendlyMessage + "</color>");
+
+            return;
+        }
+        StatusStackSystem.instance.Level3EmergencyEntrySetDone();  // If there exist any successful refill, clear the error message.
     }
     private async Task _RefillOneParagraph(int num_of_vocabularies)
     {

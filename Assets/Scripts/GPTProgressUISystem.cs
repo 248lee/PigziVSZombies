@@ -24,7 +24,7 @@ public class GPTProgressUISystem : MonoBehaviour
     {
         if (this.progressCounters.Count != this.progressUIs.Count)
         {
-            Debug.LogError("JOHNLEE: The numbers of ProgressCounters and UIs should be the same!");
+            Debug.LogError($"JOHNLEE: The numbers of ProgressCounters ({this.progressCounters.Count}) and UIs ({this.progressUIs.Count}) should be the same!");
             return;
         }
 
@@ -39,17 +39,18 @@ public class GPTProgressUISystem : MonoBehaviour
         {
             this.totalProgressUI.SetHP(this.totalProgressCounter.currentCount);
         }
-
-        // Check if everything is done
-        if (this.totalProgressCounter != null && this.totalProgressCounter.currentCount >= this.totalProgressCounter.fullCount)
-        {
-            gameObject.SetActive(false);
-        }
-
     }
     public void SetupProgressBars(List<ProgressCounter> progressCounters)
     {
+        // Clear out all the UI-objects for previous progressCounters.
+        foreach (Transform child in this.contentPlacee.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        this.progressUIs = new List<HPBarController>();
         this.progressCounters = progressCounters;
+
+        // Instantiate and initialize new entries.
         foreach (ProgressCounter pc in this.progressCounters)
         {
             GameObject uiEntry = Instantiate(this.gptProgressUIprefab, this.contentPlacee);

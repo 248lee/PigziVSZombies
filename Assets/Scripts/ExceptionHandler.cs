@@ -32,7 +32,8 @@ public class ExceptionHandler
         }
         else
         {
-            return "\"" + ex.Message + "\" 這屬於其他未知的錯誤。請將錯誤訊息截圖並聯系fantasy10final@gmail.com";
+            Debug.LogError(ex);
+            return "\"" + ex.ToString() + "\" 這屬於其他未知的錯誤。請將錯誤訊息截圖並聯系fantasy10final@gmail.com";
         }
     }
 

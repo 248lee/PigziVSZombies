@@ -129,6 +129,7 @@
     <Compile Include="Assets\MilkShake\Demo\Scripts\CameraDistance.cs" />
     <Compile Include="Assets\Scripts\StaticGlobalVariables.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\LightControl\LightControlMixerBehaviour.cs" />
+    <Compile Include="Assets\Scripts\VFX_SuggesstionCollected.cs" />
     <Compile Include="Assets\Scripts\RuntimeGlobalDictionary.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Base\UIWindowListElement.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Components\ChromaticAberrationComponent.cs" />

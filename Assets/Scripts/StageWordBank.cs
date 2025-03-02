@@ -23,15 +23,16 @@ public class StageWordBank : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
-        this.p_counters = new List<ProgressCounter>();
         GPTRequester.SetupGPTModel();
         await InitializeWordBank();
     }
     private async Task InitializeWordBank()
     {
+        this.progressPanel.gameObject.SetActive(true);
         this.sentences = new Dictionary<string, Queue<string>>();
         this.paragraphs = new Dictionary<int, Queue<Paragraph>>();
         this.waveSpecifiedParagraphs = new Dictionary<string, Paragraph>();
+        this.p_counters = new List<ProgressCounter>();
 
         cts = new CancellationTokenSource();
         List<Task> sentenceGPTTasks = new List<Task>();
@@ -80,6 +81,7 @@ public class StageWordBank : MonoBehaviour
             }
 
             // After everything is ready, start the game
+            this.progressPanel.gameObject.SetActive(false);
             WaveSystem.instance.StartGameProcess();
         }
         catch (System.Exception ex)
@@ -333,7 +335,6 @@ public class StageWordBank : MonoBehaviour
         }
         catch (System.Exception ex)
         {
-            Debug.LogError($"Error while fetching sentences for {word}: {ex.Message}");
             // Rethrow the exception so that Task.WhenAll catches it (and aggregates if necessary)
             throw;
         }

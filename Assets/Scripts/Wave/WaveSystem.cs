@@ -65,6 +65,7 @@ public class WaveSystem : MonoBehaviour
     [SerializeField] VocabularyBoard vocabularyBoard;
     [SerializeField] StageWordBank wordBankOfThisStage;
     [SerializeField] TMPro.TextMeshProUGUI nowWaveIndexForPlayerText;
+    [SerializeField] GameObject healballCountdownUI;
 
     public List<Wave> waves;
     public int nowWaveIndex = 0;
@@ -87,6 +88,7 @@ public class WaveSystem : MonoBehaviour
         this.nowWaveIndexForPlayer = 1;
         this.dragon = FindObjectOfType<DragonController>();
         this.fireballsystem = FindObjectOfType<FireballSysrem>();
+        this.healballCountdownUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -179,7 +181,9 @@ public class WaveSystem : MonoBehaviour
         {
             foreach (Subwave subwave in wave.subwaves)
             {
-                var waitingForHealballCoroutine = StartCoroutine(this.WaitForHealball(wave, subwave.healBallDelay));
+                Coroutine waitingForHealballCoroutine = null;
+                if (subwave.healBallDelay >= 0)
+                    waitingForHealballCoroutine = StartCoroutine(this.WaitForHealball(wave, subwave.healBallDelay));
                 yield return new WaitForSeconds(subwave.startDelay); // Implementing Subwave process here
                 for (int i = 0; i < subwave.numOfEmmisions; i++)
                 {
@@ -189,7 +193,11 @@ public class WaveSystem : MonoBehaviour
                     float delayTime = UnityEngine.Random.Range(subwave.durationMin, subwave.durationMax);
                     yield return new WaitForSeconds(delayTime);
                 }
-                StopCoroutine(waitingForHealballCoroutine);  // If the healball delay is too long, just simply cancel it.
+                if (waitingForHealballCoroutine != null)
+                {
+                    StopCoroutine(waitingForHealballCoroutine);  // If the healball delay is too long, just simply cancel it.
+                    Debug.LogWarning("The healball delay is too long. It is canceled");
+                }
             }
         }
         else if (wave.mode == WaveMode.Boss)
@@ -207,11 +215,24 @@ public class WaveSystem : MonoBehaviour
     }
     IEnumerator WaitForHealball(Wave wave, float seconds)
     {
-        yield return new WaitForSeconds(seconds);
+        this.healballCountdownUI.SetActive(true);
+        float countdown = seconds;
+        while (countdown > 0)
+        {
+            this.healballCountdownUI.GetComponentInChildren<TMPro.TextMeshProUGUI>().SetText(((int)countdown + 1).ToString());  // Draw the countdown UI (+1 for graphic delay)
+            countdown -= Time.deltaTime;
+            yield return null;
+        }
+
         Question[] questions = new Question[4];
         for (int i = 0; i < 4; i++)
             questions[i] = this.AskForAQuestion(wave);
 
         this.fireballsystem.generateFourHealballs(questions);  // Generate Healballs
+
+        // Show the second 0 in the UI for graphic delay
+        this.healballCountdownUI.GetComponentInChildren<TMPro.TextMeshProUGUI>().SetText("0");
+        yield return new WaitForSeconds(1f);
+        this.healballCountdownUI.SetActive(false);
     }
 }

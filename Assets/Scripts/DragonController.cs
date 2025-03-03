@@ -297,7 +297,7 @@ public class DragonController : MonoBehaviour
         }
         string text = this.wave.dragon_paragraph.GetProcessedTextofParagraph(tags);
         ResultSystem.instance.AddRecord(
-                WaveSystem.instance.nowWaveIndex.ToString(),
+                WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
                 System.String.Join(", ", this.wave.dragon_paragraph.vocabularies),
                 text,
                 RecordType_inResults.Boss,

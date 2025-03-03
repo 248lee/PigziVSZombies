@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject normalPP, frozenPP;
     [SerializeField] Animator UIanimator;
     bool isFreezing;
+    int numOfIncorrect = 0;
     void Start()
     {
         this.isFreezing = false;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
         //this.watersystem = FindObjectOfType<WaterSystem>();
         this.dragonController = FindObjectOfType<DragonController>();
         this.waterAmountText.text = "x 0";
+        this.numOfIncorrect = 0;
         Physics2D.IgnoreLayerCollision(11, 11, true);
         Physics2D.IgnoreLayerCollision(11, 12, true);
         Physics2D.IgnoreLayerCollision(12, 12, true);
@@ -103,6 +105,8 @@ public class PlayerController : MonoBehaviour
         if (!correct)
         {
             this.empty_shoot();
+            this.numOfIncorrect++;
+            Debug.Log($"{this.numOfIncorrect} empty shoots now!");
         }
     }
     void shoot()

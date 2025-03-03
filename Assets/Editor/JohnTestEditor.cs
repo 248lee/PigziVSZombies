@@ -14,7 +14,7 @@ public class JohnTestEditor : EditorWindow
     public static void ShowExample()
     {
         JohnTestEditor wnd = GetWindow<JohnTestEditor>();
-        wnd.titleContent = new GUIContent("JohnTestEditor");
+        wnd.titleContent = new GUIContent("Subwave Editor");
     }
     private void OnEnable()
     {
@@ -36,12 +36,12 @@ public class JohnTestEditor : EditorWindow
         root.Add(subwavelist);
 
         // VisualElements objects can contain other VisualElement following a tree hierarchy.
-        VisualElement label = new Label("Hello World! From C#");
+        /*VisualElement label = new Label("Hello World! From C#");
         root.Add(label);
 
         // Instantiate UXML
         VisualElement labelFromUXML = m_VisualTreeAsset.Instantiate();
-        root.Add(labelFromUXML);
+        root.Add(labelFromUXML);*/
     }
 
     public void SetSubwave_serializedObject(SerializedProperty wave)

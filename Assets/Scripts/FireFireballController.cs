@@ -32,7 +32,7 @@ public class FireFireballController : FallingFireballController
         else
             text = this.question.GetRealSentenceWithColor("#0000FF");
         ResultSystem.instance.AddRecord (
-                WaveSystem.instance.nowWaveIndex.ToString(),
+                WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
                 this.question.vocabulary,
                 text,
                 RecordType_inResults.Fireball,
@@ -83,7 +83,7 @@ public class FireFireballController : FallingFireballController
         // this.realSpeed = 0f; // stop the fireball from falling down
 
         ResultSystem.instance.AddRecord(
-                WaveSystem.instance.nowWaveIndex.ToString(),
+                WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
                 this.question.vocabulary,
                 text,
                 RecordType_inResults.Fireball,
@@ -100,7 +100,7 @@ public class FireFireballController : FallingFireballController
         this.realSpeed = 0f;
 
         ResultSystem.instance.AddRecord(
-                WaveSystem.instance.nowWaveIndex.ToString(),
+                WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
                 this.question.vocabulary,
                 text,
                 RecordType_inResults.Fireball,
@@ -119,7 +119,7 @@ public class FireFireballController : FallingFireballController
         this.realSpeed = 0f; // stop the fireball from falling down
 
         ResultSystem.instance.AddRecord(
-                WaveSystem.instance.nowWaveIndex.ToString(),
+                WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
                 this.question.vocabulary,
                 text,
                 RecordType_inResults.Fireball,
@@ -146,7 +146,7 @@ public class FireFireballController : FallingFireballController
 
             string text = this.question.GetRealSentenceWithColor("red");
             ResultSystem.instance.AddRecord(
-                WaveSystem.instance.nowWaveIndex.ToString(),
+                WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
                 this.question.vocabulary,
                 text,
                 RecordType_inResults.Fireball,

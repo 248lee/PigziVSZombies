@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 public class StageWordBank : MonoBehaviour
 {
+    [SerializeField] TextAsset wordsTextFile;
     public List<string> regularWords = new();
     public Dictionary<string, List<string>> waveSpecifiedWords = new();
     [SerializeField] private ChoiceWindow requestErrorNotification;
@@ -23,6 +24,7 @@ public class StageWordBank : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
+        this.regularWords = new List<string>(this.wordsTextFile.text.Split("\r\n"));
         GPTRequester.SetupGPTModel();
         await InitializeWordBank();
     }
@@ -164,6 +166,12 @@ public class StageWordBank : MonoBehaviour
         if (regularWords.Count < num * StaticGlobalVariables.UNIQUE_RANDOM_SELECT_METHOD_RATIO)  // if the number of words of this stage is less, we use O(num_of_stage_words) method
         {
             List<string> copy_of_regularWords = new List<string>(this.regularWords);
+            // Clean up the existed words
+            foreach (string existed_word in result)
+            {
+                copy_of_regularWords.Remove(existed_word);
+            }
+
             IListExtensions.Shuffle<string>(copy_of_regularWords);
             for (int i = 0; i < num; i++)  // append the words into wave.v_candidates
                 result.Add(copy_of_regularWords[i]);
@@ -205,7 +213,7 @@ public class StageWordBank : MonoBehaviour
             Debug.LogError("JohnLee: The wave's mode here should be \"Normal\", not " + wave.mode + "!!!");
             return;
         }
-        if (wave.waveName == "")  // if the wave's a regularWave
+        if (/*wave.waveName == ""*/true)  // if the wave's a regularWave
         {
             if (wave.numOfVocabularies > regularWords.Count)
             {
@@ -241,7 +249,7 @@ public class StageWordBank : MonoBehaviour
             Debug.LogError("The wave's mode here should be \"Boss\", not " + wave.mode + "!!!");
             return;
         }
-        if (wave.waveName == "")  // if the wave's a regularWave
+        if (/*wave.waveName == ""*/true)  // if the wave's a regularWave
         {
             if (wave.numOfVocabularies > regularWords.Count)
             {

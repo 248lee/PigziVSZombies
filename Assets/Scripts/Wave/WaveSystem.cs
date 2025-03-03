@@ -64,11 +64,14 @@ public class WaveSystem : MonoBehaviour
 
     [SerializeField] VocabularyBoard vocabularyBoard;
     [SerializeField] StageWordBank wordBankOfThisStage;
+    [SerializeField] TMPro.TextMeshProUGUI nowWaveIndexForPlayerText;
 
     public List<Wave> waves;
     public int nowWaveIndex = 0;
     DragonController dragon;
     FireballSysrem fireballsystem;
+
+    public int nowWaveIndexForPlayer { get; private set; }
 
     private void Awake()
     {
@@ -81,6 +84,7 @@ public class WaveSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.nowWaveIndexForPlayer = 1;
         this.dragon = FindObjectOfType<DragonController>();
         this.fireballsystem = FindObjectOfType<FireballSysrem>();
     }
@@ -157,6 +161,8 @@ public class WaveSystem : MonoBehaviour
                 }
             }
             this.nowWaveIndex++;
+            this.nowWaveIndexForPlayer++;
+            this.nowWaveIndexForPlayerText.SetText(this.nowWaveIndexForPlayer.ToString());
         }
         GameflowSystem.instance.StageWin();  // The game stage is completed!!
     }
@@ -177,6 +183,7 @@ public class WaveSystem : MonoBehaviour
                 yield return new WaitForSeconds(subwave.startDelay); // Implementing Subwave process here
                 for (int i = 0; i < subwave.numOfEmmisions; i++)
                 {
+                    Debug.Log($"Now emmiting {i}th fireball");
                     Question question = this.AskForAQuestion(wave);
                     this.fireballsystem.generateFireball(question);
                     float delayTime = UnityEngine.Random.Range(subwave.durationMin, subwave.durationMax);

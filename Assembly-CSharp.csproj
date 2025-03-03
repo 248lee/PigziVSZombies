@@ -362,7 +362,7 @@
     <None Include="Assets\StreamingAssets\SentenceBanks\groan.txt" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\UnityStandardParticleShadow.cginc" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\StreamingAssets\GPTExample_diaspora.txt" />
+    <None Include="Assets\StreamingAssets\prompts\GPTExample_diaspora.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\gorgeous.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\loan.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\GrainGen.shader" />
@@ -482,7 +482,7 @@
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\Blit.shader" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\Bloom.cginc" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
-    <None Include="Assets\StreamingAssets\GPTSystemMessage.txt" />
+    <None Include="Assets\StreamingAssets\prompts\GPTSystemMessage.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\DepthOfField.cginc" />
     <None Include="Assets\StreamingAssets\SentenceBanks\generate.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />

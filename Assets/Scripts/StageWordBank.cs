@@ -325,7 +325,7 @@ public class StageWordBank : MonoBehaviour
         
         return resulting_sentence;  // We don't wait for the sentences refilling
     }
-    private async Task _RefillSentences(string word, int num_to_refill, ProgressCounter p_counter)
+    private async Task _RefillSentences(string word, int num_to_refill, ProgressCounter p_counter, bool forceGPT4 = false)
     {
         if (cts.Token.IsCancellationRequested)
             return;
@@ -351,7 +351,7 @@ public class StageWordBank : MonoBehaviour
     {
         try
         {
-            await this._RefillSentences(word, num_to_refill, p_counter);
+            await this._RefillSentences(word, num_to_refill, p_counter, true);  // Use GPT4 to generate the updated sentences to make use of its creativity without densed request!
         }
         catch (System.Exception ex)
         {

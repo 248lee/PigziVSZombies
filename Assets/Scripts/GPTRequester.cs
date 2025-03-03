@@ -23,7 +23,7 @@ public static class GPTRequester
     private static ChatMessage exampleMessage_sencence_ans2 = new ChatMessage(ChatMessageRole.Assistant, exampleMessage_sentence_ans2_string);
     private static List<ChatMessage> default_example = new List<ChatMessage> { exampleMessage_sentence_q, exampleMessage_sencence_ans };
     private static OpenAIAPI gpt;
-    private static string systemMessage_sentence_string = File.ReadAllText(Application.streamingAssetsPath + "/GPTSystemMessage.txt");
+    private static string systemMessage_sentence_string = File.ReadAllText(Application.streamingAssetsPath + "prompts/GPTSystemMessage.txt");
     private static ChatMessage systemMessage_sentence = new ChatMessage(ChatMessageRole.System, systemMessage_sentence_string);
     private const string systemMessage_paragraph_string = @"The user will give you a list of English vocabularies. 
             Your job is to write a short paragraph using these vocabularies. The paragraph you provided 
@@ -36,11 +36,12 @@ public static class GPTRequester
     {
         gpt = new OpenAIAPI(Environment.GetEnvironmentVariable("OPENAI_KEY", EnvironmentVariableTarget.User));
     }
-    public static async Task<List<string>> RequestSentenceGPT(string vocabulary, int num_of_sentence, CancellationTokenSource cts, ProgressCounter p_counter)
+    public static async Task<List<string>> RequestSentenceGPT(string vocabulary, int num_of_sentence, CancellationTokenSource cts, ProgressCounter p_counter, bool forceGPT4 = false)
     {
         SentenceBank sb = new SentenceBank(vocabulary);
         ChatMessage sentence_q = new ChatMessage(ChatMessageRole.User, "vocabulary: " + vocabulary);
-        ChatMessage sentence_o = new ChatMessage(ChatMessageRole.User, "One more new sentence for vocabulary \"" + vocabulary + "\" that is very different from the previous ones. Also please surround the used vocabulary with a bracket <    >.");
+        ChatMessage sentence_o_old = new ChatMessage(ChatMessageRole.User, "One more sentence. It is okay for this sentence to be similar to the previous ones.");
+        ChatMessage sentence_o = new ChatMessage(ChatMessageRole.User, "One more new sentence for vocabulary \"" + vocabulary + "\" that is very different from the previous ones. Also please surround the used vocabulary with brackets <    >.");
 
         List<string> history = sb.GetAllSentences();
         List<ChatMessage> messages = new List<ChatMessage> { systemMessage_sentence };
@@ -54,12 +55,10 @@ public static class GPTRequester
         else
         {
             messages.Add(sentence_q);
-            messages.Add(new ChatMessage(ChatMessageRole.Assistant, history[0]));
-            messages.Add(sentence_o); // The next request after the first sentence should be thorough, others can be simple.
-            for (int i = 1; i < history.Count; i++)
+            for (int i = 0; i < history.Count; i++)
             {
                 messages.Add(new ChatMessage(ChatMessageRole.Assistant, history[i]));
-                messages.Add(new ChatMessage(ChatMessageRole.User, "one more"));
+                messages.Add(sentence_o_old);
             }
         }
 
@@ -72,7 +71,7 @@ public static class GPTRequester
                 return null;
             ChatResult chatResult;
             StatusEntry statusEntry;
-            if (!wrong_before)
+            if (!wrong_before && !forceGPT4 && vocabulary != "hostage")
             {
                 statusEntry = StatusStackSystem.instance.AddStatusEntry($"剛剛向GPT3.5請求了 {vocabulary} 的例句，正在等待回應...");
                 chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
@@ -144,10 +143,7 @@ public static class GPTRequester
                 if (p_counter != null)
                     p_counter.CountUp();  // Finish one sentence. Let's count up the progress!
             }
-            if (history.Count == 0 && i == 0)
-                messages.Add(sentence_o); // The next request after the first sentence should be thorough, others can be simple.
-            else
-                messages.Add(new ChatMessage(ChatMessageRole.User, "one more"));
+            messages.Add(sentence_o);
         }
 
         sb.SetAllSentences(results);

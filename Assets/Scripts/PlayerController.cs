@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Text waterAmountText;
     [SerializeField] GameObject normalPP, frozenPP;
     [SerializeField] Animator UIanimator;
+    [SerializeField] int numOfIncorrectChances = 5;
+    [SerializeField] float punishmentTimeOfIncorrects = 5f;
+    [SerializeField] Image maskUIForProhibitInput;
     bool isFreezing;
     int numOfIncorrect = 0;
     void Start()
@@ -106,8 +109,27 @@ public class PlayerController : MonoBehaviour
         {
             this.empty_shoot();
             this.numOfIncorrect++;
-            Debug.Log($"{this.numOfIncorrect} empty shoots now!");
+            if (this.numOfIncorrect >= this.numOfIncorrectChances)
+            {
+                StartCoroutine(this.PunishForManyIncorrects());
+            }
         }
+    }
+    IEnumerator PunishForManyIncorrects()
+    {
+        AlwaysActiveInputField.instance.SetAllowInput(false);
+        float timeRemained = this.punishmentTimeOfIncorrects;
+        while (timeRemained > 0)
+        {
+            Color tmp = this.maskUIForProhibitInput.color;
+            tmp.a = (timeRemained / this.punishmentTimeOfIncorrects);  // Change the alpha of the color
+            this.maskUIForProhibitInput.color = tmp;
+
+            timeRemained -= Time.deltaTime;
+            yield return null;
+        }
+        AlwaysActiveInputField.instance.SetAllowInput(true);
+        this.numOfIncorrect = 0;  // Restore the chances for the player
     }
     void shoot()
     {

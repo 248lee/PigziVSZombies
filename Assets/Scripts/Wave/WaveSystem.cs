@@ -105,6 +105,7 @@ public class WaveSystem : MonoBehaviour
     {
         while (this.nowWaveIndex < this.waves.Count)
         {
+            this.nowWaveIndexForPlayerText.SetText(this.nowWaveIndexForPlayer.ToString());
             Wave wave = this.waves[this.nowWaveIndex];
             if (wave.mode == WaveMode.Boss || wave.mode == WaveMode.Normal)
             {
@@ -162,7 +163,6 @@ public class WaveSystem : MonoBehaviour
             }
             this.nowWaveIndex++;
             this.nowWaveIndexForPlayer++;
-            this.nowWaveIndexForPlayerText.SetText(this.nowWaveIndexForPlayer.ToString());
         }
         GameflowSystem.instance.StageWin();  // The game stage is completed!!
     }

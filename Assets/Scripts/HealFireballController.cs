@@ -15,7 +15,7 @@ public class HealFireballController : FallingFireballController
             this.Wrong();
             string text = this.question.GetRealSentenceWithColor("red");
             ResultSystem.instance.AddRecord(
-                WaveSystem.instance.nowWaveIndex.ToString(),
+                WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
                 this.question.vocabulary,
                 text,
                 RecordType_inResults.Healball,
@@ -42,7 +42,7 @@ public class HealFireballController : FallingFireballController
         // Add record to ResultSystem
         string text = this.question.GetRealSentenceWithColor("#0000FF");
         ResultSystem.instance.AddRecord(
-            WaveSystem.instance.nowWaveIndex.ToString(),
+            WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
             this.question.vocabulary,
             text,
             RecordType_inResults.Healball,
@@ -59,7 +59,7 @@ public class HealFireballController : FallingFireballController
                 // Add record to ResultSystem
                 text = healball.question.GetRealSentenceWithColor("#000080");
                 ResultSystem.instance.AddRecord(
-                    WaveSystem.instance.nowWaveIndex.ToString(),
+                    WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
                     healball.question.vocabulary,
                     text,
                     RecordType_inResults.Healball,

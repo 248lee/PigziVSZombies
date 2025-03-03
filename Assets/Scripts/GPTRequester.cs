@@ -23,7 +23,7 @@ public static class GPTRequester
     private static ChatMessage exampleMessage_sencence_ans2 = new ChatMessage(ChatMessageRole.Assistant, exampleMessage_sentence_ans2_string);
     private static List<ChatMessage> default_example = new List<ChatMessage> { exampleMessage_sentence_q, exampleMessage_sencence_ans };
     private static OpenAIAPI gpt;
-    private static string systemMessage_sentence_string = File.ReadAllText(Application.streamingAssetsPath + "prompts/GPTSystemMessage.txt");
+    private static string systemMessage_sentence_string = File.ReadAllText(Application.streamingAssetsPath + "/prompts/GPTSystemMessage.txt");
     private static ChatMessage systemMessage_sentence = new ChatMessage(ChatMessageRole.System, systemMessage_sentence_string);
     private const string systemMessage_paragraph_string = @"The user will give you a list of English vocabularies. 
             Your job is to write a short paragraph using these vocabularies. The paragraph you provided 

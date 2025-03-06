@@ -13,6 +13,8 @@ using JohnUtils;
 
 public static class GPTRequester
 {
+    private static readonly SemaphoreSlim gpt4Semaphore = new SemaphoreSlim(1, 1); // Ensures single-thread access for gpt4.
+
     private const string exampleMessage_sentence_q_string = "vocabulary: traffic";
     private const string exampleMessage_sentence_ans_string = @"The new <traffic> laws aimed to improve safety on highways.";
     private const string exampleMessage_sentence_o_string = "One more new sentence for vocabulary \"traffic\" that is very different from the previous ones. Also please surround the used vocabulary with a bracket <    >.";
@@ -36,12 +38,12 @@ public static class GPTRequester
     {
         gpt = new OpenAIAPI(Environment.GetEnvironmentVariable("OPENAI_KEY", EnvironmentVariableTarget.User));
     }
-    public static async Task<List<string>> RequestSentenceGPT(string vocabulary, int num_of_sentence, CancellationTokenSource cts, ProgressCounter p_counter, bool forceGPT4 = false)
+    public static async Task<List<string>> RequestSentenceGPT(string vocabulary, int num_of_sentence, CancellationTokenSource cts, ProgressCounter p_counter)
     {
         SentenceBank sb = new SentenceBank(vocabulary);
         ChatMessage sentence_q = new ChatMessage(ChatMessageRole.User, "vocabulary: " + vocabulary);
         ChatMessage sentence_o_old = new ChatMessage(ChatMessageRole.User, "One more sentence. It is okay for this sentence to be similar to the previous ones.");
-        ChatMessage sentence_o = new ChatMessage(ChatMessageRole.User, "One more new sentence for vocabulary \"" + vocabulary + "\" that is very different from the previous ones. Also please surround the used vocabulary with brackets <    >.");
+        ChatMessage sentence_o = new ChatMessage(ChatMessageRole.User, "One more example sentence that is very different from the previous ones.  Please cover the vocabulary \"" + vocabulary + "\" with a bracket \"<    >\".");
 
         List<string> history = sb.GetAllSentences();
         List<ChatMessage> messages = new List<ChatMessage> { systemMessage_sentence };
@@ -64,35 +66,20 @@ public static class GPTRequester
 
         //List<ChatMessage> messages = new List<ChatMessage> { systemMessage_sentence, query };
         List<string> results = new List<string>();
-        bool wrong_before = false;
         for (int i = 0; i < num_of_sentence; i++)
         {
             if (cts.Token.IsCancellationRequested)  // If the cancelation source is triggered, cancel the tasks immediately.
                 return null;
             ChatResult chatResult;
             StatusEntry statusEntry;
-            if (!wrong_before && !forceGPT4 && vocabulary != "hostage")
+            statusEntry = StatusStackSystem.instance.AddStatusEntry($"剛剛向GPT3.5請求了 {vocabulary} 的例句，正在等待回應...");
+            chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
             {
-                statusEntry = StatusStackSystem.instance.AddStatusEntry($"剛剛向GPT3.5請求了 {vocabulary} 的例句，正在等待回應...");
-                chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
-                {
-                    Model = Model.ChatGPTTurbo,
-                    Temperature = 0.1,
-                    MaxTokens = 2000,
-                    Messages = messages
-                });
-            }
-            else
-            {
-                statusEntry = StatusStackSystem.instance.AddStatusEntry($"剛剛向GPT4請求了 {vocabulary} 的例句，正在等待回應...");
-                chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
-                {
-                    Model = Model.GPT4,
-                    Temperature = 0.1,
-                    MaxTokens = 2000,
-                    Messages = messages
-                });
-            }
+                Model = Model.ChatGPTTurbo,
+                Temperature = 0.1,
+                MaxTokens = 2000,
+                Messages = messages
+            });
 
             // 只檢查法第一行的話可以避免GPT講的廢話被採用
             string resultText = (chatResult.Choices[0].Message.TextContent + "\n").Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)[0];
@@ -102,19 +89,28 @@ public static class GPTRequester
             {
                 // Update the status
                 statusEntry.SetDone();
-                statusEntry = StatusStackSystem.instance.AddStatusEntry($"<color=orange>偵測到 {vocabulary} 的例句格式錯誤，重新發送請求中...", true);
+                statusEntry = StatusStackSystem.instance.AddStatusEntry($"<color=orange>偵測到 {vocabulary} 的例句格式錯誤，重新向GPT4發送請求中...", true);
 
-                wrong_before = true;
                 Debug.LogError("Wrong GPT response format for sentence: " + resultText);
                 messages.Add(new ChatMessage(ChatMessageRole.User, "Wrong! Please cover the vocabulary \"" + vocabulary + "\" with a bracket \"<    >\". Give me the correct sentence directly without saying anything unnecessary."));
-                chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
+                
+                await gpt4Semaphore.WaitAsync(); // Acquire lock
+                try
                 {
-                    Model = Model.GPT4,
-                    Temperature = 0.05,
-                    MaxTokens = 2000,
-                    TopP = 0.5,
-                    Messages = messages
-                });
+                    chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
+                    {
+                        Model = Model.GPT4,
+                        Temperature = 0.05,
+                        MaxTokens = 2000,
+                        TopP = 0.5,
+                        Messages = messages
+                    });
+                }
+                finally
+                {
+                    gpt4Semaphore.Release(); // Release lock
+                }
+
                 resultText = (chatResult.Choices[0].Message.TextContent + "\n").Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)[0];
                 messages.Add(new ChatMessage(ChatMessageRole.Assistant, resultText));
                 wrong_time++;
@@ -160,13 +156,22 @@ public static class GPTRequester
 
         StatusEntry statusEntry = StatusStackSystem.instance.AddStatusEntry($"GPT4正在生成包含{vocabularies.Count}個單字的文章");
 
-        var chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
+        await gpt4Semaphore.WaitAsync();  // Acquire lock
+        ChatResult chatResult;
+        try
         {
-            Model = Model.GPT4,
-            Temperature = 0,
-            MaxTokens = 500,
-            Messages = messages
-        });
+            chatResult = await gpt.Chat.CreateChatCompletionAsync(new ChatRequest()
+            {
+                Model = Model.GPT4,
+                Temperature = 0,
+                MaxTokens = 500,
+                Messages = messages
+            });
+        }
+        finally
+        {
+            gpt4Semaphore.Release();  // Release lock
+        }
         string gpt_result_paragraph_and_order =  chatResult.Choices[0].Message.TextContent;
         string[] tmp = gpt_result_paragraph_and_order.Split("\n");
         string gpt_result_paragraph = string.Join("\n", tmp, 0, tmp.Length - 1); ;

@@ -28,6 +28,9 @@ public class ExceptionHandler
         }
         else if (ex is System.Net.Http.HttpRequestException)
         {
+            Debug.Log(ex);
+            if (ex.Message.Contains("TooManyRequests"))
+                return "對GPT4的request過於頻繁! (這裡要指示玩家刪掉StreamAssets裡面的SentenceBank裡面的單字)";
             return "\"HttpRequestException\" 您可能沒有連上網際網路。";
         }
         else

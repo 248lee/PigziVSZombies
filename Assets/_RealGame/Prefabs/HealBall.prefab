@@ -34433,7 +34433,7 @@ MonoBehaviour:
   ableShoot: 1
   index: -1
   ableToBeDestroyed: 0
-  speed: -1.1
+  speed: -0.75
   realSpeed: 0
   falling_potion: {fileID: 4848417935368937607}
   healball_particle: {fileID: 7624574381212389606}

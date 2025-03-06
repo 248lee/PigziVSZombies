@@ -23593,23 +23593,23 @@ MonoBehaviour:
   waves:
   - mode: 0
     waveName: "\u58F9"
-    numOfVocabularies: 12
+    numOfVocabularies: 9
     questions: []
     subwaves:
-    - startDelay: 9
+    - startDelay: 4
       numOfEmmisions: 3
-      durationMin: 4.5
-      durationMax: 6
+      durationMin: 7
+      durationMax: 10
       healBallDelay: -1
-    - startDelay: 18
+    - startDelay: 13.5
       numOfEmmisions: 2
       durationMin: 0.7
       durationMax: 1.4
       healBallDelay: -1
-    - startDelay: 9
-      numOfEmmisions: 7
-      durationMin: 14
-      durationMax: 20
+    - startDelay: 14
+      numOfEmmisions: 3
+      durationMin: 7
+      durationMax: 10
       healBallDelay: -1
     p_numOfVocabularies: 0
     labelName: 
@@ -23625,11 +23625,11 @@ MonoBehaviour:
     numOfVocabularies: 6
     questions: []
     subwaves:
-    - startDelay: 9
+    - startDelay: 10
       numOfEmmisions: 2
       durationMin: 5
       durationMax: 10
-      healBallDelay: 4
+      healBallDelay: 5.1
     p_numOfVocabularies: 0
     labelName: 
     targetLabelName: 
@@ -23641,23 +23641,19 @@ MonoBehaviour:
       article: 
   - mode: 0
     waveName: "\u4E09"
-    numOfVocabularies: 1
+    numOfVocabularies: 8
     questions: []
-    subwaves: []
-    p_numOfVocabularies: 0
-    labelName: 
-    targetLabelName: 
-    runtimeVariableA: 
-    relation: 0
-    runtimeVariableB: 
-    dragon_paragraph:
-      vocabularies: []
-      article: 
-  - mode: 0
-    waveName: "\u56DB"
-    numOfVocabularies: 1
-    questions: []
-    subwaves: []
+    subwaves:
+    - startDelay: 4.5
+      numOfEmmisions: 2
+      durationMin: 5
+      durationMax: 5
+      healBallDelay: -1
+    - startDelay: 9
+      numOfEmmisions: 5
+      durationMin: 6
+      durationMax: 12
+      healBallDelay: 6.5
     p_numOfVocabularies: 0
     labelName: 
     targetLabelName: 

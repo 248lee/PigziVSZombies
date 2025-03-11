@@ -8183,7 +8183,6 @@ GameObject:
   - component: {fileID: 647425926}
   - component: {fileID: 647425929}
   - component: {fileID: 647425927}
-  - component: {fileID: 647425930}
   m_Layer: 5
   m_Name: VocabularyScroll
   m_TagString: Untagged
@@ -8250,20 +8249,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647425925}
   m_CullTransparentMesh: 1
---- !u!114 &647425930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 647425925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dcca354d7471fb4e91d486495c6d154, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  content: {fileID: 490490871}
-  vocabularyTextPrefab: {fileID: 8245217317319133935, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
 --- !u!850595691 &658661384
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -10300,6 +10285,7 @@ RectTransform:
   - {fileID: 2014926040}
   - {fileID: 647425926}
   - {fileID: 1764010726}
+  - {fileID: 1080698499}
   m_Father: {fileID: 1991406343}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -15416,6 +15402,56 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1080698498
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1080698499}
+  - component: {fileID: 1080698500}
+  m_Layer: 5
+  m_Name: VocabularyBoardController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1080698499
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080698498}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 786088665}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1080698500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080698498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dcca354d7471fb4e91d486495c6d154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: {fileID: 490490871}
+  vocabularyTextPrefab: {fileID: 8245217317319133935, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
 --- !u!1 &1085456561
 GameObject:
   m_ObjectHideFlags: 0
@@ -23586,7 +23622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343573efdfe3a8e4d8ced3bbb33cfaaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vocabularyBoard: {fileID: 647425930}
+  vocabularyBoard: {fileID: 1080698500}
   wordBankOfThisStage: {fileID: 1989700013}
   nowWaveIndexForPlayerText: {fileID: 1889837219}
   healballCountdownUI: {fileID: 2023625696}
@@ -23623,7 +23659,7 @@ MonoBehaviour:
     numOfVocabularies: 9
     questions: []
     subwaves:
-    - startDelay: 10
+    - startDelay: 1
       numOfEmmisions: 3
       durationMin: 7
       durationMax: 10
@@ -23655,11 +23691,11 @@ MonoBehaviour:
     numOfVocabularies: 6
     questions: []
     subwaves:
-    - startDelay: 11
+    - startDelay: 5
       numOfEmmisions: 3
       durationMin: 5
       durationMax: 10
-      healBallDelay: 9
+      healBallDelay: 5
     p_numOfVocabularies: 0
     dragonData:
       swiftRightNumOfVocabularies: 0
@@ -29065,7 +29101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9690c980130a43a8b23d854e67dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordsTextFile: {fileID: 4900000, guid: 25d4f8c01fd496148ab1e6a286eb5124, type: 3}
+  wordsTextFile: {fileID: 4900000, guid: ee2180d11fc0f9f4584352da474a6829, type: 3}
   regularWords: []
   requestErrorNotification: {fileID: 614982468}
   queueEmptyErrorWindow: {fileID: 1362600693}

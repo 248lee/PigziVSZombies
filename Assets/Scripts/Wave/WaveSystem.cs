@@ -116,7 +116,7 @@ public class WaveSystem : MonoBehaviour
                     this.wordBankOfThisStage.WordsOutgive(wave);
                 else
                     this.wordBankOfThisStage.ParagraphAndWordsOutgive(wave);
-                this.vocabularyBoard.UpdateVocabularyBoard(wave.v_candidates);
+                yield return this.vocabularyBoard.UpdateVocabularyBoard(wave.v_candidates);
                 yield return StartCoroutine(this.implementWaveProcess(wave));
             }
             else if (wave.mode == WaveMode.LoopEndCondition)

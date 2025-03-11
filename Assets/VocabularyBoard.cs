@@ -18,7 +18,7 @@ public class VocabularyBoard : MonoBehaviour
     {
         
     }
-    public void UpdateVocabularyBoard(List<string> vocabularies)
+    public IEnumerator UpdateVocabularyBoard(List<string> vocabularies)
     {
         if (this.content != null)
         {
@@ -31,7 +31,7 @@ public class VocabularyBoard : MonoBehaviour
             // Instantiate new vocabulary texts
             if (this.vocabularyTextPrefab != null)
             {
-                StartCoroutine(instantiateVocabularyOneByOne(vocabularies));
+                yield return StartCoroutine(instantiateVocabularyOneByOne(vocabularies));
             }
             else
             {

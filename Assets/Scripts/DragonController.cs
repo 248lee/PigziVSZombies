@@ -9,7 +9,7 @@ using MilkShake;
 public class DragonController : MonoBehaviour
 {
     [System.Serializable]
-    public class DragonData
+    public class DragonWaveData
     {
         public enum DragonSwiftNumOfVocabularies
         {
@@ -47,6 +47,7 @@ public class DragonController : MonoBehaviour
     List<EnemypartFireballController> enemyparts;
 
     private const string blank = "              ";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -356,7 +357,7 @@ public class DragonController : MonoBehaviour
     IEnumerator _swiftToLeft()
     {
         yield return null;
-        for (int i = this.fireballSystem.generateTransforms.Count - 1; i >= 0; i--)
+        for (int i = this.fireballSystem.generateTransforms.Count - 1; i >= 4 - (int)this.wave.dragonData.swiftLeftNumOfVocabularies; i--)
         {
             while (this.layPoint.position.x > this.fireballSystem.generateTransforms[i].position.x)  // wait until the dragon swifts to the left of the
                                                                                                      // generate transform
@@ -370,7 +371,7 @@ public class DragonController : MonoBehaviour
     IEnumerator _swiftToRight()
     {
         yield return null;
-        for (int i = 0; i < this.fireballSystem.generateTransforms.Count; i++)
+        for (int i = 0; i < (int)this.wave.dragonData.swiftRightNumOfVocabularies; i++)
         {
             while (this.layPoint.position.x < this.fireballSystem.generateTransforms[i].position.x)  // wait until the dragon swifts to the right of the
                                                                                                      // generate transform

@@ -23591,6 +23591,33 @@ MonoBehaviour:
   nowWaveIndexForPlayerText: {fileID: 1889837219}
   healballCountdownUI: {fileID: 2023625696}
   waves:
+  - mode: 1
+    waveName: "\u9F8D"
+    numOfVocabularies: 8
+    questions: []
+    subwaves:
+    - startDelay: 9
+      numOfEmmisions: 2
+      durationMin: 5
+      durationMax: 5
+      healBallDelay: -1
+    - startDelay: 9
+      numOfEmmisions: 5
+      durationMin: 6
+      durationMax: 12
+      healBallDelay: 6.5
+    p_numOfVocabularies: 3
+    dragonData:
+      swiftRightNumOfVocabularies: 2
+      swiftLeftNumOfVocabularies: 1
+    labelName: 
+    targetLabelName: 
+    runtimeVariableA: 
+    relation: 0
+    runtimeVariableB: 
+    dragon_paragraph:
+      vocabularies: []
+      article: 
   - mode: 0
     waveName: "\u58F9"
     numOfVocabularies: 9
@@ -23663,33 +23690,6 @@ MonoBehaviour:
     p_numOfVocabularies: 0
     dragonData:
       swiftRightNumOfVocabularies: 0
-      swiftLeftNumOfVocabularies: 0
-    labelName: 
-    targetLabelName: 
-    runtimeVariableA: 
-    relation: 0
-    runtimeVariableB: 
-    dragon_paragraph:
-      vocabularies: []
-      article: 
-  - mode: 1
-    waveName: "\u4E09"
-    numOfVocabularies: 8
-    questions: []
-    subwaves:
-    - startDelay: 9
-      numOfEmmisions: 2
-      durationMin: 5
-      durationMax: 5
-      healBallDelay: -1
-    - startDelay: 9
-      numOfEmmisions: 5
-      durationMin: 6
-      durationMax: 12
-      healBallDelay: 6.5
-    p_numOfVocabularies: 0
-    dragonData:
-      swiftRightNumOfVocabularies: 2
       swiftLeftNumOfVocabularies: 0
     labelName: 
     targetLabelName: 

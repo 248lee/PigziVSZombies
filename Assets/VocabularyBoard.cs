@@ -31,10 +31,7 @@ public class VocabularyBoard : MonoBehaviour
             // Instantiate new vocabulary texts
             if (this.vocabularyTextPrefab != null)
             {
-                foreach (string voc in vocabularies)
-                {
-                    Instantiate(this.vocabularyTextPrefab, this.content).GetComponent<TextMeshProUGUI>().text = voc;
-                }
+                StartCoroutine(instantiateVocabularyOneByOne(vocabularies));
             }
             else
             {
@@ -44,6 +41,14 @@ public class VocabularyBoard : MonoBehaviour
         else
         {
             Debug.LogError("Content transform is not assigned.");
+        }
+    }
+    IEnumerator instantiateVocabularyOneByOne(List<string> vocabularies)
+    {
+        foreach (string voc in vocabularies)
+        {
+            yield return new WaitForSeconds(1f);
+            Instantiate(this.vocabularyTextPrefab, this.content).GetComponent<TextMeshProUGUI>().text = voc;
         }
     }
 }

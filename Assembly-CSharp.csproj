@@ -375,6 +375,7 @@
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\FrostedGlass.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\coil.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\zahlen.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedSprite-Animated.shader" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\BuiltinDebugViews.shader" />
@@ -387,15 +388,18 @@
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
     <None Include="Assets\StreamingAssets\SentenceBanks\hostage.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\shuttle.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\bestimmen.txt" />
     <None Include="Assets\Unity UI Samples\Textures and Sprites\SF UI\Background\LICENSE.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\falter.txt" />
     <None Include="Assets\_RealGame\Materials\blur.shader" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\TAA.cginc" />
     <None Include="Assets\ParticlePack\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\nehmen.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\protracted.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\copyright.txt" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedSprite.shader" />
+    <None Include="Assets\_RealGame\WordTexts\german.txt" />
     <None Include="Assets\Unity UI Samples\Materials\UI-Default-No-Alpha.shader" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor Resources\Monitors\VectorscopeCompute.compute" />
     <None Include="Assets\StreamingAssets\SentenceBanks\console.txt" />
@@ -421,6 +425,7 @@
     <None Include="Assets\TreePack1_Free\Read Me.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\nationwide.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\trinken.txt" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Bluenoise64\LICENSE.txt" />
     <None Include="Assets\MilkShake\Documentation\Simple Setup.txt" />
@@ -434,9 +439,12 @@
     <None Include="Assets\2DGamekit\Utilities\Shaders\Water.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.shader" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\Antwort.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\Arbeiten.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\cozy.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\FXAA.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\brauchen.txt" />
     <None Include="Assets\StageSelectionTutorial\Fonts\OFL.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
@@ -458,9 +466,11 @@
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Bluenoise64\COPYING.txt" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\Particle Standard Unlit.shader" />
     <None Include="Assets\unity-frosted-glass-master\Assets\FrostedGlass\Shaders\FrostedGlass.shader" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\sehen.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\colgate.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor Resources\UI\Trackball.shader" />
     <None Include="Assets\StreamingAssets\SentenceBanks\stipulate.txt" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\Currywurst.txt" />
     <None Include="Assets\StreamingAssets\SentenceBanks\omnipresent.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor Resources\Monitors\WaveformRender.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
@@ -482,6 +492,7 @@
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\Blit.shader" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\Bloom.cginc" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
+    <None Include="Assets\StreamingAssets\SentenceBanks\essen.txt" />
     <None Include="Assets\StreamingAssets\prompts\GPTSystemMessage.txt" />
     <None Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Resources\Shaders\DepthOfField.cginc" />
     <None Include="Assets\StreamingAssets\SentenceBanks\generate.txt" />

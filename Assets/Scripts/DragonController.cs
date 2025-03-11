@@ -8,6 +8,20 @@ using TMPro;
 using MilkShake;
 public class DragonController : MonoBehaviour
 {
+    [System.Serializable]
+    public class DragonData
+    {
+        public enum DragonSwiftNumOfVocabularies
+        {
+            ZeroFireball,
+            OneFireball,
+            TwoFireballs,
+            ThreeFireballs,
+            FourFireballs
+        }
+        public DragonSwiftNumOfVocabularies swiftRightNumOfVocabularies;
+        public DragonSwiftNumOfVocabularies swiftLeftNumOfVocabularies;
+    }
     [SerializeField] FireballSysrem fireballSystem;
     [SerializeField] Transform layPoint;
     [SerializeField] Transform paragraphStartPoint;

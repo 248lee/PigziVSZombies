@@ -37,6 +37,7 @@ public class Wave
     public List<Subwave> subwaves = new();
 
     public int p_numOfVocabularies = 0;
+    public DragonController.DragonData dragonData;
 
     public string labelName = "Unnamed";
 

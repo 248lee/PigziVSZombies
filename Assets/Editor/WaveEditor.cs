@@ -67,6 +67,10 @@ public class WaveEditor : PropertyDrawer
                     PropertyField p_numOfVocabulariesField = new PropertyField();
                     p_numOfVocabulariesField.BindProperty(property.FindPropertyRelative("p_numOfVocabularies"));
                     container1.Add(p_numOfVocabulariesField);
+
+                    PropertyField dragonDataField = new PropertyField();
+                    dragonDataField.BindProperty(property.FindPropertyRelative("dragonData"));
+                    container1.Add(dragonDataField);
                 }
 
                 // Setup Red Cutline

@@ -23596,7 +23596,7 @@ MonoBehaviour:
     numOfVocabularies: 9
     questions: []
     subwaves:
-    - startDelay: 4
+    - startDelay: 10
       numOfEmmisions: 3
       durationMin: 7
       durationMax: 10
@@ -23612,6 +23612,9 @@ MonoBehaviour:
       durationMax: 10
       healBallDelay: -1
     p_numOfVocabularies: 0
+    dragonData:
+      swiftRightNumOfVocabularies: 0
+      swiftLeftNumOfVocabularies: 0
     labelName: 
     targetLabelName: 
     runtimeVariableA: 
@@ -23625,12 +23628,15 @@ MonoBehaviour:
     numOfVocabularies: 6
     questions: []
     subwaves:
-    - startDelay: 10
-      numOfEmmisions: 2
+    - startDelay: 11
+      numOfEmmisions: 3
       durationMin: 5
       durationMax: 10
-      healBallDelay: 5.1
+      healBallDelay: 9
     p_numOfVocabularies: 0
+    dragonData:
+      swiftRightNumOfVocabularies: 0
+      swiftLeftNumOfVocabularies: 0
     labelName: 
     targetLabelName: 
     runtimeVariableA: 
@@ -23644,7 +23650,7 @@ MonoBehaviour:
     numOfVocabularies: 8
     questions: []
     subwaves:
-    - startDelay: 4.5
+    - startDelay: 9
       numOfEmmisions: 2
       durationMin: 5
       durationMax: 5
@@ -23655,6 +23661,36 @@ MonoBehaviour:
       durationMax: 12
       healBallDelay: 6.5
     p_numOfVocabularies: 0
+    dragonData:
+      swiftRightNumOfVocabularies: 0
+      swiftLeftNumOfVocabularies: 0
+    labelName: 
+    targetLabelName: 
+    runtimeVariableA: 
+    relation: 0
+    runtimeVariableB: 
+    dragon_paragraph:
+      vocabularies: []
+      article: 
+  - mode: 1
+    waveName: "\u4E09"
+    numOfVocabularies: 8
+    questions: []
+    subwaves:
+    - startDelay: 9
+      numOfEmmisions: 2
+      durationMin: 5
+      durationMax: 5
+      healBallDelay: -1
+    - startDelay: 9
+      numOfEmmisions: 5
+      durationMin: 6
+      durationMax: 12
+      healBallDelay: 6.5
+    p_numOfVocabularies: 0
+    dragonData:
+      swiftRightNumOfVocabularies: 2
+      swiftLeftNumOfVocabularies: 0
     labelName: 
     targetLabelName: 
     runtimeVariableA: 
@@ -29029,7 +29065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9690c980130a43a8b23d854e67dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordsTextFile: {fileID: 4900000, guid: ee2180d11fc0f9f4584352da474a6829, type: 3}
+  wordsTextFile: {fileID: 4900000, guid: 25d4f8c01fd496148ab1e6a286eb5124, type: 3}
   regularWords: []
   requestErrorNotification: {fileID: 614982468}
   queueEmptyErrorWindow: {fileID: 1362600693}

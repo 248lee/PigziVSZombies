@@ -2504,7 +2504,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.35, y: 2.2}
+  m_Offset: {x: -0.35, y: 2.97}
   serializedVersion: 2
   m_Radius: 3.22
 --- !u!114 &223231927
@@ -13235,7 +13235,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.35, y: 2.2}
+  m_Offset: {x: -0.35, y: 2.26}
   serializedVersion: 2
   m_Radius: 3.22
 --- !u!114 &941245481
@@ -21271,7 +21271,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.35, y: 2.2}
+  m_Offset: {x: -0.35, y: 2.97}
   serializedVersion: 2
   m_Radius: 3.22
 --- !u!114 &1541125957
@@ -23644,8 +23644,8 @@ MonoBehaviour:
       healBallDelay: 6.5
     p_numOfVocabularies: 3
     dragonData:
-      swiftRightNumOfVocabularies: 2
-      swiftLeftNumOfVocabularies: 1
+      swiftRightNumOfVocabularies: 0
+      swiftLeftNumOfVocabularies: 0
     labelName: 
     targetLabelName: 
     runtimeVariableA: 
@@ -23708,8 +23708,8 @@ MonoBehaviour:
     dragon_paragraph:
       vocabularies: []
       article: 
-  - mode: 0
-    waveName: "\u4E09"
+  - mode: 1
+    waveName: "\u9F8D"
     numOfVocabularies: 8
     questions: []
     subwaves:
@@ -23723,10 +23723,10 @@ MonoBehaviour:
       durationMin: 6
       durationMax: 12
       healBallDelay: 6.5
-    p_numOfVocabularies: 0
+    p_numOfVocabularies: 3
     dragonData:
-      swiftRightNumOfVocabularies: 0
-      swiftLeftNumOfVocabularies: 0
+      swiftRightNumOfVocabularies: 2
+      swiftLeftNumOfVocabularies: 1
     labelName: 
     targetLabelName: 
     runtimeVariableA: 
@@ -26367,7 +26367,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.35, y: 2.2}
+  m_Offset: {x: -0.35, y: 2.97}
   serializedVersion: 2
   m_Radius: 3.22
 --- !u!114 &1818765657

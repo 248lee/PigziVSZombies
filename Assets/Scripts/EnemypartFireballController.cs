@@ -51,7 +51,6 @@ public class EnemypartFireballController : FireballController
     {
         this.ableShoot = false;
         this.SetAbleToBeDestroyed();
-        this.progressBar.gameObject.SetActive(false);
         this.questionText.text = "";
     }
     IEnumerator countTime() //過時流程由fireballSystem呼叫，此處僅計時用途
@@ -70,5 +69,7 @@ public class EnemypartFireballController : FireballController
             this.progressBar.setProgressBar(ratio);
             yield return null;
         }
+        this.questionText.SetText(this.question.GetRealSentenceWithColor("red"));
+        this.progressBar.gameObject.SetActive(false);
     }
 }

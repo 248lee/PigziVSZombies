@@ -105,7 +105,7 @@ public class DragonController : MonoBehaviour
         Question question = WaveSystem.instance.AskForAQuestion(wave);
         this.fireballSystem.generateFireballForDragon(layPos, question);
     }
-    public void partAttackForFlame(float countdowntime)  //倒數秒數請至state machine調整
+    public void partAttackForFlame(float countdowntime)
     {
         StartCoroutine(this._partAttackForFlame(countdowntime));
     }
@@ -198,6 +198,7 @@ public class DragonController : MonoBehaviour
         /*_計算時間_*/
 
         this.AddParagraphRecordToResultSystem();
+        yield return new WaitForSeconds(3f);
         this.paragraphText.color = Color.clear; // Clear the this.wave.dragon_paragraph text
         this.textSticker.UnstickPosition();
 
@@ -205,7 +206,6 @@ public class DragonController : MonoBehaviour
         this.fireballSystem.clearAllParts(); // Clear all the enemy parts, and this sets this.fireballSystem.currentParts = 0
         if (remain_parts > 0)
         {
-            yield return new WaitForSeconds(3f);
             yield return StartCoroutine(this.flame());
         }
 
@@ -236,13 +236,13 @@ public class DragonController : MonoBehaviour
                 }
 
                 insideSubstring = true;
-                if (!this.enemyparts[index_of_parts].ableShoot)
+                if (!this.enemyparts[index_of_parts].ableShoot)  // If the enemy part is corrected
                     text_to_show = text_to_show.Remove(i, 1).Insert(i, "["); // Replace the character '<' into '['
             }
             else if (text_to_show[i] == '>')
             {
                 insideSubstring = false;
-                if (!this.enemyparts[index_of_parts].ableShoot)
+                if (!this.enemyparts[index_of_parts].ableShoot)  // If the enemy part is corrected
                 {
                     text_to_show = text_to_show.Remove(i, 1).Insert(i, "]"); // Replace the character '>' into ']'
                 }
@@ -388,7 +388,7 @@ public class DragonController : MonoBehaviour
         this.Graph_SetTrigger("flame");
         
         yield return new WaitForSeconds(2f);
-        while (this.graphAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fly Flame Attack (This name is dependent in DragonController.cs)"))
+        while (this.graphAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fly Flame Attack (This name is dependent in DragonController_cs)"))
         {
             yield return new WaitForSeconds(0.1f);
         }

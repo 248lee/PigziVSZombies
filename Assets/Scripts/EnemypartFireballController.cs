@@ -6,6 +6,7 @@ using JohnUtils;
 public class EnemypartFireballController : FireballController
 {
     public event EventHandlerWithVoid onShoot;
+    public event EventHandlerWithVoid onTimeUp;
     private float maxTime = 5f, nowTime = 0f;
     private bool pauseTimer = false;
     [SerializeField] private ProgressBarController progressBar;
@@ -53,10 +54,10 @@ public class EnemypartFireballController : FireballController
         this.SetAbleToBeDestroyed();
         this.questionText.text = "";
     }
-    IEnumerator countTime() //過時流程由fireballSystem呼叫，此處僅計時用途
+    IEnumerator countTime()
     {
         this.nowTime = 0f;
-        while (this.nowTime <= this.maxTime)
+        while (this.nowTime <= this.maxTime && this.ableShoot)
         {
             while (this.pauseTimer)
             {
@@ -69,7 +70,11 @@ public class EnemypartFireballController : FireballController
             this.progressBar.setProgressBar(ratio);
             yield return null;
         }
-        this.questionText.SetText(this.question.GetRealSentenceWithColor("red"));
         this.progressBar.gameObject.SetActive(false);
+        if (this.ableShoot)  // If the player has not answer this yet
+        {
+            this.onTimeUp();
+            this.questionText.SetText(this.question.GetRealSentenceWithColor("red"));
+        }
     }
 }

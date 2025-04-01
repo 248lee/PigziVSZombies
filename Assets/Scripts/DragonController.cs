@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 using System.Text.RegularExpressions;
 using JohnUtils;
 using UnityEngine.UI;
@@ -21,6 +22,7 @@ public class DragonController : MonoBehaviour
         }
         public DragonSwiftNumOfVocabularies swiftRightNumOfVocabularies;
         public DragonSwiftNumOfVocabularies swiftLeftNumOfVocabularies;
+        public string durationOfEnemyParts;
     }
     [SerializeField] FireballSysrem fireballSystem;
     [SerializeField] Transform layPoint;
@@ -105,16 +107,16 @@ public class DragonController : MonoBehaviour
         Question question = WaveSystem.instance.AskForAQuestion(wave);
         this.fireballSystem.generateFireballForDragon(layPos, question);
     }
-    public void partAttackForFlame(float countdowntime)
+    public void partAttackForFlame()
     {
-        StartCoroutine(this._partAttackForFlame(countdowntime));
+        StartCoroutine(this._partAttackForFlame());
     }
 
     void updateTheNumOfCurrentParts()
     {
         this.animator.SetInteger("currentParts", this.fireballSystem.currentParts);
     }
-    IEnumerator _partAttackForFlame(float duration)
+    IEnumerator _partAttackForFlame()
     {
         this.enemyparts = new List<EnemypartFireballController>();  // Clear the enemyparts-object-recorder.
 
@@ -160,6 +162,18 @@ public class DragonController : MonoBehaviour
 
         yield return null; // This delay frame is needed for the textinfo to update
 
+        float[] durations = this.wave.dragonData.durationOfEnemyParts.Split(',')
+                                  .Select(s => float.Parse(s.Trim()))
+                                  .ToArray();
+        if (durations.Length == 0)
+        {
+            Debug.LogError("JOHNLEE: Please specify the duration of each enemy part!!");
+            while (true)
+                yield return null;
+        }
+
+        bool isTimeUp = false;
+
         // Instantiate paragraph's to-answer-blanks(fireballs)
         for (int i = 0; i < vocabularies_to_show.Count; i++)
         {
@@ -167,6 +181,7 @@ public class DragonController : MonoBehaviour
             TMP_CharacterInfo charInfo = textInfo.characterInfo[blank_indexes[i]];
             Vector3 charPosition = (charInfo.topRight + charInfo.bottomRight) * 0.5f;
             Vector3 worldPosition = this.paragraphText.transform.TransformPoint(charPosition) - new Vector3(0f, this.z_delta_enemy_part_position, 0f);
+            float duration = durations[Mathf.Min(durations.Length - 1, i)];  // Get the ith duration, if possible.
             var part = this.fireballSystem.generateEnemyPartForDragon(
                 this.paragraphText.transform, 
                 worldPosition,
@@ -175,19 +190,20 @@ public class DragonController : MonoBehaviour
                 this.wave.dragon_paragraph.vocabularies[i]
             );
             part.onShoot += RecalculatePartPositionAndText;
+            part.onTimeUp += () => {
+                isTimeUp = true;
+            };
             this.enemyparts.Add(part);
             this.updateTheNumOfCurrentParts();
         }
 
-        /*計算時間*/
-        float nowTime = 0f;
-        while (nowTime < duration)
+        /*等待玩家射擊*/
+        while (!isTimeUp)
         {
             while (this.pauseTimer)
             {
                 yield return null;
             }
-            nowTime += Time.deltaTime;
             if (this.fireballSystem.currentParts <= 0)
             {
                 yield return StartCoroutine(this.damaged());
@@ -195,7 +211,7 @@ public class DragonController : MonoBehaviour
             }
             yield return null;
         }
-        /*_計算時間_*/
+        /*_等待玩家射擊_*/
 
         this.AddParagraphRecordToResultSystem();
         yield return new WaitForSeconds(3f);

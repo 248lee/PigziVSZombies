@@ -1462,7 +1462,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.02}
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.07
 --- !u!1 &100711158
 GameObject:
   m_ObjectHideFlags: 0
@@ -5013,8 +5013,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4291674015
+  m_fontColor: {r: 0.62352943, g: 0.7472793, b: 0.8039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -8027,7 +8027,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.02}
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.07
 --- !u!1 &627061361
 GameObject:
   m_ObjectHideFlags: 0
@@ -23629,7 +23629,7 @@ MonoBehaviour:
   waves:
   - mode: 1
     waveName: "\u9F8D"
-    numOfVocabularies: 8
+    numOfVocabularies: 6
     questions: []
     subwaves:
     - startDelay: 9
@@ -23646,6 +23646,7 @@ MonoBehaviour:
     dragonData:
       swiftRightNumOfVocabularies: 0
       swiftLeftNumOfVocabularies: 0
+      durationOfEnemyParts: 10, 10, 100
     labelName: 
     targetLabelName: 
     runtimeVariableA: 
@@ -23678,6 +23679,7 @@ MonoBehaviour:
     dragonData:
       swiftRightNumOfVocabularies: 0
       swiftLeftNumOfVocabularies: 0
+      durationOfEnemyParts: 
     labelName: 
     targetLabelName: 
     runtimeVariableA: 
@@ -23700,6 +23702,7 @@ MonoBehaviour:
     dragonData:
       swiftRightNumOfVocabularies: 0
       swiftLeftNumOfVocabularies: 0
+      durationOfEnemyParts: 
     labelName: 
     targetLabelName: 
     runtimeVariableA: 
@@ -23727,6 +23730,7 @@ MonoBehaviour:
     dragonData:
       swiftRightNumOfVocabularies: 2
       swiftLeftNumOfVocabularies: 1
+      durationOfEnemyParts: 
     labelName: 
     targetLabelName: 
     runtimeVariableA: 
@@ -24166,7 +24170,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.02}
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.07
 --- !u!1 &1691510981
 GameObject:
   m_ObjectHideFlags: 0
@@ -26905,7 +26909,7 @@ MonoBehaviour:
   - {fileID: 867460563}
   - {fileID: 832073211}
   - {fileID: 2074478317}
-  textColor: {r: 0, g: 0, b: 0, a: 1}
+  textColor: {r: 0.62352943, g: 0.7490196, b: 0.8039216, a: 1}
   damagePopup: {fileID: 2754710032881910559, guid: 9375b7f39fb59a94289ec88496f4d4fe, type: 3}
   DragonFlyAwayShake_preset: {fileID: 11400000, guid: 2cd1978197dadf445be45cb098d6fce1, type: 2}
   z_delta_enemy_part_position: -0.1
@@ -27995,7 +27999,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.02}
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.07
 --- !u!114 &1910134382
 MonoBehaviour:
   m_ObjectHideFlags: 0

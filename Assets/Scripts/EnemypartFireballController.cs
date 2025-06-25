@@ -36,6 +36,10 @@ public class EnemypartFireballController : FireballController
         this.fireballSystem.currentParts--;
         this.onShoot();
     }
+    public void PauseCountdown()
+    {
+        this.pause();
+    }
     protected override void pause()
     {
         this.pauseTimer = true;

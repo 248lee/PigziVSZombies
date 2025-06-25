@@ -39,9 +39,12 @@ public class DragonController : MonoBehaviour
     [SerializeField] Color textColor;
     [SerializeField] DamagePopupController damagePopup;
     [SerializeField] ShakePreset DragonFlyAwayShake_preset;
+    [SerializeField] ShakePreset DragonDie_preset;
+    [SerializeField] Renderer graphRenderer;
     [SerializeField] float z_delta_enemy_part_position = 0.85f;
     int hp;
     bool pauseTimer;
+    bool isDying;
     float graphAnimatorSpeed, animatorSpeed;
     Wave wave;
     public bool is_on_stage = false;
@@ -55,6 +58,7 @@ public class DragonController : MonoBehaviour
     {
         this.textSticker = GetComponentInChildren<ChildSticker>();
         this.pauseTimer = false;
+        this.isDying = false;
         this.hp = this.maxHP;
         this.hpBar.SetMaxHP(this.maxHP);
         if(this.flameParticles.Count == 0)
@@ -73,6 +77,7 @@ public class DragonController : MonoBehaviour
         this.graphAnimator.speed = 0f;
         this.hpBar.gameObject.SetActive(false);
         this.paragraphText.color = Color.clear;
+        RenderingModeChanger.SetMaterialRenderingMode(this.graphRenderer.material, MaterialRenderingMode.Opaque);
     }
 
     // Update is called once per frame
@@ -82,6 +87,8 @@ public class DragonController : MonoBehaviour
         this.updateFireballsInStateMachine();
         this.updateHPbarAndStateMachine();
         RuntimeGlobalDictionary.SetVariable("BossHP", (float)this.hp);
+        if (this.hp <= 0 && !this.isDying)
+            this.Die();
     }
     public void Born(Wave wave)
     {
@@ -97,6 +104,50 @@ public class DragonController : MonoBehaviour
         this.graphAnimator.speed = 0f;
         this.animator.speed = 0f;
         this.hpBar.gameObject.SetActive(false);
+    }
+    public void Die()
+    {
+        this.isDying = true;
+        StartCoroutine(_dieProcess());
+    }
+    IEnumerator _dieProcess()
+    {
+        // Stuck the dragon first
+        this.SetFreeze(true);
+        foreach (EnemypartFireballController part in this.enemyparts)
+        {
+            part.PauseCountdown();
+        }
+
+        // Flash the first time
+        FlashController.instance.StartHardFlash(Color.white, 0.06f);
+        yield return new WaitForSeconds(.7f);
+
+        // Flash the second time
+        FlashController.instance.StartHardFlash(Color.white, 0.06f);
+        this.paragraphText.color = Color.clear;
+        this.textSticker.UnstickPosition();
+        this.fireballSystem.clearAllParts(); // Clear all the enemy parts, and this sets this.fireballSystem.currentParts = 0
+        yield return new WaitForSeconds(1.7f);
+
+        // Shake!!!!
+        ShakeInstance tmp = Shaker.ShakeAll(this.DragonDie_preset);
+        float fadeDuration = 5f;
+        float elapsedTime = 0;
+        Material graphMaterial = this.graphRenderer.material;
+        Color startColor = graphMaterial.color;
+        RenderingModeChanger.SetMaterialRenderingMode(graphMaterial, MaterialRenderingMode.Fade);
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(1, 0, elapsedTime / fadeDuration);
+            graphMaterial.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+            yield return null;
+        }
+        float fadeout_duration = 1f;
+        tmp.Stop(fadeout_duration, false);
+        yield return new WaitForSeconds(fadeout_duration);
+        this.Leave();
     }
     public void ShakeOfLeaving()
     {

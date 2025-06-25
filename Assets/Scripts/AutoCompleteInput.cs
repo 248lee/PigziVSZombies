@@ -204,10 +204,9 @@ public class AutoCompleteInput : MonoBehaviour
             selectedIndex = (selectedIndex - 1 + activeSuggestions.Count) % activeSuggestions.Count;
         }
         // Select the highlighted suggestion.
-        else if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) && selectedIndex >= 0)
+        else if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) && activeSuggestions.Count >= 0 && selectedIndex >= 0)
         {
             // Debug use, delete me later!
-            // This bug happens when I hit control but no suggesstion is highlighter (沒有建議的時候)
             if (selectedIndex >= activeSuggestions.Count)
                 Debug.LogError("Bug here");
             OnSuggestionClickedOrCtrlPressed(activeSuggestions[selectedIndex].GetComponentInChildren<TextMeshProUGUI>().text);

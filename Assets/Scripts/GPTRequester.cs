@@ -150,8 +150,12 @@ public static class GPTRequester
     {
         string input_message = String.Join(", ", vocabularies); // Concatenate the vocabularies into a message like "apple, banana, complete, ice, sister"
         ChatMessage query = new ChatMessage(ChatMessageRole.User, input_message);
-        ChatMessage[] example_vs = { new ChatMessage(ChatMessageRole.User, "complete, homework, happiness") };
-        ChatMessage[] example_ps = { new ChatMessage(ChatMessageRole.Assistant, "Sarah experienced <happiness> when she finished her <homework>. The sense of accomplishment filled her with joy, making the effort worthwhile. This tells us always <complete> important task first, so we can relax and enjoy the rest of our day.\n3, 2, 1") };
+        ChatMessage[] example_vs = { new ChatMessage(ChatMessageRole.User, "complete, homework, happiness"),
+                                     new ChatMessage(ChatMessageRole.User, "gorgeous, discriminate, latitude, format")
+        };
+        ChatMessage[] example_ps = { new ChatMessage(ChatMessageRole.Assistant, "Sarah experienced <happiness> when she finished her <homework>. The sense of accomplishment filled her with joy, making the effort worthwhile. This tells us always <complete> important task first, so we can relax and enjoy the rest of our day.\n3, 2, 1"),
+                                     new ChatMessage(ChatMessageRole.Assistant, "The <gorgeous> landscape stretched out in all directions, offering a wide <latitude> for exploration. However, it was important not to <discriminate> between the different areas, as each had its own unique charm. The <format> of the journey was to explore each area equally, appreciating the beauty of the whole landscape.\n1, 3, 2, 4")
+        };
         List<ChatMessage> messages = new List<ChatMessage> { systemMessage_paragraph, example_vs[0], example_ps[0], query };
 
         StatusEntry statusEntry = StatusStackSystem.instance.AddStatusEntry($"GPT4正在生成包含{vocabularies.Count}個單字的文章");
@@ -175,7 +179,7 @@ public static class GPTRequester
         string gpt_result_paragraph_and_order =  chatResult.Choices[0].Message.TextContent;
         string[] tmp = gpt_result_paragraph_and_order.Split("\n");
         string gpt_result_paragraph = string.Join("\n", tmp, 0, tmp.Length - 1); ;
-        Debug.Log(gpt_result_paragraph_and_order);
+        Debug.Log(input_message + "\n" + gpt_result_paragraph_and_order);
         int[] orders = IListExtensions.ConvertStringToIntArray(tmp[tmp.Length - 1]);
 
         // Reorder the query vocabularies into the order that GPT used.

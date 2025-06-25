@@ -9,6 +9,6 @@ public class Subwave
     public float durationMin;
     public float durationMax;
 
-    [Tooltip("If all emissions have completed before the healBallDuration is passed, then the healBall will be omitted. Set this to a big number if you don't want a healBall to appear in this subwave.")]
+    [Tooltip("To disable the healball, set this to -1.")]
     public float healBallDelay = 999f;
 }

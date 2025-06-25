@@ -116,8 +116,9 @@ public class WaveSystem : MonoBehaviour
                     this.wordBankOfThisStage.WordsOutgive(wave);
                 else
                     this.wordBankOfThisStage.ParagraphAndWordsOutgive(wave);
-                yield return this.vocabularyBoard.UpdateVocabularyBoard(wave.v_candidates);
-                yield return StartCoroutine(this.implementWaveProcess(wave));
+                yield return this.vocabularyBoard.UpdateVocabularyBoard(wave.v_candidates);  // This plays the animation of setting up the vocabulary board
+                yield return StartCoroutine(this.implementWaveProcess(wave));  // This waits the main process
+                yield return new WaitForSeconds(3f);  // After the wave ends, rest for a while~
             }
             else if (wave.mode == WaveMode.LoopEndCondition)
             {

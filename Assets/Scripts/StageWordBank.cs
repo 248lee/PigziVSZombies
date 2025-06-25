@@ -4,10 +4,10 @@ using UnityEngine;
 using JohnUtils;
 using System.Threading;
 using System.Threading.Tasks;
+using System.IO;
 
 public class StageWordBank : MonoBehaviour
 {
-    [SerializeField] TextAsset wordsTextFile;
     public List<string> regularWords = new();
     public Dictionary<string, List<string>> waveSpecifiedWords = new();
     [SerializeField] private ChoiceWindow requestErrorNotification;
@@ -24,7 +24,8 @@ public class StageWordBank : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
-        this.regularWords = new List<string>(this.wordsTextFile.text.Split("\r\n"));
+        string wordsText = File.ReadAllText(Application.streamingAssetsPath + "/WordsText/words.txt");
+        this.regularWords = new List<string>(wordsText.Split("\r\n"));
         GPTRequester.SetupGPTModel();
         await InitializeWordBank();
     }

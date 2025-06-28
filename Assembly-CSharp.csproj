@@ -120,7 +120,6 @@
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Buttons\UISwitch.cs" />
     <Compile Include="Assets\Scripts\ProgressBarController.cs" />
     <Compile Include="Assets\FlameController.cs" />
-    <Compile Include="Assets\Scripts\AnimationSimpleController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\Unity UI Samples\Scripts\TiltWindow.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Sample\Scripts\Buttons\HideObjectSwitch.cs" />
@@ -183,6 +182,7 @@
     <Compile Include="Assets\TreePack1_Free\Script\TreeControll.cs" />
     <Compile Include="Assets\Scripts\WaterBorder.cs" />
     <Compile Include="Assets\OpenAI_API\Files\FilesEndpoint.cs" />
+    <Compile Include="Assets\Scripts\AnimalGraphController.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Base\Enums\PositionFromScreen.cs" />
     <Compile Include="Assets\Shared\Scripts\ProximityActivate.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
@@ -328,6 +328,7 @@
     <Compile Include="Assets\BG Games\UI window system and tools\Sample\Scripts\UIWindows\SamplePanel2.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Components\EyeAdaptationComponent.cs" />
     <Compile Include="Assets\OpenAI_API\Images\ImageResponseFormat.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Animal_SM\AnimalStayAwayTreeState.cs" />
     <Compile Include="Assets\Heathen Engineering\Samples\UX Examples\Flat Icons [Free]\ToggleSetAnimatorBoolean.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Components\AmbientOcclusionComponent.cs" />
     <Compile Include="Assets\Scripts\AnnotationComponent.cs" />

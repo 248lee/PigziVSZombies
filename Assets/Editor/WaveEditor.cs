@@ -54,10 +54,14 @@ public class WaveEditor : PropertyDrawer
                 PropertyField numOfVocabulariesField = new PropertyField();
                 numOfVocabulariesField.BindProperty(property.FindPropertyRelative("numOfVocabularies"));
 
+                PropertyField backgroundField = new PropertyField();
+                backgroundField.BindProperty(property.FindPropertyRelative("background"));
+
                 Button subwaveWindowButton = new Button(() => { OpenJohnEditorWindow(property); });
                 subwaveWindowButton.text = "Subwave Editor";
                 container1.Add(subwaveWindowButton);
                 container1.Add(waveNameField);
+                container1.Add(backgroundField);
                 container1.Add(numOfVocabulariesField);
                 // container1.Add(v_candidatesField);
 

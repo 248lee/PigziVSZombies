@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 public class FireballSysrem : MonoBehaviour
 {
+    public static FireballSysrem instance { get; private set; }
     [SerializeField] private FireFireballController fireball;
     [SerializeField] private EnemypartFireballController enemypart;
     [SerializeField] private HealFireballController healball;
@@ -26,7 +27,15 @@ public class FireballSysrem : MonoBehaviour
     [SerializeField] float fireballSpeed = 0.7f;
     private void Awake()
     {
-
+        // Ensure that only one instance of FireballSysrem exists (singleton)
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     // Start is called before the first frame update
     void Start()

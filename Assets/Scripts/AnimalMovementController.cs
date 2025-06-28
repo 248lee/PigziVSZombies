@@ -134,6 +134,24 @@ public class AnimalMovementController : MonoBehaviour
         this.animalSystem.SetOccupyLeftPosition(this.index + 1, is_occupying: false);
     }
     /// <summary>
+    /// Return the ID of the home that is currently occupying this animal.
+    /// </summary>
+    public int GetOccupyingHomeID()
+    {
+        if (this.animalSystem.GetRightPositionOccupied(this.index - 1))
+        {
+            return this.index - 1; // Left home occupied
+        }
+        else if (this.animalSystem.GetLeftPositionOccupied(this.index + 1))
+        {
+            return this.index + 1; // Right home occupied
+        }
+        else
+        {
+            return this.index; // Self home occupied
+        }
+    }
+    /// <summary>
     /// Ask the animal to <u>run a small step</u> for this frame at a given direction.
     /// </summary>
     /// <param name="direction">NOTICE:Please normalize before passing this parameter!</param>

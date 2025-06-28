@@ -40,6 +40,7 @@ public class Wave
     public DragonController.DragonWaveData dragonData;
 
     public string labelName = "Unnamed";
+    public GameObject background;
 
     public string targetLabelName = "Unnamed";
     public string runtimeVariableA = "UnknownGlobalVariable";
@@ -72,6 +73,7 @@ public class WaveSystem : MonoBehaviour
     public int nowWaveIndex = 0;
     DragonController dragon;
     FireballSysrem fireballsystem;
+    GameObject currentBackground;
 
     public int nowWaveIndexForPlayer { get; private set; }
 
@@ -106,6 +108,7 @@ public class WaveSystem : MonoBehaviour
     }
     IEnumerator gameProcess()
     {
+        this.currentBackground = this.waves[0].background;  // Set the initial background
         while (this.nowWaveIndex < this.waves.Count)
         {
             this.nowWaveIndexForPlayerText.SetText(this.nowWaveIndexForPlayer.ToString());
@@ -116,6 +119,15 @@ public class WaveSystem : MonoBehaviour
                     this.wordBankOfThisStage.WordsOutgive(wave);
                 else
                     this.wordBankOfThisStage.ParagraphAndWordsOutgive(wave);
+
+                // Update the background
+                if (wave.background != null)
+                {
+                    this.currentBackground.SetActive(false);  // Deactivate the previous background
+                    wave.background.SetActive(true);  // Activate the new background
+                    this.currentBackground = wave.background;  // Update the current background reference
+                }
+                
                 yield return this.vocabularyBoard.UpdateVocabularyBoard(wave.v_candidates);  // This plays the animation of setting up the vocabulary board
                 yield return StartCoroutine(this.implementWaveProcess(wave));  // This waits the main process
                 yield return new WaitForSeconds(3f);  // After the wave ends, rest for a while~

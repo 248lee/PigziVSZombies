@@ -11,10 +11,16 @@ public class AnimalReturningState : StateMachineBehaviour
         if (escapingFrom == EscapingTo.TheLeft)
         {
             animator.GetComponent<AnimalMovementController>().LeaveLeftHome();
+            animator.GetComponent<AnimalController>().SetGraphAnimatorState("run");
+            // Make animal face right
+            animator.GetComponent<AnimalController>().SetFaceRight();
         }
         else
         {
             animator.GetComponent<AnimalMovementController>().LeaveRightHome();
+            animator.GetComponent<AnimalController>().SetGraphAnimatorState("run");
+            // Make animal face left
+            animator.GetComponent<AnimalController>().SetFaceLeft();
         }
     }
 
@@ -41,6 +47,8 @@ public class AnimalReturningState : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.ResetTrigger("FinishReturning");
+        // Reset animal to face right
+        animator.GetComponent<AnimalController>().SetFaceRight();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

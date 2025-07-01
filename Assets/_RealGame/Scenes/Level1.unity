@@ -27558,9 +27558,9 @@ MonoBehaviour:
     labelName: BOSS LOOP
     background: {fileID: 0}
     targetLabelName: 
-    runtimeVariableA: 
-    relation: 0
-    runtimeVariableB: 
+    runtimeVariableA: BossHP
+    relation: 3
+    runtimeVariableB: 0
     dragon_paragraph:
       vocabularies: []
       article: 

@@ -14,8 +14,8 @@ public enum WaveMode
 {
     Normal,
     Boss,
-    LoopLabel,
-    LoopEndCondition
+    LoopStartCondition,
+    LoopEndLabel
 }
 public enum Relation
 {
@@ -132,9 +132,21 @@ public class WaveSystem : MonoBehaviour
                 yield return StartCoroutine(this.implementWaveProcess(wave));  // This waits the main process
                 yield return new WaitForSeconds(3f);  // After the wave ends, rest for a while~
             }
-            else if (wave.mode == WaveMode.LoopEndCondition)
+            else if (wave.mode == WaveMode.LoopEndLabel)
             {
-                bool is_endloop = false;
+                // Loop end label, jump back to the loop start condition
+                for (int i = this.nowWaveIndex; i >= 0; i--)  // scan from this wave all the way to the front
+                {
+                    if (this.waves[i].mode == WaveMode.LoopStartCondition && this.waves[i].targetLabelName == wave.labelName)
+                    {
+                        this.nowWaveIndex = i - 1;  // this is like setting the program counter in the CPU to the loop label
+                        break;
+                    }
+                }
+            }
+            else if (wave.mode == WaveMode.LoopStartCondition)
+            {
+                bool is_goInLoop = false;
                 // Check loop condition
                 float variableA, variableB;
                 if (!float.TryParse(wave.runtimeVariableA, out variableA))  // if the string is in the form of float, just convert it to float
@@ -148,30 +160,30 @@ public class WaveSystem : MonoBehaviour
                 switch (wave.relation)
                 {
                     case Relation.greater:
-                        is_endloop = variableA > variableB;
+                        is_goInLoop = variableA > variableB;
                         break;
                     case Relation.geq:
-                        is_endloop = variableA >= variableB;
+                        is_goInLoop = variableA >= variableB;
                         break;
                     case Relation.less:
-                        is_endloop = variableA < variableB;
+                        is_goInLoop = variableA < variableB;
                         break;
                     case Relation.leq:
-                        is_endloop = variableA <= variableB;
+                        is_goInLoop = variableA <= variableB;
                         break;
                     case Relation.equal:
-                        is_endloop = variableA == variableB;
+                        is_goInLoop = variableA == variableB;
                         break;
                     default:
                         break;
                 }
-                if (!is_endloop)  // loop back if the condition is not satisfied
+                if (!is_goInLoop)  // loop back if the condition is not satisfied
                 {
                     for (int i = this.nowWaveIndex; i >= 0; i--)  // scan from this wave all the way to the front
                     {
-                        if (this.waves[i].mode == WaveMode.LoopLabel && this.waves[i].labelName == wave.targetLabelName)
+                        if (this.waves[i].mode == WaveMode.LoopEndLabel && this.waves[i].labelName == wave.targetLabelName)
                         {
-                            this.nowWaveIndex = i;  // this is like setting the program counter in the CPU to the loop label
+                            this.nowWaveIndex = i;  // this is like setting the program counter in the CPU to the end label
                             break;
                         }
                     }

@@ -84,12 +84,21 @@ public class WaveEditor : PropertyDrawer
                 cutLine.style.backgroundColor = Color.red;
                 container1.Add(cutLine);
             }
-            else if (newMode == WaveMode.LoopLabel)
+            else if (newMode == WaveMode.LoopStartCondition)
             {
                 container1.Clear();
                 PropertyField labelNameField = new PropertyField();
+                PropertyField runtimeVariableAField = new PropertyField();
+                PropertyField relationField = new PropertyField();
+                PropertyField runtimeVariableBField = new PropertyField();
                 labelNameField.BindProperty(property.FindPropertyRelative("labelName"));
+                runtimeVariableAField.BindProperty(property.FindPropertyRelative("runtimeVariableA"));
+                relationField.BindProperty(property.FindPropertyRelative("relation"));
+                runtimeVariableBField.BindProperty(property.FindPropertyRelative("runtimeVariableB"));
                 container1.Add(labelNameField);
+                container1.Add(runtimeVariableAField);
+                container1.Add(relationField);
+                container1.Add(runtimeVariableBField);
 
                 labelNameField.RegisterValueChangeCallback((SerializedPropertyChangeEvent lbname) => {
                     cutLine.style.backgroundColor = WaveEditor.HashStringToColor(property.FindPropertyRelative("labelName").stringValue);
@@ -102,21 +111,15 @@ public class WaveEditor : PropertyDrawer
                 cutLine.style.backgroundColor = WaveEditor.HashStringToColor(property.FindPropertyRelative("labelName").stringValue);
                 container1.Add(cutLine);
             }
-            else if (newMode == WaveMode.LoopEndCondition)
+            else if (newMode == WaveMode.LoopEndLabel)
             {
                 container1.Clear();
                 PropertyField targetLabelNameField = new PropertyField();
-                PropertyField runtimeVariableAField = new PropertyField();
-                PropertyField relationField = new PropertyField();
-                PropertyField runtimeVariableBField = new PropertyField();
+                
                 targetLabelNameField.BindProperty(property.FindPropertyRelative("targetLabelName"));
-                runtimeVariableAField.BindProperty(property.FindPropertyRelative("runtimeVariableA"));
-                relationField.BindProperty(property.FindPropertyRelative("relation"));
-                runtimeVariableBField.BindProperty(property.FindPropertyRelative("runtimeVariableB"));
+                
                 container1.Add(targetLabelNameField);
-                container1.Add(runtimeVariableAField);
-                container1.Add(relationField);
-                container1.Add(runtimeVariableBField);
+                
 
                 targetLabelNameField.RegisterValueChangeCallback((SerializedPropertyChangeEvent lbname) => {
                     cutLine.style.backgroundColor = WaveEditor.HashStringToColor(property.FindPropertyRelative("targetLabelName").stringValue);

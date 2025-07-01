@@ -131,6 +131,7 @@ public class WaveSystem : MonoBehaviour
                 yield return this.vocabularyBoard.UpdateVocabularyBoard(wave.v_candidates);  // This plays the animation of setting up the vocabulary board
                 yield return StartCoroutine(this.implementWaveProcess(wave));  // This waits the main process
                 yield return new WaitForSeconds(3f);  // After the wave ends, rest for a while~
+                this.nowWaveIndexForPlayer++;
             }
             else if (wave.mode == WaveMode.LoopEndLabel)
             {
@@ -190,7 +191,6 @@ public class WaveSystem : MonoBehaviour
                 }
             }
             this.nowWaveIndex++;
-            this.nowWaveIndexForPlayer++;
         }
         GameflowSystem.instance.StageWin();  // The game stage is completed!!
     }
@@ -222,6 +222,7 @@ public class WaveSystem : MonoBehaviour
                 if (waitingForHealballCoroutine != null)
                 {
                     StopCoroutine(waitingForHealballCoroutine);  // If the healball delay is too long, just simply cancel it.
+                    this.healballCountdownUI.SetActive(false);
                     Debug.LogWarning("The healball delay is too long. It is canceled");
                 }
             }

@@ -7,6 +7,14 @@ using UnityEngine.Events;
 public class ChoiceWindow : MonoBehaviour
 {
     public List<Button> buttons;
+    [SerializeField] private Button closeButton;
+    private void Start()
+    {
+        if (closeButton != null)
+        {
+            closeButton.onClick.AddListener(() => this.gameObject.SetActive(false));
+        }
+    }
     public void SetLastButtonToCloseWindow()
     {
         this.buttons[buttons.Count - 1].onClick.AddListener(() => this.gameObject.SetActive(false));

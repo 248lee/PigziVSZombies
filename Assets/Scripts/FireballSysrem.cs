@@ -68,7 +68,7 @@ public class FireballSysrem : MonoBehaviour
         }
     }
 
-    public void generateFireball(Question question)
+    public FireFireballController generateFireball(Question question)
     {
         int posIndex = UnityEngine.Random.Range(0, 4);
         while (posIndex == this.prePos)
@@ -82,6 +82,8 @@ public class FireballSysrem : MonoBehaviour
         temp.question = question;
 
         this.fire_onScreen.Add(temp);
+
+        return temp;
     }
     public void generateFourHealballs(Question[] four_questions)
     {

@@ -31,13 +31,14 @@ public class FireFireballController : FallingFireballController
             text = this.question.GetRealSentenceWithColor("#000080");
         else
             text = this.question.GetRealSentenceWithColor("#0000FF");
-        ResultSystem.instance.AddRecord (
-                WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
-                this.question.vocabulary,
-                text,
-                RecordType_inResults.Fireball,
-                true
-        );
+        if (WaveSystem.instance != null)
+            ResultSystem.instance.AddRecord (
+                    WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
+                    this.question.vocabulary,
+                    text,
+                    RecordType_inResults.Fireball,
+                    true
+            );
     }
     protected override void pause()
     {

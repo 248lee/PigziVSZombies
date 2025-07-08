@@ -45,6 +45,12 @@ public class GameflowSystem : MonoBehaviour
         Time.timeScale = 0;
         AlwaysActiveInputField.instance.SetAllowInput(false);
     }
+    public void SetPauseButAllowInput()
+    {
+        this.is_pausing = true;
+        Time.timeScale = 0;
+        //AlwaysActiveInputField.instance.SetAllowInput(false);
+    }
     public void SetUnpaused()
     {
         this.is_pausing = false;

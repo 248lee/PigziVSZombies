@@ -5,6 +5,7 @@ using JohnUtils;
 using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
+using UnityEngine.UI;
 
 public class StageWordBank : MonoBehaviour
 {
@@ -12,8 +13,10 @@ public class StageWordBank : MonoBehaviour
     public Dictionary<string, List<string>> waveSpecifiedWords = new();
     [SerializeField] private ChoiceWindow requestErrorNotification;
     [SerializeField] private ChoiceWindow queueEmptyErrorWindow;
-    [SerializeField] private TMPro.TextMeshProUGUI requestErrorMessageText;
+    [SerializeField] private GameObject cleanSentenceCacheWindow;
+    [SerializeField] private Text requestErrorMessageText;
     [SerializeField] private GPTProgressUISystem progressPanel;
+    [SerializeField] private string regularWordsFilePath = "WordsText/words.txt";
     private List<ProgressCounter> p_counters;
     private ProgressCounter paragraph_p_counter;
     private Dictionary<string, Queue<string>> sentences;
@@ -24,7 +27,7 @@ public class StageWordBank : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
-        string wordsText = File.ReadAllText(Application.streamingAssetsPath + "/WordsText/words.txt");
+        string wordsText = File.ReadAllText(Application.streamingAssetsPath + "/" + this.regularWordsFilePath);
         this.regularWords = new List<string>(wordsText.Split("\r\n"));
         GPTRequester.SetupGPTModel();
         await InitializeWordBank();
@@ -108,6 +111,11 @@ public class StageWordBank : MonoBehaviour
             {
                 this.requestErrorNotification.gameObject.SetActive(false);
                 tcs.SetResult(false);
+            }, true);
+            this.requestErrorNotification.AddButtonListener(2, () =>  // the third button is "clean the cache"
+            {
+                this.CleanSentencesOnTheDisk();
+                this.cleanSentenceCacheWindow.SetActive(true);
             }, true);
 
             await tcs.Task;  // Wait for the player to enter the choice
@@ -344,6 +352,9 @@ public class StageWordBank : MonoBehaviour
         }
         catch (System.Exception ex)
         {
+            // Concat the word to the beginning of the error message
+            string errorMessage = $"Error while fetching sentences for '{word}': {ex.Message}";
+            ex.Data["word"] = word;  // Store the word in the exception data for further debugging
             // Rethrow the exception so that Task.WhenAll catches it (and aggregates if necessary)
             throw;
         }
@@ -412,5 +423,16 @@ public class StageWordBank : MonoBehaviour
         this.queueEmptyErrorWindow.SetLastButtonToCloseWindow();
         this.queueEmptyErrorWindow.AddButtonListener(0, () => ResultSystem.instance.OpenResultWindow(), false);
     }
-
+    ///<summary>
+    /// This method is used to clean the sentence bank, which means to remove all the sentences in the disk
+    /// </summary>
+    private void CleanSentencesOnTheDisk()
+    {
+        // Iterate all the words in this.regularWords
+        foreach (string word in this.regularWords)
+        {
+            SentenceBank sentenceBank = new SentenceBank(word);
+            sentenceBank.ResetSentenceBankOfThisVocabulary();  // Clear the sentences of the word
+        }
+    }
 }

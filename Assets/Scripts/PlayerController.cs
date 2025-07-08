@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
         {
             this.empty_shoot();
             this.numOfIncorrect++;
-            if (this.numOfIncorrect >= this.numOfIncorrectChances)
+            if (this.numOfIncorrectChances >= 0 && this.numOfIncorrect >= this.numOfIncorrectChances)
             {
                 StartCoroutine(this.PunishForManyIncorrects());
             }

@@ -180,7 +180,7 @@ public class WaveSystem : MonoBehaviour
                 }
                 if (!is_goInLoop)  // loop back if the condition is not satisfied
                 {
-                    for (int i = this.nowWaveIndex; i >= 0; i--)  // scan from this wave all the way to the front
+                    for (int i = 0; i < this.waves.Count; i++)  // scan from this wave all the way to the front
                     {
                         if (this.waves[i].mode == WaveMode.LoopEndLabel && this.waves[i].labelName == wave.targetLabelName)
                         {
@@ -217,14 +217,15 @@ public class WaveSystem : MonoBehaviour
                     Question question = this.AskForAQuestion(wave);
                     this.fireballsystem.generateFireball(question);
                     float delayTime = UnityEngine.Random.Range(subwave.durationMin, subwave.durationMax);
-                    yield return new WaitForSeconds(delayTime);
+                    if (i < subwave.numOfEmmisions - 1)  // If this is not the last fireball, wait for a random time
+                        yield return new WaitForSeconds(delayTime);
                 }
-                if (waitingForHealballCoroutine != null)
-                {
-                    StopCoroutine(waitingForHealballCoroutine);  // If the healball delay is too long, just simply cancel it.
-                    this.healballCountdownUI.SetActive(false);
-                    Debug.LogWarning("The healball delay is too long. It is canceled");
-                }
+                //if (waitingForHealballCoroutine != null)
+                //{
+                //    StopCoroutine(waitingForHealballCoroutine);  // If the healball delay is too long, just simply cancel it.
+                //    this.healballCountdownUI.SetActive(false);
+                //    Debug.LogWarning("The healball delay is too long. It is canceled");
+                //}
             }
         }
         else if (wave.mode == WaveMode.Boss)

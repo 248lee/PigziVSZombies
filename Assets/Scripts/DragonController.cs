@@ -255,7 +255,7 @@ public class DragonController : MonoBehaviour
             {
                 yield return null;
             }
-            if (this.fireballSystem.currentParts <= 0)
+            if (this.fireballSystem.currentParts <= 0 || this.hp <= 0)
             {
                 yield return StartCoroutine(this.damaged());
                 break;
@@ -378,14 +378,23 @@ public class DragonController : MonoBehaviour
             mark = mark && (!part.ableShoot);  // only if all the parts are correct then mark will be true
         }
         string text = this.wave.dragon_paragraph.GetProcessedTextofParagraph(tags);
-        ResultSystem.instance.AddRecord(
-                WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
-                System.String.Join(", ", this.wave.dragon_paragraph.vocabularies),
-                text,
-                RecordType_inResults.Boss,
-                mark
-        );
-    }
+        if (WaveSystem.instance != null)
+            ResultSystem.instance.AddRecord(
+                    WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
+                    System.String.Join(", ", this.wave.dragon_paragraph.vocabularies),
+                    text,
+                    RecordType_inResults.Boss,
+                    mark
+            );
+        else
+			ResultSystem.instance.AddRecord(
+					"1",
+					System.String.Join(", ", this.wave.dragon_paragraph.vocabularies),
+					text,
+					RecordType_inResults.Boss,
+					mark
+			);
+	}
     void updateHPbarAndStateMachine()
     {
         this.hpBar.SetHP(this.hp);

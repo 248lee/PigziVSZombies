@@ -69,13 +69,13 @@ public class PlayerController : MonoBehaviour
         //}
 
         // pause
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            if (!GameflowSystem.instance.is_pausing)
-                GameflowSystem.instance.SetPause();
-            else
-                GameflowSystem.instance.SetUnpaused();
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha0))
+        //{
+        //    if (!GameflowSystem.instance.is_pausing)
+        //        GameflowSystem.instance.SetPause();
+        //    else
+        //        GameflowSystem.instance.SetUnpaused();
+        //}
 
         // Water¨t²Î
         this.updateWaterAmountToText();

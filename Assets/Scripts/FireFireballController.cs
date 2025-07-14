@@ -39,6 +39,14 @@ public class FireFireballController : FallingFireballController
                     RecordType_inResults.Fireball,
                     true
             );
+        else
+            ResultSystem.instance.AddRecord(
+                    "1",
+                    this.question.vocabulary,
+                    text,
+                    RecordType_inResults.Fireball,
+                    true
+            );
     }
     protected override void pause()
     {
@@ -82,14 +90,22 @@ public class FireFireballController : FallingFireballController
         this.putOutFireball();
         transform.position += new Vector3(0f, 0f, -1f);
         // this.realSpeed = 0f; // stop the fireball from falling down
-
-        ResultSystem.instance.AddRecord(
+        if (WaveSystem.instance != null)
+            ResultSystem.instance.AddRecord(
                 WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
                 this.question.vocabulary,
                 text,
                 RecordType_inResults.Fireball,
                 false
-        );
+            );
+        else
+            ResultSystem.instance.AddRecord(
+                "1",
+                this.question.vocabulary,
+                text,
+                RecordType_inResults.Fireball,
+                false
+            );
     }
     public override void Wrong_onFloor()
     {
@@ -99,14 +115,22 @@ public class FireFireballController : FallingFireballController
         this.SetAbleToBeDestroyed();
         this.putOutFireball();
         this.realSpeed = 0f;
-
-        ResultSystem.instance.AddRecord(
+        if (WaveSystem.instance != null)
+            ResultSystem.instance.AddRecord(
                 WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
                 this.question.vocabulary,
                 text,
                 RecordType_inResults.Fireball,
                 false
-        );
+            );
+        else
+            ResultSystem.instance.AddRecord(
+                "1",
+                this.question.vocabulary,
+                text,
+                RecordType_inResults.Fireball,
+                false
+            );
     }
     public void WildfireOnDeadTree() // Called when the wildfire burned all of the tree
     {
@@ -118,14 +142,22 @@ public class FireFireballController : FallingFireballController
         this.burningTree.SetBurningFire(null);
         // transform.position += new Vector3(0f, 0f, 1f);
         this.realSpeed = 0f; // stop the fireball from falling down
-
-        ResultSystem.instance.AddRecord(
+        if (WaveSystem.instance != null)
+            ResultSystem.instance.AddRecord(
                 WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
                 this.question.vocabulary,
                 text,
                 RecordType_inResults.Fireball,
                 false
-        );
+            );
+        else
+            ResultSystem.instance.AddRecord(
+                "1",
+                this.question.vocabulary,
+                text,
+                RecordType_inResults.Fireball,
+                false
+            );
     }
     private void putOutFireball()
     {
@@ -146,13 +178,22 @@ public class FireFireballController : FallingFireballController
             collision.GetComponent<AnimalController>().StartBurned();
 
             string text = this.question.GetRealSentenceWithColor("red");
-            ResultSystem.instance.AddRecord(
-                WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
-                this.question.vocabulary,
-                text,
-                RecordType_inResults.Fireball,
-                false
-        );
+            if (WaveSystem.instance != null)
+                ResultSystem.instance.AddRecord(
+                    WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
+                    this.question.vocabulary,
+                    text,
+                    RecordType_inResults.Fireball,
+                    false
+                );
+            else
+                ResultSystem.instance.AddRecord(
+                    "1",
+                    this.question.vocabulary,
+                    text,
+                    RecordType_inResults.Fireball,
+                    false
+                );
         }
     }
 }

@@ -51,11 +51,11 @@ public class FireballSysrem : MonoBehaviour
         {
             //this.generateFireball();
         }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Question[] qs = { new Question("johnlee", "<johnlee> is handsome."), new Question("qjohnlee", "<qjohnlee> is handsome."), new Question("johtnlee", "<johnlee> is handsome."), new Question("johndlee", "<johnlee> is handsome.") };
-            this.generateFourHealballs(qs);
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    Question[] qs = { new Question("johnlee", "<johnlee> is handsome."), new Question("qjohnlee", "<qjohnlee> is handsome."), new Question("johtnlee", "<johnlee> is handsome."), new Question("johndlee", "<johnlee> is handsome.") };
+        //    this.generateFourHealballs(qs);
+        //}
         //²M°£©U§£
         for (int i = 0; i < this.fire_onScreen.Count; i++)
         {

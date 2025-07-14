@@ -12,6 +12,7 @@ using JohnUtils;
 [RequireComponent(typeof(TabSystem))]
 public class AutoCompleteInput : MonoBehaviour
 {
+    [SerializeField] GameObject ctrl_icon;  // This is the icon that shows the player that he/she can press Ctrl to select a suggestion
     public static AutoCompleteInput instance;
     /// <summary>
     /// Reference to the TMP_InputField where the user types.
@@ -132,6 +133,15 @@ public class AutoCompleteInput : MonoBehaviour
 
             this.activeSuggestions.Add(suggestionItem);
         }
+        if (this.ctrl_icon != null)
+        {
+            // Show the Ctrl icon if there are suggestions available.
+            ctrl_icon.SetActive(activeSuggestions.Count > 0);
+        }
+        //else
+        //{
+        //    Debug.LogWarning("Ctrl icon is not assigned in AutoCompleteInput.");
+        //}
     }
 
     /// <summary>
@@ -207,10 +217,14 @@ public class AutoCompleteInput : MonoBehaviour
         else if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) && activeSuggestions.Count >= 0 && selectedIndex >= 0)
         {
             // Debug use, delete me later!
+            if (activeSuggestions.Count == 0)
+            {
+                return;
+            }
             if (selectedIndex >= activeSuggestions.Count)
                 Debug.LogError("Bug here");
             OnSuggestionClickedOrCtrlPressed(activeSuggestions[selectedIndex].GetComponentInChildren<TextMeshProUGUI>().text);
-                    }
+        }
         HighlightSuggestion();
     }
 

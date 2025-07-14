@@ -14,13 +14,22 @@ public class HealFireballController : FallingFireballController
         {
             this.Wrong();
             string text = this.question.GetRealSentenceWithColor("red");
-            ResultSystem.instance.AddRecord(
-                WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
-                this.question.vocabulary,
-                text,
-                RecordType_inResults.Healball,
-                false
-            );
+            if (WaveSystem.instance != null)
+                ResultSystem.instance.AddRecord(
+                    WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
+                    this.question.vocabulary,
+                    text,
+                    RecordType_inResults.Healball,
+                    false
+                );
+            else
+                ResultSystem.instance.AddRecord(
+                    "1",
+                    this.question.vocabulary,
+                    text,
+                    RecordType_inResults.Healball,
+                    false
+                );
         }
         base.Update();
     }
@@ -41,13 +50,22 @@ public class HealFireballController : FallingFireballController
 
         // Add record to ResultSystem
         string text = this.question.GetRealSentenceWithColor("#0000FF");
-        ResultSystem.instance.AddRecord(
-            WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
-            this.question.vocabulary,
-            text,
-            RecordType_inResults.Healball,
-            true
-        );
+        if (WaveSystem.instance != null)
+            ResultSystem.instance.AddRecord(
+                WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
+                this.question.vocabulary,
+                text,
+                RecordType_inResults.Healball,
+                true
+            );
+        else
+            ResultSystem.instance.AddRecord(
+                "1",
+                this.question.vocabulary,
+                text,
+                RecordType_inResults.Healball,
+                true
+            );
 
         // Wrong out other fireballs on the same row
         List<HealFireballController> healballs_onScreen = this.fireballSystem.fire_onScreen.OfType<HealFireballController>().ToList();
@@ -58,13 +76,22 @@ public class HealFireballController : FallingFireballController
                 healball.Wrong();
                 // Add record to ResultSystem
                 text = healball.question.GetRealSentenceWithColor("#000080");
-                ResultSystem.instance.AddRecord(
-                    WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
-                    healball.question.vocabulary,
-                    text,
-                    RecordType_inResults.Healball,
-                    true
-                );
+                if (WaveSystem.instance != null)
+                    ResultSystem.instance.AddRecord(
+                        WaveSystem.instance.nowWaveIndexForPlayer.ToString(),
+                        healball.question.vocabulary,
+                        text,
+                        RecordType_inResults.Healball,
+                        true
+                    );
+                else
+                    ResultSystem.instance.AddRecord(
+                        "1",
+                        healball.question.vocabulary,
+                        text,
+                        RecordType_inResults.Healball,
+                        true
+                    );
             }
         }
     }

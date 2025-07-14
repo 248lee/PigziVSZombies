@@ -34,6 +34,8 @@ public class Tuto1_ShootFireball : MonoBehaviour, ITutorialStep
     }
     IEnumerator tutorialProcess()
     {
+        yield return null;
+        GameflowSystem.instance.SetUnpaused(); // 確保遊戲流程系統處於未暫停狀態
         this.introWindow.gameObject.SetActive(false);
         this.intro2Window.gameObject.SetActive(false);
         this.endWindow.gameObject.SetActive(false);
@@ -58,35 +60,37 @@ public class Tuto1_ShootFireball : MonoBehaviour, ITutorialStep
 
         // 開始教學步驟
         FireballSysrem.instance.generateFireball(new Question("apple", "John just ate a big red sweet <apple>."));
+        bool is_correct = false;
+        void inputCompleteHandler(string input)
+        {
+            Debug.Log("Input received: " + input);
+            // 檢查玩家輸入的input是不是等於"apple"
+            if (input == "apple")
+            {
+                is_correct = true;
+                // 清除黑色遮罩
+                this.blackMask1.SetActive(false);
+                // 解除暫停遊戲
+                GameflowSystem.instance.SetUnpaused();
+                // 移除輸入完成的事件處理器
+                AutoCompleteInput.instance.inputCompleteHandler -= inputCompleteHandler;
+            }
+            else
+            {
+                // 如果不是，則顯示錯誤提示
+                Debug.Log("Incorrect input, please try again.");
+            }
+
+        }
+        AutoCompleteInput.instance.inputCompleteHandler += inputCompleteHandler;
+
         yield return new WaitForSeconds(14f);
-        if (FireballSysrem.instance.fire_onScreen.Count != 0)
+        if (!is_correct)
         {
             // Pause the game
             GameflowSystem.instance.SetPauseButAllowInput();
             // 顯示黑色遮罩
             this.blackMask1.SetActive(true);
-
-            void inputCompleteHandler(string input)
-            {
-                Debug.Log("Input received: " + input);
-                // 檢查玩家輸入的input是不是等於"apple"
-                if (input == "apple")
-                {
-                    // 清除黑色遮罩
-                    this.blackMask1.SetActive(false);
-                    // 解除暫停遊戲
-                    GameflowSystem.instance.SetUnpaused();
-                    // 移除輸入完成的事件處理器
-                    AutoCompleteInput.instance.inputCompleteHandler -= inputCompleteHandler;
-                }
-                else
-                {
-                    // 如果不是，則顯示錯誤提示
-                    Debug.Log("Incorrect input, please try again.");
-                }
-
-            }
-            AutoCompleteInput.instance.inputCompleteHandler += inputCompleteHandler;
         }
 
         // yield return new WaitUntil(() => !this.blackMask1.activeSelf); // 等待直到黑色遮罩被關閉

@@ -181,6 +181,7 @@
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\PostProcessingComponent.cs" />
     <Compile Include="Assets\OpenAI_API\Moderation\ModerationEndpoint.cs" />
     <Compile Include="Assets\OpenAI_API\Images\IImageGenerationEndpoint.cs" />
+    <Compile Include="Assets\Scripts\TutorialSteps\Tuto3_Healball.cs" />
     <Compile Include="Assets\TreePack1_Free\Script\TreeControll.cs" />
     <Compile Include="Assets\Scripts\WaterBorder.cs" />
     <Compile Include="Assets\OpenAI_API\Files\FilesEndpoint.cs" />
@@ -236,6 +237,7 @@
     <Compile Include="Assets\2DGamekit\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\LightControl\LightControlClip.cs" />
+    <Compile Include="Assets\Scripts\TutorialSteps\Tuto4_Summary.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Attributes\TrackballGroupAttribute.cs" />
     <Compile Include="Assets\Unity UI Samples\Scripts\DragMe.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />

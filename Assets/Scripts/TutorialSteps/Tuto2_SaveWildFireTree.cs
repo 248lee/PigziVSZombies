@@ -45,34 +45,35 @@ public class Tuto2_SaveWildFireTree : MonoBehaviour, ITutorialStep
             superFastFireball.speed = -12f; // 設定超快火球的速度
         }
 
+        bool is_correct = false;
+        void inputCompleteHandler(string input)
+        {
+            // 檢查玩家輸入的input是不是等於"apple"
+            if (input == "wildfire")
+            {
+                is_correct = true;
+                // 清除黑色遮罩
+                this.blackMask2.SetActive(false);
+                // 解除暫停遊戲
+                GameflowSystem.instance.SetUnpaused();
+                // 移除輸入完成的事件處理器
+                AutoCompleteInput.instance.inputCompleteHandler -= inputCompleteHandler;
+            }
+            else
+            {
+                // 如果不是，則顯示錯誤提示
+                Debug.Log("Incorrect input, please try again.");
+            }
+        }
+        AutoCompleteInput.instance.inputCompleteHandler += inputCompleteHandler;
+
         yield return new WaitForSeconds(5f);
-        if (FireballSysrem.instance.fire_onScreen.Count != 0)
+        if (!is_correct)
         {
             // Pause the game
             GameflowSystem.instance.SetPauseButAllowInput();
             // 顯示黑色遮罩
             this.blackMask2.SetActive(true);
-
-            void inputCompleteHandler(string input)
-            {
-                // 檢查玩家輸入的input是不是等於"apple"
-                if (input == "wildfire")
-                {
-                    // 清除黑色遮罩
-                    this.blackMask2.SetActive(false);
-                    // 解除暫停遊戲
-                    GameflowSystem.instance.SetUnpaused();
-                    // 移除輸入完成的事件處理器
-                    AutoCompleteInput.instance.inputCompleteHandler -= inputCompleteHandler;
-                }
-                else
-                {
-                    // 如果不是，則顯示錯誤提示
-                    Debug.Log("Incorrect input, please try again.");
-                }
-
-            }
-            AutoCompleteInput.instance.inputCompleteHandler += inputCompleteHandler;
         }
         yield return new WaitForSeconds(1f);
         // 顯示教學結束的提示視窗

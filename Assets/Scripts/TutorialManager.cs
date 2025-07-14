@@ -60,6 +60,7 @@ public class TutorialManager : MonoBehaviour
             Debug.Log("所有教學已完成！");
             currentStep = null; // 清空
             this.enabled = false; // 關閉管理器
+            GameflowSystem.instance.StageWin(); // 呼叫遊戲流程系統的勝利方法
         }
     }
 }

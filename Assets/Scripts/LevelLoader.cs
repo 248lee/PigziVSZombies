@@ -7,6 +7,7 @@ public class LevelLoader : MonoBehaviour
 {
     public enum Stage
     {
+        Level0, // Tutorial
         Level1
     }
     public Stage stage;

@@ -26,35 +26,7 @@ public enum Relation
     equal
 }
 [System.Serializable]
-public class Wave
-{
-    public WaveMode mode;
 
-    public List<string> v_candidates { get; set; }
-    public string waveName = "";
-    public int numOfVocabularies = 0;
-    public List<Question> questions = new();
-    public List<Subwave> subwaves = new();
-
-    public int p_numOfVocabularies = 0;
-    public DragonController.DragonWaveData dragonData;
-
-    public string labelName = "Unnamed";
-    public GameObject background;
-
-    public string targetLabelName = "Unnamed";
-    public string runtimeVariableA = "UnknownGlobalVariable";
-    public Relation relation;
-    public string runtimeVariableB = "UnknownGlobalVariable";
-
-    // For Boss
-    public Paragraph dragon_paragraph = null;
-
-    public void ShuffleQuestions()
-    {
-        IListExtensions.Shuffle<Question>(questions);
-    }
-}
 //public class Question
 //{
 //    public string sentence;
@@ -64,7 +36,6 @@ public class WaveSystem : MonoBehaviour
 {
     public static WaveSystem instance { get; private set; }
 
-    [SerializeField] VocabularyBoard vocabularyBoard;
     [SerializeField] StageWordBank wordBankOfThisStage;
     [SerializeField] TMPro.TextMeshProUGUI nowWaveIndexForPlayerText;
     [SerializeField] GameObject healballCountdownUI;
@@ -116,7 +87,22 @@ public class WaveSystem : MonoBehaviour
             if (wave.mode == WaveMode.Boss || wave.mode == WaveMode.Normal)
             {
                 if (wave.mode == WaveMode.Normal)
-                    this.wordBankOfThisStage.WordsOutgive(wave);
+                {
+                    if (wave.numOfVocabularies > 0)
+                        this.wordBankOfThisStage.WordsOutgive(wave);
+                    else
+                    {
+                        if (this.nowWaveIndex > 0)
+                        {
+                            Wave previous_wave = this.waves[this.nowWaveIndex - 1];
+                            wave.v_candidates = new List<string>(previous_wave.v_candidates);  // Copy the v_candidates of the previous wave to this wave
+                        }
+                        else
+                        {
+                            Debug.LogError("If you set numOfVocabularies to -1, you are asking for the vocabulary candidates of the previous wave. However, THIS IS LITERALLY THE FIRST WAVE!");
+                        }
+                    }
+                }
                 else
                     this.wordBankOfThisStage.ParagraphAndWordsOutgive(wave);
 
@@ -128,7 +114,8 @@ public class WaveSystem : MonoBehaviour
                     this.currentBackground = wave.background;  // Update the current background reference
                 }
                 
-                yield return this.vocabularyBoard.UpdateVocabularyBoard(wave.v_candidates);  // This plays the animation of setting up the vocabulary board
+                if (wave.numOfVocabularies > 0)
+                    yield return VocabularyBoard.instance.UpdateVocabularyBoard(wave.v_candidates);  // This plays the animation of setting up the vocabulary board
                 yield return StartCoroutine(this.implementWaveProcess(wave));  // This waits the main process
                 yield return new WaitForSeconds(3f);  // After the wave ends, rest for a while~
                 this.nowWaveIndexForPlayer++;

@@ -42,12 +42,16 @@ public class ProgressCounter
 
         this.parentCounter = null;
     }
-    public void CountUp()
+    public bool CountUp()
     {
-        this.currentCount += 1;
-        if (this.parentCounter != null)
-        {
-            this.parentCounter.currentCount += 1;
+        if (this.currentCount < this.fullCount)
+        {   this.currentCount += 1;
+            if (this.parentCounter != null)
+            {
+                this.parentCounter.currentCount += 1;
+            }
+            return true; // Successfully counted up
         }
+        return false; // Already at full count, cannot count up
     }
 }

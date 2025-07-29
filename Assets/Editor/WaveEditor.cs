@@ -53,6 +53,7 @@ public class WaveEditor : PropertyDrawer
 
                 PropertyField numOfVocabulariesField = new PropertyField();
                 numOfVocabulariesField.BindProperty(property.FindPropertyRelative("numOfVocabularies"));
+                numOfVocabulariesField.tooltip = "If you want to use the vocabulary set of previous wave, set it to -1.";
 
                 PropertyField backgroundField = new PropertyField();
                 backgroundField.BindProperty(property.FindPropertyRelative("background"));

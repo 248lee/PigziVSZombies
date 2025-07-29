@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Tuto1_ShootFireball : MonoBehaviour, ITutorialStep
 {
-    [SerializeField] VocabularyBoard vocabularyBoard; // 用於顯示單字的詞彙板
     [SerializeField] List<string> vocabularyList; // 欲顯示的單字
     private bool isEnd = false;
     [SerializeField]
@@ -40,7 +39,7 @@ public class Tuto1_ShootFireball : MonoBehaviour, ITutorialStep
         this.intro2Window.gameObject.SetActive(false);
         this.endWindow.gameObject.SetActive(false);
 
-        yield return this.vocabularyBoard.UpdateVocabularyBoard(this.vocabularyList);
+        yield return VocabularyBoard.instance.UpdateVocabularyBoard(this.vocabularyList);
 
         yield return new WaitForSeconds(2f);
         // 顯示教學開始的提示視窗

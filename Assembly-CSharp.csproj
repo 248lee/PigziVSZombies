@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\AnimalHome.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\TransformTweenBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Animal_SM\AnimalReturningState.cs" />
+    <Compile Include="Assets\Scripts\AnswerAtLeastSystem.cs" />
     <Compile Include="Assets\Scripts\GPTProgressUISystem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TimeDilation\TimeDilationClip.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Base\Enums\PositionFromScreen.cs" />
     <Compile Include="Assets\Shared\Scripts\ProximityActivate.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+    <Compile Include="Assets\Scripts\AnswerAtLeastController.cs" />
     <Compile Include="Assets\OpenAI_API\Files\File.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Components\DitheringComponent.cs" />
     <Compile Include="Assets\MilkShake\Scripts\ShakeInstance.cs" />
@@ -362,6 +364,7 @@
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Components\ColorGradingComponent.cs" />
     <Compile Include="Assets\Scripts\Wave\SentenceBank.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\PostProcessingModel.cs" />
+    <Compile Include="Assets\Scripts\Wave\WaveTypes.cs" />
     <Compile Include="Assets\Scripts\floatMovement.cs" />
     <Compile Include="Assets\OpenAI_API\Audio\TextToSpeechRequest.cs" />
   </ItemGroup>

@@ -19391,7 +19391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 490490871}
-  vocabularyTextPrefab: {fileID: 8245217317319133935, guid: e1ace06a34f91bb4593b768a28871d0a, type: 3}
+  vocabularyTextPrefab: {fileID: 8245217317319133935, guid: d40a6ec180673ee48995ff8ea2f830b3, type: 3}
 --- !u!1 &1085456561
 GameObject:
   m_ObjectHideFlags: 0
@@ -28363,7 +28363,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343573efdfe3a8e4d8ced3bbb33cfaaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vocabularyBoard: {fileID: 1080698500}
   wordBankOfThisStage: {fileID: 1989700013}
   nowWaveIndexForPlayerText: {fileID: 1889837219}
   healballCountdownUI: {fileID: 2023625696}
@@ -37101,6 +37100,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1512999589}
   m_LocalEulerAnglesHint: {x: -8.8349534e-15, y: 180, z: 180}
+--- !u!1 &2112664225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2112664227}
+  - component: {fileID: 2112664226}
+  m_Layer: 0
+  m_Name: AnswerAtLeastSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2112664226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112664225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c2a4b46045ee04d859961be006848c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answerAtLeastControllers: []
+--- !u!4 &2112664227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112664225}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2121555924
 GameObject:
   m_ObjectHideFlags: 0
@@ -49241,6 +49285,7 @@ SceneRoots:
   - {fileID: 383465600}
   - {fileID: 1456740997}
   - {fileID: 878616401}
+  - {fileID: 2112664227}
   - {fileID: 3660238872518720076}
   - {fileID: 1989700014}
   - {fileID: 1657273972}

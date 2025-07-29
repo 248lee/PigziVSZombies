@@ -88,6 +88,12 @@ public class FireballController : MonoBehaviour
                     // Add the word to the word bank
                     AutoCompleteInput.instance.AddWordToWordBank(this.question.vocabulary);
 
+                    // If AnswerAtLeastSystem is active, count the answer
+                    if (AnswerAtLeastSystem.instance != null)
+                    {
+                        AnswerAtLeastSystem.instance.OneVocabularyAnswered(this.question.vocabulary);
+                    }
+
                     // This is the post-process of answering correctly
                     this.PostProcessAfterCorrect();
                 }

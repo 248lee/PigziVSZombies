@@ -2,11 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using JohnUtils;
 
 public class VocabularyBoard : MonoBehaviour
 {
+    public static VocabularyBoard instance;
     [SerializeField] Transform content;
     [SerializeField] GameObject vocabularyTextPrefab;
+
+    public event EventHandlerWithList<GameObject> OnVocabularyBoardUpdated;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -45,10 +61,15 @@ public class VocabularyBoard : MonoBehaviour
     }
     IEnumerator instantiateVocabularyOneByOne(List<string> vocabularies)
     {
+        List<GameObject> instantiatedObjects = new List<GameObject>();
         foreach (string voc in vocabularies)
         {
             yield return new WaitForSeconds(1f);
-            Instantiate(this.vocabularyTextPrefab, this.content).GetComponent<TextMeshProUGUI>().text = voc;
+            GameObject vocabTextObj = Instantiate(this.vocabularyTextPrefab, this.content);
+            vocabTextObj.GetComponentInChildren<TextMeshProUGUI>().text = voc;
+            instantiatedObjects.Add(vocabTextObj);
         }
+        // Notify subscribers that the vocabulary board has been updated
+        OnVocabularyBoardUpdated?.Invoke(instantiatedObjects);
     }
 }

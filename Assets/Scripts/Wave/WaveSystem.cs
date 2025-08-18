@@ -32,15 +32,15 @@ public enum Relation
 //    public string sentence;
 //    public string vocabulary;
 //}
-public class WaveSystem : MonoBehaviour
+public partial class WaveSystem : MonoBehaviour
 {
     public static WaveSystem instance { get; private set; }
 
     [SerializeField] StageWordBank wordBankOfThisStage;
     [SerializeField] TMPro.TextMeshProUGUI nowWaveIndexForPlayerText;
-    [SerializeField] GameObject healballCountdownUI;
+    public GameObject healballCountdownUI;
 
-    public List<Wave> waves;
+    [SerializeReference] public List<Wave> waves;
     public int nowWaveIndex = 0;
     DragonController dragon;
     FireballSysrem fireballsystem;
@@ -84,99 +84,9 @@ public class WaveSystem : MonoBehaviour
         {
             this.nowWaveIndexForPlayerText.SetText(this.nowWaveIndexForPlayer.ToString());
             Wave wave = this.waves[this.nowWaveIndex];
-            if (wave.mode == WaveMode.Boss || wave.mode == WaveMode.Normal)
-            {
-                if (wave.mode == WaveMode.Normal)
-                {
-                    if (wave.numOfVocabularies > 0)
-                        this.wordBankOfThisStage.WordsOutgive(wave);
-                    else
-                    {
-                        if (this.nowWaveIndex > 0)
-                        {
-                            Wave previous_wave = this.waves[this.nowWaveIndex - 1];
-                            wave.v_candidates = new List<string>(previous_wave.v_candidates);  // Copy the v_candidates of the previous wave to this wave
-                        }
-                        else
-                        {
-                            Debug.LogError("If you set numOfVocabularies to -1, you are asking for the vocabulary candidates of the previous wave. However, THIS IS LITERALLY THE FIRST WAVE!");
-                        }
-                    }
-                }
-                else
-                    this.wordBankOfThisStage.ParagraphAndWordsOutgive(wave);
-
-                // Update the background
-                if (wave.background != null)
-                {
-                    this.currentBackground.SetActive(false);  // Deactivate the previous background
-                    wave.background.SetActive(true);  // Activate the new background
-                    this.currentBackground = wave.background;  // Update the current background reference
-                }
-                
-                if (wave.numOfVocabularies > 0)
-                    yield return VocabularyBoard.instance.UpdateVocabularyBoard(wave.v_candidates);  // This plays the animation of setting up the vocabulary board
-                yield return StartCoroutine(this.implementWaveProcess(wave));  // This waits the main process
-                yield return new WaitForSeconds(3f);  // After the wave ends, rest for a while~
-                this.nowWaveIndexForPlayer++;
-            }
-            else if (wave.mode == WaveMode.LoopEndLabel)
-            {
-                // Loop end label, jump back to the loop start condition
-                for (int i = this.nowWaveIndex; i >= 0; i--)  // scan from this wave all the way to the front
-                {
-                    if (this.waves[i].mode == WaveMode.LoopStartCondition && this.waves[i].targetLabelName == wave.labelName)
-                    {
-                        this.nowWaveIndex = i - 1;  // this is like setting the program counter in the CPU to the loop label
-                        break;
-                    }
-                }
-            }
-            else if (wave.mode == WaveMode.LoopStartCondition)
-            {
-                bool is_goInLoop = false;
-                // Check loop condition
-                float variableA, variableB;
-                if (!float.TryParse(wave.runtimeVariableA, out variableA))  // if the string is in the form of float, just convert it to float
-                {
-                    variableA = RuntimeGlobalDictionary.GetVariableFloat(wave.runtimeVariableA);  // else, get the actual value from runtime global dictionary
-                }
-                if (!float.TryParse(wave.runtimeVariableB, out variableB))  // if the string is in the form of float, just convert it to float
-                {
-                    variableB = RuntimeGlobalDictionary.GetVariableFloat(wave.runtimeVariableB);  // else, get the actual value from runtime global dictionary
-                }
-                switch (wave.relation)
-                {
-                    case Relation.greater:
-                        is_goInLoop = variableA > variableB;
-                        break;
-                    case Relation.geq:
-                        is_goInLoop = variableA >= variableB;
-                        break;
-                    case Relation.less:
-                        is_goInLoop = variableA < variableB;
-                        break;
-                    case Relation.leq:
-                        is_goInLoop = variableA <= variableB;
-                        break;
-                    case Relation.equal:
-                        is_goInLoop = variableA == variableB;
-                        break;
-                    default:
-                        break;
-                }
-                if (!is_goInLoop)  // loop back if the condition is not satisfied
-                {
-                    for (int i = 0; i < this.waves.Count; i++)  // scan from this wave all the way to the front
-                    {
-                        if (this.waves[i].mode == WaveMode.LoopEndLabel && this.waves[i].labelName == wave.targetLabelName)
-                        {
-                            this.nowWaveIndex = i;  // this is like setting the program counter in the CPU to the end label
-                            break;
-                        }
-                    }
-                }
-            }
+            
+            wave.InitializeWave();  // Initialize the wave, such as giving out words and setting the background
+            yield return wave.implementWaveProcess();  // Implement the wave process, such as generating fireballs and waiting for them to finish
             this.nowWaveIndex++;
         }
         GameflowSystem.instance.StageWin();  // The game stage is completed!!
@@ -188,66 +98,6 @@ public class WaveSystem : MonoBehaviour
         string sentence = this.wordBankOfThisStage.GiveOneSentence(vocabulary);
         return new Question(vocabulary, sentence);
     }
-    IEnumerator implementWaveProcess(Wave wave)
-    {
-        if (wave.mode == WaveMode.Normal)
-        {
-            foreach (Subwave subwave in wave.subwaves)
-            {
-                Coroutine waitingForHealballCoroutine = null;
-                if (subwave.healBallDelay >= 0)
-                    waitingForHealballCoroutine = StartCoroutine(this.WaitForHealball(wave, subwave.healBallDelay));
-                yield return new WaitForSeconds(subwave.startDelay); // Implementing Subwave process here
-                for (int i = 0; i < subwave.numOfEmmisions; i++)
-                {
-                    Debug.Log($"Now emmiting {i}th fireball");
-                    Question question = this.AskForAQuestion(wave);
-                    this.fireballsystem.generateFireball(question);
-                    float delayTime = UnityEngine.Random.Range(subwave.durationMin, subwave.durationMax);
-                    if (i < subwave.numOfEmmisions - 1)  // If this is not the last fireball, wait for a random time
-                        yield return new WaitForSeconds(delayTime);
-                }
-                //if (waitingForHealballCoroutine != null)
-                //{
-                //    StopCoroutine(waitingForHealballCoroutine);  // If the healball delay is too long, just simply cancel it.
-                //    this.healballCountdownUI.SetActive(false);
-                //    Debug.LogWarning("The healball delay is too long. It is canceled");
-                //}
-            }
-        }
-        else if (wave.mode == WaveMode.Boss)
-        {
-            this.dragon.Born(wave);
-            while (this.dragon.is_on_stage == true)  // wait until the dragon flies away
-            {
-                yield return null;
-            }
-        }
-        while (this.fireballsystem.fire_onScreen.Count != 0) // busy waiting until the fire on screen is empty
-        {
-            yield return null;
-        }
-    }
-    IEnumerator WaitForHealball(Wave wave, float seconds)
-    {
-        this.healballCountdownUI.SetActive(true);
-        float countdown = seconds;
-        while (countdown > 0)
-        {
-            this.healballCountdownUI.GetComponentInChildren<TMPro.TextMeshProUGUI>().SetText(((int)countdown + 1).ToString());  // Draw the countdown UI (+1 for graphic delay)
-            countdown -= Time.deltaTime;
-            yield return null;
-        }
-
-        Question[] questions = new Question[4];
-        for (int i = 0; i < 4; i++)
-            questions[i] = this.AskForAQuestion(wave);
-
-        this.fireballsystem.generateFourHealballs(questions);  // Generate Healballs
-
-        // Show the second 0 in the UI for graphic delay
-        this.healballCountdownUI.GetComponentInChildren<TMPro.TextMeshProUGUI>().SetText("0");
-        yield return new WaitForSeconds(1f);
-        this.healballCountdownUI.SetActive(false);
-    }
+    
+    
 }

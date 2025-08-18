@@ -1,10 +1,12 @@
-using UnityEngine;
-using UnityEditor;
-using UnityEngine.UIElements;
-using UnityEditor.UIElements;
+using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
-[CustomPropertyDrawer(typeof(Wave))]
+using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine;
+using UnityEngine.UIElements;
+[CustomPropertyDrawer(typeof(Wave), true)]
 
 public class WaveEditor : PropertyDrawer
 {
@@ -29,19 +31,45 @@ public class WaveEditor : PropertyDrawer
             return new Color(rFloat, gFloat, bFloat);
         }
     }
+    // 所有可用的 Wave 子類型
+    private static readonly Type[] waveTypes = new Type[]
+    {
+        typeof(WaveSystem.NormalWave),
+        typeof(WaveSystem.BossWave),
+        typeof(WaveSystem.LoopStartConditionWave),
+        typeof(WaveSystem.LoopEndLabelWave)
+    };
     public override VisualElement CreatePropertyGUI(SerializedProperty property)
     {
         var root = new VisualElement();
 
-        SerializedProperty modeProperty = property.FindPropertyRelative("mode");  // get the property of the wavemode
-        PropertyField modeField = new PropertyField(modeProperty);  // generate a property-field for the gotton property
-        root.Add(modeField);  // add the generated property-field onto the tree
+        // This provides a dropdown menu to let the designer select a mode.
+        // 取得目前的子類型
+        string typeName = property.managedReferenceFullTypename;
+        int currentTypeIndex = Array.FindIndex(waveTypes, t => typeName.Contains(t.Name));
+
+        // 型別選單
+        var typePopup = new PopupField<string>(
+            "Wave Type",
+            new List<string> { "Normal", "Boss", "LoopStartCondition", "LoopEndLabel" },
+            currentTypeIndex >= 0 ? currentTypeIndex : 0
+        );
+        root.Add(typePopup);
+
+        // 切換型別時，替換物件
+        typePopup.RegisterValueChangedCallback(evt =>
+        {
+            int selectedIndex = typePopup.index;
+            Type selectedType = waveTypes[selectedIndex];
+            property.managedReferenceValue = Activator.CreateInstance(selectedType);
+            property.serializedObject.ApplyModifiedProperties();
+        });
 
         VisualElement container1 = new VisualElement();
         VisualElement cutLine = new Label();
-        modeField.RegisterValueChangeCallback((SerializedPropertyChangeEvent w) => {  // The callback is called when wavemode is changed
-            WaveMode newMode = (WaveMode)w.changedProperty.enumValueIndex;  // get the real value of the wavemode property
-            if (newMode == WaveMode.Normal || newMode == WaveMode.Boss)
+        //modeField.RegisterValueChangeCallback((SerializedPropertyChangeEvent w) => {  // The callback is called when wavemode is changed
+            //WaveMode newMode = (WaveMode)w.changedProperty.enumValueIndex;  // get the real value of the wavemode property
+            if (typeName.Contains("NormalWave") || typeName.Contains("BossWave"))
             {
                 container1.Clear();
                 // PropertyField v_candidatesField = new PropertyField();
@@ -67,7 +95,7 @@ public class WaveEditor : PropertyDrawer
                 // container1.Add(v_candidatesField);
 
                 // Boss: field of p_numOfVocabularies
-                if (newMode == WaveMode.Boss)
+                if (typeName.Contains("BossWave"))
                 {
                     PropertyField p_numOfVocabulariesField = new PropertyField();
                     p_numOfVocabulariesField.BindProperty(property.FindPropertyRelative("p_numOfVocabularies"));
@@ -85,7 +113,7 @@ public class WaveEditor : PropertyDrawer
                 cutLine.style.backgroundColor = Color.red;
                 container1.Add(cutLine);
             }
-            else if (newMode == WaveMode.LoopStartCondition)
+            else if (typeName.Contains("LoopStartConditionWave"))
             {
                 container1.Clear();
                 PropertyField labelNameField = new PropertyField();
@@ -112,7 +140,7 @@ public class WaveEditor : PropertyDrawer
                 cutLine.style.backgroundColor = WaveEditor.HashStringToColor(property.FindPropertyRelative("labelName").stringValue);
                 container1.Add(cutLine);
             }
-            else if (newMode == WaveMode.LoopEndLabel)
+            else if (typeName.Contains("LoopEndLabelWave"))
             {
                 container1.Clear();
                 PropertyField targetLabelNameField = new PropertyField();
@@ -133,7 +161,7 @@ public class WaveEditor : PropertyDrawer
                 cutLine.style.backgroundColor = WaveEditor.HashStringToColor(property.FindPropertyRelative("targetLabelName").stringValue);
                 container1.Add(cutLine);
             }
-        });
+        //});
         root.Add(container1);
 
         //this.thiswave = property.serializedObject;

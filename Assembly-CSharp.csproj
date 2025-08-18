@@ -89,6 +89,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Base\UIWindowListSO.cs" />
     <Compile Include="Assets\Scripts\WaterGenerate.cs" />
+    <Compile Include="Assets\Scripts\Wave\WaveTypes\LoopStartConditionWave.cs" />
     <Compile Include="Assets\OpenAI_API\Embedding\EmbeddingRequest.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\Scripts\AutoCompleteInput.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Assets\OpenAI_API\Embedding\IEmbeddingEndpoint.cs" />
     <Compile Include="Assets\Scripts\FlashController.cs" />
     <Compile Include="Assets\BG Games\UI window system and tools\Scripts\Base\UIWindowAnimator.cs" />
+    <Compile Include="Assets\Scripts\Wave\WaveTypes\Wave.cs" />
     <Compile Include="Assets\Scripts\AnimalHome.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\TransformTweenBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Animal_SM\AnimalReturningState.cs" />
@@ -128,6 +130,7 @@
     <Compile Include="Assets\OpenAI_API\Chat\ChatRequest.cs" />
     <Compile Include="Assets\Scripts\WordsPanelController.cs" />
     <Compile Include="Assets\Scripts\FireFireballController.cs" />
+    <Compile Include="Assets\Scripts\Wave\WaveTypes\BossWave.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Models\DepthOfFieldModel.cs" />
     <Compile Include="Assets\MilkShake\Demo\Scripts\CameraDistance.cs" />
     <Compile Include="Assets\Scripts\StaticGlobalVariables.cs" />
@@ -298,6 +301,7 @@
     <Compile Include="Assets\OpenAI_API\Chat\IChatEndpoint.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\MilkShake\Demo\Scripts\ShakeClicker.cs" />
+    <Compile Include="Assets\Scripts\Wave\WaveTypes\NormalWave.cs" />
     <Compile Include="Assets\Newnew.cs" />
     <Compile Include="Assets\OpenAI_API\Audio\TextToSpeechEndpoint.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
@@ -329,6 +333,7 @@
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TextSwitcher\TextSwitcherBehaviour.cs" />
     <Compile Include="Assets\Scripts\StatusStackSystem.cs" />
     <Compile Include="Assets\OpenAI_API\Audio\AudioResult.cs" />
+    <Compile Include="Assets\Scripts\Wave\WaveTypes\LoopEndLabelWave.cs" />
     <Compile Include="Assets\Scripts\TutorialSteps\Tuto1_ShootFireball.cs" />
     <Compile Include="Assets\MilkShake\Scripts\IShakeParameters.cs" />
     <Compile Include="Assets\OpenAI_API\Completions\ICompletionEndpoint.cs" />

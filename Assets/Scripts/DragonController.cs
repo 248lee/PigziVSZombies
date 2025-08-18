@@ -46,7 +46,7 @@ public class DragonController : MonoBehaviour
     bool pauseTimer;
     bool isDying;
     float graphAnimatorSpeed, animatorSpeed;
-    Wave wave;
+    WaveSystem.BossWave wave;
     public bool is_on_stage = false;
     ChildSticker textSticker;
     List<EnemypartFireballController> enemyparts;
@@ -90,7 +90,7 @@ public class DragonController : MonoBehaviour
         if (this.hp <= 0 && !this.isDying)
             this.Die();
     }
-    public void Born(Wave wave)
+    public void Born(WaveSystem.BossWave wave)
     {
         this.is_on_stage = true;  // After the dragon fly away, this variable will become false, and let the wave machine proceed on the following wave.
         this.graphAnimator.speed = this.graphAnimatorSpeed;

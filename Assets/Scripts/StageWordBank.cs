@@ -60,9 +60,9 @@ public class StageWordBank : MonoBehaviour
             List<int> may_occur_p_num_of_vocabularies = new List<int>();
             foreach (Wave wave in WaveSystem.instance.waves)
             {
-                if (wave.mode == WaveMode.Boss && !may_occur_p_num_of_vocabularies.Contains(wave.p_numOfVocabularies))
+                if (wave is WaveSystem.BossWave boss_wave && !may_occur_p_num_of_vocabularies.Contains(boss_wave.p_numOfVocabularies))
                 {
-                    may_occur_p_num_of_vocabularies.Add(wave.p_numOfVocabularies);
+                    may_occur_p_num_of_vocabularies.Add(boss_wave.p_numOfVocabularies);
                 }
             }
 
@@ -215,13 +215,8 @@ public class StageWordBank : MonoBehaviour
     /// <para>NOTICE: This method is expected to be called right before the wave is executed.</para>
     /// </summary>
     /// <param name="wave">NOTICE: The wave's mode can ONLY be "Normal"!!</param>
-    public void WordsOutgive(Wave wave)
+    public void WordsOutgive(WaveSystem.NormalWave wave)
     {
-        if (wave.mode != WaveMode.Normal)
-        {
-            Debug.LogError("JohnLee: The wave's mode here should be \"Normal\", not " + wave.mode + "!!!");
-            return;
-        }
         if (/*wave.waveName == ""*/true)  // if the wave's a regularWave
         {
             if (wave.numOfVocabularies > regularWords.Count)
@@ -251,13 +246,8 @@ public class StageWordBank : MonoBehaviour
     /// <para>NOTICE: This method is expected to be called right before the wave is executed.</para>
     /// </summary>
     /// <param name="wave">NOTICE: The wave's mode can ONLY be "Boss"!!</param>
-    public void ParagraphAndWordsOutgive(Wave wave)
+    public void ParagraphAndWordsOutgive(WaveSystem.BossWave wave)
     {
-        if (wave.mode != WaveMode.Boss)
-        {
-            Debug.LogError("The wave's mode here should be \"Boss\", not " + wave.mode + "!!!");
-            return;
-        }
         if (/*wave.waveName == ""*/true)  // if the wave's a regularWave
         {
             if (wave.numOfVocabularies > regularWords.Count)

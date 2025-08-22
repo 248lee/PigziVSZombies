@@ -10,7 +10,6 @@ public abstract class Wave
     public GameObject background;
     public List<string> v_candidates { get; set; }
     public List<Question> questions = new();
-    public List<Subwave> subwaves = new();
 
     public abstract WaveMode Mode { get; }
     public void ShuffleQuestions()

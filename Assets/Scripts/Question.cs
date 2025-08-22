@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Collections;
 
-[System.Serializable]
 public class Question
 {
     public string vocabulary;

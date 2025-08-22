@@ -28366,25 +28366,11 @@ MonoBehaviour:
   wordBankOfThisStage: {fileID: 1989700013}
   nowWaveIndexForPlayerText: {fileID: 1889837219}
   healballCountdownUI: {fileID: 2023625696}
-  waves:
-  - rid: 505260091557806091
+  waveSequence:
+    waveContainers:
+    - {fileID: 11400000, guid: d080c2ad5543a154d8f8458ae1e20a82, type: 2}
+    - {fileID: 11400000, guid: 4c8a24a13a8ffcc4ea3a157836de7d16, type: 2}
   nowWaveIndex: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: 505260091557806091
-      type: {class: WaveSystem/NormalWave, ns: , asm: Assembly-CSharp}
-      data:
-        waveName: uhhu
-        background: {fileID: 0}
-        questions: []
-        subwaves:
-        - startDelay: 8
-          numOfEmmisions: 8
-          durationMin: 0
-          durationMax: 0
-          healBallDelay: 0
-        numOfVocabularies: 5
 --- !u!4 &1657273972
 Transform:
   m_ObjectHideFlags: 0

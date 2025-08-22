@@ -7,6 +7,7 @@ partial class WaveSystem
     [System.Serializable]
     public class NormalWave : Wave
     {
+        List<Subwave> subwaves = new();
         public override WaveMode Mode => WaveMode.Normal;
         public int numOfVocabularies = 0;
 

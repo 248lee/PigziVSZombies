@@ -4,11 +4,11 @@ using UnityEngine;
 
 partial class WaveSystem
 {
+    [System.Serializable]
     public class LoopEndLabelWave : Wave
     {
         public override WaveMode Mode => WaveMode.LoopEndLabel;
         public string labelName = "Unnamed";
-        public string targetLabelName = "Unnamed";
 
         public override void InitializeWave()
         {

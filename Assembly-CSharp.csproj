@@ -243,6 +243,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\LightControl\LightControlClip.cs" />
     <Compile Include="Assets\Scripts\TutorialSteps\Tuto4_Summary.cs" />
+    <Compile Include="Assets\Scripts\Wave\WaveSequence.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Attributes\TrackballGroupAttribute.cs" />
     <Compile Include="Assets\Unity UI Samples\Scripts\DragMe.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -310,6 +311,7 @@
     <Compile Include="Assets\MilkShake\Scripts\Shaker.cs" />
     <Compile Include="Assets\Scripts\Paragraph.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Models\EyeAdaptationModel.cs" />
+    <Compile Include="Assets\Scripts\Wave\WaveContainer.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Runtime\Components\ScreenSpaceReflectionComponent.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\ScreenFader\ScreenFaderClip.cs" />
     <Compile Include="Assets\Unity UI Samples\Scripts\ScrollDetailTexture.cs" />

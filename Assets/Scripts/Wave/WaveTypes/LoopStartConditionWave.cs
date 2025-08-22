@@ -9,7 +9,6 @@ partial class WaveSystem
     public class LoopStartConditionWave : Wave
     {
         public override WaveMode Mode => WaveMode.LoopStartCondition;
-        public string labelName = "Unnamed";
         public string runtimeVariableA = "UnknownGlobalVariable";
         public Relation relation;
         public string runtimeVariableB = "UnknownGlobalVariable";

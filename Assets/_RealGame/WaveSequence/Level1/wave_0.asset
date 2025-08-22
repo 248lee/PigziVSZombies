@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213fb81bc6a2c7a44a5d6a61b688cc37, type: 3}
+  m_Name: wave_0
+  m_EditorClassIdentifier: 
+  waveTypes:
+  - rid: 505260186270957676
+  - rid: 505260186270957677
+  - rid: 505260186270957678
+  - rid: 505260186270957679
+  currentSelectedWave:
+    rid: 505260186270957678
+  references:
+    version: 2
+    RefIds:
+    - rid: 505260186270957676
+      type: {class: WaveSystem/BossWave, ns: , asm: Assembly-CSharp}
+      data:
+        waveName: 
+        background: {fileID: 0}
+        numOfVocabularies: 0
+        p_numOfVocabularies: 0
+        dragonData:
+          swiftRightNumOfVocabularies: 0
+          swiftLeftNumOfVocabularies: 0
+          durationOfEnemyParts: 
+        dragon_paragraph:
+          vocabularies: []
+          article: 
+    - rid: 505260186270957677
+      type: {class: WaveSystem/LoopStartConditionWave, ns: , asm: Assembly-CSharp}
+      data:
+        waveName: 
+        background: {fileID: 0}
+        runtimeVariableA: UnknownGlobalVariable
+        relation: 0
+        runtimeVariableB: UnknownGlobalVariable
+        targetLabelName: Unnamed
+    - rid: 505260186270957678
+      type: {class: WaveSystem/NormalWave, ns: , asm: Assembly-CSharp}
+      data:
+        waveName: "\u58F9"
+        background: {fileID: 0}
+        numOfVocabularies: 0
+    - rid: 505260186270957679
+      type: {class: WaveSystem/LoopEndLabelWave, ns: , asm: Assembly-CSharp}
+      data:
+        waveName: 
+        background: {fileID: 0}
+        labelName: Unnamed

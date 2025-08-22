@@ -64,6 +64,7 @@
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor\Models\AntialiasingModelEditor.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\ScreenFader\Editor\ScreenFaderDrawer.cs" />
     <Compile Include="Assets\2DGamekit\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
+    <Compile Include="Assets\Editor\NormalWaveEditor.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\LightControl\Editor\LightControlDrawer.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor\Models\DefaultPostFxModelEditor.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor\PostProcessingFactory.cs" />
@@ -77,11 +78,13 @@
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor\Models\UserLutModelEditor.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor\PropertyDrawers\MinDrawer.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor\Models\EyeAdaptationModelEditor.cs" />
+    <Compile Include="Assets\Editor\WaveContainerEditor.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor\Models\AmbientOcclusionModelEditor.cs" />
+    <Compile Include="Assets\Editor\WaveSequenceDrawer.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TextSwitcher\Editor\TextSwitcherDrawer.cs" />
-    <Compile Include="Assets\Editor\WaveEditor.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\Editor\TransformTweenDrawer.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor\Monitors\ParadeMonitor.cs" />
+    <Compile Include="Assets\Editor\WaveContainerReferenceDrawer.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor\PostProcessingInspector.cs" />
     <Compile Include="Assets\Editor\Vector3CustomEditor.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor\PostProcessingBehaviourEditor.cs" />

@@ -40,7 +40,8 @@ public partial class WaveSystem : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI nowWaveIndexForPlayerText;
     public GameObject healballCountdownUI;
 
-    [SerializeReference] public List<Wave> waves;
+    public WaveSequence waveSequence;
+    public List<Wave> waves;
     public int nowWaveIndex = 0;
     DragonController dragon;
     FireballSysrem fireballsystem;
@@ -54,6 +55,15 @@ public partial class WaveSystem : MonoBehaviour
             Destroy(this);
         else
             instance = this;
+        this.waves = new List<Wave>();
+        foreach (var waveContainer in this.waveSequence.waveContainers)
+        {
+            Wave wave = waveContainer.waveTypes[0];
+            if (wave != null)
+            {
+                this.waves.Add(wave);
+            }
+        }
     }
 
     // Start is called before the first frame update

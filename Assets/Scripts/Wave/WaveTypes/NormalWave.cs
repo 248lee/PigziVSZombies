@@ -7,7 +7,7 @@ partial class WaveSystem
     [System.Serializable]
     public class NormalWave : Wave
     {
-        List<Subwave> subwaves = new();
+        [SerializeField] List<Subwave> subwaves = new();
         public override WaveMode Mode => WaveMode.Normal;
         public int numOfVocabularies = 0;
 
@@ -16,6 +16,10 @@ partial class WaveSystem
             if (this.numOfVocabularies > 0)
                 yield return VocabularyBoard.instance.UpdateVocabularyBoard(this.v_candidates);  // This plays the animation of setting up the vocabulary board
             yield return this.IterateThroughSubwaves();
+            while (FireballSysrem.instance.fire_onScreen.Count != 0) // busy waiting until the fire on screen is empty
+            {
+                yield return null;
+            }
             yield return new WaitForSeconds(3f);  // After the wave ends, rest for a while~
             instance.nowWaveIndexForPlayer++;
         }
@@ -36,6 +40,7 @@ partial class WaveSystem
                     if (i < subwave.numOfEmmisions - 1)  // If this is not the last fireball, wait for a random time
                         yield return new WaitForSeconds(delayTime);
                 }
+                
                 //if (waitingForHealballCoroutine != null)
                 //{
                 //    StopCoroutine(waitingForHealballCoroutine);  // If the healball delay is too long, just simply cancel it.

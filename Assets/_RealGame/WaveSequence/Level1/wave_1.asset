@@ -18,24 +18,30 @@ MonoBehaviour:
   - rid: 505260186270957698
   - rid: 505260186270957699
   currentSelectedWave:
-    rid: 505260186270957698
+    rid: 505260186270957696
   references:
     version: 2
     RefIds:
     - rid: 505260186270957696
       type: {class: WaveSystem/BossWave, ns: , asm: Assembly-CSharp}
       data:
-        waveName: 
+        waveName: "\u9F8D"
         background: {fileID: 0}
-        numOfVocabularies: 0
-        p_numOfVocabularies: 0
+        subwaves: []
+        numOfVocabularies: 6
+        p_numOfVocabularies: 3
         dragonData:
-          swiftRightNumOfVocabularies: 0
-          swiftLeftNumOfVocabularies: 0
-          durationOfEnemyParts: 
+          swiftRightNumOfVocabularies: 2
+          swiftLeftNumOfVocabularies: 2
+          durationOfEnemyParts: 3
         dragon_paragraph:
-          vocabularies: []
-          article: 
+          vocabularies:
+          - extinct
+          - lodge
+          - console
+          article: When the news broke that the species of bird they had been studying
+            had become <extinct>, the researchers at the <lodge> were devastated.
+            They tried to <console> each other, but the loss was too great to bear.
     - rid: 505260186270957697
       type: {class: WaveSystem/LoopStartConditionWave, ns: , asm: Assembly-CSharp}
       data:
@@ -50,6 +56,7 @@ MonoBehaviour:
       data:
         waveName: "\u8CB3"
         background: {fileID: 0}
+        subwaves: []
         numOfVocabularies: 0
     - rid: 505260186270957699
       type: {class: WaveSystem/LoopEndLabelWave, ns: , asm: Assembly-CSharp}

@@ -81,6 +81,7 @@
     <Compile Include="Assets\Editor\WaveContainerEditor.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor\Models\AmbientOcclusionModelEditor.cs" />
     <Compile Include="Assets\Editor\WaveSequenceDrawer.cs" />
+    <Compile Include="Assets\Editor\BossWaveEditor.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TextSwitcher\Editor\TextSwitcherDrawer.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\TransformTween\Editor\TransformTweenDrawer.cs" />
     <Compile Include="Assets\unity-frosted-glass-master\Assets\PostProcessing\Editor\Monitors\ParadeMonitor.cs" />

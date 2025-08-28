@@ -10,10 +10,18 @@ using UnityEngine.UIElements;
 
 public class NormalWaveEditor : PropertyDrawer
 {
+    static readonly string[] variable_names_to_bind = { "waveName", "background", "numOfVocabularies"};
     public override VisualElement CreatePropertyGUI(SerializedProperty property)
     {
         var root = new VisualElement();
-        root.Add(new PropertyField(property, "Wave Edit")); // <- one line to draw all child fields
+
+        foreach (string var_name in variable_names_to_bind)
+        {
+            PropertyField field = new PropertyField();
+            field.BindProperty(property.FindPropertyRelative(var_name));
+            root.Add(field);
+        }
+
         Button subwaveWindowButton = new Button(() => { OpenJohnEditorWindow(property); });
         subwaveWindowButton.text = "Subwave Editor";
         root.Add(subwaveWindowButton);

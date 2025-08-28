@@ -379,6 +379,7 @@ public class StageWordBank : MonoBehaviour
         catch (System.Exception ex)
         {
             Debug.LogError($"Error while fetching paragraph: {ex.Message}");
+            Debug.Log(ex.Data["query"]);
             // Rethrow the exception so that Task.WhenAll catches it (and aggregates if necessary)
             throw;
         }

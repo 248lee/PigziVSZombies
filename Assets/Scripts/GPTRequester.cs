@@ -172,10 +172,16 @@ public static class GPTRequester
                 Messages = messages
             });
         }
+        catch (Exception ex)
+        {
+            ex.Data["query"] = query.TextContent;
+            throw;
+        }
         finally
         {
             gpt4Semaphore.Release();  // Release lock
         }
+
         string gpt_result_paragraph_and_order =  chatResult.Choices[0].Message.TextContent;
         string[] tmp = gpt_result_paragraph_and_order.Split("\n");
         string gpt_result_paragraph = string.Join("\n", tmp, 0, tmp.Length - 1); ;

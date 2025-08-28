@@ -58,7 +58,7 @@ public partial class WaveSystem : MonoBehaviour
         this.waves = new List<Wave>();
         foreach (var waveContainer in this.waveSequence.waveContainers)
         {
-            Wave wave = waveContainer.waveTypes[0];
+            Wave wave = waveContainer.currentSelectedWave;
             if (wave != null)
             {
                 this.waves.Add(wave);

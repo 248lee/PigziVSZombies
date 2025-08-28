@@ -27,6 +27,7 @@ MonoBehaviour:
       data:
         waveName: 
         background: {fileID: 0}
+        subwaves: []
         numOfVocabularies: 0
         p_numOfVocabularies: 0
         dragonData:
@@ -50,7 +51,18 @@ MonoBehaviour:
       data:
         waveName: "\u58F9"
         background: {fileID: 0}
-        numOfVocabularies: 0
+        subwaves:
+        - startDelay: 10
+          numOfEmmisions: 3
+          durationMin: 6
+          durationMax: 14
+          healBallDelay: -1
+        - startDelay: 10
+          numOfEmmisions: 3
+          durationMin: 2
+          durationMax: 2
+          healBallDelay: 10
+        numOfVocabularies: 6
     - rid: 505260186270957679
       type: {class: WaveSystem/LoopEndLabelWave, ns: , asm: Assembly-CSharp}
       data:

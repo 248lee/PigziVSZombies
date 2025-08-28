@@ -10,6 +10,8 @@ public class ExceptionHandler
     public static string GetFriendlyMessage(System.Exception ex)
     {
         // If we have an AggregateException, flatten it and pick the first inner exception
+        Debug.Log(ex.Data["word"]);
+        Debug.Log(ex.Data["query"]);
         if (ex is AggregateException aggregateEx)
         {
             aggregateEx = aggregateEx.Flatten();
@@ -29,14 +31,12 @@ public class ExceptionHandler
         }
         else if (ex is System.Net.Http.HttpRequestException)
         {
-            Debug.Log(ex);
             if (ex.Message.Contains("TooManyRequests"))
                 return "出錯的單字: " + ex.Data["word"] + "\n對GPT4的request過於頻繁! (這裡要指示玩家刪掉StreamAssets裡面的SentenceBank裡面的單字)\n如果不停重複此錯誤，請點擊「清除例句快取」按鈕。";
             return "\"HttpRequestException\" 您可能沒有連上網際網路。";
         }
         else
         {
-            Debug.LogError(ex);
             string error_message = "出錯的單字: " + ex.Data["word"] + "\n這屬於其他未知的錯誤。請將xxx_Data/StreamingAssets/logs/error_log.txt中的錯誤訊息複製並聯系fantasy10final@gmail.com\n" + ex.ToString();
             // Create the file for the error message
             string filename = "error_log.txt";
